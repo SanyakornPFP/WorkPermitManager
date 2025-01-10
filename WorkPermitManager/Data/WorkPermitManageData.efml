@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="WorkPermitManager.Data" namespace="WorkPermitManager.Models" p1:name="Db_WorkPermitManagerModel" p1:Guid="ccbc48b5-aeb1-4087-8dfb-c00f7fac343f" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Company" entity-set="Companies" table="Companies" schema="dbo" p1:Guid="c1d1faa8-dddd-402f-b799-39a57d369abb">
+    <id name="CompanyID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="49cc3fea-88d5-491e-a78f-39c929ce685d">
+      <column name="CompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CompanyName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="7639d919-b781-49c1-9255-dadd492cbb28">
+      <column name="CompanyName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CompanyAddress" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="02ccf480-dc69-4284-a07a-988920262191">
+      <column name="CompanyAddress" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="8ee2e877-2ca1-4e10-a1f8-e7d69cfc422b">
+      <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="421a2a45-217d-452b-bae1-48c086e65845">
+      <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="252c8ccf-8b46-4055-9644-6162fbc43876">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Department" entity-set="Departments" table="Departments" schema="dbo" p1:Guid="412cd9ce-b26e-499e-8638-3a6d4bd70e4a">
+    <id name="DepartmentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9512255d-2bb6-4e1c-af34-2c5c68590c0e">
+      <column name="DepartmentID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="DepartmentName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="e6e0f883-e2b1-48ff-8eb1-776a7f6f9116">
+      <column name="DepartmentName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="c26b7be7-c349-4577-8652-34f693cab109">
+      <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="2bcc0e3d-4bd5-43eb-8a3a-74246ae5e086">
+      <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="30ed1072-ecd6-4301-9759-2944e94af48c">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Position" entity-set="Positions" table="Positions" schema="dbo" p1:Guid="5d3eafb1-41a2-4881-8144-f93b8e456e0c">
+    <id name="PositionID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f18c874d-2364-4784-bfa4-db2ef7435fbb">
+      <column name="PositionID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="PositionName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="3be867fd-633d-41cc-ad5c-dfa0a018f279">
+      <column name="PositionName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ff661886-cda1-4f3c-8f5f-c82481667e8d">
+      <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="eeff32f6-2482-444c-8080-93e021ba7081">
+      <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="fb548e34-5005-4fe6-924f-ad81f22b5c6b">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="PowerOfAttorney" entity-set="PowerOfAttorneys" table="PowerOfAttorney" schema="dbo" p1:Guid="45d80aba-511b-45cd-81c0-69850da26b3e">
+    <id name="DocumentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="532bd029-825e-4c7b-a1b8-76251dc7168b">
+      <column name="DocumentID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CompanyID" type="Int32" p1:ValidateRequired="true" p1:Guid="c82b500a-9ac0-45c4-8d29-60ae08ccda46">
+      <column name="CompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="fb10e2eb-f8a1-4cb1-ad9f-57f00bcd2f11">
+      <column name="CreationDate" not-null="True" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="GrantorID" type="Int32" p1:ValidateRequired="true" p1:Guid="cbecf773-376a-484d-9142-0ec4557cbd38">
+      <column name="GrantorID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="GrantorCardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="508b7565-882a-498e-8f0e-c3ce267cf1e2">
+      <column name="GrantorCardID" not-null="True" length="13" sql-type="char" p1:fixed-length="True" p1:unicode="False" />
+    </property>
+    <property name="AttorneyID" type="Int32" p1:ValidateRequired="true" p1:Guid="628a4db5-b30c-4373-b784-078a3e44591f">
+      <column name="AttorneyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="AttorneyCardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="2f101268-9b43-48ab-89d6-6e7e4ca7968b">
+      <column name="AttorneyCardID" not-null="True" length="13" sql-type="char" p1:fixed-length="True" p1:unicode="False" />
+    </property>
+    <property name="AttorneyCompanyID" type="Int32" p1:ValidateRequired="true" p1:Guid="53db0d8c-bae2-41a7-976c-84dd220a3e58">
+      <column name="AttorneyCompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="GrantorApprovalStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="260215dd-a52f-4a84-a6a4-4b24cdc2a5c1">
+      <column name="GrantorApprovalStatus" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="GrantorApprovalBy" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="45262cf4-678b-4f54-8cda-69be812119a0">
+      <column name="GrantorApprovalBy" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="AttorneyApprovalStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="f831054a-447b-4f5c-8067-9fae403c5a02">
+      <column name="AttorneyApprovalStatus" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AttorneyApprovalBy" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7700a1eb-1a5e-4374-a836-aced49e353f5">
+      <column name="AttorneyApprovalBy" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="WitnessApprovalStatus1" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="d92b0746-c52f-4caa-b2bf-9d3dd3f805f7">
+      <column name="WitnessApprovalStatus1" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="WitnessApprovalBy1" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="707d8424-2d8e-4e39-abc1-9945a75e116d">
+      <column name="WitnessApprovalBy1" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="WitnessApprovalStatus2" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="cc187a25-1a5e-4953-86e9-15f0d6207637">
+      <column name="WitnessApprovalStatus2" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="WitnessApprovalBy2" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="56e8c1cc-a28e-4652-9723-35231cc1d868">
+      <column name="WitnessApprovalBy2" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="04a4a4d2-d652-490e-9d93-ba8a679f0c8b">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="UserPermission" entity-set="UserPermissions" table="UserPermissions" schema="dbo" p1:Guid="2487ec3f-0a03-46e6-9adc-ee9d16266f2b">
+    <id name="PermissionID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="895a7569-edbd-4d53-a201-1c299b6ae2aa">
+      <column name="PermissionID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="UserID" type="Int32" p1:ValidateRequired="true" p1:Guid="b281fe53-336f-4a64-b1ba-ccd4bdc440fa">
+      <column name="UserID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="FunctionName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="0ca89968-2cee-4d88-8a05-9a6096a16184">
+      <column name="FunctionName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CanCreate" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="042d6719-2adc-4842-bbb3-5fac7ebf3d8b">
+      <column name="CanCreate" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CanRead" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="6c78f6e8-776b-4f80-b4b2-819bef2e0b82">
+      <column name="CanRead" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CanUpdate" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="541fb452-2d2a-436e-8fd3-db40ed6d80bb">
+      <column name="CanUpdate" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CanDelete" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="e3b1c6ef-082a-41ad-86c5-dd11848bc076">
+      <column name="CanDelete" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="effd4b9e-bc39-4be0-8738-dbcef0929072">
+      <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="2a7fda37-6a94-4af3-b3c3-fc10227e40c0">
+      <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="dc256a83-cc6a-410f-855c-34d95af6bcd8">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="User" entity-set="Users" table="Users" schema="dbo" p1:Guid="2537a12e-2f0a-4180-8e10-9bf2a3154188">
+    <id name="UserID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="455add7f-d81d-4723-b95b-ffdbef9e0545">
+      <column name="UserID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="Username" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="713b792e-0796-405a-9bcc-510d8f1ac983">
+      <column name="Username" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Password" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="0159a9c8-c997-4572-83be-3693b5221bf1">
+      <column name="Password" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FullName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="71845f40-3daa-44db-b028-3a827f3c0cdd">
+      <column name="FullName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PositionID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9b0f32d3-932c-4c86-ae59-c5e04ddd5c06">
+      <column name="PositionID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="DepartmentID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f9dd78ed-9eb8-446d-9c7d-255c8dcdd859">
+      <column name="DepartmentID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CompanyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0e0e058d-fbbe-4a1c-85d7-8940767d3775">
+      <column name="CompanyID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="cb3fefcb-e650-4063-b4db-0b1de0b0008c">
+      <column name="CardID" not-null="True" length="13" sql-type="char" unique="True" p1:fixed-length="True" p1:unicode="False" />
+    </property>
+    <property name="ProfilePicture" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cdf922aa-d9fd-449e-bee6-092ae80678d7">
+      <column name="ProfilePicture" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="Signature" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3ca46fd0-dd2d-4839-9e1a-a8c7519b64f4">
+      <column name="Signature" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="cf4a97c8-5c9c-4b16-913b-a6c863095384">
+      <column name="Email" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="55e06111-78a3-4d27-b1f6-3514af2e140b">
+      <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="cc969526-92e1-45e2-9153-bc6037f14de8">
+      <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="eceaec12-9120-4ab4-8de6-58e2bf6031f1">
+      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <associations>
+    <association name="Company_PowerOfAttorney" cardinality="OneToMany" p1:Guid="6080cab6-7b9d-475e-b5dd-1161e450571e">
+      <end1 multiplicity="One" name="Company_CompanyID" class="PowerOfAttorney" relation-class="Company" constrained="True" lazy="False" p1:Guid="d5690cc4-3092-4b37-a3f4-8741d6a1dbda">
+        <property name="CompanyID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_CompanyID" class="Company" relation-class="PowerOfAttorney" lazy="False" p1:Guid="b99be2ff-53f2-4067-9d5b-5581865d2c20">
+        <property name="CompanyID" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney" cardinality="OneToMany" p1:Guid="b016bcef-3b3b-4667-9f7c-ff74a3389f05">
+      <end1 multiplicity="One" name="User_GrantorID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="b5ef2100-3aa9-4029-8031-b9a02ce7f701">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="1b9e12cc-559b-4c65-9d5c-3092f12ccfe7">
+        <property name="GrantorID" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="7d58bea0-88df-47c0-92cc-733d869b5894">
+      <end1 multiplicity="One" name="User_AttorneyID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="2166ab79-34c0-4439-8e33-60f757190087">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="012a80bf-d2a6-4c48-92a8-7b91527be7d7">
+        <property name="AttorneyID" />
+      </end2>
+    </association>
+    <association name="Company_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="3e875778-617c-4e70-9e29-b356001dff43">
+      <end1 multiplicity="One" name="Company_AttorneyCompanyID" class="PowerOfAttorney" relation-class="Company" constrained="True" lazy="False" p1:Guid="e297d90f-5cc6-43e6-ae53-dba77c850f6a">
+        <property name="CompanyID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyCompanyID" class="Company" relation-class="PowerOfAttorney" lazy="False" p1:Guid="c24ec77d-a7fc-475e-9510-059f3a017314">
+        <property name="AttorneyCompanyID" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney2" cardinality="OneToMany" p1:Guid="2e8f37a4-1b35-4cda-ba7d-8d74a9c4f5d9">
+      <end1 multiplicity="ZeroOrOne" name="User_GrantorApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="ac628015-3dca-4f11-af34-03486ef969df">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="176bf876-e441-43e6-ac54-cc82203ee2e4">
+        <property name="GrantorApprovalBy" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney3" cardinality="OneToMany" p1:Guid="b8777a70-51c4-4385-b31d-06f54f79ebfc">
+      <end1 multiplicity="ZeroOrOne" name="User_AttorneyApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="cddd295d-2415-4a24-b402-80539f05422e">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="d185833a-dd9b-4d88-bfe8-0262cb9e2437">
+        <property name="AttorneyApprovalBy" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney4" cardinality="OneToMany" p1:Guid="872af321-59a6-4dce-9d9d-c4645827804d">
+      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy1" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="80dcb076-2fa4-4707-86c4-400a73bcb1c9">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy1" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="18228366-d41d-4392-8420-5a5a5204ee25">
+        <property name="WitnessApprovalBy1" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney5" cardinality="OneToMany" p1:Guid="9f96c14c-d46d-439b-b0d5-87c046136f7b">
+      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy2" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="ef497e55-cf93-45f8-932c-4d2c078b741d">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy2" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="bb83b92a-6e6b-4444-b85e-06d31ad9c651">
+        <property name="WitnessApprovalBy2" />
+      </end2>
+    </association>
+    <association name="User_UserPermission" cardinality="OneToMany" p1:Guid="b12f266c-f572-4404-8bf8-6a451f5bc671">
+      <end1 multiplicity="One" name="User" class="UserPermission" relation-class="User" constrained="True" lazy="False" p1:Guid="1cb16275-32bd-40d7-8053-6842055a6f66">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="UserPermissions" class="User" relation-class="UserPermission" lazy="False" p1:Guid="c1730dec-0244-4b7f-a816-729bb2ac0c7a">
+        <property name="UserID" />
+      </end2>
+    </association>
+    <association name="Position_User" cardinality="OneToMany" p1:Guid="99066453-c378-4818-b941-523e2782ead6">
+      <end1 multiplicity="ZeroOrOne" name="Position" class="User" relation-class="Position" constrained="True" lazy="False" p1:Guid="04a53c26-0c45-4042-b389-ebb144831ebd">
+        <property name="PositionID" />
+      </end1>
+      <end2 multiplicity="Many" name="Users" class="Position" relation-class="User" lazy="False" p1:Guid="0408e31c-89ae-4c14-a8af-a8ab5f88f144">
+        <property name="PositionID" />
+      </end2>
+    </association>
+    <association name="Department_User" cardinality="OneToMany" p1:Guid="2b0fdff7-6601-4811-8bf8-330503934ca4">
+      <end1 multiplicity="ZeroOrOne" name="Department" class="User" relation-class="Department" constrained="True" lazy="False" p1:Guid="a4e61269-f82d-4924-a824-9420a72e6644">
+        <property name="DepartmentID" />
+      </end1>
+      <end2 multiplicity="Many" name="Users" class="Department" relation-class="User" lazy="False" p1:Guid="95bbf5de-6acb-477c-9ffd-68e7f9ea09d3">
+        <property name="DepartmentID" />
+      </end2>
+    </association>
+    <association name="Company_User" cardinality="OneToMany" p1:Guid="dc3a958c-dfe9-4717-ac2e-d11f85fb1f92">
+      <end1 multiplicity="ZeroOrOne" name="Company" class="User" relation-class="Company" constrained="True" lazy="False" p1:Guid="4fb1a540-0233-41a4-b1b6-d026a514d2f6">
+        <property name="CompanyID" />
+      </end1>
+      <end2 multiplicity="Many" name="Users" class="Company" relation-class="User" lazy="False" p1:Guid="bbfaa8a4-235a-44fb-9c4b-f14016d2e042">
+        <property name="CompanyID" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
