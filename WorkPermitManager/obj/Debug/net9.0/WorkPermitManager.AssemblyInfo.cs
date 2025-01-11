@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkPermitManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a311e4403729da17ea48f1546c25843b258d285")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkPermitManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkPermitManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

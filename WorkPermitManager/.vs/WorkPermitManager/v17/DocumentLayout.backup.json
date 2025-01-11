@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project\\WorkPermitManager\\",
+  "WorkspaceRootPath": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\workpermitmanager\\workpermitmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:workpermitmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\administrator\\managecompany.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\administrator\\managecompany.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +22,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WorkPermitManager",
-              "DocumentMoniker": "D:\\Project\\WorkPermitManager\\WorkPermitManager.csproj",
-              "RelativeDocumentMoniker": "WorkPermitManager.csproj",
-              "ToolTip": "D:\\Project\\WorkPermitManager\\WorkPermitManager.csproj",
-              "RelativeToolTip": "WorkPermitManager.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-10T13:21:09.539Z",
+              "Title": "ManageCompany.cshtml",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Administrator\\ManageCompany.cshtml",
+              "RelativeDocumentMoniker": "Views\\Administrator\\ManageCompany.cshtml",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Administrator\\ManageCompany.cshtml",
+              "RelativeToolTip": "Views\\Administrator\\ManageCompany.cshtml",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAAAM8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-11T09:20:46.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAiwBUBAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-11T07:21:02.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdministratorController.cs",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdministratorController.cs",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeToolTip": "Controllers\\AdministratorController.cs",
+              "ViewState": "AgIAAFICAAAAAAAAAAApwGMCAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-11T07:02:26.794Z",
               "EditorCaption": ""
             }
           ]

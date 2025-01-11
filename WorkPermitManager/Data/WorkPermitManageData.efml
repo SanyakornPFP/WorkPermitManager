@@ -7,14 +7,17 @@
     <property name="CompanyName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="7639d919-b781-49c1-9255-dadd492cbb28">
       <column name="CompanyName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CompanyAddress" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="02ccf480-dc69-4284-a07a-988920262191">
-      <column name="CompanyAddress" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="CompanyAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="02ccf480-dc69-4284-a07a-988920262191">
+      <column name="CompanyAddress" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="8ee2e877-2ca1-4e10-a1f8-e7d69cfc422b">
       <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
     <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="421a2a45-217d-452b-bae1-48c086e65845">
       <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="71877e40-006e-4c8c-9e6d-54036cfc38fe">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="252c8ccf-8b46-4055-9644-6162fbc43876">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
@@ -33,6 +36,9 @@
     <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="2bcc0e3d-4bd5-43eb-8a3a-74246ae5e086">
       <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3d9d5490-d86d-4175-8823-b321d352fe83">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="30ed1072-ecd6-4301-9759-2944e94af48c">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
     </property>
@@ -49,6 +55,9 @@
     </property>
     <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="eeff32f6-2482-444c-8080-93e021ba7081">
       <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6701b851-b8c5-4ef0-8fcf-4b91dc67ea84">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="fb548e34-5005-4fe6-924f-ad81f22b5c6b">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
@@ -103,6 +112,9 @@
     <property name="WitnessApprovalBy2" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="56e8c1cc-a28e-4652-9723-35231cc1d868">
       <column name="WitnessApprovalBy2" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b911cd61-4a5f-432a-9cef-3412682491f9">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="04a4a4d2-d652-490e-9d93-ba8a679f0c8b">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
     </property>
@@ -135,6 +147,9 @@
     <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="2a7fda37-6a94-4af3-b3c3-fc10227e40c0">
       <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6ccb46c2-1690-49b4-829b-9701149e75c5">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="dc256a83-cc6a-410f-855c-34d95af6bcd8">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
     </property>
@@ -146,8 +161,8 @@
     <property name="Username" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="713b792e-0796-405a-9bcc-510d8f1ac983">
       <column name="Username" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Password" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="0159a9c8-c997-4572-83be-3693b5221bf1">
-      <column name="Password" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="Passwordhash" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="63ab1038-46ba-4bd5-8da6-6f0144a3172b">
+      <column name="Passwordhash" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="FullName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="71845f40-3daa-44db-b028-3a827f3c0cdd">
       <column name="FullName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
@@ -179,8 +194,43 @@
     <property name="UpdatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="cc969526-92e1-45e2-9153-bc6037f14de8">
       <column name="UpdatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="12175212-2366-4ba0-b1bf-7644b1535b37">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="eceaec12-9120-4ab4-8de6-58e2bf6031f1">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="LogSystemData" entity-set="LogSystemDatas" table="LogSystemData" schema="dbo" p1:Guid="f1a77613-b148-4367-b13a-aa091658526d">
+    <id name="LogID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="59630008-7a29-4f31-8cd6-a016a2a746fe">
+      <column name="LogID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="TableName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="87ee0c8d-c635-4c6f-9e3f-a8f0bd918614">
+      <column name="TableName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Action" type="String" p1:ValidateRequired="true" p1:Guid="799d4917-0bac-4f8c-9326-863ceb61e117">
+      <column name="Action" not-null="True" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="RecordID" type="Int32" p1:ValidateRequired="true" p1:Guid="e249521b-2bb1-4cc7-9957-1909b23b9420">
+      <column name="RecordID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7ba7ea54-9c5e-4879-8bdd-fdf9eae064dc">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ActionTime" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="11d8f526-889f-4c2e-ae47-fb6ba76cb840">
+      <column name="ActionTime" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IPAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="45" p1:ValidateRequired="false" p1:Guid="3ac9ec7e-c1cc-487a-b7c8-d8f22fd50661">
+      <column name="IPAddress" not-null="False" length="45" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Description" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a4ec9790-167f-4027-85dc-410bdaa126ff">
+      <column name="Description" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OldValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6474363b-0fa7-4fe3-a4f1-1dbe7d313930">
+      <column name="OldValue" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="NewValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5d0cc19c-c52f-4fdd-a661-fbb43ee83484">
+      <column name="NewValue" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
   </class>
   <associations>
@@ -278,6 +328,14 @@
       </end1>
       <end2 multiplicity="Many" name="Users" class="Company" relation-class="User" lazy="False" p1:Guid="bbfaa8a4-235a-44fb-9c4b-f14016d2e042">
         <property name="CompanyID" />
+      </end2>
+    </association>
+    <association name="User_LogSystemData" cardinality="OneToMany" p1:Guid="a81e625e-c332-4281-97d5-fa698569ce89">
+      <end1 multiplicity="ZeroOrOne" name="User" class="LogSystemData" relation-class="User" constrained="True" lazy="False" p1:Guid="62c0de39-198b-479b-9017-d832bcf31c3c">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="LogSystemDatas" class="User" relation-class="LogSystemData" lazy="False" p1:Guid="97f1032f-57b3-45d8-aa49-ebe40c11f6fc">
+        <property name="UserManageID" />
       </end2>
     </association>
   </associations>

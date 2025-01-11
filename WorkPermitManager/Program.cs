@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using WorkPermitManager.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Db_WorkPermitManagerModel>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPermitManagerModelConnectionString")));
+
 
 var app = builder.Build();
 
@@ -14,9 +20,17 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseCookiePolicy();
+app.UseCors();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
 
 app.MapStaticAssets();
 

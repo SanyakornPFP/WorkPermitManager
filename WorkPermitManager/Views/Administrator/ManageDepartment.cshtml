@@ -1,5 +1,309 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!-- #region Department -->
 @{
+    ViewData["Controller"] = "ผู้ดูแลระบบ";
+    ViewData["Action"] = "แผนก";
+    ViewData["Icon"] = "gear";
 }
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row" style="display: none" id="showInsert">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right">ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> เพิ่มข้อมูล</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูล</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="card-wrapper border rounded-3 light-card checkbox-checked">
+                                <form id="myForm" method="post" class="row g-3" action="">
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <input name="DepartmentID" id="txtDepartmentID" type="hidden">
+                                        <label class="col-form-label" for="txtDepartmentName">ชื่อแผนก</label>
+                                        <input class="form-control" name="txtDepartmentName" id="txtDepartmentName" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <button class="btn btn-pill btn-primary active" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
+                                        <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border">
+                    <div class="flex justify-end space-x-2" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn" href="#">
+                            <i class="fa fa-plus text-white"></i> เพิ่มแผนก
+                        </a>
+                    </div>
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="icofont icofont-company text-white"></i> ข้อมูลแผนก
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-2">
+                        <table class="display" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อแผนก</th>
+                                    <th>ดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in (List<Department>)ViewBag.DepartmentList)
+                                {
+                                    <tr>
+                                        <td>@item.DepartmentName</td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-DepartmentID="@item.DepartmentID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-DepartmentID="@item.DepartmentID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                $('#myForm')[0].reset();
+                // Hide the OfficeID field and update button
+                $('#txtDepartmentID').hide();
+                $('#updateBtn').hide();
+                // Show the create button and header
+                $('#createHeader').show();
+                $('#updateHeader').hide();
+                $('#createBtn').show();
+                // Hide the cancel button
+                $('#cancelBtn').hide();
+            });
+        });
+
+        // เพิ่มข้อมูลหมวดหมู่ความเสี่ยง
+        document.getElementById('createBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var departmentName = $('#txtDepartmentName').val();
+
+            if (!departmentName) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'กรุณากรอกชื่อแผนก',
+                    text: 'กรุณากรอกชื่อแผนกก่อนดำเนินการต่อ',
+                });
+                return;
+            }
+
+            $.ajax({
+                url : `@Url.Action("CheckDepartmentName", "Administrator")`,
+                type: 'POST',
+                data: { DepartmentName: departmentName },
+                success: function (response) {
+                    if (response.success == false) {
+                        Swal.fire('ผิดพลาด', response.message, 'error');
+                    } else {
+                        Swal.fire({
+                            title: 'คุณแน่ใจหรือไม่?',
+                            text: "คุณจะไม่สามารถย้อนกลับได้!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#28a745', // Light green
+                            cancelButtonColor: '#d3d3d3', // Light gray
+                            confirmButtonText: 'ใช่, บันทึก!',
+                            cancelButtonText: 'ยกเลิก'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '@Url.Action("CreateDepartment", "Administrator")',
+                                    type: 'POST',
+                                    data: { DepartmentName: departmentName,},
+                                    success: function (response) {
+                                        if (response.success == true) {
+                                            Swal.fire(
+                                                'บันทึกแล้ว!',
+                                                'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                                'success'
+                                            ).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            Swal.fire('ผิดพลาด', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                },
+            });
+        });
+
+        // แก้ไขข้อมูลหมวดหมู่ความเสี่ยง
+        document.querySelectorAll('.editBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var departmentID = this.getAttribute('data-DepartmentID');
+
+                $.ajax({
+                    url: '@Url.Action("GetDepartmentDetails", "Administrator")',
+                    type: 'POST',
+                    data: { DepartmentID: departmentID },
+                    success: function (response) {
+                        if (response.success == false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            $('#showInsert').show();
+                            $('#txtDepartmentID').val(response.departmentID);
+                            $('#txtDepartmentName').val(response.departmentName);
+
+                            $('#createHeader').hide();
+                            $('#updateHeader').show();
+                            $('#createBtn').hide();
+                            $('#updateBtn').show();
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+
+        // ลบข้อมูลหมวดหมู่ความเสี่ยง
+        document.querySelectorAll('.deleteBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var departmentID = this.getAttribute('data-DepartmentID');
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#d3d3d3',
+                    confirmButtonText: 'ใช่, ลบ!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("DeleteDepartment", "Administrator")',
+                            type: 'POST',
+                            data: { DepartmentID: departmentID },
+                            success: function (response) {
+                                if (response.success) {
+                                    Swal.fire(
+                                        'ลบแล้ว!',
+                                        response.message,
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        document.getElementById('updateBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var departmentID = $('#txtDepartmentID').val();
+            var departmentName = $('#txtDepartmentName').val();
+
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่?',
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#007bff', // Light blue
+                cancelButtonColor: '#d3d3d3', // Light gray
+                confirmButtonText: 'ใช่, บันทึก!',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Save the data here
+                    $.ajax({
+                        url: '@Url.Action("UpdateDepartment", "Administrator")', // manually specify the URL
+                        type: 'POST',
+                        data: { DepartmentID: departmentID, DepartmentName: departmentName },
+                        success: function (response) {
+                            if (response.success == true) {
+                                Swal.fire(
+                                    'บันทึกแล้ว!',
+                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                    'success'
+                                ).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                })
+                            } else {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            handleAjaxError(xhr);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+}
+<!-- #endregion -->
