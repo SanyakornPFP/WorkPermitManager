@@ -920,7 +920,7 @@ namespace WorkPermitManager.Controllers
         #region Permission Functions
         public IActionResult ManagePermission()
         {
-            ViewBag.PermissionList = _db.Users.Where(p => p.IsDeleted == false).ToList();
+            ViewBag.UserList = _db.Users.Where(p => p.IsDeleted == false).ToList();
             return View();
         }
 
@@ -960,13 +960,13 @@ namespace WorkPermitManager.Controllers
 
                 var response = new
                 {
-                    groupUserID = user.UserID,
-                    groupName = user.Username,
+                    userid = user.UserID,
+                    username = user.Username,
                     fullName = user.FullName,
                     permissions = permissionsDict
                 };
 
-                return Json(new { success = true, permissions = response.permissions, groupUserID = response.groupUserID, groupName = response.groupName, fullName = response.fullName });
+                return Json(new { success = true, permissions = response.permissions, username = response.username, fullName = response.fullName, userid = response.userid });
             }
             catch (Exception ex)
             {

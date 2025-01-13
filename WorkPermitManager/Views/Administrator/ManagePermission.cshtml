@@ -1,393 +1,335 @@
 ﻿@{
-    ViewData["Controller"] = "ผู้ดูแลระบบ";
-    ViewData["Action"] = "กำหนดสิทธิ์เข้าใช้งาน";
-    ViewData["Icon"] = "gear";
+	ViewData["Controller"] = "ผู้ดูแลระบบ";
+	ViewData["Action"] = "กำหนดสิทธิ์เข้าใช้งาน";
+	ViewData["Icon"] = "gear";
 }
-<div class="page-body">
-    <!-- Container-fluid starts-->
-    <div class="container-fluid">
-        <div class="row" style="display: none;">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header pb-0 card-no-border">
-                        <h4 class="mb-3"><i class="fa fa-shield" aria-hidden="true"></i> Update Permission</h4><span>กำหนดการเข้าถึงข้อมูล</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <h6 class="sub-title" id="createHeader"><i class="icofont icofont-edit"></i> แก้ไข</h6>
-                                <form id="myForm" method="post" class="row g-3" action="">
-                                    <div class="col-xxl-6 col-sm-6">
-                                        <input name="UserID" id="txtUserID" type="hidden" disabled>
-                                        <label class="col-form-label" for="txtUserName">ผู้ใช้งาน</label>
-                                        <input class="form-control bg-white" name="Username" id="txtUsername" type="text" disabled>
-                                    </div>
-                                    <div class="col-xxl-6 col-sm-6">
-                                        <label class="col-form-label" for="txtName">ชื่อ - นามสกุล</label>
-                                        <input class="form-control bg-white" name="FullName" id="txtfullName" type="text" disabled>
-                                    </div>
-                                    <div class="col-xxl-12 col-sm-12 mt-2">
-                                        <div class="card-wrapper border rounded-3 checkbox-checked mb-2">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th><i class="fa fa-list"></i> เมนู</th>
-                                                        <th class="text-center">แสดง</th>
-                                                        <th class="text-center">เพิ่ม</th>
-                                                        <th class="text-center">ลบ</th>
-                                                        <th class="text-center">แก้ไข</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i class="fa fa-tag m-1" aria-hidden="true"></i> ข้อมูลพื้นฐาน</td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID7_view" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID7_create" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID7_update" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID7_delete" type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fa fa-database m-1" aria-hidden="true"></i> ข้อมูลวัตถุดิบและขั้นตอน</td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID2_view" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID2_create" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID2_update" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID2_delete" type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fa fa-book m-1" aria-hidden="true"></i> แบบฟอร์มการวิเคราะห์</td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID3_view" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID3_create" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID3_update" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID3_delete" type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fa fa-user m-1" aria-hidden="true"></i> ข้อมูลผู้ใช้งาน</td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID4_view" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID4_create" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID4_update" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID4_delete" type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i class="fa fa-check-square-o m-1" aria-hidden="true"></i> กำหนดสิทธิ์เข้าใช้งาน</td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID5_view" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID5_create" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID5_update" type="checkbox"></td>
-                                                        <td class="text-center"><input class="checkbox_animated" id="menuID5_delete" type="checkbox"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12 col-sm-12">
-                                        <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" title="btn btn-pill btn-primary active">อัพเดท</button>
-                                        <button class="btn btn-pill btn-light" id="cancelBtn">ยกเลิก</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+	<div class="row" style="display: none;">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-header pb-0 card-no-border">
+					<h4 class="mb-3"><i class="fa fa-shield" aria-hidden="true"></i> Update Permission</h4><span>กำหนดการเข้าถึงข้อมูล</span>
+				</div>
+				<div class="card-body">
+					<div class="row g-3">
+						<div class="col-12">
+							<h6 class="sub-title" id="createHeader"><i class="icofont icofont-edit"></i> แก้ไข</h6>
+							<form id="myForm" method="post" class="row g-3" action="">
+								<div class="col-xxl-6 col-sm-6">
+									<input name="UserID" id="txtUserID" type="hidden" disabled>
+									<label class="col-form-label" for="txtUserName">ผู้ใช้งาน</label>
+									<input class="form-control bg-white" name="Username" id="txtUsername" type="text" disabled>
+								</div>
+								<div class="col-xxl-6 col-sm-6">
+									<label class="col-form-label" for="txtName">ชื่อ - นามสกุล</label>
+									<input class="form-control bg-white" name="FullName" id="txtfullName" type="text" disabled>
+								</div>
+								<div class="col-xxl-12 col-sm-12 mt-2">
+									<div class="card-wrapper border rounded-3 checkbox-checked mb-2">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th><i class="fa fa-list"></i> เมนู</th>
+													<th class="text-center">แสดง</th>
+													<th class="text-center">เพิ่ม</th>
+													<th class="text-center">ลบ</th>
+													<th class="text-center">แก้ไข</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><i class="icofont icofont-gear text-dark"> </i> สำหรับผู้ดูแลระบบ</td>
+													<td class="text-center"><input class="checkbox_animated" id="menuID1_view" type="checkbox"></td>
+													<td class="text-center"><input class="checkbox_animated" id="menuID1_create" type="checkbox"></td>
+													<td class="text-center"><input class="checkbox_animated" id="menuID1_update" type="checkbox"></td>
+													<td class="text-center"><input class="checkbox_animated" id="menuID1_delete" type="checkbox"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-xxl-12 col-sm-12">
+									<button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" title="btn btn-pill btn-primary active">อัพเดท</button>
+									<button class="btn btn-pill btn-light" id="cancelBtn">ยกเลิก</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="ribbon ribbon-primary ribbon-clip">
-                            <i class="fa fa-shield"></i>
-                            กำหนดสิทธิ์เข้าใช้งาน
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive theme-scrollbar">
-                            <table class="display" id="data-source-1" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>ชื่อผู้ใช้งาน</th>
-                                        <th>ชื่อ - นามสกุล</th>
-                                        <th class="text-center">รายละเอียด</th>
-                                        <th width="5%">แก้ไข</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in (List<User>)ViewBag.UserList)
-                                    {
-                                        <tr>
-                                            <td>@item.Username</td>
-                                            <td>@item.FullName</td>
-                                            <td class="text-center">
-                                                <!-- ปุ่มที่เปิด Modal -->
-                                                <a href="#" data-toggle="modal" data-target="#detailModal" data-userID="@item.UserID">
-                                                    <i class="icofont icofont-list"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <ul class="action text-center">
-                                                    <li class="edit"><a href="#" class="editBtn" data-userID="@item.UserID"><i class="icon-pencil-alt"></i></a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header pb-0 card-no-border">
+					<div class="ribbon ribbon-primary ribbon-clip">
+						<i class="icofont icofont-shield text-white"></i> กำหนดสิทธิ์เข้าใช้งาน
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive theme-scrollbar mt-3">
+						<table class="display" id="data-source-1" style="width:100%">
+							<thead>
+								<tr>
+									<th>ชื่อผู้ใช้งาน</th>
+									<th>ชื่อ - นามสกุล</th>
+									<th class="text-center">รายละเอียด</th>
+									<th width="5%">แก้ไข</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in (List<User>)ViewBag.UserList)
+								{
+									<tr>
+										<td>@item.Username</td>
+										<td>@item.FullName</td>
+										<td class="text-center">
+											<!-- ปุ่มที่เปิด Modal -->
+											<a href="#" data-toggle="modal" data-target="#detailModal" data-userid="@item.UserID">
+												<i class="icofont icofont-list"></i>
+											</a>
+										</td>
+										<td>
+											<ul class="action text-center">
+												<li class="edit"><a href="#" class="editBtn" data-userid="@item.UserID"><i class="icon-pencil-alt"></i></a></li>
+											</ul>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Container-fluid Ends-->
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h6 class="modal-title"><i class="icofont icofont-list"></i> รายละเอียดเพิ่มเติม</h6>
-                </div>
-                <div class="modal-body">
-                    <div class="card-block row">
-                        <div class="col-xxl-6 col-sm-6">
-                            <input name="UserID" id="txtUserID" type="hidden" disabled>
-                            <label class="col-form-label" for="txtUserName">ผู้ใช้งาน</label>
-                            <input class="form-control bg-white" name="Username" id="modaltxtUsername" type="text" disabled>
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtName">ชื่อ - นามสกุล</label>
-                            <input class="form-control bg-white" name="Username" id="modaltxtName" type="text" disabled>
-                        </div>
-                        <div class="col-sm-12 col-lg-12 col-xl-12 mt-2">
-                            <div class="card-wrapper border rounded-3 checkbox-checked mb-2">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>เมนู</th>
-                                            <th class="text-center">แสดง</th>
-                                            <th class="text-center">สร้าง</th>
-                                            <th class="text-center">แก้ไข</th>
-                                            <th class="text-center">ลบ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><i class="fa fa-tag m-1" aria-hidden="true"></i> ข้อมูลพื้นฐาน</td>
-                                            <td class="text-center" id="modalmenuID7_view"></td>
-                                            <td class="text-center" id="modalmenuID7_create"></td>
-                                            <td class="text-center" id="modalmenuID7_update"></td>
-                                            <td class="text-center" id="modalmenuID7_delete"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fa fa-database m-1" aria-hidden="true"></i> ข้อมูลวัตถุดิบและขั้นตอน</td>
-                                            <td class="text-center" id="modalmenuID2_view"></td>
-                                            <td class="text-center" id="modalmenuID2_create"></td>
-                                            <td class="text-center" id="modalmenuID2_update"></td>
-                                            <td class="text-center" id="modalmenuID2_delete"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fa fa-book m-1" aria-hidden="true"></i> แบบฟอร์มการวิเคราะห์</td>
-                                            <td class="text-center" id="modalmenuID3_view"></td>
-                                            <td class="text-center" id="modalmenuID3_create"></td>
-                                            <td class="text-center" id="modalmenuID3_update"></td>
-                                            <td class="text-center" id="modalmenuID3_delete"></td>
-                                        <tr>
-                                            <td><i class="fa fa-user m-1" aria-hidden="true"></i> ข้อมูลผู้ใช้งาน</td>
-                                            <td class="text-center" id="modalmenuID4_view"></td>
-                                            <td class="text-center" id="modalmenuID4_create"></td>
-                                            <td class="text-center" id="modalmenuID4_update"></td>
-                                            <td class="text-center" id="modalmenuID4_delete"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fa fa-check-square-o m-1" aria-hidden="true"></i> กำหนดสิทธิ์เข้าใช้งาน</td>
-                                            <td class="text-center" id="modalmenuID5_view"></td>
-                                            <td class="text-center" id="modalmenuID5_create"></td>
-                                            <td class="text-center" id="modalmenuID5_update"></td>
-                                            <td class="text-center" id="modalmenuID5_delete"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">ปิด</button>
-                </div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Container-fluid Ends-->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<h6 class="modal-title"><i class="icofont icofont-list"></i> รายละเอียดเพิ่มเติม</h6>
+			</div>
+			<div class="modal-body">
+				<div class="card-block row">
+					<div class="col-xxl-6 col-sm-6">
+						<input name="UserID" id="txtUserID" type="hidden" disabled>
+						<label class="col-form-label" for="txtUserName">ผู้ใช้งาน</label>
+						<input class="form-control bg-white" name="Username" id="modaltxtUsername" type="text" disabled>
+					</div>
+					<div class="col-xxl-6 col-sm-6">
+						<label class="col-form-label" for="txtName">ชื่อ - นามสกุล</label>
+						<input class="form-control bg-white" name="Username" id="modaltxtName" type="text" disabled>
+					</div>
+					<div class="col-sm-12 col-lg-12 col-xl-12 mt-2">
+						<div class="card-wrapper border rounded-3 checkbox-checked mb-2">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>เมนู</th>
+										<th class="text-center">แสดง</th>
+										<th class="text-center">เพิ่ม</th>
+										<th class="text-center">ลบ</th>
+										<th class="text-center">แก้ไข</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><i class="fa fa-tag m-1" aria-hidden="true"></i> สำหรับผู้ดูแลระบบ</td>
+										<td class="text-center" id="modalmenuID1_read"></td>
+										<td class="text-center" id="modalmenuID1_create"></td>
+										<td class="text-center" id="modalmenuID1_update"></td>
+										<td class="text-center" id="modalmenuID1_delete"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light" data-dismiss="modal">ปิด</button>
+			</div>
+		</div>
+	</div>
 </div>
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // ดักจับเหตุการณ์เมื่อ Modal ถูกเปิด
-            $('#detailModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget); // ปุ่มที่ถูกคลิก
-                var userID = button.data('userid'); // ค่า UserID จาก data attribute
-                // console.log(userID); // Log UserID to the console
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// ดักจับเหตุการณ์เมื่อ Modal ถูกเปิด
+			$('#detailModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget); // ปุ่มที่ถูกคลิก
+				var userID = button.data('userid'); // ค่า UserID จาก data attribute
+				// console.log(userID); // Log UserID to the console
 
-                $.ajax({
-                    url: '@Url.Action("GetDetailsPermissions", "Administrator")',
-                    type: 'GET',
-                    data: { UserID: userID }, // Send UserID to get relevant data
-                    success: function (response) { // เมื่อ AJAX สำเร็จ
-                        console.log(response); // Log the response to the console)
-                        // Fill in the form fields
-                        $('#txtUserID').val(response.groupUserID);
-                        $('#modaltxtUsername').val(response.groupName);
-                        $('#modaltxtName').val(response.fullName);
-                        $('#modalShowAllData').prop('checked', response.showAllData);
+				$.ajax({
+					url: '@Url.Action("GetDetailsPermissions", "Administrator")',
+					type: 'GET',
+					data: { UserID: userID }, // Send UserID to get relevant data
+					success: function (response) { // เมื่อ AJAX สำเร็จ
+						console.log(response); // Log the response to the console)
+						// Fill in the form fields
+						$('#txtUserID').val(response.userid);
+						$('#modaltxtUsername').val(response.username);
+						$('#modaltxtName').val(response.fullName);
+						$('#modalShowAllData').prop('checked', response.showAllData);
 
-                        var permissions = response.permissions; // Received permissions data
+						var permissions = response.permissions; // Received permissions data
 
-                        function getIcon(value) {
-                            return value === true
-                                ? '<i class="fa fa-check-square-o text-success"></i>' // แสดงไอคอนเช็คถ้าค่าเป็น `true`
-                                : '<i class="fa fa-ban text-danger"></i>'; // แสดงไอคอนแบนถ้าค่าเป็น `false`
-                        }
+						function getIcon(value) {
+							return value === true
+								? '<i class="fa fa-check-square-o text-success"></i>' // แสดงไอคอนเช็คถ้าค่าเป็น `true`
+								: '<i class="fa fa-ban text-danger"></i>'; // แสดงไอคอนแบนถ้าค่าเป็น `false`
+						}
 
-                        // ตั้งค่า checkbox ตามค่าใน response
-                        for (var menuID in permissions) {
-                            if (permissions.hasOwnProperty(menuID)) {
-                                // ตรวจสอบและกำหนดค่า checkbox
-                                var canView = permissions[menuID].canView || false;
-                                var canCreate = permissions[menuID].canCreate || false;
-                                var canUpdate = permissions[menuID].canUpdate || false;
-                                var canDelete = permissions[menuID].canDelete || false;
+						// ตั้งค่า checkbox ตามค่าใน response
+						for (var menuID in permissions) {
+							if (permissions.hasOwnProperty(menuID)) {
+								// ตรวจสอบและกำหนดค่า checkbox
+								var canRead = permissions[menuID].canRead || false;
+								var canCreate = permissions[menuID].canCreate || false;
+								var canUpdate = permissions[menuID].canUpdate || false;
+								var canDelete = permissions[menuID].canDelete || false;
 
-                                $('#modalmenuID' + menuID + '_view').html(getIcon(canView));
-                                $('#modalmenuID' + menuID + '_create').html(getIcon(canCreate));
-                                $('#modalmenuID' + menuID + '_update').html(getIcon(canUpdate));
-                                $('#modalmenuID' + menuID + '_delete').html(getIcon(canDelete));
-                            }
-                        }
-                    },
-                    error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว
-                        console.error("Error:", error); // จัดการข้อผิดพลาด
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#cancelBtnT').on('click', function () {
-                $('.row').hide();
-            });
+								$('#modalmenuID' + menuID + '_read').html(getIcon(canRead));
+								$('#modalmenuID' + menuID + '_create').html(getIcon(canCreate));
+								$('#modalmenuID' + menuID + '_update').html(getIcon(canUpdate));
+								$('#modalmenuID' + menuID + '_delete').html(getIcon(canDelete));
+							}
+						}
+					},
+					error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว
+						console.error("Error:", error); // จัดการข้อผิดพลาด
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$('#cancelBtnT').on('click', function () {
+				$('.row').hide();
+			});
 
-            // เมื่อคลิกปุ่มแก้ไข
-            $('.editBtn').on('click', function (e) {
-                e.preventDefault(); // Prevent page refresh
+			// เมื่อคลิกปุ่มแก้ไข
+			$('.editBtn').on('click', function (e) {
+				e.preventDefault(); // Prevent page refresh
 
-                var userID = $(this).data('userid'); // Get the UserID from the data attribute
+				var userID = $(this).data('userid'); // Get the UserID from the data attribute
 
-                // Send AJAX request to fetch permissions
-                $.ajax({
-                    url: '@Url.Action("GetDetailsPermissions", "Administrator")',
-                    type: 'GET',
-                    data: { UserID: userID }, // Send UserID to get relevant data
-                    success: function (response) {
-                        if (response.success) {
-                            var permissions = response.permissions; // Received permissions data
-                            console.log(response); // Log the response to the console)
-                            // Show the hidden form
-                            $('.row').show();
+				// Send AJAX request to fetch permissions
+				$.ajax({
+					url: '@Url.Action("GetDetailsPermissions", "Administrator")',
+					type: 'GET',
+					data: { UserID: userID }, // Send UserID to get relevant data
+					success: function (response) {
+						if (response.success) {
+							var permissions = response.permissions; // Received permissions data
+							console.log(response); // Log the response to the console)
+							// Show the hidden form
+							$('.row').show();
 
-                            // Fill in the form fields
-                            $('#txtUserID').val(response.groupUserID);
-                            $('#txtUsername').val(response.groupName);
-                            $('#txtfullName').val(response.fullName);
-                            // $('#showAllData').prop('checked', response.showAllData);
-                            // console.table(permissions); // Log the permissions data to the console
+							// Fill in the form fields
+							$('#txtUserID').val(response.userid);
+							$('#txtUsername').val(response.username);
+							$('#txtfullName').val(response.fullname);
+							// $('#showAllData').prop('checked', response.showAllData);
+							// console.table(permissions); // Log the permissions data to the console
 
-                            // ตั้งค่า checkbox ตามค่าใน response
-                            for (var menuID in permissions) {
-                                if (permissions.hasOwnProperty(menuID)) {
-                                    // ตรวจสอบและกำหนดค่า checkbox
-                                    var canView = permissions[menuID].canView || false;
-                                    var canCreate = permissions[menuID].canCreate || false;
-                                    var canUpdate = permissions[menuID].canUpdate || false;
-                                    var canDelete = permissions[menuID].canDelete || false;
+							// ตั้งค่า checkbox ตามค่าใน response
+							for (var menuID in permissions) {
+								if (permissions.hasOwnProperty(menuID)) {
+									// ตรวจสอบและกำหนดค่า checkbox
+									var canRead = permissions[menuID].canRead || false;
+									var canCreate = permissions[menuID].canCreate || false;ด
+									var canUpdate = permissions[menuID].canUpdate || false;
+									var canDelete = permissions[menuID].canDelete || false;
 
-                                    $('#menuID' + menuID + '_view').prop('checked', canView);
-                                    $('#menuID' + menuID + '_create').prop('checked', canCreate);
-                                    $('#menuID' + menuID + '_update').prop('checked', canUpdate);
-                                    $('#menuID' + menuID + '_delete').prop('checked', canDelete);
-                                }
-                            }
-                        } else {
-                            Swal.fire('Error', 'Could not fetch user details', 'error');
-                        }
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        handleAjaxError(xhr);
-                    }
-                });
-            });
+									$('#menuID' + menuID + '_read').prop('checked', canRead);
+									$('#menuID' + menuID + '_create').prop('checked', canCreate);
+									$('#menuID' + menuID + '_update').prop('checked', canUpdate);
+									$('#menuID' + menuID + '_delete').prop('checked', canDelete);
+								}
+							}
+						} else {
+							Swal.fire('Error', 'Could not fetch user details', 'error');
+						}
+					},
+					error: function (xhr, textStatus, errorThrown) {
+						handleAjaxError(xhr);
+					}
+				});
+			});
 
-            $('#updateBtn').click(function (event) {
-                event.preventDefault(); // Prevent form submission
+			$('#updateBtn').click(function (event) {
+				event.preventDefault(); // Prevent form submission
 
-                console.log($('#showAllData').val());
-                // Prepare data object to send via AJAX
-                var formData = {
-                    UserID: $('#txtUserID').val(), // Assuming you set this value somewhere
-                    ShowAllData: $('#showAllData').val(), // Assuming you set this value somewhere
-                    Permissions: []
-                };
+				console.log($('#showAllData').val());
+				// Prepare data object to send via AJAX
+				var formData = {
+					UserID: $('#txtUserID').val(), // Assuming you set this value somewhere
+					ShowAllData: $('#showAllData').val(), // Assuming you set this value somewhere
+					Permissions: []
+				};
 
-                // Loop through each checkbox to collect permission data
-                $('[id^="menuID"]').each(function () {
-                    var menuID = $(this).attr('id').replace('menuID', '').replace('_view', '').replace('_create', '').replace('_update', '').replace('_delete', '');
-                    var permission = {
-                        MenuID: parseInt(menuID), // Ensure menuID is an integer
-                        CanView: $('#menuID' + menuID + '_view').prop('checked'),
-                        CanCreate: $('#menuID' + menuID + '_create').prop('checked'),
-                        CanUpdate: $('#menuID' + menuID + '_update').prop('checked'),
-                        CanDelete: $('#menuID' + menuID + '_delete').prop('checked')
-                    };
-                    formData.Permissions.push(permission);
-                });
+				// Loop through each checkbox to collect permission data
+				$('[id^="menuID"]').each(function () {
+					var menuID = $(this).attr('id').replace('menuID', '').replace('_read', '').replace('_create', '').replace('_update', '').replace('_delete', '');
+					var permission = {
+						MenuID: parseInt(menuID), // Ensure menuID is an integer
+						CanView: $('#menuID' + menuID + '_view').prop('checked'),
+						CanCreate: $('#menuID' + menuID + '_create').prop('checked'),
+						CanUpdate: $('#menuID' + menuID + '_update').prop('checked'),
+						CanDelete: $('#menuID' + menuID + '_delete').prop('checked')
+					};
+					formData.Permissions.push(permission);
+				});
 
-                // Show confirmation prompt
-                Swal.fire({
-                    title: 'ยืนยันการบันทึก?',
-                    text: "คุณต้องการบันทึกข้อมูลนี้หรือไม่?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d3d3d3',
-                    confirmButtonText: 'ใช่, บันทึก!',
-                    cancelButtonText: 'ยกเลิก'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Send data via AJAX if confirmed
-                        $.ajax({
-                            type: 'POST',
-                            url: '@Url.Action("UpdatePermissions", "Administrator")',
-                            data: JSON.stringify(formData),
-                            contentType: 'application/json',
-                            success: function (response) {
-                                if (response.success) {
-                                    Swal.fire(
-                                        'บันทึกแล้ว!',
-                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
-                                        'success'
-                                    ).then(() => {
-                                        window.location.reload(); // Refresh the page on success
-                                    });
-                                } else {
-                                    Swal.fire('ผิดพลาด', response.message, 'error');
-                                }
-                            },
-                            error: function (xhr) {
-                                handleAjaxError(xhr); // Custom function to handle AJAX errors
-                            }
-                        });
-                    }
-                });
-            });
+				// Show confirmation prompt
+				Swal.fire({
+					title: 'ยืนยันการบันทึก?',
+					text: "คุณต้องการบันทึกข้อมูลนี้หรือไม่?",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d3d3d3',
+					confirmButtonText: 'ใช่, บันทึก!',
+					cancelButtonText: 'ยกเลิก'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						// Send data via AJAX if confirmed
+						$.ajax({
+							type: 'POST',
+							url: '@Url.Action("UpdatePermissions", "Administrator")',
+							data: JSON.stringify(formData),
+							contentType: 'application/json',
+							success: function (response) {
+								if (response.success) {
+									Swal.fire(
+										'บันทึกแล้ว!',
+										'ข้อมูลของคุณถูกบันทึกแล้ว.',
+										'success'
+									).then(() => {
+										window.location.reload(); // Refresh the page on success
+									});
+								} else {
+									Swal.fire('ผิดพลาด', response.message, 'error');
+								}
+							},
+							error: function (xhr) {
+								handleAjaxError(xhr); // Custom function to handle AJAX errors
+							}
+						});
+					}
+				});
+			});
 
-        });
-    </script>
+		});
+	</script>
 }
