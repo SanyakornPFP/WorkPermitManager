@@ -2363,7 +2363,10 @@ wwwroot\assets\fonts\themify\themify.svg
 wwwroot\assets\fonts\themify\themify.ttf
 wwwroot\assets\fonts\themify\themify.woff
 wwwroot\assets\images\login\bg-signInone.png
+wwwroot\assets\images\logo\3.png
+wwwroot\assets\images\logo\4.png
 wwwroot\assets\images\logo\Icon-one.png
+wwwroot\assets\images\logo\Icon-one2.png
 wwwroot\assets\images\logo\logo.png
 wwwroot\assets\images\logo\logo_dark.png
 wwwroot\assets\images\logo\logo_light.png
@@ -3890,6 +3893,7 @@ wwwroot\assets\scss\vendors\vector-map.scss
 wwwroot\assets\scss\vendors\vector-map\_vector-map.scss
 wwwroot\assets\svg\icon-sprite.svg
 wwwroot\assets\svg\landing-icons.svg
+wwwroot\assets\SystemImages\ProfileImage\Default.png
 wwwroot\assets\video\auth-bg.mp4
 wwwroot\css\site.css
 wwwroot\favicon.ico
@@ -3954,3 +3958,4 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\SystemImages\ProfileImage\ImageUser2.png

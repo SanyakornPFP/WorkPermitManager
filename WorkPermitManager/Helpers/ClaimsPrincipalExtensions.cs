@@ -77,14 +77,14 @@ namespace ContainerEvaluationSystem.Helpers
 
             return principal.FindFirst("Department").Value.ToString();
         }
-
-        public static string GetLoggedEmpFirstName(this ClaimsPrincipal principal)
+        public static string GetLoggedInCompany(this ClaimsPrincipal principal)
         {
             if (principal == null)
                 throw new ArgumentNullException(nameof(principal));
 
-            return principal.FindFirst("EmpFirstName").Value.ToString();
+            return principal.FindFirst("Company").Value.ToString();
         }
+
         public static string GetLoggedInImgProfile(this ClaimsPrincipal principal)
         {
             if (principal == null)
@@ -101,76 +101,6 @@ namespace ContainerEvaluationSystem.Helpers
             return principal.FindFirst("SignatureImage").Value.ToString();
         }
 
-        public static bool GetLoggedInManagementUser(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            var claim = principal.FindFirst("ManagementUser");
-
-            if (claim == null)
-                return false; // หรือส่งกลับค่าเริ่มต้นเมื่อไม่มีข้อมูล
-
-            bool.TryParse(claim.Value, out bool result);
-
-            return result; // ส่งกลับค่า `bool` หาก `claim.Value` แปลงได้
-        }
-
-        public static string GetLoggedPermissionViewHazardAnalysisForm(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewHazardAnalysisForm").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewHazardAnalysisObject(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewHazardAnalysisObject").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewReferenceData(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewReferenceData").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewUsers(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewUsers").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewPermissions(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewPermissions").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewSetting(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewSetting").Value.ToString();
-        }
-
-        public static string GetLoggedPermissionViewLogSystem(this ClaimsPrincipal principal)
-        {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirst("ViewLogSystem").Value.ToString();
-        }
 
     }
 }

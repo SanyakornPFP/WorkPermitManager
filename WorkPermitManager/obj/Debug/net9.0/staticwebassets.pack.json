@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\WorkPermitManager.niunzl2gmw.bundle.scp.css"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\SystemImages\\ProfileImage\\ImageUser2.png",
+      "PackagePath": "staticwebassets\\SystemImages\\ProfileImage\\ImageUser2.png"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\SystemImages\\ProfileImage\\Default.png",
+      "PackagePath": "staticwebassets\\assets\\SystemImages\\ProfileImage\\Default.png"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\ajax\\api.txt",
       "PackagePath": "staticwebassets\\assets\\ajax\\api.txt"
     },
@@ -2729,8 +2737,20 @@
       "PackagePath": "staticwebassets\\assets\\images\\login\\bg-signInone.png"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\images\\logo\\3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo\\3.png"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\images\\logo\\4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo\\4.png"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\images\\logo\\Icon-one.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo\\Icon-one.png"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\images\\logo\\Icon-one2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo\\Icon-one2.png"
     },
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\images\\logo\\logo-icon.png",

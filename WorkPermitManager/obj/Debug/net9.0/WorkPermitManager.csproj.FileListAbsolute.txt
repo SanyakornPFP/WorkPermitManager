@@ -2040,7 +2040,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\com
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\l41g4l6pqa-q4k9jhf6n3.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\v8zncuimul-dfp0bom6zl.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\i2gclxl99c-3pqv40ccon.gz
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\zf3zbfjofo-3k5y5l0sw4.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\oco07e4nj7-73psfs7dpo.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\hm144w216u-rszwesrzoa.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\bkya6dxfnv-eqvk083k8z.gz
@@ -3733,3 +3732,4 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\ref
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\WorkPermitManager.pdb
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\WorkPermitManager.genruntimeconfig.cache
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\ref\WorkPermitManager.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\zf3zbfjofo-0d53lvdil1.gz

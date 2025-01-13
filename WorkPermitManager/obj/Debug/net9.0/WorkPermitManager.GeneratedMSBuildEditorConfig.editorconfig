@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxNYW5hZ2VEZXBhcnRtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Administrator/ManagePermission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxNYW5hZ2VQZXJtaXNzaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Administrator/ManagePosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxNYW5hZ2VQb3NpdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,12 +48,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxNYW5hZ2VVc2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Administrator/PermissionEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxQZXJtaXNzaW9uRWRpdC5jc2h0bWw=
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Authenication/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuaWNhdGlvblxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Authenication/SignIn.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuaWNhdGlvblxTaWduSW4uY3NodG1s
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error400.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I0MDAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error401.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I0MDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error403.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I0MDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I0MDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error500.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I1MDAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error503.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I1MDMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Home/DashBoard.cshtml]

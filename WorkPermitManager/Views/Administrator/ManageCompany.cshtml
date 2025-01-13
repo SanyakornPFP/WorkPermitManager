@@ -2,7 +2,7 @@
 @{
     ViewData["Controller"] = "ผู้ดูแลระบบ";
     ViewData["Action"] = "บริษัท";
-    ViewData["Icon"] = "building-alt";
+    ViewData["Icon"] = "gear";
 }
 <!-- Container-fluid starts-->
 <div class="container-fluid">
@@ -179,6 +179,7 @@
                                     },
                                     error: function (xhr, textStatus, errorThrown) {
                                         console.error('Error:', xhr.status, textStatus, errorThrown);
+                                        handleAjaxError(xhr);
                                     }
                                 });
                             }
@@ -214,6 +215,7 @@
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         console.error('Error:', xhr.status, textStatus, errorThrown);
+                        handleAjaxError(xhr);
                     }
                 });
             });
@@ -257,6 +259,7 @@
                             },
                             error: function (xhr, textStatus, errorThrown) {
                                 console.error('Error:', xhr.status, textStatus, errorThrown);
+                                handleAjaxError(xhr);
                             }
                         });
                     }
@@ -311,6 +314,32 @@
             });
         });
 
+        function handleAjaxError(xhr) {
+            console.log('Error:', xhr.status, xhr.statusText);
+
+            switch (xhr.status) {
+                case 400:
+                    window.open('@Url.Action("Error400", "Error")', '_blank');
+                    break;
+                case 401:
+                    window.open('@Url.Action("Error401", "Error")', '_blank');
+                    break;
+                case 403:
+                    window.open('@Url.Action("Error403", "Error")', '_blank');
+                    break;
+                case 404:
+                    window.open('@Url.Action("Error404", "Error")', '_blank');
+                    break;
+                case 500:
+                    window.open('@Url.Action("Error500", "Error")', '_blank');
+                    break;
+                case 503:
+                    window.open('@Url.Action("Error503", "Error")', '_blank');
+                    break;
+                default:
+                    console.log('An unexpected error occurred: ', xhr.status);
+            }
+        }
     </script>
 }
 <!-- #endregion -->

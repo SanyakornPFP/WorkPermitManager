@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="6.8.1019.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="WorkPermitManagerModelConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="NetCore30" DetectManyToManyAssociations="False" DetectTPTInheritance="False" EntityFrameworkCoreVersion="Version5" UseLazyLoadingProxies="True" DetectFunctionBasedColumnDefault="True">
-    <Connection ConnectionString="Data Source=10.0.66.77\MSSQL2019;Initial Catalog=WorkPermitManage;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=Systemadmin@!" Provider="System.Data.SqlClient" />
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="WorkPermitManagerModelConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="NetCore30" DetectManyToManyAssociations="False" DetectTPTInheritance="False" UseNullParameterValues="True" EntityFrameworkCoreVersion="Version5" UseLazyLoadingProxies="True" DetectFunctionBasedColumnDefault="True">
+    <Connection ConnectionString="Data Source=10.0.66.77\MSSQL2019;Initial Catalog=WorkPermitManager;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=Systemadmin@!" Provider="System.Data.SqlClient" />
     <Generation>
       <GeneratedFiles>
         <File Name="Db_WorkPermitManagerModel.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Data" />
@@ -12,6 +12,7 @@
         <File Name="UserPermission.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="User.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="LogSystemData.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="LoginHistory.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>

@@ -176,8 +176,8 @@
     <property name="CompanyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0e0e058d-fbbe-4a1c-85d7-8940767d3775">
       <column name="CompanyID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="CardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="cb3fefcb-e650-4063-b4db-0b1de0b0008c">
-      <column name="CardID" not-null="True" length="13" sql-type="char" unique="True" p1:fixed-length="True" p1:unicode="False" />
+    <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="13" p1:ValidateRequired="false" p1:Guid="cb3fefcb-e650-4063-b4db-0b1de0b0008c">
+      <column name="CardID" not-null="False" length="13" sql-type="char" unique="True" p1:fixed-length="True" p1:unicode="False" />
     </property>
     <property name="ProfilePicture" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cdf922aa-d9fd-449e-bee6-092ae80678d7">
       <column name="ProfilePicture" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
@@ -187,6 +187,9 @@
     </property>
     <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="cf4a97c8-5c9c-4b16-913b-a6c863095384">
       <column name="Email" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="LoginDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="672cdae7-bffd-4c71-9fd1-347b6f57f3f4">
+      <column name="LoginDate" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="55e06111-78a3-4d27-b1f6-3514af2e140b">
       <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
@@ -231,6 +234,29 @@
     </property>
     <property name="NewValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5d0cc19c-c52f-4fdd-a661-fbb43ee83484">
       <column name="NewValue" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="LoginHistory" entity-set="LoginHistories" table="LoginHistory" schema="dbo" p1:Guid="686fc9ec-966c-4648-82e5-718747cd1922">
+    <id name="LoginID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="1a016f89-c032-43f6-9dc3-0584351e3716">
+      <column name="LoginID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="UserID" type="Int32" p1:ValidateRequired="true" p1:Guid="40f310c4-4af1-4822-bdfa-60bd0e1f358f">
+      <column name="UserID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="LoginTime" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="d9540dfb-aab3-4b28-b9dc-70905151cd17">
+      <column name="LoginTime" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="LogoutTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a7eb6142-9300-4109-aca1-03b0de1cef17">
+      <column name="LogoutTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IPAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="45" p1:ValidateRequired="false" p1:Guid="a7c066b9-79b1-40e1-9d81-877f30be04b0">
+      <column name="IPAddress" not-null="False" length="45" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DeviceInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9e355f35-09e1-4f86-bdd7-029a953aa4ab">
+      <column name="DeviceInfo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="8eda8af4-d9e4-4222-8b41-fe955bd02a92">
+      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
     </property>
   </class>
   <associations>
@@ -336,6 +362,14 @@
       </end1>
       <end2 multiplicity="Many" name="LogSystemDatas" class="User" relation-class="LogSystemData" lazy="False" p1:Guid="97f1032f-57b3-45d8-aa49-ebe40c11f6fc">
         <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="User_LoginHistory" cardinality="OneToMany" p1:Guid="793295ff-94c3-447a-98ac-45798741d614">
+      <end1 multiplicity="One" name="User" class="LoginHistory" relation-class="User" constrained="True" lazy="False" p1:Guid="85798cc1-d438-492c-bb58-0c9056de934a">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="LoginHistories" class="User" relation-class="LoginHistory" lazy="False" p1:Guid="ae0f368a-044f-445c-81ce-83a25a0118b7">
+        <property name="UserID" />
       </end2>
     </association>
   </associations>

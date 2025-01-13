@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WorkPermitManager.Data;
 
@@ -7,7 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Db_WorkPermitManagerModel>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPermitManagerModelConnectionString")));
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+  .AddCookie(options =>
+  {
+      options.Cookie.HttpOnly = true;
+      options.ExpireTimeSpan = TimeSpan.FromDays(30);
+      options.LoginPath = "/Authenication/LoginResponse";
+      options.LogoutPath = "/Authenication/LoginResponse";
+      options.Cookie.Name = "_WorkPermitManager";
+      options.AccessDeniedPath = "/AccessDenied";
+      options.SlidingExpiration = true;
+  });
 
 var app = builder.Build();
 

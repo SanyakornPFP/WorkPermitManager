@@ -1,0 +1,197 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mofi admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Mofi admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="~/assets/images/Logo/Icon-one.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/assets/images/Logo/Icon-one.png" type="image/x-icon">
+    <title>WorkPermit Manager | MA99</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link id="color" rel="stylesheet" href="~/assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
+    @* Sweetalert2 *@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- login page start-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="~/assets/images/login/bg-signInone.png" alt="looginpage"></div>
+            <div class="col-xl-5 p-0">
+                <div class="login-card login-dark">
+                    <div>
+                        <div class="login-main">
+                            <form class="theme-form" id="myForm">
+                                <div class="row">
+                                    <div class="col-12 d-flex align-items-center">
+                                        <img class="img-fluid for-light" src="~/assets/images/logo/3.png" width="100%" alt="looginpage">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">ผู้ใช้งาน</label>
+                                    <input id="txtUsername" name="Username" class="form-control" type="text" maxlength="5" placeholder="กรุณากรอกผู้ใช้งาน">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">รหัสผ่าน</label>
+                                    <div class="form-input position-relative">
+                                        <input id="txtPassword" name="login[password]" class="form-control" type="password" placeholder="กรุณากรอกรหัสผ่าน">
+                                        <div class="show-hide"><span class="show"></span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <input class="checkbox_animated" name="RememberMe" id="txtRememberMe" type="checkbox">จดจำฉันไว้
+                                    <div class="text-end mt-3">
+                                        <button class="createBtn btn btn-primary btn-block w-100" type="submit">เข้าสู่ระบบ</button>
+                                    </div>
+                                </div>
+                                <p class="mt-4 mb-0 text-center">คุณลืมรหัสผ่านใช่เหรอไม่ ?<a class="ms-2"> โปรดติดต่อผู้ดูแลระบบ</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- latest jquery-->
+        <script src="~/assets/js/jquery.min.js"></script>
+        <!-- Bootstrap js-->
+        <script src="~/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- feather icon js-->
+        <script src="~/assets/js/icons/feather-icon/feather.min.js"></script>
+        <script src="~/assets/js/icons/feather-icon/feather-icon.js"></script>
+        <!-- scrollbar js-->
+        <!-- Sidebar jquery-->
+        <script src="~/assets/js/config.js"></script>
+        <!-- Plugins JS start-->
+        <!-- calendar js-->
+        <!-- Plugins JS Ends-->
+        <!-- Theme js-->
+        <script src="~/assets/js/script.js"></script>
+        <script src="~/assets/js/script1.js"></script>
+        <!-- Plugin used-->
+        <script>
+                $(document).ready(function () {
+                    $('#myForm').on('submit', function (e) {
+                        e.preventDefault(); // ป้องกันการส่งฟอร์มตามปกติ
+
+                        var username = $('#txtUsername').val(); // อ้างอิง ID ด้วย #
+                        var password = $('#txtPassword').val();
+                        var remember = $('#txtRememberMe').val();
+
+                        if (!username || !password) {
+                            Swal.fire('ผิดพลาด', 'กรุณากรอกชื่อผู้ใช้งานและรหัสผ่าน', 'error');
+                            return;
+                        }
+
+                        // ตรวจสอบค่าซ้ำก่อนบันทึก
+                        $.ajax({
+                            url: '@Url.Action("CheckBeen", "Authenication")', // ตรวจสอบว่าผู้ใช้มีอยู่
+                            type: 'GET',
+                            data: { Username: username, Password: password },
+                            success: function (response) {
+                                if (!response) {
+                                    Swal.fire('ผิดพลาด', 'ผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง', 'error');
+                                    return;
+                                }
+                                $.ajax({
+                                    url: '@Url.Action("CheckBeen", "Authenication")', // ตรวจสอบว่าผู้ใช้มีอยู่
+                                    type: 'GET',
+                                    data: { Username: username, Password: password },
+                                    success: function (response) {
+                                        // console.log(response);
+                                        if (response.isDeleted == true) {
+                                            Swal.fire('ผิดพลาด', 'ผู้ใช้งานนี้ถูกระงับการใช้งานชั่วคราวครับ', 'error');
+                                            return;
+                                        }
+                                        // ส่งข้อมูลสำหรับเข้าสู่ระบบ
+                                        $.ajax({
+                                            url: '@Url.Action("LoginResponse", "Authenication")', // ปรับ URL ของ Controller
+                                            type: 'POST',
+                                            data: { Username: username, Password: password, RememberMe: remember },
+                                            success: function (response) {
+                                                Swal.fire(
+                                                    'สำเร็จ',
+                                                    'ยินดีต้อนรับเข้าสู่ระบบ',
+                                                    'success'
+                                                ).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        window.location.href = '@Url.Action("ManageUsers", "Administrator")';
+                                                    }
+                                                });
+                                            },
+                                            error: function (xhr, textStatus, errorThrown) {
+                                                // จัดการข้อผิดพลาดตามสถานะ HTTP
+                                                handleHttpErrors(xhr.status);
+                                            }
+                                        });
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.error("Error:", textStatus, errorThrown);
+                                        handleHttpErrors(xhr.status); // จัดการข้อผิดพลาด
+                                    }
+                                });
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error("Error:", textStatus, errorThrown);
+                                handleHttpErrors(xhr.status); // จัดการข้อผิดพลาด
+                            }
+                        });
+                    });
+                });
+
+            function handleAjaxError(xhr) {
+                console.log('Error:', xhr.status, xhr.statusText);
+
+                switch (xhr.status) {
+                    case 400:
+                        window.open('@Url.Action("Error400", "Error")', '_blank');
+                        break;
+                    case 401:
+                        window.open('@Url.Action("Error401", "Error")', '_blank');
+                        break;
+                    case 403:
+                        window.open('@Url.Action("Error403", "Error")', '_blank');
+                        break;
+                    case 404:
+                        window.open('@Url.Action("Error404", "Error")', '_blank');
+                        break;
+                    case 500:
+                        window.open('@Url.Action("Error500", "Error")', '_blank');
+                        break;
+                    case 503:
+                        window.open('@Url.Action("Error503", "Error")', '_blank');
+                        break;
+                    default:
+                        console.log('An unexpected error occurred: ', xhr.status);
+                }
+            }
+
+        </script>
+    </div>
+</body>
+</html>

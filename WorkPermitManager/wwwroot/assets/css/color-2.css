@@ -39669,11 +39669,11 @@ ul.dot-group {
 }
 
     .show-hide span.show:before {
-        content: "show";
+        content: "แสดง";
     }
 
     .show-hide span:before {
-        content: "hide";
+        content: "ซ่อน";
     }
 
 .needs-validation .invalid-feedback {
