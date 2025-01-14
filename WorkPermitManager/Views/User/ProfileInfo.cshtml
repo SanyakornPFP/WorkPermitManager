@@ -1,0 +1,338 @@
+﻿@{
+    ViewData["Controller"] = "User";
+    ViewData["Action"] = "Profile";
+    ViewData["Icon"] = "id";
+}
+    @using ContainerEvaluationSystem.Helpers;
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="edit-profile">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><i class="icofont icofont-id text-dark"></i> โปรไฟล์ส่วนตัว</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="profile-title">
+                                <div class="d-flex">
+                                    @if (User.GetLoggedInImgProfile() == "NULL")
+                                    {
+                                        <img class="img-100 rounded-circle" alt="" src="~/assets/SystemImages/ProfileImage/Default.png">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-100 rounded-circle" src="~/assets/SystemImages/ProfileImage/@User.GetLoggedInImgProfile()" alt="">
+                                    }
+                                    <div class="flex-grow-1">
+                                        <h4 class="mb-1">@User.GetLoggedInName()</h4>
+                                        <p>@User.GetLoggedInPosition()</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="table-responsive theme-scrollbar">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-id-card" style="padding-right:10px"></i>  ชื่อผู้ใช้งาน/รหัสพนักงาน</td>
+                                            <td>
+                                                @User.GetLoggedInUsername()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-briefcase-alt-1" style="padding-right:10px"></i> ตำแหน่ง</td>
+                                            <td>
+                                                @User.GetLoggedInPosition()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-company" style="padding-right:10px"></i>  แผนก</td>
+                                            <td>
+                                                @User.GetLoggedInDepartment()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-email" style="padding-right:10px"></i>  อีเมลล์</td>
+                                            <td>
+                                                @(User.GetLoggedInUserEmail() == "NULL" ? "ไม่พบข้อมูล" : User.GetLoggedInUserEmail())
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td style="font-weight: bold"><i class="icofont icofont-edit" style="padding-right:10px"></i>  ลายเซ็น</td>
+                                            <td>
+                                                @if (User.GetLoggedInImgSignature() == "NULL")
+                                                {
+                                                    <img class="img-70" alt="" src="~/assets/SystemImages/Signature/dontImage.png">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-100" src="~/assets/SystemImages/Signature/@User.GetLoggedInImgSignature()" alt="">
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-sm-6">
+                            <div class="card height-equal">
+                                <div class="card-header">
+                                    <h4>ระบบแจ้งเตือน</h4>
+                                    <p class="f-m-light mt-1">
+                                        <code>กรุณาเพิ่มข้อมูลอีเมลล์ก่อนทำการเปิดใช้งานแจ้งเตือน</code>
+                                    </p>
+                                </div>
+                                <div class="card-body common-flex flex-column switch-wrapper">
+                                    <div class="d-flex">
+                                        <div class="text-end icon-state">
+                                            <label class="switch mb-0">
+                                                <input type="checkbox" id="sendEmailCheckbox" @(ViewData["ManageSendEmail"] != null && (bool)ViewData["ManageSendEmail"] ? "checked" : "")><span class="switch-state bg-primary"></span>
+                                            </label>
+                                        </div>
+                                        <label class="col-form-label m-l-10">สถานะแจ้งเตือนผ่านอีเมลล์</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <form id="updateInfo" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">UpdateProfile</h4>
+                        <p>อัพเดทโปรไฟล์ส่วนตัว</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">อีเมลล์</label>
+                                    <input class="form-control" name="Email" type="email" placeholder="ตัวอย่าง :'xxxxxxx@pfp-pacific.com'" value="@(User.GetLoggedInUserEmail() == "NULL" ? "" : User.GetLoggedInUserEmail())">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">รูปโปรไฟล์</label>
+                                    <div class="input-group">
+                                        <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icon-image"></i></button>
+                                        <input class="form-control" id="inputGroupFile03" name="ProfileImage" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">ลายเซ็นต์</label>
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icofont icofont-edit"></i></button>
+                                    <input class="form-control" id="inputGroupFile03" name="Signature" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" type="submit">บันทึก</button>
+                    </div>
+                </form>
+
+                <form id="changePaswords" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">ChangePassword</h4>
+                        <p>เปลี่ยนรหัสผ่านใหม่</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="mปb-3">
+                            <label class="form-label">เลขบัตรประจำตัว</label>
+                            <input type="hidden" value="@User.GetLoggedInUserID()" id="txtUserID" />
+                            <input class="form-control" id="idNumber" type="text" maxlength="13" placeholder="กรุณากรอกเลขประจำตัว 13 หลัก" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input class="form-control" id="newPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input class="form-control" id="confirmPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่อีกครั้ง" />
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button type="button" class="btn btn-primary" id="submitChangePassword">บันทึก</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submitChangePassword').on('click', function () {
+                var idNumber = $('#idNumber').val(); // ค่าเลขบัตรประจำตัว
+                var newPassword = $('#newPassword').val(); // รหัสผ่านใหม่
+                var confirmPassword = $('#confirmPassword').val(); // ยืนยันรหัสผ่านใหม่
+                var empID = $('#txtEmpID').val(); // รหัสพนักงาน
+                var userID = $('#userID').val(); // รหัสผู้ใช้ (ensure this is defined)
+
+                // ตรวจสอบว่ารหัสผ่านไม่น้อยกว่า 6 ตัวอักษร
+                if (newPassword.length < 6 || confirmPassword.length < 6) {
+                    Swal.fire('ผิดพลาด', 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร', 'error');
+                    return;
+                }
+
+                if (!idNumber || !newPassword || !confirmPassword) {
+                    Swal.fire('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วน', 'error');
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    Swal.fire('ผิดพลาด', 'รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน', 'error');
+                    return;
+                }
+
+                // ตรวจสอบค่าซ้ำก่อนบันทึก
+                $.ajax({
+                    url: '@Url.Action("CheckCardID", "User")', // ตรวจสอบว่าผู้ใช้มีอยู่
+                    type: 'GET',
+                    data: { UserID: userID, CardID: idNumber },
+                    success: function (response) {
+                        if (!response) {
+                            Swal.fire('ผิดพลาด', 'เลขบัตรประจำของผู้ใช้งานไม่ถูกต้อง โปรดตรวจสอบอีกครั้ง', 'error');
+                            return;
+                        }
+                        // Popup ยืนยันก่อนเปลี่ยนรหัสผ่าน
+                        Swal.fire({
+                            title: 'ยืนยันการเปลี่ยนรหัสผ่าน',
+                            text: 'คุณต้องการเปลี่ยนรหัสผ่านหรือไม่?',
+                            icon: 'warning',
+                            showCancelButton: true, // แสดงปุ่มยกเลิก
+                            confirmButtonText: 'ใช่', // ปุ่มยืนยัน
+                            cancelButtonText: 'ไม่' // ปุ่มยกเลิก
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // หากผู้ใช้ยืนยัน, ส่ง AJAX เพื่อเปลี่ยนรหัสผ่าน
+                                $.ajax({
+                                    url: `@Url.Action("ChangePassword", "User")`, // ปรับ URL ของ Controller
+                                    type: 'POST',
+                                    data: {
+                                        IdNumber: idNumber,
+                                        NewPassword: newPassword,
+                                        EmpID: empID
+                                    },
+                                    success: function (response) {
+                                        Swal.fire(
+                                            'สำเร็จ',
+                                            'การเปลี่ยนรหัสผ่านสำเร็จ',
+                                            'success'
+                                        ).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload(); // รีโหลดหน้า
+                                            }
+                                        });
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        // Log the error to the console with more details
+                                        console.log('Error:', xhr.status, textStatus, errorThrown);
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        // Log the error to the console with more details
+                        console.log('Error:', xhr.status, textStatus, errorThrown);
+                    }
+                });
+            });
+
+            $('#sendEmailCheckbox').on('change', function () {
+                // ตรวจสอบสถานะของ checkbox
+                var isChecked = $(this).is(':checked');
+
+                // ส่งคำขอ AJAX ไปยัง ManageSendEmail
+                $.ajax({
+                    url: '@Url.Action("ManageSendEmail", "User")', // เปลี่ยนชื่อ Controller
+                    type: 'GET',
+                    success: function (response) {
+                        if (response === true) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ',
+                                text: 'การเปลี่ยนแปลงสำเร็จ',
+                                confirmButtonText: 'ตกลง'
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ข้อผิดพลาด',
+                                text: 'กรุณาเพิ่มข้อมูลอีเมลล์ก่อนเปิดใช้งานการแจ้งเตือนผ่านอีเมลล์',
+                                confirmButtonText: 'ตกลง'
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ข้อผิดพลาด',
+                            text: 'เกิดข้อผิดพลาดในการส่งคำขอ',
+                            confirmButtonText: 'ตกลง'
+                        });
+                    }
+                });
+            });
+
+            $('#updateInfo').on('submit', function (e) {
+                e.preventDefault(); // ป้องกันการส่งฟอร์มแบบดั้งเดิม
+                var formData = new FormData(this); // สร้าง FormData จากฟอร์ม
+
+                if (!formData.has('Email')) {
+                    Swal.fire('ผิดพลาด', 'กรุณากรอกอีเมลล์', 'error');
+                    return;
+                }
+
+                // แสดง SweetAlert2 เพื่อยืนยันการดำเนินการ
+                Swal.fire({
+                    title: 'ยืนยันการอัพเดทโปรไฟล์',
+                    text: 'คุณต้องการอัพเดทโปรไฟล์ส่วนตัวใช่หรือไม่?',
+                    icon: 'warning', // แสดงเป็นไอคอนเตือน
+                    showCancelButton: true, // แสดงปุ่มยกเลิก
+                    confirmButtonText: 'ใช่, ฉันต้องการอัพเดท', // ข้อความปุ่มยืนยัน
+                    cancelButtonText: 'ไม่, ยกเลิก' // ข้อความปุ่มยกเลิก
+                }).then((result) => {
+                    if (result.isConfirmed) { // ถ้าผู้ใช้ยืนยัน
+                        // ส่งข้อมูล AJAX เพื่ออัพเดทโปรไฟล์
+                        $.ajax({
+                            url: '@Url.Action("UpdateProfile", "User")', // URL ของ Controller
+                            type: 'POST',
+                            data: formData, // ส่งข้อมูลในรูปแบบ FormData
+                            processData: false, // ไม่ต้องประมวลผลข้อมูล
+                            contentType: false, // ใช้เนื้อหาเริ่มต้นสำหรับ FormData
+                            success: function (response) {
+                                Swal.fire(
+                                    'สำเร็จ',
+                                    'การอัพเดทโปรไฟล์สำเร็จ',
+                                    'success'
+                                ).then(() => {
+                                    window.location.reload(); // รีโหลดหน้าเพื่อแสดงการเปลี่ยนแปลง
+                                });
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                // Log the error to the console with more details
+                                console.log('Error:', xhr.status, textStatus, errorThrown);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

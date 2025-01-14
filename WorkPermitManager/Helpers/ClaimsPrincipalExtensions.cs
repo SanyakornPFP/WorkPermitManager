@@ -101,6 +101,16 @@ namespace ContainerEvaluationSystem.Helpers
             return principal.FindFirst("SignatureImage").Value.ToString();
         }
 
+        public static string GetLoggedPermission_Administrator(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("ViewAdministrator").Value.ToString();
+        }
+
+
+
 
     }
 }

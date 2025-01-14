@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/bootstrap.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
-    <link id="color" rel="stylesheet" href="~/assets/css/color-1.css" media="screen">
+    <link id="color" rel="stylesheet" href="~/assets/css/color-2.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
     @* Sweetalert2 *@
@@ -140,7 +140,7 @@
                                                     'success'
                                                 ).then((result) => {
                                                     if (result.isConfirmed) {
-                                                        window.location.href = '@Url.Action("ManageUsers", "Administrator")';
+                                                        window.location.href = '@Url.Action("Index", "Home")';
                                                     }
                                                 });
                                             },

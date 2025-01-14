@@ -1,0 +1,157 @@
+﻿<!-- #region LogSystemData -->
+@{
+    ViewData["Controller"] = "ผู้ดูแลระบบ";
+    ViewData["Action"] = "ประวัติการจัดการข้อมูล";
+    ViewData["Icon"] = "gear";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border d-flex justify-content-between align-items-center">
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="icofont icofont-info-square text-white"></i> ประวัติการจัดการข้อมูล
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-3">
+                        <table class="display" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อตาราง</th>
+                                    <th>การกระทำ</th>
+                                    <th>รหัสบันทึก</th>
+                                    <th>ผู้ใช้งาน</th>
+                                    <th>เวลาการกระทำ</th>
+                                    <th>ที่อยู่ IP</th>
+                                    <th class="text-center">รายละเอียด</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.LogSystemDataList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string icon = "📁"; // Default icon for unknown tables
+                                                if (item != null && !string.IsNullOrEmpty(item.TableName))
+                                                {
+                                                    switch (item.TableName)
+                                                    {
+                                                        case "Companies":
+                                                            icon = "🏢"; // Icon for Companies table
+                                                            break;
+                                                        case "Departments":
+                                                            icon = "🏬"; // Icon for Departments table
+                                                            break;
+                                                        case "Positions":
+                                                            icon = "💼"; // Icon for Positions table
+                                                            break;
+                                                        case "PowerOfAttorney":
+                                                            icon = "📜"; // Icon for PowerOfAttorney table
+                                                            break;
+                                                        case "Permissions":
+                                                            icon = "🔒"; // Icon for UserPermissions table
+                                                            break;
+                                                        case "Users":
+                                                            icon = "👥"; // Icon for Users table
+                                                            break;
+                                                            // Add more cases as needed for other tables
+                                                    }
+                                                }
+                                            }
+                                            @icon @item?.TableName
+                                        </td>
+                                        <td>@item.Action</td>
+                                        <td>@item.RecordID</td>
+                                        <td>@item.Username</td>
+                                        <td>@item.ActionTime</td>
+                                        <td>@item.IPAddress</td>
+                                        <td class="text-center">
+                                            <!-- ปุ่มที่เปิด Modal -->
+                                            <a href="#" data-toggle="modal" data-target="#detailModal" data-logid="@item.LogID">
+                                                <i class="icofont icofont-list"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="icofont icofont-list"></i> รายละเอียดเพิ่มเติม</h6>
+            </div>
+            <div class="modal-body">
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><i class="icofont icofont-id-card m-1"></i> อธิบายเพิ่มเติม</td>
+                                        <td id="Description"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="icofont icofont-ui-v-card m-1"></i> ค่าเก่า</td>
+                                        <td id="OldValue"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="icofont icofont-briefcase-alt-1 m-1"></i> ค่าใหม่</td>
+                                        <td id="NewValue"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+                   $('#detailModal').on('show.bs.modal', function (event) {
+                       var button = $(event.relatedTarget); // ปุ่มที่ถูกคลิก
+                       var logID = button.data('logid'); // ค่า UserID จาก data attribute
+
+                       // ส่ง AJAX request เพื่อดึงรายละเอียดโดยใช้ UserID
+                       $.ajax({
+                           url: '@Url.Action("GetLogSystemModel", "Administrator")', // เปลี่ยนเป็น URL ของ Controller และ Action
+                           type: 'POST',
+                           data: { LogID: logID }, // ส่งค่า UserID
+                           success: function (response) { // เมื่อ AJAX สำเร็จ
+                               if (response.success === false) {
+                                   Swal.fire('ผิดพลาด', response.message, 'error');
+                               } else {
+                                   // ตั้งค่า src
+                                   $('#Description').text(response.data.description);
+                                   $('#OldValue').text(response.data.oldValue);
+                                   $('#NewValue').text(response.data.newValue);
+
+                               }
+                           },
+                           error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว
+                               console.error('Error:', xhr.status, status, error);
+                                 handleAjaxError(xhr);
+                           }
+                       });
+                   });
+               });
+    </script>
+}

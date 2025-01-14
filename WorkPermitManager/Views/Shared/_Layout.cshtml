@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/bootstrap.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
-    <link id="color" rel="stylesheet" href="~/assets/css/color-1.css" media="screen">
+    <link id="color" rel="stylesheet" href="~/assets/css/color-2.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
     <!-- Select Option Search -->
@@ -220,69 +220,72 @@
                                         <span style="padding-left:10px"> หนังสิอมอบอำนาจ</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-main-title">
-                                    <div>
-                                        <h6>สำหรับผู้ดูแลระบบ</h6>
-                                    </div>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/Users") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="ManageUsers">
-                                        <i class="stroke-icon text-white fa fa-user"></i>
-                                        <i class="fill-icon text-white fa fa-user"></i>
-                                        <span style="padding-left:10px"> ข้อมูลผู้ใช้งาน</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePermission") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="ManagePermission">
-                                        <i class="stroke-icon text-white fa fa-shield"></i>
-                                        <i class="fill-icon text-white fa fa-shield"></i>
-                                        <span style="padding-left:10px"> กำหนดสิทธิ์เข้าใช้งาน</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePosition") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="ManagePosition">
-                                        <i class="icofont icofont-briefcase-alt-1 text-white"></i>
-                                        <span style="padding-left:10px"> ข้อมูลตำแหน่งงาน</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageDepartment") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="ManageDepartment">
-                                        <i class="icofont icofont-company text-white"></i>
-                                        <span style="padding-left:10px"> ข้อมูลแผนก</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageCompany") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="ManageCompany">
-                                        <i class="icofont icofont-building-alt text-white"></i>
-                                        <span style="padding-left:10px"> ข้อมูลบริษัท</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/LoginHistory") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="LoginHistory">
-                                        <i class="icofont icofont-history text-white"></i>
-                                        <span style="padding-left:10px"> ประวัติการเข้าสู่ระบบ</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/LogSystem") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="Administrator" asp-action="LogSystem">
-                                        <i class="icofont icofont-info-square text-white"></i>
-                                        <span style="padding-left:10px"> ประวัติการจัดการข้อมูล</span>
-                                    </a>
-                                </li>
+                                @if (User.GetLoggedPermission_Administrator() == "True")
+                                {
+                                    <li class="sidebar-main-title">
+                                        <div>
+                                            <h6>สำหรับผู้ดูแลระบบ</h6>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/Users") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManageUsers">
+                                            <i class="stroke-icon text-white fa fa-user"></i>
+                                            <i class="fill-icon text-white fa fa-user"></i>
+                                            <span style="padding-left:10px"> ข้อมูลผู้ใช้งาน</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePermission") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManagePermission">
+                                            <i class="stroke-icon text-white fa fa-shield"></i>
+                                            <i class="fill-icon text-white fa fa-shield"></i>
+                                            <span style="padding-left:10px"> กำหนดสิทธิ์เข้าใช้งาน</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePosition") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManagePosition">
+                                            <i class="icofont icofont-briefcase-alt-1 text-white"></i>
+                                            <span style="padding-left:10px"> ข้อมูลตำแหน่งงาน</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageDepartment") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManageDepartment">
+                                            <i class="icofont icofont-company text-white"></i>
+                                            <span style="padding-left:10px"> ข้อมูลแผนก</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageCompany") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManageCompany">
+                                            <i class="icofont icofont-building-alt text-white"></i>
+                                            <span style="padding-left:10px"> ข้อมูลบริษัท</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLoginHistory") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManageLoginHistory">
+                                            <i class="icofont icofont-history text-white"></i>
+                                            <span style="padding-left:10px"> ประวัติการเข้าสู่ระบบ</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLogSystemData") ? "active bg-primary text-white custom-rounded" : "")"
+                                           asp-controller="Administrator" asp-action="ManageLogSystemData">
+                                            <i class="icofont icofont-info-square text-white"></i>
+                                            <span style="padding-left:10px"> ประวัติการจัดการข้อมูล</span>
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -356,6 +359,11 @@
         $(document).ready(function () {
            // เรียกใช้ Select2 หลังจากที่ปลั๊กอินถูกโหลด
            $('.select2-In').select2();
+
+           var message = '@TempData["ErrorMessage"]';
+                if (message) {
+                    Swal.fire('ผิดพลาด', message, 'error');
+                }
         });
     </script>
 </body>

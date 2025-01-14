@@ -188,6 +188,9 @@
     <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="cf4a97c8-5c9c-4b16-913b-a6c863095384">
       <column name="Email" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="ManageSendEmail" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9c5453c4-3928-4fa8-a8a0-45bc54d87907">
+      <column name="ManageSendEmail" default="0" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
     <property name="LoginDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="672cdae7-bffd-4c71-9fd1-347b6f57f3f4">
       <column name="LoginDate" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>

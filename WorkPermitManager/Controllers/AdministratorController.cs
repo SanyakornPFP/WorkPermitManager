@@ -1,6 +1,7 @@
 ﻿using ContainerEvaluationSystem.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using WorkPermitManager.Data;
@@ -20,17 +21,30 @@ namespace WorkPermitManager.Controllers
         #region User Functions
         public IActionResult ManageUsers()
         {
-            ViewBag.UserList = _db.Users.Where(u => u.IsDeleted == false).ToList();
-            ViewBag.PositionList = _db.Positions.Where(p => p.IsDeleted == false).ToList();
-            ViewBag.DepartmentList = _db.Departments.Where(d => d.IsDeleted == false).ToList();
-            ViewBag.CompanyList = _db.Companies.Where(c => c.IsDeleted == false).ToList();
-            return View();
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.UserList = _db.Users.Where(u => u.IsDeleted == false).ToList();
+                ViewBag.PositionList = _db.Positions.Where(p => p.IsDeleted == false).ToList();
+                ViewBag.DepartmentList = _db.Departments.Where(d => d.IsDeleted == false).ToList();
+                ViewBag.CompanyList = _db.Companies.Where(c => c.IsDeleted == false).ToList();
+                return View();
+            }
         }
 
         #region Create User
         [HttpPost]
         public async Task<IActionResult> CreateUser(string UserName, string FullName, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserName == null || UserEmail == null || PositionID == 0 || DepartmentID == 0 || CompanyID == 0)
             {
                 return NotFound();
@@ -98,6 +112,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int UserID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserID == 0)
             {
                 return NotFound();
@@ -143,6 +162,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateUser(int UserID, string UserName, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserID == 0 || UserName == null || UserEmail == null || PositionID == 0 || DepartmentID == 0 || CompanyID == 0)
             {
                 return NotFound();
@@ -221,6 +245,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePasswordUser(int UserID, string Password)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserID == 0 || Password == null)
             {
                 return NotFound();
@@ -267,6 +296,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult CheckUserName(string UserName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserName == null)
             {
                 return Json("User name is required");
@@ -290,6 +324,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetUserDetails(int UserID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserID == 0)
             {
                 return Json("User ID is required");
@@ -313,6 +352,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetUserProfileModel(int UserID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (UserID == 0)
             {
                 return Json(new { success = false, message = "User ID is required" });
@@ -368,14 +412,28 @@ namespace WorkPermitManager.Controllers
         #region Position Functions
         public IActionResult ManagePosition()
         {
-            ViewBag.PositionList = _db.Positions.Where(p => p.IsDeleted == false).ToList();
-            return View();
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.PositionList = _db.Positions.Where(p => p.IsDeleted == false).ToList();
+                return View();
+            }
+
         }
 
         #region Create Position
         [HttpPost]
         public async Task<IActionResult> CreatePosition(string PositionName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (PositionName == null)
             {
                 return NotFound();
@@ -420,6 +478,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeletePosition(int PositionID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (PositionID == 0)
             {
                 return NotFound();
@@ -465,6 +528,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdatePosition(int PositionID, string PositionName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (PositionID == 0 || PositionName == null)
             {
                 return NotFound();
@@ -511,6 +579,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult CheckPositionName(string PositionName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             var model = _db.Positions.FirstOrDefault(p => p.PositionName == PositionName);
             if (model != null)
             {
@@ -527,6 +600,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetPositionDetails(int PositionID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (PositionID == 0)
             {
                 return Json("Position ID is required");
@@ -550,14 +628,28 @@ namespace WorkPermitManager.Controllers
         #region Department Functions
         public IActionResult ManageDepartment()
         {
-            ViewBag.DepartmentList = _db.Departments.Where(d => d.IsDeleted == false).ToList();
-            return View();
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.DepartmentList = _db.Departments.Where(d => d.IsDeleted == false).ToList();
+                return View();
+            }
+
         }
 
         #region Create Department
         [HttpPost]
         public async Task<IActionResult> CreateDepartment(string DepartmentName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (DepartmentName == null)
             {
                 return NotFound();
@@ -598,6 +690,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteDepartment(int DepartmentID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (DepartmentID == 0)
             {
                 return NotFound();
@@ -643,6 +740,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateDepartment(int DepartmentID, string DepartmentName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (DepartmentID == 0 || DepartmentName == null)
             {
                 return NotFound();
@@ -689,6 +791,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult CheckDepartmentName(string DepartmentName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (DepartmentName == null)
             {
                 return Json("Department name is required");
@@ -712,6 +819,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetDepartmentDetails(int DepartmentID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (DepartmentID == 0)
             {
                 return Json("Department ID is required");
@@ -735,14 +847,28 @@ namespace WorkPermitManager.Controllers
         #region Company Functions
         public IActionResult ManageCompany()
         {
-            ViewBag.CompanyList = _db.Companies.Where(c => c.IsDeleted == false).ToList();
-            return View();
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.CompanyList = _db.Companies.Where(c => c.IsDeleted == false).ToList();
+                return View();
+            }
+
         }
 
         #region Create Company
         [HttpPost]
         public async Task<IActionResult> CreateCompany(string CompanyName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (CompanyName == null)
             {
                 return NotFound();
@@ -783,6 +909,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteCompany(int CompanyID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (CompanyID == 0)
             {
                 return NotFound();
@@ -828,6 +959,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCompany(int CompanyID, string CompanyName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (CompanyID == 0 || CompanyName == null)
             {
                 return NotFound();
@@ -874,6 +1010,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult CheckCompanyName(string CompanyName)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (CompanyName == null)
             {
                 return Json("Company name is required");
@@ -897,6 +1038,11 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetCompanyDetails(int CompanyID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             if (CompanyID == 0)
             {
                 return Json("Company ID is required");
@@ -920,13 +1066,27 @@ namespace WorkPermitManager.Controllers
         #region Permission Functions
         public IActionResult ManagePermission()
         {
-            ViewBag.UserList = _db.Users.Where(p => p.IsDeleted == false).ToList();
-            return View();
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.UserList = _db.Users.Where(p => p.IsDeleted == false).ToList();
+                return View();
+            }
+
         }
 
         [HttpGet]
         public JsonResult GetDetailsPermissions(int UserID)
         {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
             try
             {
                 var user = _db.Users.FirstOrDefault(u => u.UserID == UserID);
@@ -984,6 +1144,234 @@ namespace WorkPermitManager.Controllers
         }
 
         // Example method to get user permissions
+
+        [HttpPost]
+        public async Task<JsonResult> UpdatePermissions([FromBody] PermissionUpdateModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (model == null || model.Permissions == null || model.Permissions.Count == 0)
+            {
+                return Json(new { success = false, message = "ข้อมูลไม่ถูกต้อง" });
+            }
+
+            try
+            {
+                // Get the user from the database
+                var user = _db.Users.FirstOrDefault(u => u.UserID == model.UserID);
+
+                if (user == null)
+                {
+                    return Json(new { success = false, message = "ไม่พบผู้ใช้งาน" });
+                }
+
+                // Capture the old permissions for logging
+                var oldPermissions = _db.UserPermissions
+                    .Where(p => p.UserID == model.UserID)
+                    .ToList();
+
+                // Loop through the permissions and update them in the database
+                foreach (var perm in model.Permissions)
+                {
+                    var existingPermission = _db.UserPermissions
+                        .FirstOrDefault(p => p.UserID == model.UserID && p.FunctionName == perm.FunctionName);
+
+                    if (existingPermission != null)
+                    {
+                        // Capture old values
+                        var oldPermission = oldPermissions.FirstOrDefault(p => p.FunctionName == perm.FunctionName);
+
+                        // Update existing permission
+                        existingPermission.CanRead = perm.CanRead;
+                        existingPermission.CanCreate = perm.CanCreate;
+                        existingPermission.CanUpdate = perm.CanUpdate;
+                        existingPermission.CanDelete = perm.CanDelete;
+
+                        // Log the update
+                        var logEntry = new LogSystemData
+                        {
+                            TableName = "Permissions",
+                            Action = "UPDATE",
+                            RecordID = existingPermission.PermissionID,
+                            UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                            ActionTime = DateTime.Now,
+                            IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                            OldValue = $"CanRead: {oldPermission.CanRead}, CanCreate: {oldPermission.CanCreate}, CanUpdate: {oldPermission.CanUpdate}, CanDelete: {oldPermission.CanDelete}",
+                            NewValue = $"CanRead: {existingPermission.CanRead}, CanCreate: {existingPermission.CanCreate}, CanUpdate: {existingPermission.CanUpdate}, CanDelete: {existingPermission.CanDelete}",
+                            Description = $"Updated permission for FunctionName: {existingPermission.FunctionName} with UserID: {existingPermission.UserID}"
+                        };
+                        // Save the log entry
+                        _db.LogSystemDatas.Add(logEntry);
+                        await _db.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        // Add new permission
+                        var newPermission = new UserPermission
+                        {
+                            UserID = model.UserID,
+                            FunctionName = perm.FunctionName,
+                            CanRead = perm.CanRead,
+                            CanCreate = perm.CanCreate,
+                            CanUpdate = perm.CanUpdate,
+                            CanDelete = perm.CanDelete
+                        };
+                        _db.UserPermissions.Add(newPermission);
+
+                        // Log the creation of the User
+                        var logEntry = new LogSystemData
+                        {
+                            TableName = "Permissions",
+                            Action = "INSERT",
+                            RecordID = newPermission.PermissionID,
+                            UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                            ActionTime = DateTime.Now,
+                            IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                            OldValue = null, // No previous value since it's a new record
+                            NewValue = $"UserID: {model.UserID}, FunctionName: {perm.FunctionName}, CanRead: {perm.CanRead}, CanCreate: {perm.CanCreate}, CanUpdate: {perm.CanUpdate}, CanDelete: {perm.CanDelete}", // New record's details
+                            Description = $"Created new permission with UserID: {model.UserID}, FunctionName: {perm.FunctionName}, CanRead: {perm.CanRead}, CanCreate: {perm.CanCreate}, CanUpdate: {perm.CanUpdate}, CanDelete: {perm.CanDelete}"
+                        };
+                        // Save the log entry
+                        _db.LogSystemDatas.Add(logEntry);
+                        await _db.SaveChangesAsync();
+                    }
+                }
+
+                // Save changes to the database
+                await _db.SaveChangesAsync();
+
+                return Json(new { success = true, message = "อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว" });
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการอัปเดตสิทธิ์การใช้งาน: " + ex.Message });
+            }
+        }
+
+        #endregion
+
+        #region LogSystemData Functions
+        public IActionResult ManageLogSystemData()
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.LogSystemDataList = _db.LogSystemDatas
+                    .Select(s => new
+                    {
+                        s.LogID,
+                        s.TableName,
+                        s.Action,
+                        s.RecordID,
+                        s.User.Username,
+                        s.ActionTime,
+                        s.IPAddress,
+                        s.OldValue,
+                        s.NewValue,
+                        s.Description
+                    })
+                    .ToList();
+                return View();
+            }
+        }
+        #region GetLogSystemModel 
+        [HttpPost]
+        public JsonResult GetLogSystemModel(int LogID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (LogID == 0)
+            {
+                return Json(new { success = false, message = "Log ID is required" });
+            }
+            else
+            {
+                var model = _db.LogSystemDatas
+                    .Where(l => l.LogID == LogID)
+                    .Select(s => new
+                    {
+                        s.LogID,
+                        s.TableName,
+                        s.Action,
+                        s.RecordID,
+                        s.User.Username,
+                        s.ActionTime,
+                        s.IPAddress,
+                        s.OldValue,
+                        s.NewValue,
+                        s.Description
+                    })
+                    .FirstOrDefault();
+                if (model == null)
+                {
+                    return Json(new { success = false, message = "Log not found" });
+                }
+                else
+                {
+                    return Json(new { success = true, data = model });
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+        #region LoginHistory Functions
+        public IActionResult ManageLoginHistory()
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+
+                ViewBag.LoginHistoryList = _db.LoginHistories
+                    .Select(s => new
+                    {
+                        s.LoginID,
+                        s.User.Username,
+                        s.LoginTime,
+                        s.LogoutTime,
+                        s.IPAddress,
+                        s.DeviceInfo,
+                    })
+                    .ToList();
+                return View();
+            }
+        }
+        #endregion
+
+        //Hashing คือการแปลงข้อมูลให้อยู่ในรูปแบบที่ไม่สามารถย้อนกลับได้ เหมาะสำหรับการตรวจสอบความถูกต้องของข้อมูล เช่น การตรวจสอบรหัสผ่าน
+        public static string ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // ComputeHash - returns byte array  
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         private List<string> GetUserPermissions(int userId)
         {
             // Fetch user permissions from the database
@@ -1005,7 +1393,7 @@ namespace WorkPermitManager.Controllers
             {
                 if ((bool)permission.CanRead)
                 {
-                    userPermissions.Add("View" + permission.FunctionName);
+                    userPermissions.Add("Read" + permission.FunctionName);
                 }
                 if ((bool)permission.CanCreate)
                 {
@@ -1022,29 +1410,6 @@ namespace WorkPermitManager.Controllers
             }
 
             return userPermissions;
-        }
-
-        #endregion
-
-
-
-        //Hashing คือการแปลงข้อมูลให้อยู่ในรูปแบบที่ไม่สามารถย้อนกลับได้ เหมาะสำหรับการตรวจสอบความถูกต้องของข้อมูล เช่น การตรวจสอบรหัสผ่าน
-        public static string ComputeSha256Hash(string rawData)
-        {
-            // Create a SHA256   
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
 
     }

@@ -12,7 +12,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
   .AddCookie(options =>
   {
       options.Cookie.HttpOnly = true;
-      options.ExpireTimeSpan = TimeSpan.FromDays(30);
+      options.ExpireTimeSpan = TimeSpan.FromHours(10);
       options.LoginPath = "/Authenication/LoginResponse";
       options.LogoutPath = "/Authenication/LoginResponse";
       options.Cookie.Name = "_WorkPermitManager";

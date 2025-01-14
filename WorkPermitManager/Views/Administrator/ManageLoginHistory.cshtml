@@ -1,0 +1,48 @@
+﻿<!-- #region LogSystemData -->
+@{
+    ViewData["Controller"] = "ผู้ดูแลระบบ";
+    ViewData["Action"] = "ประวัติการเข้าสู่ระบบ";
+    ViewData["Icon"] = "gear";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border d-flex justify-content-between align-items-center">
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="icofont icofont-history text-white"></i> ประวัติการเข้าสู่ระบบ
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-3">
+                        <table class="display" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ผู้ใช้งาน</th>
+                                    <th>เวลาเข้าสู่ระบบ</th>
+                                    <th>เวลาออกจากระบบ</th>
+                                    <th>ที่อยู่ IP</th>
+                                    <th>อุปกรณ์</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.LoginHistoryList)
+                                {
+                                    <tr>
+                                        <td>@item.Username</td>
+                                        <td>@item.LoginTime</td>
+                                        <td>@item.LogoutTime</td>
+                                        <td>@item.IPAddress</td>
+                                        <td>@item.DeviceInfo</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

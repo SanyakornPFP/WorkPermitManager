@@ -93,7 +93,7 @@ namespace WorkPermitManager.Controllers
                 new Claim("Company", user.CompanyName),
                 new Claim("ProfileImage", user.ProfilePicture  == null ? "NULL" :user.ProfilePicture),
                 new Claim("SignatureImage", user.Signature  == null ? "NULL" :user.Signature),
-                //new Claim("ViewLogSystem", _db.VPermissions.Where(p=>p.MenuName.Contains("LogSystem")).Select(p => p.CanView).FirstOrDefault() == true ? "True" : "Fasle")
+                new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "Fasle")
             };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.NameIdentifier, ClaimsIdentity.DefaultRoleClaimType);

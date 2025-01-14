@@ -118,7 +118,7 @@
 
  */
 :root {
-    --theme-default: #88967e;
+    --theme-default: #00429D;
     --theme-secondary: #29353a;
     --light-background: rgba(242, 243, 247, 0.7);
     --body-font-color: #2F2F3B;
@@ -17315,11 +17315,11 @@ textarea {
 }
 
 .ribbon-primary {
-    background: #7A70BA;
+    background: #00429D;
 }
 
 .ribbon-primary {
-    background: #7A70BA;
+    background: #00429D;
 }
 
 .ribbon-bookmark.ribbon-primary:before {
