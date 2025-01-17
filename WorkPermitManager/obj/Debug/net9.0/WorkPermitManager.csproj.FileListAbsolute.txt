@@ -5747,4 +5747,4 @@ D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\refint\Wor
 D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\WorkPermitManager.pdb
 D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\WorkPermitManager.genruntimeconfig.cache
 D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\ref\WorkPermitManager.dll
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\zf3zbfjofo-90lguwrlo8.gz
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\zf3zbfjofo-3i3fjrsi3c.gz

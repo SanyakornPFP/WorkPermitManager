@@ -213,11 +213,25 @@
                                     <a href="index.html"><img class="img-fluid" src="~/assets/images/logo/Icon-one.png" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                 </li>
+                                <li class="sidebar-main-title">
+                                    <div>
+                                        <h6>หนังสิอมอบอำนาจ</h6>
+                                    </div>
+                                </li>
                                 <li class="sidebar-list">
                                     <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Home") ? "active bg-primary text-white custom-rounded" : "")" asp-controller="Home" asp-action="DashBoard">
+                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney") && !SureActive.StartsWith("/PowerOfAttorney/ApproveForm") ? "active bg-primary text-white custom-rounded" : "")"
+                                       asp-controller="PowerOfAttorney" asp-action="ListForm">
                                         <i class="icofont icofont-files stroke-icon text-white"></i>
-                                        <span style="padding-left:10px"> หนังสิอมอบอำนาจ</span>
+                                        <span style="padding-left:10px"> รายการยื่นขอมอบอำนาจ</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-list">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney/ApproveForm") ? "active bg-primary text-white custom-rounded" : "")"
+                                       asp-controller="PowerOfAttorney" asp-action="ApproveForm">
+                                        <i class="icofont icofont-checked stroke-icon text-white"></i>
+                                        <span style="padding-left:10px"> อนุมัติคำขอมอบอำนาจ</span>
                                     </a>
                                 </li>
                                 @if (User.GetLoggedPermission_Administrator() == "True")
@@ -229,7 +243,7 @@
                                     </li>
                                     <li class="sidebar-list">
                                         <i class="fa fa-thumb-tack"></i>
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/Users") ? "active bg-primary text-white custom-rounded" : "")"
+                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageUsers") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageUsers">
                                             <i class="stroke-icon text-white fa fa-user"></i>
                                             <i class="fill-icon text-white fa fa-user"></i>

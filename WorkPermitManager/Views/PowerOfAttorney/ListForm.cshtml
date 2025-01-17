@@ -1,0 +1,635 @@
+﻿<!-- #region LogSystemData -->
+@{
+    ViewData["Controller"] = "หนังสือมอบอำนาจ";
+    ViewData["Action"] = "รายการยื่นคำขอ";
+    ViewData["Icon"] = "files";
+}
+<div class="container-fluid">
+    <div class="row" id="showInsert" style="display:none">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right">ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> ยื่นคำขอ</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูลยื่นคำขอ</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="card-wrapper border rounded-3 light-card checkbox-checked">
+                                <form id="myForm" method="post" class="row g-3" action="">
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <input type="hidden" name="PowerOfAttorneyID" id="txtPowerOfAttorneyID" />
+                                        <label class="col-form-label" for="txtCreationDate">วันที่ยื่นขอ</label>
+                                        <input class="form-control" name="CreationDate" id="txtCreationDate" type="date" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="txtCreationDate">สถานที่จัดทำเอกสาร</label>
+                                        <select class="form-control select2-In" name="CompanyID" id="selectCompanyID">
+                                            <option value="">เลือกข้อมูล</option>
+                                            @foreach (var company in ViewBag.CompanyList)
+                                            {
+                                                <option value="@company.CompanyID">@company.CompanyName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="selectGrantorID">ผู้มอบอำนาจ</label>
+                                        <select class="form-control select2-In" name="GrantorID" id="selectGrantorID">
+                                            <option value="">เลือกข้อมูล</option>
+                                            @foreach (var user in ViewBag.UserList)
+                                            {
+                                                <option value="@user.UserID">@user.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="selectWitnessApprovalBy1">พยานคนที่ 1</label>
+                                        <select class="form-control select2-In" name="WitnessApprovalBy1" id="selectWitnessApprovalBy1">
+                                            <option value="">เลือกข้อมูล</option>
+                                            @foreach (var user in ViewBag.UserList)
+                                            {
+                                                <option value="@user.UserID">@user.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="selectWitnessApprovalBy2">พยานคนที่ 2</label>
+                                        <select class="form-control select2-In" name="WitnessApprovalBy2" id="selectWitnessApprovalBy2">
+                                            <option value="">เลือกข้อมูล</option>
+                                            @foreach (var user in ViewBag.UserList)
+                                            {
+                                                <option value="@user.UserID">@user.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <button class="btn btn-pill btn-primary active" id="createBtn" type="submit">บันทึก</button>
+                                        <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" style="display: none;">อัพเดท</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-header card-no-border pb-0">
+                    <div class="header-top daily-revenue-card">
+                        <h4>รออนุมัติ</h4>
+                        <div class="dropdown icon-dropdown">
+                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="wait">รายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body total-sells">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="flex-shrink-0"><i class="icofont icofont-time text-white" style="font-size: 2rem" alt="icon"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <h2>0</h2>
+                            </div>
+                            <p class="text-truncate">รายการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-header card-no-border pb-0">
+                    <div class="header-top daily-revenue-card">
+                        <h4>อนุมัติเรียบร้อย</h4>
+                        <div class="dropdown icon-dropdown">
+                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="approve">รายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body  total-sells">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="flex-shrink-0"><i class="icofont icofont-check-circled text-white" style="font-size: 2rem" alt="icon"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <h2>0</h2>
+                            </div>
+                            <p class="text-truncate">รายการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-header card-no-border pb-0">
+                    <div class="header-top daily-revenue-card">
+                        <h4>ไม่อนุมัติ</h4>
+                        <div class="dropdown icon-dropdown">
+                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="notapprove">รายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body  total-sells">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="flex-shrink-0"><i class="icofont icofont-close-circled text-white" style="font-size: 2rem" alt="icon"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <h2>0</h2>
+                            </div>
+                            <p class="text-truncate">รายการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-header card-no-border pb-0">
+                    <div class="header-top daily-revenue-card">
+                        <h4>ยกเลิก</h4>
+                        <div class="dropdown icon-dropdown">
+                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="delete">รายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body total-sells">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="flex-shrink-0"><i class="icofont icofont-ui-delete text-white" style="font-size: 2rem" alt="icon"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <h2>0</h2>
+                            </div>
+                            <p class="text-truncate">รายการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border">
+                    <div class="flex justify-end space-x-2" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn">
+                            <i class="fa fa-plus text-white"></i> ยื่นคำขอมอบอำนาจ
+                        </a>
+                    </div>
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="icofont icofont-files text-white"></i> หนังสือมอบอำนาจ
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-3">
+                        <table class="display" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>รหัสคำขอ</th>
+                                    <th>ผู้มอบอำนาจ</th>
+                                    <th>ผู้รับมอบอำนาจ</th>
+                                    <th>วันที่ยื่นขอ</th>
+                                    <th>สถานะ</th>
+                                    <th class="text-center">เอกสาร</th>
+                                    <th class="text-center">รายละเอียด</th>
+                                    <th>ดำเนินการ</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.PowerOfAttorneysList)
+                                {
+                                    <tr>
+                                        <td>@item.CodeForm</td>
+                                        <td>@item.GrantorName</td>
+                                        <td>@item.AttorneyName</td>
+                                        <td>@item.CreationDate</td>
+                                        <td>
+                                            <span class="badge @(item.Status == "รอการอนุมัติ" ? "badge-warning" : item.Status == "ไม่อนุมัติ" ? "badge-danger" : item.Status == "อนุมัติเรียบร้อย" ? "badge-success" : "badge-light")" style="font-size: 0.8rem">@item.Status</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <a target="_blank" class="text-primary" asp-controller="ReportTaste" asp-action="ReportMixed" asp-route-powerOfAttorneyID="@item.PowerOfAttorneyID">
+                                                <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <!-- ปุ่มที่เปิด Modal -->
+                                            <a href="#" data-toggle="modal" data-target="#detailModal" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                                <i class="icofont icofont-list"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="icofont icofont-list"></i> รายละเอียดเพิ่มเติมหนังสือมอบอำนาจ</h6>
+            </div>
+            <div class="modal-body">
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td class="bg-primary"><i class="icofont icofont-id"></i> รหัสคำขอ</td>
+                                        <td id="CodeForm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่ยื่นขอ</td>
+                                        <td id="CreationDate"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-user"></i> ผู้มอบอำนาจ</td>
+                                        <td id="GrantorName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
+                                        <td id="GrantorStatus"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
+                                        <td id="GrantorDateApprove"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-user"></i> ผู้รับมอบอำนาจ</td>
+                                        <td id="AttorneyName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
+                                        <td id="AttorneyStatus"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
+                                        <td id="AttorneyDateApprove"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-user"></i> พยานคนที่ 1</td>
+                                        <td id="Witness1Name"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
+                                        <td id="Witness1Status"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
+                                        <td id="WitnessDateApprove1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-user"></i> พยานคนที่ 2</td>
+                                        <td id="Witness2Name"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
+                                        <td id="Witness2Status"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
+                                        <td id="WitnessDateApprove2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-light"><i class="icofont icofont-file-document"></i> สถานะเอกสาร</td>
+                                        <td id="Status"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#detailModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // ปุ่มที่ถูกคลิก
+                var powerOfAttorneyID = button.data('powerofattorneyid'); // ค่า UserID จาก data attribute
+
+                // ส่ง AJAX request เพื่อดึงรายละเอียดโดยใช้ UserID
+                $.ajax({
+                    url: '@Url.Action("GetPowerOfAttorneyModel", "PowerOfAttorney")', // เปลี่ยนเป็น URL ของ Controller และ Action
+                    type: 'POST',
+                    data: { PowerOfAttorneyID: powerOfAttorneyID }, // ส่งค่า UserID
+                    success: function (response) { // เมื่อ AJAX สำเร็จ
+                        if (response.success === false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            var data = response.data;
+                            $('#CodeForm').text(data.codeForm);
+                            $('#CreationDate').text(data.creationDate);
+                            $('#GrantorName').text(data.grantorName);
+                            $('#GrantorStatus').text(data.grantorStatus);
+                            $('#GrantorDateApprove').text(data.grantorDateApprove ?? 'ไม่พบข้อมูล');
+                            $('#AttorneyName').text(data.attorneyName);
+                            $('#AttorneyStatus').text(data.attorneyStatus);
+                            $('#AttorneyDateApprove').text(data.attorneyDateApprove ?? 'ไม่พบข้อมูล');
+                            $('#Witness1Name').text(data.witness1Name);
+                            $('#Witness1Status').text(data.witness1Status);
+                            $('#WitnessDateApprove1').text(data.witnessDateApprove1 ?? 'ไม่พบข้อมูล');
+                            $('#Witness2Name').text(data.witness2Name);
+                            $('#Witness2Status').text(data.witness2Status);
+                            $('#WitnessDateApprove2').text(data.witnessDateApprove2 ?? 'ไม่พบข้อมูล');
+                            $('#Status').text(data.status);
+                        }
+                    },
+                    error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว
+                        console.error('Error:', xhr.status, status, error);
+                          handleAjaxError(xhr);
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                document.getElementById('myForm').reset();
+                // Hide the UserID field and update button
+                document.getElementById('txtPowerOfAttorneyID').style.display = 'none';
+                document.getElementById('updateBtn').style.display = 'none';
+                // Show the create button and header
+                document.getElementById('createHeader').style.display = 'block';
+                document.getElementById('updateHeader').style.display = 'none';
+                document.getElementById('createBtn').style.display = 'block';
+                // Hide the cancel button
+                document.getElementById('cancelBtn').style.display = 'none';
+            });
+
+        });
+
+        document.getElementById('createBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var creationDate = $('#txtCreationDate').val();
+            var companyID = $('#selectCompanyID').val();
+            var grantorID = $('#selectGrantorID').val();
+            var selectWitnessApprovalBy1 = $('#selectWitnessApprovalBy1').val();
+            var selectWitnessApprovalBy2 = $('#selectWitnessApprovalBy2').val();
+
+            if (!creationDate || !companyID|| !grantorID || !selectWitnessApprovalBy1 || !selectWitnessApprovalBy2) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                    text: 'กรุณากรอกข้อมูลให้ครบถ้วนก่อนดำเนินการต่อ',
+                });
+                return;
+            }
+
+
+                        Swal.fire({
+                            title: 'คุณแน่ใจหรือไม่?',
+                            text: "คุณจะไม่สามารถย้อนกลับได้!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#28a745', // Light green
+                            cancelButtonColor: '#d3d3d3', // Light gray
+                            confirmButtonText: 'ใช่, บันทึก!',
+                            cancelButtonText: 'ยกเลิก'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '@Url.Action("CreatePowerOfAttorney", "PowerOfAttorney")',
+                                    type: 'POST',
+                                    data: {
+                                        CreationDate: creationDate,
+                                        CompanyID: companyID,
+                                        GrantorID: grantorID,
+                                        WitnessApprovalBy1: selectWitnessApprovalBy1,
+                                        WitnessApprovalBy2: selectWitnessApprovalBy2
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            Swal.fire(
+                                                'บันทึกแล้ว!',
+                                                'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                                'success'
+                                            ).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            Swal.fire('ผิดพลาด', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                                          handleAjaxError(xhr);
+                                    }
+                                });
+                            }
+                        });
+        });
+
+        // Edit User
+        document.querySelectorAll('.editBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var powerOfAttorneyID = this.getAttribute('data-powerofattorneyid');
+
+                $.ajax({
+                    url: '@Url.Action("GetPowerOfAttorneyEdit", "PowerOfAttorney")',
+                    type: 'POST',
+                    data: { PowerOfAttorneyID: powerOfAttorneyID },
+                    success: function (response) {
+                        if (response.success === false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            $('#createHeader').hide();
+                            $('#createBtn').hide();
+                            $('#showInsert').show();
+                            $('#updateHeader').show();
+                            $('#updateBtn').show();
+                            $('#txtPowerOfAttorneyID').val(response.data.powerOfAttorneyID);
+                            $('#txtCreationDate').val(response.data.creationDate);
+                            $('#selectCompanyID').val(response.data.companyID).trigger('change');
+                            $('#selectGrantorID').val(response.data.grantorID).trigger('change');
+                            $('#selectWitnessApprovalBy1').val(response.data.witnessApprovalBy1).trigger('change');
+                            $('#selectWitnessApprovalBy2').val(response.data.witnessApprovalBy2).trigger('change');
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                          handleAjaxError(xhr);
+                    }
+                });
+            });
+        });
+
+        // Delete User
+        document.querySelectorAll('.deleteBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var powerOfAttorneyID = this.getAttribute('data-powerofattorneyid');
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#d3d3d3',
+                    confirmButtonText: 'ใช่, ยกเลิกคำขอ!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("DeletePowerOfAttorneyForm", "PowerOfAttorney")',
+                            type: 'POST',
+                            data: { PowerOfAttorneyID: powerOfAttorneyID },
+                            success: function (response) {
+                                if (response.success) {
+                                    Swal.fire(
+                                        'ยกเลิกคำขอแล้ว!',
+                                        response.message,
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                                  handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        // Update User
+        document.getElementById('updateBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var powerOfAttorneyID = $('#txtPowerOfAttorneyID').val();
+            var creationDate = $('#txtCreationDate').val();
+            var companyID = $('#selectCompanyID').val();
+            var grantorID = $('#selectGrantorID').val();
+            var selectWitnessApprovalBy1 = $('#selectWitnessApprovalBy1').val();
+            var selectWitnessApprovalBy2 = $('#selectWitnessApprovalBy2').val();
+
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่?',
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#007bff', // Light blue
+                cancelButtonColor: '#d3d3d3', // Light gray
+                confirmButtonText: 'ใช่, บันทึก!',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("UpdatePowerOfAttorney", "PowerOfAttorney")',
+                        type: 'POST',
+                        data: {
+                           PowerOfAttorneyID : powerOfAttorneyID,
+                           CreationDate: creationDate,
+                           CompanyID: companyID,
+                           GrantorID: grantorID,
+                           WitnessApprovalBy1: selectWitnessApprovalBy1,
+                           WitnessApprovalBy2: selectWitnessApprovalBy2
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire(
+                                    'บันทึกแล้ว!',
+                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                    'success'
+                                ).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                              handleAjaxError(xhr);
+                        }
+                    });
+                }
+            });
+        });
+
+         function handleAjaxError(xhr) {
+            console.log('Error:', xhr.status, xhr.statusText);
+
+            switch (xhr.status) {
+                case 400:
+                    window.open('@Url.Action("Error400", "Error")', '_blank');
+                    break;
+                case 401:
+                    window.open('@Url.Action("Error401", "Error")', '_blank');
+                    break;
+                case 403:
+                    window.open('@Url.Action("Error403", "Error")', '_blank');
+                    break;
+                case 404:
+                    window.open('@Url.Action("Error404", "Error")', '_blank');
+                    break;
+                case 500:
+                    window.open('@Url.Action("Error500", "Error")', '_blank');
+                    break;
+                case 503:
+                    window.open('@Url.Action("Error503", "Error")', '_blank');
+                    break;
+                default:
+                    console.log('An unexpected error occurred: ', xhr.status);
+            }
+        }
+    </script>
+}

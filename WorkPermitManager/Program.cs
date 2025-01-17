@@ -47,7 +47,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=DashBoard}")
+    pattern: "{controller=PowerOfAttorney}/{action=ListForm}")
     .WithStaticAssets();
 
 

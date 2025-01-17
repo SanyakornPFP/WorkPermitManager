@@ -68,7 +68,7 @@ namespace WorkPermitManager.Controllers
                 _db.Users.Add(Createmodel);
                 await _db.SaveChangesAsync();
 
-                string[] function = ["Administrator"];
+                string[] function = ["PowerOfAttorney", "Administrator"];
                 foreach (var item in function)
                 {
                     UserPermission newUserPermission = new UserPermission
@@ -197,11 +197,13 @@ namespace WorkPermitManager.Controllers
                     _db.Users.Update(model);
                     await _db.SaveChangesAsync();
 
-                    var userPermission = _db.UserPermissions.FirstOrDefault(u => u.UserID == model.UserID);
-                    string[] function = ["Administrator"];
-                    if (userPermission == null)
+                    string[] function = ["PowerOfAttorney", "Administrator"];
+
+                    foreach (var item in function)
                     {
-                        foreach (var item in function)
+                        var userPermission = _db.UserPermissions.Where(u => u.UserID == model.UserID && u.FunctionName == item).FirstOrDefault();
+
+                        if (userPermission == null)
                         {
                             UserPermission newUserPermission = new UserPermission
                             {
@@ -217,8 +219,8 @@ namespace WorkPermitManager.Controllers
                             _db.UserPermissions.Add(newUserPermission);
                             await _db.SaveChangesAsync();
                         }
-
                     }
+
                     // Log the update of the User
                     var logEntry = new LogSystemData
                     {

@@ -582,67 +582,6 @@
             });
         });
 
-        // Update User
-        document.getElementById('updateBtnPass').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            var userID = $('#txtUserID').val();
-            var userName = $('#txtUserName').val();
-            var userEmail = $('#txtUserEmail').val();
-            var cardID = $('#txtCardID').val();
-            var positionID = $('#selectPositionID').val();
-            var departmentID = $('#selectDepartmentID').val();
-            var companyID = $('#selectCompanyID').val();
-            var fullname = $('#txtFullName').val();
-
-            Swal.fire({
-                title: 'คุณแน่ใจหรือไม่?',
-                text: "คุณจะไม่สามารถย้อนกลับได้!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#007bff', // Light blue
-                cancelButtonColor: '#d3d3d3', // Light gray
-                confirmButtonText: 'ใช่, บันทึก!',
-                cancelButtonText: 'ยกเลิก'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '@Url.Action("UpdateUser", "Administrator")',
-                        type: 'POST',
-                        data: {
-                            UserID: userID,
-                            UserName: userName,
-                            UserEmail: userEmail,
-                            CardID: cardID,
-                            PositionID: positionID,
-                            DepartmentID: departmentID,
-                            CompanyID: companyID,
-                            FullName: fullname
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                Swal.fire(
-                                    'บันทึกแล้ว!',
-                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
-                                    'success'
-                                ).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.reload();
-                                    }
-                                });
-                            } else {
-                                Swal.fire('ผิดพลาด', response.message, 'error');
-                            }
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            console.error('Error:', xhr.status, textStatus, errorThrown);
-                              handleAjaxError(xhr);
-                        }
-                    });
-                }
-            });
-        });
-
         document.getElementById('updateBtnPass').addEventListener('click', function (e) {
             e.preventDefault();
 

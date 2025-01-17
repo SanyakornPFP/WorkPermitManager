@@ -10,6 +10,9 @@
     <property name="CompanyAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="02ccf480-dc69-4284-a07a-988920262191">
       <column name="CompanyAddress" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="OwnerSystem" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="4112a343-c7ed-4db7-b9d3-4acf96b8c2a1">
+      <column name="OwnerSystem" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="8ee2e877-2ca1-4e10-a1f8-e7d69cfc422b">
       <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
@@ -19,8 +22,8 @@
     <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="71877e40-006e-4c8c-9e6d-54036cfc38fe">
       <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="252c8ccf-8b46-4055-9644-6162fbc43876">
-      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    <property name="IsDeleted" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="252c8ccf-8b46-4055-9644-6162fbc43876">
+      <column name="IsDeleted" default="0" not-null="True" sql-type="bit" p1:unicode="False" />
     </property>
   </class>
   <class name="Department" entity-set="Departments" table="Departments" schema="dbo" p1:Guid="412cd9ce-b26e-499e-8638-3a6d4bd70e4a">
@@ -64,9 +67,12 @@
     </property>
   </class>
   <class name="PowerOfAttorney" entity-set="PowerOfAttorneys" table="PowerOfAttorney" schema="dbo" p1:Guid="45d80aba-511b-45cd-81c0-69850da26b3e">
-    <id name="DocumentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="532bd029-825e-4c7b-a1b8-76251dc7168b">
-      <column name="DocumentID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    <id name="PowerOfAttorneyID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9216c6d1-8a7c-450b-b0d4-8480cccd70e0">
+      <column name="PowerOfAttorneyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
+    <property name="CodeForm" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="3ebb4b77-10b8-4bab-9355-afa68b5a7f6b">
+      <column name="CodeForm" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="CompanyID" type="Int32" p1:ValidateRequired="true" p1:Guid="c82b500a-9ac0-45c4-8d29-60ae08ccda46">
       <column name="CompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
@@ -76,44 +82,59 @@
     <property name="GrantorID" type="Int32" p1:ValidateRequired="true" p1:Guid="cbecf773-376a-484d-9142-0ec4557cbd38">
       <column name="GrantorID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="GrantorCardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="508b7565-882a-498e-8f0e-c3ce267cf1e2">
-      <column name="GrantorCardID" not-null="True" length="13" sql-type="char" p1:fixed-length="True" p1:unicode="False" />
-    </property>
     <property name="AttorneyID" type="Int32" p1:ValidateRequired="true" p1:Guid="628a4db5-b30c-4373-b784-078a3e44591f">
       <column name="AttorneyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="AttorneyCardID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="2f101268-9b43-48ab-89d6-6e7e4ca7968b">
-      <column name="AttorneyCardID" not-null="True" length="13" sql-type="char" p1:fixed-length="True" p1:unicode="False" />
-    </property>
-    <property name="AttorneyCompanyID" type="Int32" p1:ValidateRequired="true" p1:Guid="53db0d8c-bae2-41a7-976c-84dd220a3e58">
-      <column name="AttorneyCompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
     <property name="GrantorApprovalStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="260215dd-a52f-4a84-a6a4-4b24cdc2a5c1">
-      <column name="GrantorApprovalStatus" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+      <column name="GrantorApprovalStatus" default="N'รอการอนุมัติ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="GrantorApprovalBy" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="45262cf4-678b-4f54-8cda-69be812119a0">
       <column name="GrantorApprovalBy" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
+    <property name="GrantorDateApprove" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="39873c2f-a1af-40f7-a964-b2a10e549fc1">
+      <column name="GrantorDateApprove" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
     <property name="AttorneyApprovalStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="f831054a-447b-4f5c-8067-9fae403c5a02">
-      <column name="AttorneyApprovalStatus" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+      <column name="AttorneyApprovalStatus" default="N'รอการอนุมัติ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="AttorneyApprovalBy" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7700a1eb-1a5e-4374-a836-aced49e353f5">
       <column name="AttorneyApprovalBy" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
+    <property name="AttorneyDateApprove" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a30d94f3-0b24-486c-923d-8d9b009e61ae">
+      <column name="AttorneyDateApprove" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
     <property name="WitnessApprovalStatus1" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="d92b0746-c52f-4caa-b2bf-9d3dd3f805f7">
-      <column name="WitnessApprovalStatus1" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+      <column name="WitnessApprovalStatus1" default="N'รอการอนุมัติ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="WitnessApprovalBy1" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="707d8424-2d8e-4e39-abc1-9945a75e116d">
       <column name="WitnessApprovalBy1" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
+    <property name="WitnessDateApprove1" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1c243438-58ec-4e6b-aed4-d6c6abb4c29f">
+      <column name="WitnessDateApprove1" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
     <property name="WitnessApprovalStatus2" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="cc187a25-1a5e-4953-86e9-15f0d6207637">
-      <column name="WitnessApprovalStatus2" default="N'รอดำเนินการ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+      <column name="WitnessApprovalStatus2" default="N'รอการอนุมัติ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="WitnessApprovalBy2" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="56e8c1cc-a28e-4652-9723-35231cc1d868">
       <column name="WitnessApprovalBy2" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
+    <property name="WitnessDateApprove2" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0b618771-33d9-418d-995d-ff6bfb8bf56b">
+      <column name="WitnessDateApprove2" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="Status" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="efb2b522-7d89-40d6-9c2f-28377c15f1f0">
+      <column name="Status" default="N'รอการอนุมัติ'" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e059814e-8567-49b4-9183-42ca71c2e690">
+      <column name="CreatedAt" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b7553b35-0695-4495-8959-5e6a25c9393c">
+      <column name="UpdatedAt" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
     <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b911cd61-4a5f-432a-9cef-3412682491f9">
       <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="UserIDCreated" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9eec52bb-a301-4b7f-a230-6ceb0dcaaca9">
+      <column name="UserIDCreated" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="04a4a4d2-d652-490e-9d93-ba8a679f0c8b">
       <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
@@ -271,70 +292,6 @@
         <property name="CompanyID" />
       </end2>
     </association>
-    <association name="User_PowerOfAttorney" cardinality="OneToMany" p1:Guid="b016bcef-3b3b-4667-9f7c-ff74a3389f05">
-      <end1 multiplicity="One" name="User_GrantorID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="b5ef2100-3aa9-4029-8031-b9a02ce7f701">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="1b9e12cc-559b-4c65-9d5c-3092f12ccfe7">
-        <property name="GrantorID" />
-      </end2>
-    </association>
-    <association name="User_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="7d58bea0-88df-47c0-92cc-733d869b5894">
-      <end1 multiplicity="One" name="User_AttorneyID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="2166ab79-34c0-4439-8e33-60f757190087">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="012a80bf-d2a6-4c48-92a8-7b91527be7d7">
-        <property name="AttorneyID" />
-      </end2>
-    </association>
-    <association name="Company_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="3e875778-617c-4e70-9e29-b356001dff43">
-      <end1 multiplicity="One" name="Company_AttorneyCompanyID" class="PowerOfAttorney" relation-class="Company" constrained="True" lazy="False" p1:Guid="e297d90f-5cc6-43e6-ae53-dba77c850f6a">
-        <property name="CompanyID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyCompanyID" class="Company" relation-class="PowerOfAttorney" lazy="False" p1:Guid="c24ec77d-a7fc-475e-9510-059f3a017314">
-        <property name="AttorneyCompanyID" />
-      </end2>
-    </association>
-    <association name="User_PowerOfAttorney2" cardinality="OneToMany" p1:Guid="2e8f37a4-1b35-4cda-ba7d-8d74a9c4f5d9">
-      <end1 multiplicity="ZeroOrOne" name="User_GrantorApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="ac628015-3dca-4f11-af34-03486ef969df">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="176bf876-e441-43e6-ac54-cc82203ee2e4">
-        <property name="GrantorApprovalBy" />
-      </end2>
-    </association>
-    <association name="User_PowerOfAttorney3" cardinality="OneToMany" p1:Guid="b8777a70-51c4-4385-b31d-06f54f79ebfc">
-      <end1 multiplicity="ZeroOrOne" name="User_AttorneyApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="cddd295d-2415-4a24-b402-80539f05422e">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="d185833a-dd9b-4d88-bfe8-0262cb9e2437">
-        <property name="AttorneyApprovalBy" />
-      </end2>
-    </association>
-    <association name="User_PowerOfAttorney4" cardinality="OneToMany" p1:Guid="872af321-59a6-4dce-9d9d-c4645827804d">
-      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy1" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="80dcb076-2fa4-4707-86c4-400a73bcb1c9">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy1" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="18228366-d41d-4392-8420-5a5a5204ee25">
-        <property name="WitnessApprovalBy1" />
-      </end2>
-    </association>
-    <association name="User_PowerOfAttorney5" cardinality="OneToMany" p1:Guid="9f96c14c-d46d-439b-b0d5-87c046136f7b">
-      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy2" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="ef497e55-cf93-45f8-932c-4d2c078b741d">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy2" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="bb83b92a-6e6b-4444-b85e-06d31ad9c651">
-        <property name="WitnessApprovalBy2" />
-      </end2>
-    </association>
-    <association name="User_UserPermission" cardinality="OneToMany" p1:Guid="b12f266c-f572-4404-8bf8-6a451f5bc671">
-      <end1 multiplicity="One" name="User" class="UserPermission" relation-class="User" constrained="True" lazy="False" p1:Guid="1cb16275-32bd-40d7-8053-6842055a6f66">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="UserPermissions" class="User" relation-class="UserPermission" lazy="False" p1:Guid="c1730dec-0244-4b7f-a816-729bb2ac0c7a">
-        <property name="UserID" />
-      </end2>
-    </association>
     <association name="Position_User" cardinality="OneToMany" p1:Guid="99066453-c378-4818-b941-523e2782ead6">
       <end1 multiplicity="ZeroOrOne" name="Position" class="User" relation-class="Position" constrained="True" lazy="False" p1:Guid="04a53c26-0c45-4042-b389-ebb144831ebd">
         <property name="PositionID" />
@@ -359,19 +316,75 @@
         <property name="CompanyID" />
       </end2>
     </association>
-    <association name="User_LogSystemData" cardinality="OneToMany" p1:Guid="a81e625e-c332-4281-97d5-fa698569ce89">
-      <end1 multiplicity="ZeroOrOne" name="User" class="LogSystemData" relation-class="User" constrained="True" lazy="False" p1:Guid="62c0de39-198b-479b-9017-d832bcf31c3c">
+    <association name="User_PowerOfAttorney" cardinality="OneToMany" p1:Guid="f210e8bc-9dd9-47f6-b7bb-dc313a8dad76">
+      <end1 multiplicity="One" name="User_GrantorID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="a961d901-c81e-4fe7-b72c-6f45d0a0dc9f">
         <property name="UserID" />
       </end1>
-      <end2 multiplicity="Many" name="LogSystemDatas" class="User" relation-class="LogSystemData" lazy="False" p1:Guid="97f1032f-57b3-45d8-aa49-ebe40c11f6fc">
+      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="06fcc9d6-289c-4a5f-a032-27b118ad1a1d">
+        <property name="GrantorID" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="e47cc7f1-6c2c-4542-90d1-143a45692028">
+      <end1 multiplicity="One" name="User_AttorneyID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="23da967a-725f-46d6-adfc-7fce1656bda3">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="a64812b2-5c96-4054-afa2-e6df128fbbd1">
+        <property name="AttorneyID" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney2" cardinality="OneToMany" p1:Guid="c0f742f3-e516-4830-bb5e-2ed8da1939fc">
+      <end1 multiplicity="ZeroOrOne" name="User_GrantorApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="ea710820-d3aa-4bf5-bbd5-33e941f47efd">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_GrantorApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="87dfdbfb-ae03-4305-9ea9-feba26cc5c29">
+        <property name="GrantorApprovalBy" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney3" cardinality="OneToMany" p1:Guid="e3294dea-253c-4d03-b5ad-f33c29d0e7dc">
+      <end1 multiplicity="ZeroOrOne" name="User_AttorneyApprovalBy" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="96425b02-1733-4e8c-a3f8-e4e2317b1094">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyApprovalBy" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="66d49ad9-9b94-4cc5-83fa-16591b2696c5">
+        <property name="AttorneyApprovalBy" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney4" cardinality="OneToMany" p1:Guid="57f44d6e-ecbb-4894-ad8a-cbf188a344e6">
+      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy1" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="2744510f-a466-4f59-8dae-b747c02e911d">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy1" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="bd7b2761-f15b-4ad0-823f-21ea2aaed3d5">
+        <property name="WitnessApprovalBy1" />
+      </end2>
+    </association>
+    <association name="User_PowerOfAttorney5" cardinality="OneToMany" p1:Guid="6ec8e64f-32f2-4242-be29-0bf11e9c357f">
+      <end1 multiplicity="ZeroOrOne" name="User_WitnessApprovalBy2" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="a2a30138-2aff-42f4-9e09-57426c09fcbf">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="PowerOfAttorneys_WitnessApprovalBy2" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="aa2cf0da-86db-439b-8a80-e3be6ff80cab">
+        <property name="WitnessApprovalBy2" />
+      </end2>
+    </association>
+    <association name="User_UserPermission" cardinality="OneToMany" p1:Guid="bbc911a6-f587-49e9-9af0-7e63479de9b3">
+      <end1 multiplicity="One" name="User" class="UserPermission" relation-class="User" constrained="True" lazy="False" p1:Guid="e945d3ce-bb7f-4e9a-8562-7dd76b684384">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="UserPermissions" class="User" relation-class="UserPermission" lazy="False" p1:Guid="35a351c6-61a0-490b-86da-0f5d42fe9163">
+        <property name="UserID" />
+      </end2>
+    </association>
+    <association name="User_LogSystemData" cardinality="OneToMany" p1:Guid="467d6f35-6585-4185-989f-de313138eb6f">
+      <end1 multiplicity="ZeroOrOne" name="User" class="LogSystemData" relation-class="User" constrained="True" lazy="False" p1:Guid="030b7ebd-6a38-4ded-8de4-16ad8119bf37">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="LogSystemDatas" class="User" relation-class="LogSystemData" lazy="False" p1:Guid="b6e20f13-e3c1-4d7b-bc4e-a5903d6c2ab8">
         <property name="UserManageID" />
       </end2>
     </association>
-    <association name="User_LoginHistory" cardinality="OneToMany" p1:Guid="793295ff-94c3-447a-98ac-45798741d614">
-      <end1 multiplicity="One" name="User" class="LoginHistory" relation-class="User" constrained="True" lazy="False" p1:Guid="85798cc1-d438-492c-bb58-0c9056de934a">
+    <association name="User_LoginHistory" cardinality="OneToMany" p1:Guid="cfe15c33-a911-499a-b21b-9d4713db5936">
+      <end1 multiplicity="One" name="User" class="LoginHistory" relation-class="User" constrained="True" lazy="False" p1:Guid="76f9cc43-b4b3-423d-9dc4-efb583e10d26">
         <property name="UserID" />
       </end1>
-      <end2 multiplicity="Many" name="LoginHistories" class="User" relation-class="LoginHistory" lazy="False" p1:Guid="ae0f368a-044f-445c-81ce-83a25a0118b7">
+      <end2 multiplicity="Many" name="LoginHistories" class="User" relation-class="LoginHistory" lazy="False" p1:Guid="445fa9a0-d928-4b63-8a10-b6addb5fe2d5">
         <property name="UserID" />
       </end2>
     </association>

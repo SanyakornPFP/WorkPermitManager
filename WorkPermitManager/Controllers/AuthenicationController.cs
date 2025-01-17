@@ -38,7 +38,7 @@ namespace WorkPermitManager.Controllers
                         new CookieOptions { Expires = DateTimeOffset.UtcNow.AddHours(8) }
                     );
 
-                return RedirectToAction(nameof(Index), "AutoCarService");
+                return RedirectToAction("ListForm", "PowerOfAttorney");
             }
             return RedirectToAction(nameof(Login));
         }
