@@ -3287,7 +3287,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\com
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\ee4svg7n7m-rbbsxaw6tf.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\km4bfc1kbv-x5f0xxuw0r.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\mn8pzk5x4r-eh0lfnsasp.gz
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\uksnfpbw27-f6cdtj7jqj.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\kd5213ekt1-8pwhndm3ja.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\8vmsctt9jq-tzmd89g83i.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\sj4ystnlpi-61m266nj4l.gz
@@ -5748,3 +5747,7 @@ D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\WorkPermit
 D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\WorkPermitManager.genruntimeconfig.cache
 D:\Project\WorkPermitManagerSystem\WorkPermitManager\obj\Debug\net9.0\ref\WorkPermitManager.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\zf3zbfjofo-3i3fjrsi3c.gz
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\compressed\uksnfpbw27-5kqzhsemlw.gz
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\QRCoder.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\System.Text.Encoding.CodePages.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll

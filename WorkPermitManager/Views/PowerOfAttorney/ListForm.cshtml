@@ -76,13 +76,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-3 col-sm-6" id="waitapproved">
             <div class="card">
                 <div class="card-header card-no-border pb-0">
                     <div class="header-top daily-revenue-card">
-                        <h4>รออนุมัติ</h4>
+                        <h4>รอการอนุมัติ</h4>
                         <div class="dropdown icon-dropdown">
-                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="wait">รายละเอียด</a>
+                            <a class="btn btn-sm btn-pill @(ViewBag.TypeForm == "รอการอนุมัติ" ? "btn-primary" : "btn-light")" asp-controller="PowerOfAttorney" asp-action="ListForm" asp-route-type="รอการอนุมัติ">รายละเอียด</a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         <div class="flex-shrink-0"><i class="icofont icofont-time text-white" style="font-size: 2rem" alt="icon"></i></div>
                         <div class="flex-grow-1">
                             <div class="d-flex align-items-center gap-2">
-                                <h2>0</h2>
+                                <h2 id="waitapproved-count">0</h2>
                             </div>
                             <p class="text-truncate">รายการ</p>
                         </div>
@@ -99,22 +99,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-3 col-sm-6" id="approved">
             <div class="card">
                 <div class="card-header card-no-border pb-0">
                     <div class="header-top daily-revenue-card">
                         <h4>อนุมัติเรียบร้อย</h4>
                         <div class="dropdown icon-dropdown">
-                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="approve">รายละเอียด</a>
+                            <a class="btn btn-sm btn-pill @(ViewBag.TypeForm == "อนุมัติเรียบร้อย" ? "btn-primary" : "btn-light")" asp-controller="PowerOfAttorney" asp-action="ListForm" asp-route-type="อนุมัติเรียบร้อย">รายละเอียด</a>
                         </div>
                     </div>
                 </div>
-                <div class="card-body  total-sells">
+                <div class="card-body total-sells">
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0"><i class="icofont icofont-check-circled text-white" style="font-size: 2rem" alt="icon"></i></div>
                         <div class="flex-grow-1">
                             <div class="d-flex align-items-center gap-2">
-                                <h2>0</h2>
+                                <h2 id="approved-count">0</h2>
                             </div>
                             <p class="text-truncate">รายการ</p>
                         </div>
@@ -122,22 +122,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-3 col-sm-6" id="notapproved">
             <div class="card">
                 <div class="card-header card-no-border pb-0">
                     <div class="header-top daily-revenue-card">
                         <h4>ไม่อนุมัติ</h4>
                         <div class="dropdown icon-dropdown">
-                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="notapprove">รายละเอียด</a>
+                            <a class="btn btn-sm btn-pill @(ViewBag.TypeForm == "ไม่อนุมัติ" ? "btn-primary" : "btn-light")" asp-controller="PowerOfAttorney" asp-action="ListForm" asp-route-type="ไม่อนุมัติ">รายละเอียด</a>
                         </div>
                     </div>
                 </div>
-                <div class="card-body  total-sells">
+                <div class="card-body total-sells">
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0"><i class="icofont icofont-close-circled text-white" style="font-size: 2rem" alt="icon"></i></div>
                         <div class="flex-grow-1">
                             <div class="d-flex align-items-center gap-2">
-                                <h2>0</h2>
+                                <h2 id="notapproved-count">0</h2>
                             </div>
                             <p class="text-truncate">รายการ</p>
                         </div>
@@ -145,13 +145,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-3 col-sm-6" id="canceled">
             <div class="card">
                 <div class="card-header card-no-border pb-0">
                     <div class="header-top daily-revenue-card">
                         <h4>ยกเลิก</h4>
                         <div class="dropdown icon-dropdown">
-                            <a class="btn btn-sm btn-pill btn-light" asp-controller="PowerOfAttorney" asp-action="DetailStatusList" asp-route-type="delete">รายละเอียด</a>
+                            <a class="btn btn-sm btn-pill @(ViewBag.TypeForm == "ยกเลิก" ? "btn-primary" : "btn-light")" asp-controller="PowerOfAttorney" asp-action="ListForm" asp-route-type="ยกเลิก">รายละเอียด</a>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         <div class="flex-shrink-0"><i class="icofont icofont-ui-delete text-white" style="font-size: 2rem" alt="icon"></i></div>
                         <div class="flex-grow-1">
                             <div class="d-flex align-items-center gap-2">
-                                <h2>0</h2>
+                                <h2 id="canceled-count">0</h2>
                             </div>
                             <p class="text-truncate">รายการ</p>
                         </div>
@@ -193,7 +193,10 @@
                                     <th>สถานะ</th>
                                     <th class="text-center">เอกสาร</th>
                                     <th class="text-center">รายละเอียด</th>
-                                    <th>ดำเนินการ</th>
+                                    @if (ViewBag.TypeForm == "รอการอนุมัติ")
+                                    {
+                                        <th>ดำเนินการ</th>
+                                    }
 
                                 </tr>
                             </thead>
@@ -209,30 +212,33 @@
                                             <span class="badge @(item.Status == "รอการอนุมัติ" ? "badge-warning" : item.Status == "ไม่อนุมัติ" ? "badge-danger" : item.Status == "อนุมัติเรียบร้อย" ? "badge-success" : "badge-light")" style="font-size: 0.8rem">@item.Status</span>
                                         </td>
                                         <td class="text-center">
-                                            <a target="_blank" class="text-primary" asp-controller="ReportTaste" asp-action="ReportMixed" asp-route-powerOfAttorneyID="@item.PowerOfAttorneyID">
+                                            <a target="_blank" class="text-primary" asp-controller="PowerOfAttorney" asp-action="ReportForm" asp-route-CodeForm="@item.CodeForm">
                                                 <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>
                                             </a>
                                         </td>
                                         <td class="text-center">
                                             <!-- ปุ่มที่เปิด Modal -->
-                                            <a href="#" data-toggle="modal" data-target="#detailModal" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                            <button class="btn text-dark" data-toggle="modal" data-target="#detailModal" data-powerofattorneyid="@item.PowerOfAttorneyID">
                                                 <i class="icofont icofont-list"></i>
-                                            </a>
+                                            </button>
                                         </td>
-                                        <td>
-                                            <ul class="action">
-                                                <li class="edit">
-                                                    <a href="#" class="editBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
-                                                        <i class="icon-pencil-alt"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="delete">
-                                                    <a href="#" class="deleteBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
-                                                        <i class="icon-trash"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
+                                        @if (ViewBag.TypeForm == "รอการอนุมัติ")
+                                        {
+                                            <td>
+                                                <ul class="action">
+                                                    <li class="edit">
+                                                        <button class="btn editBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                                            <i class="icon-pencil-alt"></i>
+                                                        </button>
+                                                    </li>
+                                                    <li class="delete">
+                                                        <button class="btn deleteBtn" data-powerofattorneyid="@item.PowerOfAttorneyID">
+                                                            <i class="icon-trash"></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             </tbody>
@@ -244,7 +250,6 @@
         </div>
     </div>
 </div>
-<!-- Bootstrap Modal -->
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -371,6 +376,23 @@
                     }
                 });
             });
+
+            $.ajax({
+                url: '@Url.Action("DocumentCountStatus", "PowerOfAttorney")',
+                type: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    $('#waitapproved-count').text(data.waitapproval);
+                    $('#approved-count').text(data.approved);
+                    $('#notapproved-count').text(data.notapproved);
+                    $('#canceled-count').text(data.canceled);
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                }
+            });
+
+
         });
 
         document.addEventListener('DOMContentLoaded', function () {

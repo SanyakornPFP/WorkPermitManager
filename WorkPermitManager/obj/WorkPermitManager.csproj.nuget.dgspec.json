@@ -97,6 +97,10 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "ReportViewerCore.NETCore": {
               "target": "Package",
               "version": "[15.1.25, )"
@@ -108,6 +112,14 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.9.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [

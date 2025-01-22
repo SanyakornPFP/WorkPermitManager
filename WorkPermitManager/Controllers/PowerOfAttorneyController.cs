@@ -1,6 +1,9 @@
 ﻿using ContainerEvaluationSystem.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Reporting.NETCore;
+using QRCoder;
+using System.Data;
 using WorkPermitManager.Data;
 using WorkPermitManager.Models;
 
@@ -10,16 +13,24 @@ namespace WorkPermitManager.Controllers
     public class PowerOfAttorneyController : Controller
     {
         private readonly Db_WorkPermitManagerModel _db;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public PowerOfAttorneyController(Db_WorkPermitManagerModel db)
+        public PowerOfAttorneyController(Db_WorkPermitManagerModel db, IWebHostEnvironment webHostEnvironment)
         {
             _db = db;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult ListForm()
+        public IActionResult ListForm(string type)
         {
-            // Fetching the list of PowerOfAttorneys
-            ViewBag.PowerOfAttorneysList = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false)
+            if (type == null)
+            {
+                type = "รอการอนุมัติ";
+            }
+
+            ViewBag.TypeForm = type;
+
+            var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false && s.Status == type)
                 .Select(s => new
                 {
                     s.PowerOfAttorneyID,
@@ -27,9 +38,21 @@ namespace WorkPermitManager.Controllers
                     GrantorName = s.User_GrantorID.FullName,
                     AttorneyName = s.User_AttorneyID.FullName,
                     CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    s.GrantorDateApprove,
                     s.Status
                 })
                 .ToList();
+
+            if (User.GetRole_AdministratorIsActive() == "True")
+            {
+                ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel;
+            }
+            else
+            {
+                ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel
+                    .Where(s => s.AttorneyName == User.GetLoggedInUserID())
+                    .ToList();
+            }
 
             // Fetching the list of Companies
             ViewBag.CompanyList = _db.Companies
@@ -51,6 +74,8 @@ namespace WorkPermitManager.Controllers
 
             return View();
         }
+
+
 
         #region CreatePowerOfAttorney 
         [HttpPost]
@@ -230,6 +255,52 @@ namespace WorkPermitManager.Controllers
 
         #endregion
 
+        #region DocumentCountStatus 
+        [HttpPost]
+        public JsonResult DocumentCountStatus()
+        {
+            var model = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false)
+                .Select(s => new
+                {
+                    s.PowerOfAttorneyID,
+                    s.CodeForm,
+                    GrantorName = s.User_GrantorID.FullName,
+                    AttorneyName = s.User_AttorneyID.FullName,
+                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    s.Status
+                })
+                .ToList();
+
+            if (User.GetRole_AdministratorIsActive() == "True")
+            {
+                var CountStatus = model
+                    .ToList();
+
+                return Json(new
+                {
+                    waitapproval = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.Status == "ยกเลิก").Count()
+                });
+            }
+            else
+            {
+                var CountStatus = model
+                    .Where(s => s.AttorneyName == User.GetLoggedInUserID())
+                    .ToList();
+                return Json(new
+                {
+                    waitapproved = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.Status == "ยกเลิก").Count()
+                });
+            }
+        }
+        #endregion
+
+
         #region GetPowerOfAttorney DetailModdel
         [HttpPost]
         public JsonResult GetPowerOfAttorneyModel(int PowerOfAttorneyID)
@@ -270,6 +341,72 @@ namespace WorkPermitManager.Controllers
 
                 });
             }
+        }
+        #endregion
+
+        #region Report V.1
+        [HttpGet]
+        public IActionResult ReportForm(string CodeForm)
+        {
+            var ModelPA = _db.PowerOfAttorneys.Where(s => s.CodeForm == CodeForm)
+                .Select(s => new
+                {
+                    s.PowerOfAttorneyID,
+                    s.CodeForm,
+                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    GrantorName = s.User_GrantorID.FullName,
+                    AttorneyName = s.User_AttorneyID.FullName,
+                    s.GrantorApprovalStatus,
+                    s.GrantorDateApprove,
+                    s.AttorneyApprovalStatus,
+                    s.AttorneyDateApprove,
+                    Witness1Name = s.User_WitnessApprovalBy1.FullName,
+                    s.WitnessApprovalStatus1,
+                    s.WitnessDateApprove1,
+                    Witness2Name = s.User_WitnessApprovalBy2.FullName,
+                    s.WitnessApprovalStatus2,
+                    s.WitnessDateApprove2,
+                    s.Status
+                })
+                .FirstOrDefault();
+
+            // Generate QR Code
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://www.google.com/xhtml/search", QRCodeGenerator.ECCLevel.Q);
+
+            // ใช้ PngByteQRCode แทน QRCode
+            PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeImage = pngByteQRCode.GetGraphic(20);
+
+            // แปลงเป็น Base64
+            string base64Image = Convert.ToBase64String(qrCodeImage);
+
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "qr-code.png");
+            System.IO.File.WriteAllBytes(filePath, qrCodeImage);
+
+            string renderFormat = "PDF";
+            string mimetype = "application/pdf";
+            using var report = new LocalReport();
+            report.ReportPath = $"{this._webHostEnvironment.WebRootPath}\\Report\\PowerOfAttorney\\PA-001.rdlc";
+            report.EnableExternalImages = true;
+
+            ReportParameter[] parameters = new ReportParameter[]
+            {
+                new ReportParameter("CodeForm", CodeForm),
+                new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
+            };
+
+            report.SetParameters(parameters);
+
+            var pdf = report.Render(format: renderFormat);
+
+            var contentDisposition = new System.Net.Mime.ContentDisposition
+            {
+                FileName = CodeForm + ".pdf",
+                Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
+            };
+
+            return new FileContentResult(pdf, mimetype);
         }
         #endregion
 

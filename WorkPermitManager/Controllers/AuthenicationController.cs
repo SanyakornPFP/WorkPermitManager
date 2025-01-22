@@ -60,7 +60,8 @@ namespace WorkPermitManager.Controllers
                         s.Department.DepartmentName,
                         s.Company.CompanyName,
                         s.ProfilePicture,
-                        s.Signature
+                        s.Signature,
+                        s.AdministratorActive
                     })
                     .FirstOrDefault();
 
@@ -93,7 +94,9 @@ namespace WorkPermitManager.Controllers
                 new Claim("Company", user.CompanyName),
                 new Claim("ProfileImage", user.ProfilePicture  == null ? "NULL" :user.ProfilePicture),
                 new Claim("SignatureImage", user.Signature  == null ? "NULL" :user.Signature),
-                new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "Fasle")
+                new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("AdministratorIsActive", user.AdministratorActive == true ? "True" : "False"),
             };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.NameIdentifier, ClaimsIdentity.DefaultRoleClaimType);

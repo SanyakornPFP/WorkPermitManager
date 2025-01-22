@@ -109,8 +109,13 @@ namespace ContainerEvaluationSystem.Helpers
             return principal.FindFirst("ViewAdministrator").Value.ToString();
         }
 
+        public static string GetRole_AdministratorIsActive(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
 
-
+            return principal.FindFirst("AdministratorIsActive").Value.ToString();
+        }
 
     }
 }

@@ -441,9 +441,9 @@
   ) {
     $(".simplebar-wrapper .simplebar-content-wrapper").animate(
       {
-        scrollTop:
-          $(".simplebar-wrapper .simplebar-content-wrapper a.active").offset()
-            .top - 400,
+        //scrollTop:
+        //  $(".simplebar-wrapper .simplebar-content-wrapper a.active").offset()
+        //    .top - 400,
       },
       1000
     );

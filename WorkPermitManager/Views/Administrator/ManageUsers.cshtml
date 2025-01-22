@@ -106,6 +106,13 @@
                                         </select>
                                     </div>
                                     <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="selectAdministratorIsActive">สถานะผู้ใช้งาน</label>
+                                        <select class="form-control select2-In" name="AdministratorIsActiveID" id="selectAdministratorIsActive">
+                                            <option value="user" selected>ผู้ใช้งาน</option>
+                                            <option value="admin">ผู้ดูแลลระบบ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
                                         <button class="btn btn-pill btn-primary active" id="createBtn" type="submit">บันทึก</button>
                                         <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" style="display: none;">อัพเดท</button>
                                     </div>
@@ -137,6 +144,7 @@
                                 <tr>
                                     <th>ผู้ใช้งาน</th>
                                     <th>ชื่อ-นามสกุล</th>
+                                    <th>สถานะผู้ใช้งาน</th>
                                     <th class="text-center">เปลี่ยนรหัสผ่าน</th>
                                     <th class="text-center">รายละเอียด</th>
                                     <th>ดำเนินการ</th>
@@ -148,6 +156,16 @@
                                     <tr>
                                         <td>@item.Username</td>
                                         <td>@item.FullName</td>
+                                        <td>
+                                            @if (item.AdministratorActive)
+                                            {
+                                                <span class="badge badge-success" style="font-size: 0.8rem"><i class="icofont icofont-gear"></i> ผู้ดูแลระบบ</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-secondary" style="font-size: 0.8rem"><i class="icofont icofont-user"></i> ผู้ใช้งาน</span>
+                                            }
+                                        </td>
                                         <td class="text-center">
                                             <a href="#" class="editPass" id="createOnChangePass" data-UserID="@item.UserID" data-Username="@item.Username" data-Fullname="@item.FullName">
                                                 <i class="icon-pencil-alt"></i>
@@ -227,6 +245,10 @@
                                         <td id="Email"></td>
                                     </tr>
                                     <tr>
+                                        <td><i class="icofont icofont-email m-1"></i> สถานะผู้ใช้งาน</td>
+                                        <td id="Administrator"></td>
+                                    </tr>
+                                    <tr>
                                         <td><i class="icofont icofont-login m-1"></i> เข้าใช้งานล่าสุด</td>
                                         <td id="LoginDate"></td>
                                     </tr>
@@ -272,6 +294,7 @@
                             $('#Company').text(response.data.company);
                             $('#Email').text(response.data.email);
 
+
                             if(response.data.loginDate == null) {
                                 $('#LoginDate').text('ไม่มีข้อมูล');
                             } else {
@@ -287,6 +310,12 @@
                                 });
 
                                 $('#LoginDate').text(formattedDate);
+                            }
+
+                            if(response.data.administratorIsActive == true) {
+                                $('#Administrator').text('ผู้ดูแลระบบ');
+                            } else {
+                                $('#Administrator').text('ผู้ใช้งาน');
                             }
                         }
                     },
@@ -355,8 +384,9 @@
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
             var fullname = $('#txtFullName').val();
+            var administrator = $('#selectAdministratorIsActive').val();
 
-            if (!userName || !fullname || !userEmail || !cardID || !positionID || !departmentID || !companyID) {
+            if (!userName || !fullname || !userEmail || !cardID || !positionID || !departmentID || !companyID || !administrator) {
                 Swal.fire({
                     icon: 'error',
                     title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
@@ -394,7 +424,8 @@
                                         CardID: cardID,
                                         PositionID: positionID,
                                         DepartmentID: departmentID,
-                                        CompanyID: companyID
+                                        CompanyID: companyID,
+                                        AdministratorActive: administrator
                                     },
                                     success: function (response) {
                                         if (response.success) {
@@ -446,6 +477,12 @@
                             $('#selectPositionID').val(response.positionID).trigger('change');
                             $('#selectDepartmentID').val(response.departmentID).trigger('change');
                             $('#selectCompanyID').val(response.companyID).trigger('change');
+
+                            if(response.administratorIsActive == 'admin') {
+                                $('#selectAdministratorIsActive').val('admin').trigger('change');
+                            } else {
+                                $('#selectAdministratorIsActive').val('user').trigger('change');
+                            }
 
                             $('#createHeader').hide();
                             $('#updateHeader').show();
@@ -533,6 +570,7 @@
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
             var fullname = $('#txtFullName').val();
+            var administrator = $('#selectAdministratorIsActive').val();
 
             Swal.fire({
                 title: 'คุณแน่ใจหรือไม่?',
@@ -556,7 +594,8 @@
                             PositionID: positionID,
                             DepartmentID: departmentID,
                             CompanyID: companyID,
-                            FullName: fullname
+                            FullName: fullname,
+                            AdministratorIsActive: administrator
                         },
                         success: function (response) {
                             if (response.success) {

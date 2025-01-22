@@ -38,7 +38,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create User
         [HttpPost]
-        public async Task<IActionResult> CreateUser(string UserName, string FullName, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID)
+        public async Task<IActionResult> CreateUser(string UserName, string FullName, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
@@ -62,7 +62,8 @@ namespace WorkPermitManager.Controllers
                     DepartmentID = DepartmentID,
                     CompanyID = CompanyID,
                     CreatedDate = DateTime.Now,
-                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                    UserManageID = int.Parse(User.GetLoggedInUserID()),
+                    AdministratorActive = AdministratorIsActive == "admin" ? true : false
                 };
                 // Processing the User creation
                 _db.Users.Add(Createmodel);
@@ -160,7 +161,7 @@ namespace WorkPermitManager.Controllers
 
         #region Update User
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID)
+        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
@@ -193,6 +194,7 @@ namespace WorkPermitManager.Controllers
                     model.CompanyID = CompanyID;
                     model.UpdatedDate = DateTime.Now;
                     model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    model.AdministratorActive = AdministratorIsActive == "admin" ? true : false;
                     // Processing the User update
                     _db.Users.Update(model);
                     await _db.SaveChangesAsync();
@@ -377,7 +379,8 @@ namespace WorkPermitManager.Controllers
                         s.Department.DepartmentName,
                         s.Company.CompanyName,
                         s.LoginDate,
-                        s.ProfilePicture
+                        s.ProfilePicture,
+                        s.AdministratorActive
                     })
                     .FirstOrDefault();
                 if (model == null)
@@ -396,7 +399,8 @@ namespace WorkPermitManager.Controllers
                         Department = model.DepartmentName,
                         Company = model.CompanyName,
                         LoginDate = model.LoginDate,
-                        ProfilePicture = model.ProfilePicture ?? "Default.png"
+                        ProfilePicture = model.ProfilePicture ?? "Default.png",
+                        AdministratorActive = model.AdministratorActive
                     };
                     return Json(new
                     {

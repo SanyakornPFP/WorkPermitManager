@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\WorkPermitManager.niunzl2gmw.bundle.scp.css"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
+      "PackagePath": "staticwebassets\\Report\\PowerOfAttorney\\PA-001.rdlc"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\SystemImages\\ProfileImage\\Default.png",
       "PackagePath": "staticwebassets\\assets\\SystemImages\\ProfileImage\\Default.png"
     },
