@@ -3894,6 +3894,7 @@ wwwroot\assets\scss\vendors\vector-map\_vector-map.scss
 wwwroot\assets\svg\icon-sprite.svg
 wwwroot\assets\svg\landing-icons.svg
 wwwroot\assets\SystemImages\ProfileImage\Default.png
+wwwroot\assets\SystemImages\Signature\2931000003432.jpg
 wwwroot\assets\SystemImages\Signature\dontImage.png
 wwwroot\assets\video\auth-bg.mp4
 wwwroot\css\site.css
@@ -3959,4 +3960,5 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\qr-code.png
 wwwroot\Report\PowerOfAttorney\PA-001.rdlc

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Reporting.NETCore;
 using QRCoder;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using WorkPermitManager.Data;
 using WorkPermitManager.Models;
 
@@ -76,6 +78,43 @@ namespace WorkPermitManager.Controllers
         }
 
 
+        #region ListApprovalForm
+        public IActionResult ListApprovalForm(string type)
+        {
+            if (type == null)
+            {
+                type = "รอการอนุมัติ";
+            }
+            ViewBag.TypeForm = type;
+            var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false && s.Status == type)
+                .Select(s => new
+                {
+                    s.PowerOfAttorneyID,
+                    s.CodeForm,
+                    s.GrantorID,
+                    GrantorName = s.User_GrantorID.FullName,
+                    s.AttorneyID,
+                    AttorneyName = s.User_AttorneyID.FullName,
+                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    s.GrantorDateApprove,
+                    s.Status
+                })
+                .ToList();
+
+            if (User.GetRole_AdministratorIsActive() != "True")
+            {
+                PowerOfAttorneyModel = PowerOfAttorneyModel
+                    .Where(s => s.GrantorID == int.Parse(User.GetLoggedInUserID()))
+                    .ToList();
+            }
+
+            ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel.ToList();
+
+            return View();
+        }
+        #endregion
+
+
 
         #region CreatePowerOfAttorney 
         [HttpPost]
@@ -99,8 +138,14 @@ namespace WorkPermitManager.Controllers
                     CompanyID = CompanyID,
                     GrantorID = GrantorID,
                     AttorneyID = int.Parse(User.GetLoggedInUserID()),
+                    GrantorApprovalBy = GrantorID,
+                    AttorneyApprovalBy = int.Parse(User.GetLoggedInUserID()),
                     WitnessApprovalBy1 = WitnessApprovalBy1,
+                    WitnessApprovalStatus1 = "อนุมัติเรียบร้อย",
+                    WitnessDateApprove1 = DateTime.Now,
                     WitnessApprovalBy2 = WitnessApprovalBy2,
+                    WitnessApprovalStatus2 = "อนุมัติเรียบร้อย",
+                    WitnessDateApprove2 = DateTime.Now,
                     CreatedAt = DateTime.Now,
                     UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
@@ -183,6 +228,7 @@ namespace WorkPermitManager.Controllers
                     PowerOfAttorney.CreationDate = Convert.ToDateTime(CreationDate);
                     PowerOfAttorney.CompanyID = CompanyID;
                     PowerOfAttorney.GrantorID = GrantorID;
+                    PowerOfAttorney.GrantorApprovalBy = GrantorID;
                     PowerOfAttorney.WitnessApprovalBy1 = WitnessApprovalBy1;
                     PowerOfAttorney.WitnessApprovalBy2 = WitnessApprovalBy2;
                     PowerOfAttorney.UpdatedAt = DateTime.Now;
@@ -265,6 +311,54 @@ namespace WorkPermitManager.Controllers
                     s.PowerOfAttorneyID,
                     s.CodeForm,
                     GrantorName = s.User_GrantorID.FullName,
+                    s.AttorneyID,
+                    AttorneyName = s.User_AttorneyID.FullName,
+                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    s.Status,
+                    s.IsDeleted
+                })
+                .ToList();
+
+            if (User.GetRole_AdministratorIsActive() == "True")
+            {
+                var CountStatus = model
+                    .ToList();
+
+                return Json(new
+                {
+                    waitapproval = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.IsDeleted == true).Count()
+                });
+            }
+            else
+            {
+                var CountStatus = model
+                    .Where(s => s.AttorneyID == int.Parse(User.GetLoggedInUserID()))
+                    .ToList();
+                return Json(new
+                {
+                    waitapproved = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.IsDeleted == true).Count()
+                });
+            }
+        }
+        #endregion
+
+        #region DocumentCountStatusApprove
+        [HttpPost]
+        public JsonResult DocumentCountStatusApprove()
+        {
+            var model = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false)
+                .Select(s => new
+                {
+                    s.PowerOfAttorneyID,
+                    s.CodeForm,
+                    GrantorName = s.User_GrantorID.FullName,
+                    s.AttorneyID,
                     AttorneyName = s.User_AttorneyID.FullName,
                     CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
                     s.Status
@@ -281,25 +375,22 @@ namespace WorkPermitManager.Controllers
                     waitapproval = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
                     approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
                     notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.Status == "ยกเลิก").Count()
                 });
             }
             else
             {
                 var CountStatus = model
-                    .Where(s => s.AttorneyName == User.GetLoggedInUserID())
+                    .Where(s => s.AttorneyID == int.Parse(User.GetLoggedInUserID()))
                     .ToList();
                 return Json(new
                 {
                     waitapproved = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
                     approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
                     notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.Status == "ยกเลิก").Count()
                 });
             }
         }
         #endregion
-
 
         #region GetPowerOfAttorney DetailModdel
         [HttpPost]
@@ -319,7 +410,7 @@ namespace WorkPermitManager.Controllers
                         CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
                         GrantorName = s.User_GrantorID.FullName,
                         GrantorStatus = s.GrantorApprovalStatus,
-                        GrantorDateApprove = s.GrantorDateApprove,
+                        GrantorDateApprove = s.GrantorDateApprove.HasValue ? s.GrantorDateApprove.Value.ToString("dd/MM/yyyy") : null,
                         AttorneyName = s.User_AttorneyID.FullName,
                         AttorneyStatus = s.AttorneyApprovalStatus,
                         AttorneyDateApprove = s.AttorneyDateApprove,
@@ -353,26 +444,34 @@ namespace WorkPermitManager.Controllers
                 {
                     s.PowerOfAttorneyID,
                     s.CodeForm,
-                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    CreationDate = s.CreationDate,
+                    Location = s.User_GrantorID.Company.CompanyAddress,
                     GrantorName = s.User_GrantorID.FullName,
+                    GrantorCardID = s.User_GrantorID.CardID,
                     AttorneyName = s.User_AttorneyID.FullName,
+                    AttorneyCardID = s.User_AttorneyID.CardID,
+                    AttorneyLocation = s.User_AttorneyID.Company.CompanyAddress,
                     s.GrantorApprovalStatus,
-                    s.GrantorDateApprove,
                     s.AttorneyApprovalStatus,
-                    s.AttorneyDateApprove,
                     Witness1Name = s.User_WitnessApprovalBy1.FullName,
+                    Witness1Signature = s.User_WitnessApprovalBy1.CardID,
                     s.WitnessApprovalStatus1,
-                    s.WitnessDateApprove1,
                     Witness2Name = s.User_WitnessApprovalBy2.FullName,
+                    Witness2Signature = s.User_WitnessApprovalBy2.CardID,
                     s.WitnessApprovalStatus2,
-                    s.WitnessDateApprove2,
+                    GrantorDateApprove = s.GrantorDateApprove.HasValue ? s.GrantorDateApprove.Value.ToString("ddMMyyyy") : null,
+                    AttorneyDateApprove = s.AttorneyDateApprove.HasValue ? s.AttorneyDateApprove.Value.ToString("ddMMyyyy") : null,
+                    WitnessDateApprove1 = s.WitnessDateApprove1.HasValue ? s.WitnessDateApprove1.Value.ToString("ddMMyyyy") : null,
+                    WitnessDateApprove2 = s.WitnessDateApprove2.HasValue ? s.WitnessDateApprove2.Value.ToString("ddMMyyyy") : null,
                     s.Status
                 })
                 .FirstOrDefault();
 
             // Generate QR Code
+            string hostname = $"{Request.Scheme}://{Request.Host}";
+            string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://www.google.com/xhtml/search", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
 
             // ใช้ PngByteQRCode แทน QRCode
             PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
@@ -393,6 +492,24 @@ namespace WorkPermitManager.Controllers
             ReportParameter[] parameters = new ReportParameter[]
             {
                 new ReportParameter("CodeForm", CodeForm),
+                new ReportParameter("CreationDate", ModelPA.CreationDate.ToThaiDate()),
+                new ReportParameter("Location", ModelPA.Location),
+                new ReportParameter("GrantorName", ModelPA.GrantorName),
+                new ReportParameter("GrantorCardID", ModelPA.GrantorCardID),
+                new ReportParameter("GrantorLocation", ModelPA.Location),
+                new ReportParameter("AttorneyName", ModelPA.AttorneyName),
+                new ReportParameter("AttorneyCardID", ModelPA.AttorneyCardID),
+                new ReportParameter("AttorneyLocation", ModelPA.AttorneyLocation),
+                new ReportParameter("Witness1Name", ModelPA.Witness1Name),
+                new ReportParameter("Witness2Name", ModelPA.Witness2Name),
+                new ReportParameter("GrantorDateApprove", ModelPA.GrantorDateApprove),
+                new ReportParameter("AttorneyDateApprove", ModelPA.AttorneyDateApprove),
+                new ReportParameter("WitnessDateApprove1", ModelPA.WitnessDateApprove1),
+                new ReportParameter("WitnessDateApprove2", ModelPA.WitnessDateApprove2),
+                new ReportParameter("GrantorSignature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.GrantorCardID + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.GrantorCardID + ".jpg")),
+                new ReportParameter("AttorneySignature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.AttorneyCardID + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.AttorneyCardID + ".jpg")),
+                new ReportParameter("Witness1Signature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness1Signature + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness1Signature + ".jpg")),
+                new ReportParameter("Witness2Signature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness2Signature + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness2Signature + ".jpg")),
                 new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
             };
 
@@ -409,6 +526,174 @@ namespace WorkPermitManager.Controllers
             return new FileContentResult(pdf, mimetype);
         }
         #endregion
+
+
+
+        #region ApprovePowerOfAttorney
+        [HttpPost]
+        public async Task<IActionResult> ApprovePowerOfAttorney(int PowerOfAttorneyID)
+        {
+            if (PowerOfAttorneyID == 0)
+            {
+                return Json(new { success = false, message = "ไม่พบรหัสคำขอหนังสือมอบอำนาจ" });
+            }
+            else
+            {
+                var PowerOfAttorney = _db.PowerOfAttorneys.FirstOrDefault(u => u.PowerOfAttorneyID == PowerOfAttorneyID);
+                if (PowerOfAttorney == null)
+                {
+                    return Json(new { success = false, message = "ไม่พบรหัสคำขอหนังสือมอบอำนาจ" });
+                }
+                else
+                {
+
+                    if (PowerOfAttorney.GrantorApprovalBy == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.GrantorApprovalStatus = "อนุมัติเรียบร้อย";
+                        PowerOfAttorney.GrantorApprovalBy = int.Parse(User.GetLoggedInUserID());
+                        PowerOfAttorney.GrantorDateApprove = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.AttorneyApprovalBy == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.AttorneyApprovalStatus = "อนุมัติเรียบร้อย";
+                        PowerOfAttorney.AttorneyApprovalBy = int.Parse(User.GetLoggedInUserID());
+                        PowerOfAttorney.AttorneyDateApprove = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.WitnessApprovalBy1 == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.WitnessApprovalStatus1 = "อนุมัติเรียบร้อย";
+                        PowerOfAttorney.WitnessDateApprove1 = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.WitnessApprovalBy2 == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.WitnessApprovalStatus2 = "อนุมัติเรียบร้อย";
+                        PowerOfAttorney.WitnessDateApprove2 = DateTime.Now;
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            success = false,
+                            message = "ไม่พบสถานะการอนุมัติ"
+                        });
+                    }
+                }
+
+                PowerOfAttorney.Status = "อนุมัติเรียบร้อย";
+                PowerOfAttorney.UpdatedAt = DateTime.Now;
+                PowerOfAttorney.UserManageID = int.Parse(User.GetLoggedInUserID());
+                await _db.SaveChangesAsync();
+                // Log the approval of the PowerOfAttorney
+                var logEntry = new LogSystemData
+                {
+                    TableName = "PowerOfAttorneys",
+                    Action = "Approve",
+                    RecordID = PowerOfAttorney.PowerOfAttorneyID, // Assuming PowerOfAttorneyID is the primary key
+                    UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                    ActionTime = DateTime.Now,
+                    IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                    OldValue = $"CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}", // Previous value before approval
+                    NewValue = $"CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}", // New value after approval
+                    Description = $"Approved PowerOfAttorney with CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}"
+                };
+                // Save the log entry
+                _db.LogSystemDatas.Add(logEntry);
+                await _db.SaveChangesAsync();
+                return Json(new { success = true, message = "อนุมัติคำขอเรียบร้อย" });
+            }
+        }
+        #endregion
+
+        #region NotApprovePowerOfAttorney
+        [HttpPost]
+        public async Task<IActionResult> NotApprovePowerOfAttorney(int PowerOfAttorneyID)
+        {
+            if (PowerOfAttorneyID == 0)
+            {
+                return Json(new { success = false, message = "ไม่พบรหัสคำขอหนังสือมอบอำนาจ" });
+            }
+            else
+            {
+                var PowerOfAttorney = _db.PowerOfAttorneys.FirstOrDefault(u => u.PowerOfAttorneyID == PowerOfAttorneyID);
+                if (PowerOfAttorney == null)
+                {
+                    return Json(new { success = false, message = "ไม่พบรหัสคำขอหนังสือมอบอำนาจ" });
+                }
+                else
+                {
+                    if (PowerOfAttorney.GrantorApprovalBy == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.GrantorApprovalStatus = "ไม่อนุมัติ";
+                        PowerOfAttorney.GrantorApprovalBy = int.Parse(User.GetLoggedInUserID());
+                        PowerOfAttorney.GrantorDateApprove = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.AttorneyApprovalBy == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.AttorneyApprovalStatus = "ไม่อนุมัติ";
+                        PowerOfAttorney.AttorneyApprovalBy = int.Parse(User.GetLoggedInUserID());
+                        PowerOfAttorney.AttorneyDateApprove = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.WitnessApprovalBy1 == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.WitnessApprovalStatus1 = "ไม่อนุมัติ";
+                        PowerOfAttorney.WitnessDateApprove1 = DateTime.Now;
+                    }
+                    else if (PowerOfAttorney.WitnessApprovalBy2 == int.Parse(User.GetLoggedInUserID()))
+                    {
+                        PowerOfAttorney.WitnessApprovalStatus2 = "ไม่อนุมัติ";
+                        PowerOfAttorney.WitnessDateApprove2 = DateTime.Now;
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            success = false,
+                            message = "ไม่พบสถานะการอนุมัติ"
+                        });
+                    }
+
+                    PowerOfAttorney.Status = "ไม่อนุมัติ";
+                    PowerOfAttorney.UpdatedAt = DateTime.Now;
+                    PowerOfAttorney.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    await _db.SaveChangesAsync();
+                    // Log the not approval of the
+                    var logEntry = new LogSystemData
+                    {
+                        TableName = "PowerOfAttorneys",
+                        Action = "NotApprove",
+                        RecordID = PowerOfAttorney.PowerOfAttorneyID, // Assuming PowerOfAttorneyID is the primary key
+                        UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                        ActionTime = DateTime.Now,
+                        IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        OldValue = $"CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}", // Previous value before not approval
+                        NewValue = $"CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}", // New value after not approval
+                        Description = $"Not Approved PowerOfAttorney with CreationDate: {PowerOfAttorney.CreationDate}, CompanyID: {PowerOfAttorney.CompanyID}, GrantorID: {PowerOfAttorney.GrantorID}, WitnessApprovalBy1: {PowerOfAttorney.WitnessApprovalBy1}, WitnessApprovalBy2: {PowerOfAttorney.WitnessApprovalBy2}"
+                    };
+                    // Save the log entry
+                    _db.LogSystemDatas.Add(logEntry);
+                    await _db.SaveChangesAsync();
+                    return Json(new { success = true, message = "ไม่อนุมัติคำขอเรียบร้อย" });
+                }
+            }
+        }
+        #endregion
+
+
+        public string getImageFromPath(string imagePath)
+        {
+            string imgFile = "";
+#pragma warning disable CA1416 // Validate platform compatibility
+            using (var b = new Bitmap(imagePath))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    imgFile = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+#pragma warning restore CA1416 // Validate platform compatibility
+            return imgFile;
+        }
 
     }
 }

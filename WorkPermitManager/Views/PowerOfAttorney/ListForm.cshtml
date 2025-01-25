@@ -177,7 +177,7 @@
                         </a>
                     </div>
                     <div class="ribbon ribbon-primary ribbon-clip">
-                        <i class="icofont icofont-files text-white"></i> หนังสือมอบอำนาจ
+                        <i class="icofont icofont-files text-white"></i> รายการยื่นคำขอมอบอำนาจ
                     </div>
                 </div>
 
@@ -279,7 +279,7 @@
                                         <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
                                         <td id="GrantorStatus"></td>
                                     </tr>
-                                    <tr>
+                                  @*   <tr>
                                         <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
                                         <td id="GrantorDateApprove"></td>
                                     </tr>
@@ -322,7 +322,7 @@
                                     <tr>
                                         <td class="bg-light"><i class="icofont icofont-file-document"></i> สถานะเอกสาร</td>
                                         <td id="Status"></td>
-                                    </tr>
+                                    </tr> *@
                                 </tbody>
                             </table>
                         </div>
@@ -358,16 +358,16 @@
                             $('#GrantorName').text(data.grantorName);
                             $('#GrantorStatus').text(data.grantorStatus);
                             $('#GrantorDateApprove').text(data.grantorDateApprove ?? 'ไม่พบข้อมูล');
-                            $('#AttorneyName').text(data.attorneyName);
-                            $('#AttorneyStatus').text(data.attorneyStatus);
-                            $('#AttorneyDateApprove').text(data.attorneyDateApprove ?? 'ไม่พบข้อมูล');
-                            $('#Witness1Name').text(data.witness1Name);
-                            $('#Witness1Status').text(data.witness1Status);
-                            $('#WitnessDateApprove1').text(data.witnessDateApprove1 ?? 'ไม่พบข้อมูล');
-                            $('#Witness2Name').text(data.witness2Name);
-                            $('#Witness2Status').text(data.witness2Status);
-                            $('#WitnessDateApprove2').text(data.witnessDateApprove2 ?? 'ไม่พบข้อมูล');
-                            $('#Status').text(data.status);
+                            // $('#AttorneyName').text(data.attorneyName);
+                            // $('#AttorneyStatus').text(data.attorneyStatus);
+                            // $('#AttorneyDateApprove').text(data.attorneyDateApprove ?? 'ไม่พบข้อมูล');
+                            // $('#Witness1Name').text(data.witness1Name);
+                            // $('#Witness1Status').text(data.witness1Status);
+                            // $('#WitnessDateApprove1').text(data.witnessDateApprove1 ?? 'ไม่พบข้อมูล');
+                            // $('#Witness2Name').text(data.witness2Name);
+                            // $('#Witness2Status').text(data.witness2Status);
+                            // $('#WitnessDateApprove2').text(data.witnessDateApprove2 ?? 'ไม่พบข้อมูล');
+                            // $('#Status').text(data.status);
                         }
                     },
                     error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว

@@ -8,10 +8,79 @@
 <div class="container-fluid">
     <div class="edit-profile">
         <div class="row">
-            <div class="col-xl-5">
-                <div class="card">
+            <div class="col-xl-12">
+                <form id="updateInfo" class="card" style="display: none;">
                     <div class="card-header">
-                        <h4 class="card-title"><i class="icofont icofont-id text-dark"></i> โปรไฟล์ส่วนตัว</h4>
+                        <h4 class="card-title">อัพเดทโปรไฟล์ส่วนตัว</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">อีเมลล์</label>
+                                    <input class="form-control" name="Email" type="email" placeholder="ตัวอย่าง :'xxxxxxx@pfp-pacific.com'" value="@(User.GetLoggedInUserEmail() == "NULL" ? "" : User.GetLoggedInUserEmail())">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">รูปโปรไฟล์</label>
+                                    <div class="input-group">
+                                        <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icon-image"></i></button>
+                                        <input class="form-control" id="inputGroupFile03" name="ProfileImage" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">ลายเซ็นต์</label>
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icofont icofont-edit"></i></button>
+                                    <input class="form-control" id="inputGroupFile03" name="Signature" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" type="submit">บันทึกข้อมูล</button>
+                        <button class="btn btn-light text-dark" type="button" id="cancelUpdateProfileBtn">ยกเลิก</button>
+                    </div>
+                </form>
+
+                <form id="changePaswords" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">เปลี่ยนรหัสผ่านใหม่</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">เลขบัตรประจำตัว</label>
+                            <input type="hidden" value="@User.GetLoggedInUserID()" id="txtUserID" />
+                            <input class="form-control" id="idNumber" type="text" maxlength="13" placeholder="กรุณากรอกเลขประจำตัว 13 หลัก" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input class="form-control" id="newPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input class="form-control" id="confirmPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่อีกครั้ง" />
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button type="button" class="btn btn-primary" id="submitChangePassword">บันทึกข้อมูล</button>
+                        <button class="btn btn-light text-dark" type="button" id="cancelChangePasswordBtn">ยกเลิก</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title"><i class="icofont icofont-id text-dark"></i> โปรไฟล์ส่วนตัว</h4>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary mb-3" id="editUpdateProfileBtn"><i class="icofont icofont-edit"></i> อัพเดทโปรไฟล์และลายเซ็นต์</button>
+                            <button class="btn btn-primary mb-3" id="editChangePasswordBtn"><i class="icofont icofont-key"></i> เปลี่ยนรหัสผ่าน</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row mb-2">
@@ -83,91 +152,30 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-12 col-sm-6">
-                            <div class="card height-equal">
-                                <div class="card-header">
-                                    <h4>ระบบแจ้งเตือน</h4>
-                                    <p class="f-m-light mt-1">
-                                        <code>กรุณาเพิ่มข้อมูลอีเมลล์ก่อนทำการเปิดใช้งานแจ้งเตือน</code>
-                                    </p>
-                                </div>
-                                <div class="card-body common-flex flex-column switch-wrapper">
-                                    <div class="d-flex">
-                                        <div class="text-end icon-state">
-                                            <label class="switch mb-0">
-                                                <input type="checkbox" id="sendEmailCheckbox" @(ViewData["ManageSendEmail"] != null && (bool)ViewData["ManageSendEmail"] ? "checked" : "")><span class="switch-state bg-primary"></span>
-                                            </label>
-                                        </div>
-                                        <label class="col-form-label m-l-10">สถานะแจ้งเตือนผ่านอีเมลล์</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @* <div class="col-xl-12 col-sm-6"> *@
+                        @*     <div class="card height-equal"> *@
+                        @*         <div class="card-header"> *@
+                        @*             <h4>ระบบแจ้งเตือน</h4> *@
+                        @*             <p class="f-m-light mt-1"> *@
+                        @*                 <code>กรุณาเพิ่มข้อมูลอีเมลล์ก่อนทำการเปิดใช้งานแจ้งเตือน</code> *@
+                        @*             </p> *@
+                        @*         </div> *@
+                        @*         <div class="card-body common-flex flex-column switch-wrapper"> *@
+                        @*             <div class="d-flex"> *@
+                        @*                 <div class="text-end icon-state"> *@
+                        @*                     <label class="switch mb-0"> *@
+                        @*                         <input type="checkbox" id="sendEmailCheckbox" @(ViewData["ManageSendEmail"] != null && (bool)ViewData["ManageSendEmail"] ? "checked" : "")><span class="switch-state bg-primary"></span> *@
+                        @*                     </label> *@
+                        @*                 </div> *@
+                        @*                 <label class="col-form-label m-l-10">สถานะแจ้งเตือนผ่านอีเมลล์</label> *@
+                        @*             </div> *@
+                        @*         </div> *@
+                        @*     </div> *@
+                        @* </div> *@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-7">
-                <form id="updateInfo" class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">UpdateProfile</h4>
-                        <p>อัพเดทโปรไฟล์ส่วนตัว</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">อีเมลล์</label>
-                                    <input class="form-control" name="Email" type="email" placeholder="ตัวอย่าง :'xxxxxxx@pfp-pacific.com'" value="@(User.GetLoggedInUserEmail() == "NULL" ? "" : User.GetLoggedInUserEmail())">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">รูปโปรไฟล์</label>
-                                    <div class="input-group">
-                                        <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icon-image"></i></button>
-                                        <input class="form-control" id="inputGroupFile03" name="ProfileImage" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">ลายเซ็นต์</label>
-                                <div class="input-group">
-                                    <button class="btn btn-primary" id="inputGroupFileAddon03" type="button"><i class="icofont icofont-edit"></i></button>
-                                    <input class="form-control" id="inputGroupFile03" name="Signature" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" accept="image/jpeg, image/png, image/jpg">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button class="btn btn-primary" type="submit">บันทึก</button>
-                    </div>
-                </form>
 
-                <form id="changePaswords" class="card">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">ChangePassword</h4>
-                        <p>เปลี่ยนรหัสผ่านใหม่</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="mปb-3">
-                            <label class="form-label">เลขบัตรประจำตัว</label>
-                            <input type="hidden" value="@User.GetLoggedInUserID()" id="txtUserID" />
-                            <input class="form-control" id="idNumber" type="text" maxlength="13" placeholder="กรุณากรอกเลขประจำตัว 13 หลัก" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input class="form-control" id="newPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Confirm Password</label>
-                            <input class="form-control" id="confirmPassword" type="password" placeholder="กรุณากรอกรหัสผ่านใหม่อีกครั้ง" />
-                        </div>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button type="button" class="btn btn-primary" id="submitChangePassword">บันทึก</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 </div>
@@ -332,6 +340,40 @@
                         });
                     }
                 });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Toggle visibility for UpdateProfile form
+            document.getElementById('editUpdateProfileBtn').addEventListener('click', function () {
+                var form = document.getElementById('updateInfo');
+                if (form.style.display === 'none' || form.style.display === '') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            });
+
+            // Toggle visibility for ChangePassword form
+            document.getElementById('editChangePasswordBtn').addEventListener('click', function () {
+                var form = document.getElementById('changePaswords');
+                if (form.style.display === 'none' || form.style.display === '') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            });
+
+            // Hide UpdateProfile form on cancel
+            document.getElementById('cancelUpdateProfileBtn').addEventListener('click', function () {
+                var form = document.getElementById('updateInfo');
+                form.style.display = 'none';
+            });
+
+            // Hide ChangePassword form on cancel
+            document.getElementById('cancelChangePasswordBtn').addEventListener('click', function () {
+                var form = document.getElementById('changePaswords');
+                form.style.display = 'none';
             });
         });
     </script>

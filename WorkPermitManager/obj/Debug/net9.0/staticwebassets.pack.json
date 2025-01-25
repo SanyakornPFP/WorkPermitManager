@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\assets\\SystemImages\\ProfileImage\\Default.png"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\SystemImages\\Signature\\2931000003432.jpg",
+      "PackagePath": "staticwebassets\\assets\\SystemImages\\Signature\\2931000003432.jpg"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\SystemImages\\Signature\\dontImage.png",
       "PackagePath": "staticwebassets\\assets\\SystemImages\\Signature\\dontImage.png"
     },
@@ -9115,6 +9119,10 @@
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\qr-code.png",
+      "PackagePath": "staticwebassets\\qr-code.png"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.WorkPermitManager.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

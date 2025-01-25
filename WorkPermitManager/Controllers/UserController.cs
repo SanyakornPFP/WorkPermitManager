@@ -112,7 +112,7 @@ namespace WorkPermitManager.Controllers
                 // จัดการไฟล์โปรไฟล์
                 if (ProfileImage != null && ProfileImage.Length > 0)
                 {
-                    var profileImagePath = Path.Combine("wwwroot", "assets", "SystemImages", "ProfileImage", $"{user.UserID}.jpg");
+                    var profileImagePath = Path.Combine("wwwroot", "assets", "SystemImages", "ProfileImage", $"{user.CardID}.jpg");
                     using (var stream = new FileStream(profileImagePath, FileMode.Create))
                     {
                         await ProfileImage.CopyToAsync(stream);
@@ -123,7 +123,7 @@ namespace WorkPermitManager.Controllers
                 // จัดการลายเซ็นต์
                 if (Signature != null && Signature.Length > 0)
                 {
-                    var signaturePath = Path.Combine("wwwroot", "assets", "SystemImages", "Signature", $"{user.UserID}.jpg");
+                    var signaturePath = Path.Combine("wwwroot", "assets", "SystemImages", "Signature", $"{user.CardID}.jpg");
                     using (var stream = new FileStream(signaturePath, FileMode.Create))
                     {
                         await Signature.CopyToAsync(stream);
