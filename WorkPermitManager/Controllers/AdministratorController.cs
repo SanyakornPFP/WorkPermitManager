@@ -866,6 +866,60 @@ namespace WorkPermitManager.Controllers
 
         }
 
+        #region GetSystemCompany
+        [HttpPost]
+        public JsonResult GetCompanyOwnerSystem()
+        {
+            var model = _db.Companies.Where(c => c.OwnerSystem == true).FirstOrDefault();
+            return Json(model);
+        }
+        #endregion
+
+        #region UpdateCompanyOwnerSystem
+        [HttpPost]
+        public async Task<IActionResult> UpdateCompanyOwnerSystem(int CompanyID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+            var model = _db.Companies.Where(c => c.OwnerSystem == true).FirstOrDefault();
+            if (model != null)
+            {
+                model.OwnerSystem = false;
+                model.UpdatedDate = DateTime.Now;
+                model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                _db.Companies.Update(model);
+                await _db.SaveChangesAsync();
+            }
+            var modelNew = _db.Companies.Where(c => c.CompanyID == CompanyID).FirstOrDefault();
+            modelNew.OwnerSystem = true;
+            modelNew.UpdatedDate = DateTime.Now;
+            modelNew.UserManageID = int.Parse(User.GetLoggedInUserID());
+            _db.Companies.Update(modelNew);
+            await _db.SaveChangesAsync();
+
+            // Log the deletion of the UpdateCompanyOwnerSystem
+            var logEntry = new LogSystemData
+            {
+                TableName = "Companies",
+                Action = "Update",
+                RecordID = modelNew.CompanyID,
+                UserManageID = int.Parse(User.GetLoggedInUserID()),
+                ActionTime = DateTime.Now,
+                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                OldValue = $"Name: {model.CompanyName}",
+                NewValue = $"Name: {modelNew.CompanyName}",
+                Description = $"Updated company with Name: {model.CompanyName} to {modelNew.CompanyName}"
+            };
+            // Save the log entry
+            _db.LogSystemDatas.Add(logEntry);
+            await _db.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+        #endregion
+
         #region Create Company
         [HttpPost]
         public async Task<IActionResult> CreateCompany(string CompanyName)
@@ -1358,6 +1412,8 @@ namespace WorkPermitManager.Controllers
             }
         }
         #endregion
+
+
 
         //Hashing คือการแปลงข้อมูลให้อยู่ในรูปแบบที่ไม่สามารถย้อนกลับได้ เหมาะสำหรับการตรวจสอบความถูกต้องของข้อมูล เช่น การตรวจสอบรหัสผ่าน
         public static string ComputeSha256Hash(string rawData)

@@ -6,6 +6,7 @@
 }
 <!-- Container-fluid starts-->
 <div class="container-fluid">
+
     <div class="row" style="display: none" id="showInsert">
         <div class="col-12">
             <div class="card">
@@ -18,7 +19,7 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="card-wrapper border rounded-3 light-card checkbox-checked">
-                                <form id="myForm" method="post" class="row g-3" action="">
+                                <form id="myFormInsert" method="post" class="row g-3" action="">
                                     <div class="col-xxl-12 col-sm-12">
                                         <input name="CompanyID" id="txtCompanyID" type="hidden">
                                         <label class="col-form-label" for="txtCompanyName">ชื่อบริษัท</label>
@@ -40,26 +41,31 @@
             </div>
         </div>
     </div>
+
     <div class="row" style="display: none" id="changeSystem">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-light" id="createOffChange" href="#" style="float:right">ยกเลิก</a>
+                    <a class="btn btn-light" id="OffChange" href="#" style="float:right">ยกเลิก</a>
                     <h4><i class="fa fa-edit"></i> แก้ไขข้อมูลเจ้าของระบบ</h4>
                 </div>
                 <div class="card-body">
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="card-wrapper border rounded-3 light-card checkbox-checked">
-                                <form id="myForm" method="post" class="row g-3" action="">
+                                <form id="myFormChange" method="post" class="row g-3" action="">
                                     <div class="col-xxl-12 col-sm-12">
-                                        <input name="CompanyID" id="txtCompanyID" type="hidden">
-                                        <label class="col-form-label" for="txtCompanyName">ชื่อบริษัท</label>
-                                        <input class="form-control" name="txtCompanyName" id="txtCompanyName" type="text" placeholder="กรุณากรอกข้อมูล">
+                                        <label class="col-form-label" for="selectCompanyID">บริษัท</label>
+                                        <select class="form-control select2-In" name="CompanyID" id="selectCompanyID">
+                                            @foreach (var company in ViewBag.CompanyList)
+                                            {
+                                                <option value="@company.CompanyID">@company.CompanyName</option>
+                                            }
+                                        </select>
                                     </div>
                                     <div class="col-xxl-12 col-sm-12">
-                                        <button class="btn btn-pill btn-primary active" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
-                                        <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
+                                        <button class="btn btn-pill btn-primary active" id="createBtnChange" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
+                                        <button class="btn btn-pill btn-primary active" id="updateBtnChange" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
                                     </div>
                                 </form>
                             </div>
@@ -74,7 +80,7 @@
             <div class="card">
                 <div class="card-header pb-0 card-no-border">
                     <div class="flex justify-end space-x-2" style="float:right">
-                        <a class="btn btn-success btn-sm" id="createOn" href="#">
+                        <a class="btn btn-success btn-sm" id="editOwner" href="#">
                             <i class="icofont icofont-ui-rotation text-white"></i> เปลี่ยนเจ้าของระบบ
                         </a>
                         <a class="btn btn-primary btn-sm" id="createOn" href="#">
@@ -134,11 +140,15 @@
             var showInsert = document.getElementById('showInsert');
             var createOn = document.getElementById('createOn');
             var createOff = document.getElementById('createOff');
+            var changeSystem = document.getElementById('changeSystem');
+            var OffChange = document.getElementById('OffChange');
+            var editOwner = document.getElementById('editOwner');
 
             // Event listener for "เพิ่ม" button
             createOn.addEventListener('click', function (e) {
                 e.preventDefault();
                 showInsert.style.display = 'block';  // Show the form
+                changeSystem.style.display = 'none'; // Hide the change system form if visible
             });
 
             // Event listener for "ยกเลิกเพิ่ม" button
@@ -146,7 +156,7 @@
                 e.preventDefault();
                 showInsert.style.display = 'none';  // Hide the form
                 // Reset the form fields
-                $('#myForm')[0].reset();
+                $('#myFormInsert')[0].reset();
                 // Hide the OfficeID field and update button
                 $('#txtCompanyID').hide();
                 $('#updateBtn').hide();
@@ -157,96 +167,21 @@
                 // Hide the cancel button
                 $('#cancelBtn').hide();
             });
-        });
 
-        // เพิ่มข้อมูลหมวดหมู่ความเสี่ยง
-        document.getElementById('createBtn').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            var companyName = $('#txtCompanyName').val();
-            var companyAddress = $('#txtAddress').val();
-
-            if (!companyName) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'กรุณากรอกชื่อบริษัท',
-                    text: 'กรุณากรอกชื่อบริษัทก่อนดำเนินการต่อ',
-                });
-                return;
-            }
-
-            $.ajax({
-                url : `@Url.Action("CheckCompanyName", "Administrator")`,
-                type: 'POST',
-                data: { CompanyName: companyName , CompanyAddress: companyAddress },
-                success: function (response) {
-                    if (response.success == false) {
-                        Swal.fire('ผิดพลาด', response.message, 'error');
-                    } else {
-                        Swal.fire({
-                            title: 'คุณแน่ใจหรือไม่?',
-                            text: "คุณจะไม่สามารถย้อนกลับได้!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#28a745', // Light green
-                            cancelButtonColor: '#d3d3d3', // Light gray
-                            confirmButtonText: 'ใช่, บันทึก!',
-                            cancelButtonText: 'ยกเลิก'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-                                    url: '@Url.Action("CreateCompany", "Administrator")',
-                                    type: 'POST',
-                                    data: { CompanyName: companyName,},
-                                    success: function (response) {
-                                        if (response.success == true) {
-                                            Swal.fire(
-                                                'บันทึกแล้ว!',
-                                                'ข้อมูลของคุณถูกบันทึกแล้ว.',
-                                                'success'
-                                            ).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        } else {
-                                            Swal.fire('ผิดพลาด', response.message, 'error');
-                                        }
-                                    },
-                                    error: function (xhr, textStatus, errorThrown) {
-                                        console.error('Error:', xhr.status, textStatus, errorThrown);
-                                        handleAjaxError(xhr);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                },
-            });
-        });
-
-        // แก้ไขข้อมูลหมวดหมู่ความเสี่ยง
-        document.querySelectorAll('.editBtn').forEach(function (button) {
-            button.addEventListener('click', function (e) {
+            // Event listener for "เปลี่ยนเจ้าของระบบ" button
+            editOwner.addEventListener('click', function (e) {
                 e.preventDefault();
-                var companyID = this.getAttribute('data-CompanyID');
 
                 $.ajax({
-                    url: '@Url.Action("GetCompanyDetails", "Administrator")',
+                    url: '@Url.Action("GetCompanyOwnerSystem", "Administrator")',
                     type: 'POST',
-                    data: { CompanyID: companyID },
                     success: function (response) {
                         if (response.success == false) {
                             Swal.fire('ผิดพลาด', response.message, 'error');
                         } else {
-                            $('#showInsert').show();
-                            $('#txtCompanyID').val(response.companyID);
-                            $('#txtCompanyName').val(response.companyName);
-
-                            $('#createHeader').hide();
-                            $('#updateHeader').show();
-                            $('#createBtn').hide();
-                            $('#updateBtn').show();
+                            changeSystem.style.display = 'block'; // Show the change system form
+                            showInsert.style.display = 'none';   // Hide the insert form if visible
+                            $('#selectCompanyID').val(response.companyID).trigger('change');
                         }
                     },
                     error: function (xhr, textStatus, errorThrown) {
@@ -255,127 +190,278 @@
                     }
                 });
             });
-        });
 
-        // ลบข้อมูลหมวดหมู่ความเสี่ยง
-        document.querySelectorAll('.deleteBtn').forEach(function (button) {
-            button.addEventListener('click', function (e) {
+            // Event listener for "ยกเลิก" button in change system form
+            OffChange.addEventListener('click', function (e) {
                 e.preventDefault();
-                var companyID = this.getAttribute('data-CompanyID');
+                changeSystem.style.display = 'none';  // Hide the form
+            });
+
+            // Add company
+            document.getElementById('createBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var companyName = $('#txtCompanyName').val();
+                var companyAddress = $('#txtAddress').val();
+
+                if (!companyName) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'กรุณากรอกชื่อบริษัท',
+                        text: 'กรุณากรอกชื่อบริษัทก่อนดำเนินการต่อ',
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("CheckCompanyName", "Administrator")',
+                    type: 'POST',
+                    data: { CompanyName: companyName, CompanyAddress: companyAddress },
+                    success: function (response) {
+                        if (response.success == false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            Swal.fire({
+                                title: 'คุณแน่ใจหรือไม่?',
+                                text: "คุณจะไม่สามารถย้อนกลับได้!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#28a745', // Light green
+                                cancelButtonColor: '#d3d3d3', // Light gray
+                                confirmButtonText: 'ใช่, บันทึก!',
+                                cancelButtonText: 'ยกเลิก'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '@Url.Action("CreateCompany", "Administrator")',
+                                        type: 'POST',
+                                        data: { CompanyName: companyName, CompanyAddress: companyAddress },
+                                        success: function (response) {
+                                            if (response.success == true) {
+                                                Swal.fire(
+                                                    'บันทึกแล้ว!',
+                                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                                    'success'
+                                                ).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire('ผิดพลาด', response.message, 'error');
+                                            }
+                                        },
+                                        error: function (xhr, textStatus, errorThrown) {
+                                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                                            handleAjaxError(xhr);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    },
+                });
+            });
+
+            // Edit company
+            document.querySelectorAll('.editBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var companyID = this.getAttribute('data-CompanyID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetCompanyDetails", "Administrator")',
+                        type: 'POST',
+                        data: { CompanyID: companyID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                $('#showInsert').show();
+                                $('#changeSystem').hide();
+                                $('#txtCompanyID').val(response.companyID);
+                                $('#txtCompanyName').val(response.companyName);
+                                $('#txtAddress').val(response.companyAddress);
+
+                                $('#createHeader').hide();
+                                $('#updateHeader').show();
+                                $('#createBtn').hide();
+                                $('#updateBtn').show();
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            // Delete company
+            document.querySelectorAll('.deleteBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var companyID = this.getAttribute('data-CompanyID');
+
+                    Swal.fire({
+                        title: 'คุณแน่ใจหรือไม่?',
+                        text: "คุณจะไม่สามารถย้อนกลับได้!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#d3d3d3',
+                        confirmButtonText: 'ใช่, ลบ!',
+                        cancelButtonText: 'ยกเลิก'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '@Url.Action("DeleteCompany", "Administrator")',
+                                type: 'POST',
+                                data: { CompanyID: companyID },
+                                success: function (response) {
+                                    if (response.success) {
+                                        Swal.fire(
+                                            'ลบแล้ว!',
+                                            response.message,
+                                            'success'
+                                        ).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire('ผิดพลาด', response.message, 'error');
+                                    }
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.error('Error:', xhr.status, textStatus, errorThrown);
+                                    handleAjaxError(xhr);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            // Update company
+            document.getElementById('updateBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var companyID = $('#txtCompanyID').val();
+                var companyName = $('#txtCompanyName').val();
+                var companyAddress = $('#txtAddress').val();
 
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
                     text: "คุณจะไม่สามารถย้อนกลับได้!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#d3d3d3',
-                    confirmButtonText: 'ใช่, ลบ!',
+                    confirmButtonColor: '#007bff', // Light blue
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
                     cancelButtonText: 'ยกเลิก'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // Save the data here
                         $.ajax({
-                            url: '@Url.Action("DeleteCompany", "Administrator")',
+                            url: '@Url.Action("UpdateCompany", "Administrator")', // manually specify the URL
                             type: 'POST',
-                            data: { CompanyID: companyID },
+                            data: { CompanyID: companyID, CompanyName: companyName, CompanyAddress: companyAddress },
                             success: function (response) {
-                                if (response.success) {
+                                if (response.success == true) {
                                     Swal.fire(
-                                        'ลบแล้ว!',
-                                        response.message,
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
                                         'success'
                                     ).then((result) => {
                                         if (result.isConfirmed) {
                                             window.location.reload();
                                         }
-                                    });
+                                    })
                                 } else {
                                     Swal.fire('ผิดพลาด', response.message, 'error');
                                 }
                             },
                             error: function (xhr, textStatus, errorThrown) {
-                                console.error('Error:', xhr.status, textStatus, errorThrown);
                                 handleAjaxError(xhr);
                             }
                         });
                     }
                 });
             });
-        });
 
-        document.getElementById('updateBtn').addEventListener('click', function (e) {
-            e.preventDefault();
+            // Update company owner system
+            document.getElementById('createBtnChange').addEventListener('click', function (e) {
+                e.preventDefault();
 
-            var companyID = $('#txtCompanyID').val();
-            var companyName = $('#txtCompanyName').val();
-            var companyAddress = $('#txtAddress').val();
+                var companyID = $('#selectCompanyID').val();
 
-
-            Swal.fire({
-                title: 'คุณแน่ใจหรือไม่?',
-                text: "คุณจะไม่สามารถย้อนกลับได้!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#007bff', // Light blue
-                cancelButtonColor: '#d3d3d3', // Light gray
-                confirmButtonText: 'ใช่, บันทึก!',
-                cancelButtonText: 'ยกเลิก'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Save the data here
-                    $.ajax({
-                        url: '@Url.Action("UpdateCompany", "Administrator")', // manually specify the URL
-                        type: 'POST',
-                        data: { CompanyID: companyID, CompanyName: companyName ,CompanyAddress: companyAddress },
-                        success: function (response) {
-                            if (response.success == true) {
-                                Swal.fire(
-                                    'บันทึกแล้ว!',
-                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
-                                    'success'
-                                ).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.reload();
-                                    }
-                                })
-                            } else {
-                                Swal.fire('ผิดพลาด', response.message, 'error');
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#007bff', // Light blue
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Save the data here
+                        $.ajax({
+                            url: '@Url.Action("UpdateCompanyOwnerSystem", "Administrator")', // manually specify the URL
+                            type: 'POST',
+                            data: { CompanyID: companyID },
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                handleAjaxError(xhr);
                             }
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            handleAjaxError(xhr);
-                        }
-                    });
-                }
+                        });
+                    }
+                });
             });
-        });
 
-        function handleAjaxError(xhr) {
-            console.log('Error:', xhr.status, xhr.statusText);
+            function handleAjaxError(xhr) {
+                console.log('Error:', xhr.status, xhr.statusText);
 
-            switch (xhr.status) {
-                case 400:
-                    window.open('@Url.Action("Error400", "Error")', '_blank');
-                    break;
-                case 401:
-                    window.open('@Url.Action("Error401", "Error")', '_blank');
-                    break;
-                case 403:
-                    window.open('@Url.Action("Error403", "Error")', '_blank');
-                    break;
-                case 404:
-                    window.open('@Url.Action("Error404", "Error")', '_blank');
-                    break;
-                case 500:
-                    window.open('@Url.Action("Error500", "Error")', '_blank');
-                    break;
-                case 503:
-                    window.open('@Url.Action("Error503", "Error")', '_blank');
-                    break;
-                default:
-                    console.log('An unexpected error occurred: ', xhr.status);
+                switch (xhr.status) {
+                    case 400:
+                        window.open('@Url.Action("Error400", "Error")', '_blank');
+                        break;
+                    case 401:
+                        window.open('@Url.Action("Error401", "Error")', '_blank');
+                        break;
+                    case 403:
+                        window.open('@Url.Action("Error403", "Error")', '_blank');
+                        break;
+                    case 404:
+                        window.open('@Url.Action("Error404", "Error")', '_blank');
+                        break;
+                    case 500:
+                        window.open('@Url.Action("Error500", "Error")', '_blank');
+                        break;
+                    case 503:
+                        window.open('@Url.Action("Error503", "Error")', '_blank');
+                        break;
+                    default:
+                        console.log('An unexpected error occurred: ', xhr.status);
+                }
             }
-        }
+        });
     </script>
 }
 <!-- #endregion -->
