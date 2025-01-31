@@ -468,7 +468,7 @@ namespace WorkPermitManager.Controllers
                 .FirstOrDefault();
 
             // Generate QR Code
-            string hostname = $"{Request.Scheme}://{Request.Host}";
+            string hostname = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
             string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);

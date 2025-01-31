@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\powerofattorneycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\powerofattorneycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\workpermitmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:workpermitmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\wwwroot\\report\\powerofattorney\\pa-001.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:wwwroot\\report\\powerofattorney\\pa-001.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +43,57 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PowerOfAttorneyController.cs",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\PowerOfAttorneyController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PowerOfAttorneyController.cs",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\PowerOfAttorneyController.cs",
+              "RelativeToolTip": "Controllers\\PowerOfAttorneyController.cs",
+              "ViewState": "AgIAAMABAAAAAAAAAAAowNYBAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T06:52:09.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WorkPermitManager.csproj",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\WorkPermitManager.csproj",
+              "RelativeDocumentMoniker": "WorkPermitManager.csproj",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\WorkPermitManager.csproj",
+              "RelativeToolTip": "WorkPermitManager.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-31T04:53:18.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PA-001.rdlc [Design]",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
+              "RelativeDocumentMoniker": "wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc [Design]",
+              "RelativeToolTip": "wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001755|",
+              "WhenOpened": "2025-01-31T04:32:48.705Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdministratorController.cs",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdministratorController.cs",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeToolTip": "Controllers\\AdministratorController.cs",
+              "ViewState": "AgIAAIcFAAAAAAAAAAAowFIDAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T04:32:11.41Z",
+              "EditorCaption": ""
             }
           ]
         }
