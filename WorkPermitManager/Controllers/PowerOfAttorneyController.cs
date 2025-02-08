@@ -77,7 +77,6 @@ namespace WorkPermitManager.Controllers
             return View();
         }
 
-
         #region ListApprovalForm
         public IActionResult ListApprovalForm(string type)
         {
@@ -113,8 +112,6 @@ namespace WorkPermitManager.Controllers
             return View();
         }
         #endregion
-
-
 
         #region CreatePowerOfAttorney 
         [HttpPost]

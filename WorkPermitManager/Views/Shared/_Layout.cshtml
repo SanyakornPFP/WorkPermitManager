@@ -215,11 +215,22 @@
                                 </li>
                                 <li class="sidebar-main-title">
                                     <div>
+                                        <h6>ทะเบียนข้อมูล</h6>
+                                    </div>
+                                </li>
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Employers")  ? "active bg-primary text-white custom-rounded" : "")"
+                                       asp-controller="PowerOfAttorney" asp-action="ListForm">
+                                        <i class="icofont icofont-files stroke-icon text-white"></i>
+                                        <span style="padding-left:10px"> ลูกค้า-นายจ้าง</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-main-title">
+                                    <div>
                                         <h6>หนังสิอมอบอำนาจ</h6>
                                     </div>
                                 </li>
                                 <li class="sidebar-list">
-                                    
                                     <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney") && !SureActive.StartsWith("/PowerOfAttorney/ListApprovalForm") ? "active bg-primary text-white custom-rounded" : "")"
                                        asp-controller="PowerOfAttorney" asp-action="ListForm">
                                         <i class="icofont icofont-files stroke-icon text-white"></i>
@@ -227,7 +238,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-list">
-                                    
+
                                     <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney/ListApprovalForm") ? "active bg-primary text-white custom-rounded" : "")"
                                        asp-controller="PowerOfAttorney" asp-action="ListApprovalForm">
                                         <i class="icofont icofont-checked stroke-icon text-white"></i>
@@ -239,10 +250,10 @@
                                     <li class="sidebar-main-title">
                                         <div>
                                             <h6>สำหรับผู้ดูแลระบบ</h6>
-                                        </div>
+                                        </div
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageUsers") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageUsers">
                                             <i class="stroke-icon text-white fa fa-user"></i>
@@ -251,7 +262,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePermission") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManagePermission">
                                             <i class="stroke-icon text-white fa fa-shield"></i>
@@ -260,7 +271,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePosition") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManagePosition">
                                             <i class="icofont icofont-briefcase-alt-1 text-white"></i>
@@ -268,7 +279,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageDepartment") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageDepartment">
                                             <i class="icofont icofont-company text-white"></i>
@@ -276,7 +287,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageCompany") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageCompany">
                                             <i class="icofont icofont-building-alt text-white"></i>
@@ -284,7 +295,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLoginHistory") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageLoginHistory">
                                             <i class="icofont icofont-history text-white"></i>
@@ -292,7 +303,7 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-list">
-                                        
+
                                         <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLogSystemData") ? "active bg-primary text-white custom-rounded" : "")"
                                            asp-controller="Administrator" asp-action="ManageLogSystemData">
                                             <i class="icofont icofont-info-square text-white"></i>
