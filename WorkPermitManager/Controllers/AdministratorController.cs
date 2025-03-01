@@ -70,22 +70,45 @@ namespace WorkPermitManager.Controllers
                 await _db.SaveChangesAsync();
 
                 string[] function = ["PowerOfAttorney", "Administrator"];
-                foreach (var item in function)
+                if (Createmodel.AdministratorActive)
                 {
-                    UserPermission newUserPermission = new UserPermission
+                    foreach (var item in function)
                     {
-                        UserID = Createmodel.UserID,
-                        FunctionName = item,
-                        CanRead = false,
-                        CanCreate = false,
-                        CanUpdate = false,
-                        CanDelete = false,
-                        CreatedDate = DateTime.Now,
-                        UserManageID = int.Parse(User.GetLoggedInUserID())
-                    };
+                        UserPermission newUserPermission = new UserPermission
+                        {
+                            UserID = Createmodel.UserID,
+                            FunctionName = item,
+                            CanRead = true,
+                            CanCreate = true,
+                            CanUpdate = true,
+                            CanDelete = true,
+                            CreatedDate = DateTime.Now,
+                            UserManageID = int.Parse(User.GetLoggedInUserID())
+                        };
 
-                    _db.UserPermissions.Add(newUserPermission);
-                    await _db.SaveChangesAsync();
+                        _db.UserPermissions.Add(newUserPermission);
+                        await _db.SaveChangesAsync();
+                    }
+                }
+                else
+                {
+                    foreach (var item in function)
+                    {
+                        UserPermission newUserPermission = new UserPermission
+                        {
+                            UserID = Createmodel.UserID,
+                            FunctionName = item,
+                            CanRead = false,
+                            CanCreate = false,
+                            CanUpdate = false,
+                            CanDelete = false,
+                            CreatedDate = DateTime.Now,
+                            UserManageID = int.Parse(User.GetLoggedInUserID())
+                        };
+
+                        _db.UserPermissions.Add(newUserPermission);
+                        await _db.SaveChangesAsync();
+                    }
                 }
 
                 // Log the creation of the User
@@ -201,25 +224,70 @@ namespace WorkPermitManager.Controllers
 
                     string[] function = ["PowerOfAttorney", "Administrator"];
 
-                    foreach (var item in function)
+                    if (model.AdministratorActive)
                     {
-                        var userPermission = _db.UserPermissions.Where(u => u.UserID == model.UserID && u.FunctionName == item).FirstOrDefault();
-
-                        if (userPermission == null)
+                        foreach (var item in function)
                         {
-                            UserPermission newUserPermission = new UserPermission
+                            var userPermission = _db.UserPermissions.Where(u => u.UserID == model.UserID && u.FunctionName == item).FirstOrDefault();
+
+                            if (userPermission == null)
                             {
-                                UserID = model.UserID,
-                                FunctionName = item,
-                                CanRead = false,
-                                CanCreate = false,
-                                CanUpdate = false,
-                                CanDelete = false,
-                                CreatedDate = DateTime.Now,
-                                UserManageID = int.Parse(User.GetLoggedInUserID())
-                            };
-                            _db.UserPermissions.Add(newUserPermission);
-                            await _db.SaveChangesAsync();
+                                UserPermission newUserPermission = new UserPermission
+                                {
+                                    UserID = model.UserID,
+                                    FunctionName = item,
+                                    CanRead = true,
+                                    CanCreate = true,
+                                    CanUpdate = true,
+                                    CanDelete = true,
+                                    CreatedDate = DateTime.Now,
+                                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                                };
+                                _db.UserPermissions.Add(newUserPermission);
+                                await _db.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                userPermission.CanRead = true;
+                                userPermission.CanRead = true;
+                                userPermission.CanUpdate = true;
+                                userPermission.CanDelete = true;
+                                userPermission.UpdatedDate = DateTime.Now;
+                                userPermission.UserManageID = int.Parse(User.GetLoggedInUserID());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in function)
+                        {
+                            var userPermission = _db.UserPermissions.Where(u => u.UserID == model.UserID && u.FunctionName == item).FirstOrDefault();
+
+                            if (userPermission == null)
+                            {
+                                UserPermission newUserPermission = new UserPermission
+                                {
+                                    UserID = model.UserID,
+                                    FunctionName = item,
+                                    CanRead = false,
+                                    CanCreate = false,
+                                    CanUpdate = false,
+                                    CanDelete = false,
+                                    CreatedDate = DateTime.Now,
+                                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                                };
+                                _db.UserPermissions.Add(newUserPermission);
+                                await _db.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                userPermission.CanRead = false;
+                                userPermission.CanRead = false;
+                                userPermission.CanUpdate = false;
+                                userPermission.CanDelete = false;
+                                userPermission.UpdatedDate = DateTime.Now;
+                                userPermission.UserManageID = int.Parse(User.GetLoggedInUserID());
+                            }
                         }
                     }
 
@@ -922,7 +990,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create Company
         [HttpPost]
-        public async Task<IActionResult> CreateCompany(string CompanyName)
+        public async Task<IActionResult> CreateCompany(string CompanyName, string CompanyAddress)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
@@ -938,6 +1006,7 @@ namespace WorkPermitManager.Controllers
                 Company Createmodel = new Company
                 {
                     CompanyName = CompanyName,
+                    CompanyAddress = CompanyAddress,
                     CreatedDate = DateTime.Now,
                     //UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
@@ -954,13 +1023,13 @@ namespace WorkPermitManager.Controllers
                     ActionTime = DateTime.Now,
                     IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                     OldValue = null, // No previous value since it's a new record
-                    NewValue = $"Name: {Createmodel.CompanyName}", // New record's details
-                    Description = $"Created new company with Name: {Createmodel.CompanyName}"
+                    NewValue = $"Name: {Createmodel.CompanyName} Address: {Createmodel.CompanyAddress}", // New record's details
+                    Description = $"Created new company with Name: {Createmodel.CompanyName} Address: {Createmodel.CompanyAddress}"
                 };
                 // Save the log entry
                 _db.LogSystemDatas.Add(logEntry);
                 await _db.SaveChangesAsync();
-                return RedirectToAction(nameof(ManageCompany));
+                return Json(new { success = true });
             }
         }
         #endregion
@@ -1017,7 +1086,7 @@ namespace WorkPermitManager.Controllers
 
         #region Update Company
         [HttpPost]
-        public async Task<IActionResult> UpdateCompany(int CompanyID, string CompanyName)
+        public async Task<IActionResult> UpdateCompany(int CompanyID, string CompanyName, string CompanyAddress)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
@@ -1038,7 +1107,9 @@ namespace WorkPermitManager.Controllers
                 else
                 {
                     var oldName = model.CompanyName;
+                    var oldAddress = model.CompanyAddress;
                     model.CompanyName = CompanyName;
+                    model.CompanyAddress = CompanyAddress;
                     model.UpdatedDate = DateTime.Now;
                     //model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the Company update
@@ -1055,12 +1126,12 @@ namespace WorkPermitManager.Controllers
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {oldName}",
                         NewValue = $"Name: {model.CompanyName}",
-                        Description = $"Updated company with Name: {oldName} to {model.CompanyName}"
+                        Description = $"Updated company with Name: {oldName} to {model.CompanyName} Address: {oldAddress} to {model.CompanyAddress}"
                     };
                     // Save the log entry
                     _db.LogSystemDatas.Add(logEntry);
                     await _db.SaveChangesAsync();
-                    return RedirectToAction(nameof(ManageCompany));
+                    return Json(new { success = true });
                 }
             }
         }

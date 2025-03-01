@@ -13,6 +13,14 @@
         <File Name="User.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="LogSystemData.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="LoginHistory.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="BusinessType.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="Director.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="DocumentType.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="EmployerAddress.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="EmployerContact.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="EmployerDocument.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="EmployerJob.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="Employer.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
