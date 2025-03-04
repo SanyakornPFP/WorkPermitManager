@@ -1,0 +1,892 @@
+﻿@{
+    ViewData["Controller"] = "ทะเบียนลูกค้า-นายจ้าง";
+    ViewData["Action"] = "รายชื่อทั้งหมด";
+    ViewData["Icon"] = "briefcase";
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row" style="display: none" id="showInsert">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right"><i class="fa fa-close"></i> ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> เพิ่มข้อมูล</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูล</h4>
+                </div>
+                <div class="card-body">
+                    <div class="horizontal-wizard-wrapper vertical-variations">
+                        <div class="row g-3">
+                            <div class="col-12 main-horizontal-header">
+                                <div class="nav nav-pills horizontal-options d-flex bg-light p-2 round-badge-light" id="business-n-wizard-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="business-n-info-tab" data-bs-toggle="pill" href="#business-n-info" role="tab" aria-controls="business-n-info" aria-selected="true">
+                                        <div class="horizontal-wizard">
+                                            <div class="stroke-icon-wizard" style="font-weight:bold"><span>1</span></div>
+                                            <div class="horizontal-wizard-content business-wizard">
+                                                <h6 style="font-weight:bold">ข้อมูลรายละเอียดสถานประกอบการ</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-link" id="business-bank-wizard-tab" data-bs-toggle="pill" href="#business-bank-wizard" role="tab" aria-controls="business-bank-wizard" aria-selected="false">
+                                        <div class="horizontal-wizard">
+                                            <div class="stroke-icon-wizard" style="font-weight:bold"><span>2</span></div>
+                                            <div class="horizontal-wizard-content business-wizard">
+                                                <h6 style="font-weight:bold">ข้อมูลผู้เกี่ยวข้องสถานประกอบการ</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-link" id="business-inquiry-wizard-tab" data-bs-toggle="pill" href="#business-inquiry-wizard" role="tab" aria-controls="business-inquiry-wizard" aria-selected="false">
+                                        <div class="horizontal-wizard">
+                                            <div class="stroke-icon-wizard" style="font-weight:bold"><span>3</span></div>
+                                            <div class="horizontal-wizard-content business-wizard">
+                                                <h6 style="font-weight:bold">ข้อมูลที่อยู่สถานประกอบการ</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="tab-content dark-field" id="business-n-wizard-tabContent">
+                                    <div class="tab-pane fade show active" id="business-n-info" role="tabpanel" aria-labelledby="business-n-info-tab">
+                                        <form id="myForm" method="post" class="row g-3" action="">
+                                            <h5 style="font-weight:bold"><i class="fa fa-building"></i> ข้อมูลรายละเอียดสถานประกอบการ</h5>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <input name="EmployerID" id="txtEmployerID" type="hidden">
+                                                <label class="col-form-label" for="txtNameTh">ชื่อสถานประกอบการ/นายจ้าง (ไทย)</label>
+                                                <input class="form-control" name="NameTh" id="txtNameTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtNameEng">ชื่อสถานประกอบการ/นายจ้าง (อังกฤษ)</label>
+                                                <input class="form-control" name="NameEng" id="txtNameEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-12 col-sm-12">
+                                                <label class="col-form-label" for="ddlBusinesstypeID">ประเภทธุรกิจ</label>
+                                                <select class="form-control select2-In" name="BusinesstypeID" id="ddlBusinesstypeID">
+                                                    @foreach (var item in (List<BusinessType>)ViewBag.BusinessTypeList)
+                                                    {
+                                                        <option value="@item.BusinesstypeID">@item.BusinesstypeTh</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtCardID">เลขบัตรประจำตัวประชาชน</label>
+                                                <input class="form-control" name="CardID" id="txtCardID" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtRegistrationNumber">เลขทะเบียนนิติบุคคล</label>
+                                                <input class="form-control" name="RegistrationNumber" id="txtRegistrationNumber" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtRegistrationDate">วันที่จดทะเบียน</label>
+                                                <input class="form-control" name="RegistrationDate" id="txtRegistrationDate" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtRegisteredCapital">ทุนจดทะเบียน</label>
+                                                <input class="form-control" name="RegisteredCapital" id="txtRegisteredCapital" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtJobTypeName">ประเภทงาน</label>
+                                                <input class="form-control" name="JobTypeName" id="txtJobTypeName" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtJobDiscription">รายละเอียดงาน</label>
+                                                <input class="form-control" name="JobDiscription" id="txtJobDiscription" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-12 col-sm-12 justify-content-end d-flex">
+                                                <button class="btn btn-primary" type="button" id="nextStep1">ถัดไป <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="business-bank-wizard" role="tabpanel" aria-labelledby="business-bank-wizard-tab">
+                                        <h5 style="font-weight:bold"><i class="fa fa-edit"></i> ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
+                                        <form class="row g-3">
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDirectorNameTh">ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</label>
+                                                <input class="form-control" name="DirectorNameTh" id="txtDirectorNameTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDirectorNameEng">ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</label>
+                                                <input class="form-control" name="DirectorNameEng" id="txtDirectorNameEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDirectorPositionTh">ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</label>
+                                                <input class="form-control" name="DirectorPositionTh" id="txtDirectorPositionTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDirectorPositionEng">ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</label>
+                                                <input class="form-control" name="DirectorPositionEng" id="txtDirectorPositionEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <h5 style="font-weight:bold"><i class="fa fa-users"></i> ข้อมูลเจ้าหน้าที่</h5>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtOfficerNameOne">เจ้าหน้าที่คนที่ 1</label>
+                                                <input class="form-control" name="OfficerNameOne" id="txtOfficerNameOne" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtOfficerPhoneOne">เบอร์โทรศัพท์</label>
+                                                <input class="form-control" name="OfficerPhoneOne" id="txtOfficerPhoneOne" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtOfficerNameOne">เจ้าหน้าที่คนที่ 2</label>
+                                                <input class="form-control" name="OfficerNameTwo" id="txtOfficerNameTwo" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtOfficerPhoneTwo">เบอร์โทรศัพท์</label>
+                                                <input class="form-control" name="OfficerPhoneTwo" id="txtOfficerPhoneTwo" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-12 col-sm-12 justify-content-between d-flex">
+                                                <button class="btn btn-light" type="button" id="prevStep2"><i class="fa fa-angle-left"></i> ย้อนกลับ</button>
+                                                <button class="btn btn-primary" type="button" id="nextStep2">ถัดไป <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="business-inquiry-wizard" role="tabpanel" aria-labelledby="business-inquiry-wizard-tab">
+                                        <h5 style="font-weight:bold"><i class="fa fa-thumb-tack"></i> ข้อมูลที่อยู่สถานประกอบการ</h5>
+                                        <form class="row g-3">
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtHouseRecordNumber">เลขรหัสประจำบ้าน</label>
+                                                <input class="form-control" name="HouseRecordNumber" id="txtHouseRecordNumber" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtHouseNo">บ้านเลขที่</label>
+                                                <input class="form-control" name="HouseNo" id="txtHouseNo" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtSoi">ซอย</label>
+                                                <input class="form-control" name="Soi" id="txtSoi" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtRoad">ถนน</label>
+                                                <input class="form-control" name="Road" id="txtRoad" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtSubdistrictTh">ตำบล (ไทย)</label>
+                                                <input class="form-control" name="SubdistrictTh" id="txtSubdistrictTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDistrictTh">อำเภอ (ไทย)</label>
+                                                <input class="form-control" name="DistrictTh" id="txtDistrictTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtProvinceTh">จังหวัด (ไทย)</label>
+                                                <input class="form-control" name="ProvinceTh" id="txtProvinceTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtPostcode">รหัสไปรษณีย์</label>
+                                                <input class="form-control" name="Postcode" id="txtPostcode" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtSubdistrictEng">ตำบล (อังกฤษ)</label>
+                                                <input class="form-control" name="SubdistrictEng" id="txtSubdistrictEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtDistrictEng">อำเภอ (อังกฤษ)</label>
+                                                <input class="form-control" name="DistrictEng" id="txtDistrictEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtProvinceEng">จังหวัด (อังกฤษ)</label>
+                                                <input class="form-control" name="ProvinceEng" id="txtProvinceEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtPhone">เบอร์โทรศัพท์</label>
+                                                <input class="form-control" name="Phone" id="txtPhone" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
+                                                <button class="btn btn-light" type="button" id="prevStep3"><i class="fa fa-angle-left"></i> ย้อนกลับ</button>
+                                                <button class="btn btn-primary" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
+                                                <button class="btn btn-primary" id="updateBtn" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border">
+                    <div class="flex justify-end space-x-2" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn" href="#">
+                            <i class="fa fa-plus text-white"></i> เพิ่มข้อมูล
+                        </a>
+                        <a class="btn btn-success btn-sm" id="uploadExcel" href="#">
+                            <i class="fa fa-upload text-white"></i> อัพโหลดไฟล์ Excel
+                        </a>
+                    </div>
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="fa fa-briefcase"></i> รายชื่อลูกค้า-นายจ้าง
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-2">
+                        <table class="display table table-bordered" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อนายจ้าง (ไทย)</th>
+                                    <th>ชื่อนายจ้าง (อังกฤษ)</th>
+                                    <th>ประเภทธุรกิจ</th>
+                                    <th class="text-center" width="10%">รายละเอียด</th>
+                                    <th>ดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in (List<Employer>)ViewBag.EmployerList)
+                                {
+                                    <tr>
+                                        <td>@item.NameTh</td>
+                                        <td>@item.NameEng</td>
+                                        <td>@item.BusinessType.BusinesstypeTh</td>
+                                        <td class="text-center">
+                                            <a class="btn text-dark" data-EmployerID="@item.EmployerID">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-EmployerID="@item.EmployerID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-EmployerID="@item.EmployerID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal for Upload Excel -->
+<div class="modal fade" id="uploadExcelModal" tabindex="-1" aria-labelledby="uploadExcelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadExcelModalLabel"><i class="fa fa-upload text-dark"></i> อัพโหลดไฟล์ Excel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadExcelForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="excelFile" class="form-label">เลือกไฟล์ Excel</label>
+                        <input class="form-control" type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
+                    </div>
+                    <div class="mt-3 d-flex justify-content-between">
+                        <a href="@Url.Action("DownloadSampleExcel", "Employers")" class="btn btn-light">ดาวน์โหลดไฟล์ตัวอย่าง Excel</a>
+                        <button type="submit" class="btn btn-primary">อัพโหลด</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Structure -->
+<div class="modal fade bd-example-modal-xl" id="exampleModalfullscreen-lg" tabindex="-1" aria-labelledby="lgModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lgModalLabel"><i class="fa fa-list-alt"></i> รายละเอียดข้อมูลถานประกอบการ/นายจ้าง</h1>
+                <button class="btn-close py-0" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body dark-modal">
+                <div class="modal-details">
+                    <div class="row">
+                        <div class="web-content col-6">
+                            <h5 class="f-w-600">ข้อมูลสถานประกอบการ/นายจ้าง</h5>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0"></div>
+                                <div class="flex-grow-1 ms-2">
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อนายจ้าง (ไทย): <span id="modalNameTh"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อนายจ้าง (อังกฤษ): <span id="modalNameEng"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ประเภทธุรกิจ: <span id="modalBusinesstypeID"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เลขประจำตัวประชาชน: <span id="modalCardID"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เลขทะเบียนนิติบุคคล: <span id="modalRegistrationNumber"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> วันที่จดทะเบียน: <span id="modalRegistrationDate"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ทุนจดทะเบียน: <span id="modalRegisteredCapital"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> รายละเอียดงาน: <span id="modalJobDiscription"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-content col-6">
+                            <h5 class="f-w-600">ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
+                            <div class="d-flex">
+                                <div class="flex-grow-1 ms-2">
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย): <span id="modalDirectorNameTh"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ): <span id="modalDirectorNameEng"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ตำแหน่งผู้มีอำนาจลงนาม (ไทย): <span id="modalDirectorPositionTh"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ): <span id="modalDirectorPositionEng"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-content col-6">
+                            <h5 class="f-w-600">ข้อมูลเจ้าหน้าที่</h5>
+                            <div class="d-flex">
+                                <div class="flex-grow-1 ms-2">
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เจ้าหน้าที่คนที่ 1: <span id="modalOfficerNameOne"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalOfficerPhoneOne"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เจ้าหน้าที่คนที่ 2: <span id="modalOfficerNameTwo"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalOfficerPhoneTwo"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-content col-6">
+                            <h5 class="f-w-600">ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
+                            <div class="d-flex">
+                                <div class="flex-grow-1 ms-2">
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ที่อยู่: <span id="modalAddress"></span></p>
+                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalPhone"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" type="button" data-bs-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#uploadExcel').on('click', function() {
+                $('#uploadExcelModal').modal('show');
+            });
+
+            $('#uploadExcelForm').on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Action("UploadExcel", "Employers")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire('สำเร็จ', 'อัพโหลดไฟล์สำเร็จ', 'success').then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                        Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการอัพโหลดไฟล์', 'error');
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            var step1 = document.getElementById('business-n-info');
+            var step2 = document.getElementById('business-bank-wizard');
+            var step3 = document.getElementById('business-inquiry-wizard');
+
+            var nextStep1 = document.getElementById('nextStep1');
+            var nextStep2 = document.getElementById('nextStep2');
+            var prevStep2 = document.getElementById('prevStep2');
+            var prevStep3 = document.getElementById('prevStep3');
+
+            var tab1 = document.getElementById('business-n-info-tab');
+            var tab2 = document.getElementById('business-bank-wizard-tab');
+            var tab3 = document.getElementById('business-inquiry-wizard-tab');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                $('#myForm')[0].reset();
+                // Hide the EmployerID field and update button
+                $('#txtEmployerID').hide();
+                $('#updateBtn').hide();
+                // Show the create button and header
+                $('#createHeader').show();
+                $('#updateHeader').hide();
+                $('#createBtn').show();
+                // Hide the cancel button
+                $('#cancelBtn').hide();
+                // Reset steps
+                step1.classList.add('show', 'active');
+                step2.classList.remove('show', 'active');
+                step3.classList.remove('show', 'active');
+                tab1.classList.add('active');
+                tab2.classList.remove('active');
+                tab3.classList.remove('active');
+                tab1.setAttribute('aria-selected', 'true');
+                tab2.setAttribute('aria-selected', 'false');
+                tab3.setAttribute('aria-selected', 'false');
+            });
+
+            // Next and Previous buttons
+            nextStep1.addEventListener('click', function () {
+                step1.classList.remove('show', 'active');
+                step2.classList.add('show', 'active');
+                tab1.classList.remove('active');
+                tab2.classList.add('active');
+                tab1.setAttribute('aria-selected', 'false');
+                tab2.setAttribute('aria-selected', 'true');
+            });
+
+            nextStep2.addEventListener('click', function () {
+                step2.classList.remove('show', 'active');
+                step3.classList.add('show', 'active');
+                tab2.classList.remove('active');
+                tab3.classList.add('active');
+                tab2.setAttribute('aria-selected', 'false');
+                tab3.setAttribute('aria-selected', 'true');
+            });
+
+            prevStep2.addEventListener('click', function () {
+                step2.classList.remove('show', 'active');
+                step1.classList.add('show', 'active');
+                tab2.classList.remove('active');
+                tab1.classList.add('active');
+                tab2.setAttribute('aria-selected', 'false');
+                tab1.setAttribute('aria-selected', 'true');
+            });
+
+            prevStep3.addEventListener('click', function () {
+                step3.classList.remove('show', 'active');
+                step2.classList.add('show', 'active');
+                tab3.classList.remove('active');
+                tab2.classList.add('active');
+                tab3.setAttribute('aria-selected', 'false');
+                tab2.setAttribute('aria-selected', 'true');
+            });
+
+            document.querySelectorAll('.btn.text-dark').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var employerID = this.getAttribute('data-EmployerID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetEmployerDetails", "Employers")',
+                        type: 'POST',
+                        data: { EmployerID: employerID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                var data = response.data;
+                                $('#modalNameTh').text(data.nameTh);
+                                $('#modalNameEng').text(data.nameEng);
+                                $('#modalBusinesstypeID').text(data.businesstypeTh);
+                                $('#modalCardID').text(data.cardID);
+                                $('#modalRegistrationNumber').text(data.registrationNumber);
+                                $('#modalRegistrationDate').text(data.registrationDate);
+                                $('#modalRegisteredCapital').text(data.registeredCapital);
+                                $('#modalJobTypeName').text(data.jobTypeName);
+                                $('#modalJobDiscription').text(data.jobDiscription);
+                                $('#modalDirectorNameTh').text(data.directorNameTh);
+                                $('#modalDirectorNameEng').text(data.directorNameEng);
+                                $('#modalDirectorPositionTh').text(data.directorPositionTh);
+                                $('#modalDirectorPositionEng').text(data.directorPositionEng);
+                                $('#modalOfficerNameOne').text(data.officerNameOne);
+                                $('#modalOfficerPhoneOne').text(data.officerPhoneOne);
+                                $('#modalOfficerNameTwo').text(data.officerNameTwo);
+                                $('#modalOfficerPhoneTwo').text(data.officerPhoneTwo);
+                                $('#modalAddress').text(data.houseNo + ' ' + data.soi + ' ' + data.road + ' ' + data.subdistrictTh + ' ' + data.districtTh + ' ' + data.provinceTh + ' ' + data.postcode);
+                                $('#modalPhone').text(data.phone);
+
+                                $('#exampleModalfullscreen-lg').modal('show');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            // เพิ่มข้อมูลนายจ้าง
+            document.getElementById('createBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var nameTh = $('#txtNameTh').val();
+                var nameEng = $('#txtNameEng').val();
+                var businesstypeID = $('#ddlBusinesstypeID').val();
+                var cardID = $('#txtCardID').val();
+                var registrationNumber = $('#txtRegistrationNumber').val();
+                var registrationDate = $('#txtRegistrationDate').val();
+                var registeredCapital = $('#txtRegisteredCapital').val();
+                var jobTypeName = $('#txtJobTypeName').val();
+                var jobDiscription = $('#txtJobDiscription').val();
+                var directorNameTh = $('#txtDirectorNameTh').val();
+                var directorNameEng = $('#txtDirectorNameEng').val();
+                var directorPositionTh = $('#txtDirectorPositionTh').val();
+                var directorPositionEng = $('#txtDirectorPositionEng').val();
+                var officerNameOne = $('#txttxtOfficerNameOne').val();
+                var officerPhoneOne = $('#txttxtOfficerPhoneOne').val();
+                var officerNameTwo = $('#txttxtOfficerNameTwo').val();
+                var officerPhoneTwo = $('#txttxtOfficerPhoneTwo').val();
+                var houseRecordNumber = $('#txtHouseRecordNumber').val();
+                var houseNo = $('#txtHouseNo').val();
+                var soi = $('#txtSoi').val();
+                var road = $('#txtRoad').val();
+                var subdistrictTh = $('#txtSubdistrictTh').val();
+                var districtTh = $('#txtDistrictTh').val();
+                var provinceTh = $('#txtProvinceTh').val();
+                var postcode = $('#txtPostcode').val();
+                var subdistrictEng = $('#txtSubdistrictEng').val();
+                var districtEng = $('#txtDistrictEng').val();
+                var provinceEng = $('#txtProvinceEng').val();
+                var phone = $('#txtPhone').val();
+
+                if (!nameTh || !nameEng || !businesstypeID || !registrationNumber || !registrationDate || !registeredCapital) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'กรุณากรอกข้อมูล',
+                        text: 'กรุณากรอกข้อมูลให้ครบถ้วนก่อนดำเนินการต่อ',
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    url : `@Url.Action("CheckEmployerName", "Employers")`,
+                    type: 'POST',
+                    data: { EmployerName: nameTh },
+                    success: function (response) {
+                        if (response.success == false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            Swal.fire({
+                                title: 'คุณแน่ใจหรือไม่?',
+                                text: "คุณจะไม่สามารถย้อนกลับได้!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#28a745', // Light green
+                                cancelButtonColor: '#d3d3d3', // Light gray
+                                confirmButtonText: 'ใช่, บันทึก!',
+                                cancelButtonText: 'ยกเลิก'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '@Url.Action("CreateEmployer", "Employers")',
+                                        type: 'POST',
+                                        data: {
+                                            NameTh: nameTh,
+                                            NameEng: nameEng,
+                                            BusinesstypeID: businesstypeID,
+                                            RegistrationNumber: registrationNumber,
+                                            RegistrationDate: registrationDate,
+                                            RegisteredCapital: registeredCapital,
+                                            CardID: cardID,
+                                            DirectorNameTh: directorNameTh,
+                                            DirectorNameEng: directorNameEng,
+                                            DirectorPositionTh: directorPositionTh,
+                                            DirectorPositionEng: directorPositionEng,
+                                            JobTypeName: jobTypeName,
+                                            JobDiscription: jobDiscription,
+                                            HouseRecordNumber: houseRecordNumber,
+                                            HouseNo: houseNo,
+                                            Soi: soi,
+                                            Road: road,
+                                            SubdistrictTh: subdistrictTh,
+                                            DistrictTh: districtTh,
+                                            ProvinceTh: provinceTh,
+                                            Postcode: postcode,
+                                            SubdistrictEng: subdistrictEng,
+                                            DistrictEng: districtEng,
+                                            ProvinceEng: provinceEng,
+                                            Phone: phone,
+                                            OfficerNameOne: officeNameOne,
+                                            OfficerPhoneOne: officePhoneOne,
+                                            OfficerNameTwo: officeNameTwo,
+                                            OfficerPhoneTwo: officePhoneTwo
+                                        },
+                                        success: function (response) {
+                                            if (response.success == true) {
+                                                Swal.fire(
+                                                    'บันทึกแล้ว!',
+                                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                                    'success'
+                                                ).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire('ผิดพลาด', response.message, 'error');
+                                            }
+                                        },
+                                        error: function (xhr, textStatus, errorThrown) {
+                                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                                            handleAjaxError(xhr);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    },
+                });
+            });
+
+            // แก้ไขข้อมูลนายจ้าง
+            document.querySelectorAll('.editBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var employerID = this.getAttribute('data-EmployerID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetEmployerDetails", "Employers")',
+                        type: 'POST',
+                        data: { EmployerID: employerID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                $('#showInsert').show();
+                                $('#txtEmployerID').val(response.employerID);
+                                $('#txtNameTh').val(response.nameTh);
+                                $('#txtNameEng').val(response.nameEng);
+                                $('#ddlBusinesstypeID').val(response.businesstypeID);
+                                $('#txtRegistrationNumber').val(response.registrationNumber);
+                                $('#txtRegistrationDate').val(response.registrationDate);
+                                $('#txtRegisteredCapital').val(response.registeredCapital);
+                                $('#txtJobTypeName').val(response.jobTypeName);
+                                $('#txtJobDiscription').val(response.jobDiscription);
+                                $('#txtCardID').val(response.cardID);
+                                $('#txtDirectorNameTh').val(response.directorNameTh);
+                                $('#txtDirectorNameEng').val(response.directorNameEng);
+                                $('#txtDirectorPositionTh').val(response.directorPositionTh);
+                                $('#txtDirectorPositionEng').val(response.directorPositionEng);
+                                $('#txtOfficerNameOne').val(response.officerNameOne);
+                                $('#txtOfficerPhoneOne').val(response.officerPhoneOne);
+                                $('#txtOfficerNameTwo').val(response.officerNameTwo);
+                                $('#txtOfficerPhoneTwo').val(response.officerPhoneTwo);
+                                $('#txtHouseRecordNumber').val(response.houseRecordNumber);
+                                $('#txtHouseNo').val(response.houseNo);
+                                $('#txtSoi').val(response.soi);
+                                $('#txtRoad').val(response.road);
+                                $('#txtSubdistrictTh').val(response.subdistrictTh);
+                                $('#txtDistrictTh').val(response.districtTh);
+                                $('#txtProvinceTh').val(response.provinceTh);
+                                $('#txtPostcode').val(response.postcode);
+                                $('#txtSubdistrictEng').val(response.subdistrictEng);
+                                $('#txtDistrictEng').val(response.districtEng);
+                                $('#txtProvinceEng').val(response.provinceEng);
+                                $('#txtPhone').val(response.phone);
+                                $('#createHeader').hide();
+                                $('#updateHeader').show();
+                                $('#createBtn').hide();
+                                $('#updateBtn').show();
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            // ลบข้อมูลนายจ้าง
+            document.querySelectorAll('.deleteBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var employerID = this.getAttribute('data-EmployerID');
+
+                    Swal.fire({
+                        title: 'คุณแน่ใจหรือไม่?',
+                        text: "คุณจะไม่สามารถย้อนกลับได้!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#d3d3d3',
+                        confirmButtonText: 'ใช่, ลบ!',
+                        cancelButtonText: 'ยกเลิก'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '@Url.Action("DeleteEmployer", "Employers")',
+                                type: 'POST',
+                                data: { EmployerID: employerID },
+                                success: function (response) {
+                                    if (response.success) {
+                                        Swal.fire(
+                                            'ลบแล้ว!',
+                                            response.message,
+                                            'success'
+                                        ).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire('ผิดพลาด', response.message, 'error');
+                                    }
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.error('Error:', xhr.status, textStatus, errorThrown);
+                                    handleAjaxError(xhr);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('updateBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var employerID = $('#txtEmployerID').val();
+                var nameTh = $('#txtNameTh').val();
+                var nameEng = $('#txtNameEng').val();
+                var businesstypeID = $('#ddlBusinesstypeID').val();
+                var registrationNumber = $('#txtRegistrationNumber').val();
+                var registrationDate = $('#txtRegistrationDate').val();
+                var registeredCapital = $('#txtRegisteredCapital').val();
+                var jobTypeName = $('#txtJobTypeName').val();
+                var jobDiscription = $('#txtJobDiscription').val();
+                var cardID = $('#txtCardID').val();
+                var directorNameTh = $('#txtDirectorNameTh').val();
+                var directorNameEng = $('#txtDirectorNameEng').val();
+                var directorPositionTh = $('#txtDirectorPositionTh').val();
+                var directorPositionEng = $('#txtDirectorPositionEng').val();
+                var officerNameOne = $('#txtOfficerNameOne').val();
+                var officerPhoneOne = $('#txtOfficerPhoneOne').val();
+                var officerNameTwo = $('#txtOfficerNameTwo').val();
+                var officerPhoneTwo = $('#txtOfficerPhoneTwo').val();
+                var houseRecordNumber = $('#txtHouseRecordNumber').val();
+                var houseNo = $('#txtHouseNo').val();
+                var soi = $('#txtSoi').val();
+                var road = $('#txtRoad').val();
+                var subdistrictTh = $('#txtSubdistrictTh').val();
+                var districtTh = $('#txtDistrictTh').val();
+                var provinceTh = $('#txtProvinceTh').val();
+                var postcode = $('#txtPostcode').val();
+                var subdistrictEng = $('#txtSubdistrictEng').val();
+                var districtEng = $('#txtDistrictEng').val();
+                var provinceEng = $('#txtProvinceEng').val();
+                var phone = $('#txtPhone').val();
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#007bff', // Light blue
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Save the data here
+                        $.ajax({
+                            url: '@Url.Action("UpdateEmployer", "Employers")', // manually specify the URL
+                            type: 'POST',
+                            data: {
+                                EmployerID: employerID,
+                                NameTh: nameTh,
+                                NameEng: nameEng,
+                                BusinesstypeID: businesstypeID,
+                                RegistrationNumber: registrationNumber,
+                                RegistrationDate: registrationDate,
+                                RegisteredCapital: registeredCapital,
+                                CardID: cardID,
+                                DirectorNameTh: directorNameTh,
+                                DirectorNameEng: directorNameEng,
+                                DirectorPositionTh: directorPositionTh,
+                                DirectorPositionEng: directorPositionEng,
+                                JobTypeName: jobTypeName,
+                                JobDiscription: jobDiscription,
+                                HouseRecordNumber: houseRecordNumber,
+                                HouseNo: houseNo,
+                                Soi: soi,
+                                Road: road,
+                                SubdistrictTh: subdistrictTh,
+                                DistrictTh: districtTh,
+                                ProvinceTh: provinceTh,
+                                Postcode: postcode,
+                                SubdistrictEng: subdistrictEng,
+                                DistrictEng: districtEng,
+                                ProvinceEng: provinceEng,
+                                Phone: phone,
+                                OfficerNameOne: officerNameOne,
+                                OfficerPhoneOne: officerPhoneOne,
+                                OfficerNameTwo: officerNameTwo,
+                                OfficerPhoneTwo: officerPhoneTwo
+                            },
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+
+            function handleAjaxError(xhr) {
+                console.log('Error:', xhr.status, xhr.statusText);
+
+                switch (xhr.status) {
+                    case 400:
+                        window.open('@Url.Action("Error400", "Error")', '_blank');
+                        break;
+                    case 401:
+                        window.open('@Url.Action("Error401", "Error")', '_blank');
+                        break;
+                    case 403:
+                        window.open('@Url.Action("Error403", "Error")', '_blank');
+                        break;
+                    case 404:
+                        window.open('@Url.Action("Error404", "Error")', '_blank');
+                        break;
+                    case 500:
+                        window.open('@Url.Action("Error500", "Error")', '_blank');
+                        break;
+                    case 503:
+                        window.open('@Url.Action("Error503", "Error")', '_blank');
+                        break;
+                    default:
+                        console.log('An unexpected error occurred: ', xhr.status);
+                }
+            }
+        });
+    </script>
+}

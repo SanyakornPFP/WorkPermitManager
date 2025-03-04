@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Security.Claims;
 
-namespace ContainerEvaluationSystem.Helpers
+namespace WorkPermitManager.Helpers
 {
     public static class ClaimsPrincipalExtensions
     {

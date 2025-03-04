@@ -1,5 +1,4 @@
-﻿using ContainerEvaluationSystem.Helpers;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +6,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using WorkPermitManager.Data;
+using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
 
 namespace WorkPermitManager.Controllers

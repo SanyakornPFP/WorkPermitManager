@@ -5751,3 +5751,17 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Debug\net9.0\com
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\QRCoder.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\EPPlus.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\EPPlus.Interfaces.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\EPPlus.System.Drawing.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll

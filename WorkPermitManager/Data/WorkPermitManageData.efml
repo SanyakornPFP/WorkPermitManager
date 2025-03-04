@@ -136,8 +136,8 @@
     <property name="UserIDCreated" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9eec52bb-a301-4b7f-a230-6ceb0dcaaca9">
       <column name="UserIDCreated" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="IsDeleted" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="04a4a4d2-d652-490e-9d93-ba8a679f0c8b">
-      <column name="IsDeleted" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="843d5b81-a82d-43b9-a67c-58a455e1a082">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
     </property>
   </class>
   <class name="UserPermission" entity-set="UserPermissions" table="UserPermissions" schema="dbo" p1:Guid="2487ec3f-0a03-46e6-9adc-ee9d16266f2b">
@@ -302,43 +302,11 @@
     <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="c53adb8a-52b3-4e21-adfc-7e6d56232ced">
       <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="d6fc4c2e-b961-4ab1-959d-933c22a8ee77">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="d6fc4c2e-b961-4ab1-959d-933c22a8ee77">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
     </property>
     <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="43d49aa4-fbd9-44aa-850b-fafde1c95611">
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
-  <class name="Director" entity-set="Directors" table="Directors" schema="dbo" p1:Guid="362f2042-a73b-47b1-bed5-c3b3681c5e81">
-    <id name="DirectorID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="875554e2-8338-403a-a437-4b5e5fcdead2">
-      <column name="DirectorID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="c32b6835-d4c8-4897-8c6d-1061f946acc1">
-      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-    <property name="NameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="939ecb9d-06ba-43e1-8cee-de734cbd6093">
-      <column name="NameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="NameEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="5d8521e1-5452-4a7f-b017-58cc0d5edb0b">
-      <column name="NameEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="PositionTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="1eaf0679-6370-4050-b4df-beb46e8a5d4a">
-      <column name="PositionTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="PositionEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="956c94fe-2a5e-4447-a912-1e845546be78">
-      <column name="PositionEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="0067e782-27a0-4162-822c-0861dae950ac">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="902d9b5d-9ec2-4421-a46d-3a7d2e1ef5ad">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="368424cf-28df-4416-bf47-5e2978e7be22">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManager" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="3508a61c-6a11-499b-837e-566cd5f98abf">
-      <column name="UserManager" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
   </class>
   <class name="DocumentType" entity-set="DocumentTypes" table="DocumentTypes" schema="dbo" p1:Guid="873f1108-4a37-4a5c-9a6c-3aa2a2b2d228">
@@ -364,82 +332,6 @@
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
-  <class name="EmployerAddress" entity-set="EmployerAddresses" table="EmployerAddresses" schema="dbo" p1:Guid="cbbb8a01-0fc8-49c8-b707-1ce95106b5f4">
-    <id name="AddressID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="e4fec4dc-c24b-47fe-a8cf-be60fc35bb0e">
-      <column name="AddressID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="32bad5b2-4153-497c-a176-b5a746c4b519">
-      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-    <property name="HouseNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="7d171354-8ce3-4f89-95e1-654a75fa2b80">
-      <column name="HouseNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="Soi" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="59c63286-441c-4c7a-b87d-c14afc70f6b5">
-      <column name="Soi" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="Road" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4457e242-fb76-45dd-8b57-18c7d4cfd608">
-      <column name="Road" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="SubdistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c748b45d-26df-4646-9d22-85bcd37b2dda">
-      <column name="SubdistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="DistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3177ba22-59a9-417b-8ff2-e460f41da876">
-      <column name="DistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="ProvinceTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c20c76be-9f37-4b7b-86c6-653c0a7562b7">
-      <column name="ProvinceTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="Postcode" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="a181c0a3-6a45-4033-84c8-db6c79aa77c7">
-      <column name="Postcode" not-null="False" length="10" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="SubdistrictEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6402687b-0f1a-490c-930a-4802a7014af7">
-      <column name="SubdistrictEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="DistrictEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e7b0a32c-4780-4693-b984-2cc9f7ceb07f">
-      <column name="DistrictEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="ProvinceEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c13f9c66-afd7-408f-bab0-faab0ebaa2d3">
-      <column name="ProvinceEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="b9604f87-a52a-46d8-b9e5-1a5c5228e5f0">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="eb26c7fc-3580-453c-b9ec-13243a020727">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="131ee943-e746-4846-91d3-ba85c21d0d41">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="4e9f5248-ef58-4c49-be8c-4423d22de877">
-      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
-  <class name="EmployerContact" entity-set="EmployerContacts" table="EmployerContacts" schema="dbo" p1:Guid="195b2941-cd3f-407d-9bc6-c7172119d5ce">
-    <id name="ContactID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b247b10b-006a-4811-a6a0-f2af41097fe0">
-      <column name="ContactID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="e40c1972-f1f2-4633-a0a2-f61a4a2037d1">
-      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-    <property name="NameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="65667c9a-c2eb-43bf-842b-71957f6195ed">
-      <column name="NameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="Phone" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="true" p1:Guid="e21ee797-171c-4a5f-ba5b-e54d2af8e6c3">
-      <column name="Phone" not-null="True" length="20" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="13ac5cb2-d03f-423c-bfdf-ccd5f78db42a">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="4f4e2f54-009e-441d-b3ad-01b012f789b7">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="2cd07345-054f-4bf8-bc6f-fc6a7c1511ca">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="c64275bf-c7c7-4385-b9fb-7847c40235ed">
-      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
   <class name="EmployerDocument" entity-set="EmployerDocuments" table="EmployerDocuments" schema="dbo" p1:Guid="037d1025-2a44-4beb-b44a-3643a759caa9">
     <id name="DocumentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="584be7fd-b4b2-4964-8caf-7b8a7f3f01ee">
       <column name="DocumentID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
@@ -449,6 +341,9 @@
     </property>
     <property name="DocumenttypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="fc5efa20-51a2-492f-90d8-0bd02f3be030">
       <column name="DocumenttypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Discription" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bc40e3b5-ac0a-42d0-b1cd-8f73ca7a57fd">
+      <column name="Discription" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="ExpiryDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="9ce992cb-8f1f-407e-9059-b628918bc419">
       <column name="ExpiryDate" not-null="True" sql-type="date" p1:unicode="False" />
@@ -466,39 +361,10 @@
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
-  <class name="EmployerJob" entity-set="EmployerJobs" table="EmployerJobs" schema="dbo" p1:Guid="3b7d73fa-5c12-4f5a-8fdf-571f25117cca">
-    <id name="JobID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="576c82bb-53cc-449d-ab47-090bb83d0735">
-      <column name="JobID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="b3e8c683-8691-4706-be46-8b400dc25cee">
-      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-    <property name="JobtypeTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="a34bfbc1-ea74-4cbc-acf9-8707ab391d0c">
-      <column name="JobtypeTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="JobdescriptionTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="b302c5bd-d383-403c-b926-908d2eaefaa2">
-      <column name="JobdescriptionTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="b7353af8-509f-407b-b387-2c10313eacc8">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="9e730ca4-74ba-40f0-81f8-9df31ac27336">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="c3ca58b2-8867-4882-b375-8e792e2345b6">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="915f05c9-5d9a-4404-a43e-49bbe0f62010">
-      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
   <class name="Employer" entity-set="Employers" table="Employers" schema="dbo" p1:Guid="05bc0f2c-ccfc-4131-b65b-d833847ee2ad">
     <id name="EmployerID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="64a41035-e746-47c7-a8ce-c47ed02f4ed2">
       <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
-    <property name="EmployerCode" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="f7dbc635-7971-4106-a3c8-ba5aa2f111cf">
-      <column name="EmployerCode" not-null="True" length="50" sql-type="nvarchar" unique="True" p1:unicode="True" />
-    </property>
     <property name="NameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="4fa51bff-da59-4c42-b3c5-2f1a03b4ce90">
       <column name="NameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
@@ -508,14 +374,83 @@
     <property name="BusinesstypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="14f5fa4a-dd12-4a96-ad66-f6c1042a2a49">
       <column name="BusinesstypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="CompanyID" type="String" p1:ValidateMaxLength="13" p1:ValidateRequired="true" p1:Guid="163e2534-cdb0-487d-b8b3-5fec5983f6a9">
-      <column name="CompanyID" not-null="True" length="13" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="457d77cc-8f17-43e3-82f9-53ca06a7fe0b">
+      <column name="CardID" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="RegistrationDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="1b5d5734-b135-435a-9ace-40f58eb07677">
-      <column name="RegistrationDate" not-null="True" sql-type="date" p1:unicode="False" />
+    <property name="RegistrationNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="89c98db8-943a-4a5e-b898-81d2a7596237">
+      <column name="RegistrationNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="RegistrationDate" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="1b5d5734-b135-435a-9ace-40f58eb07677">
+      <column name="RegistrationDate" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="RegisteredCapital" type="Decimal" p1:ValidateRequired="true" p1:Guid="4c784b1e-8e25-4372-8538-521a033f490d">
       <column name="RegisteredCapital" not-null="True" precision="15" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="DirectorNameTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ffd87918-11ac-4cc4-8ab9-4a5ce9cfff05">
+      <column name="DirectorNameTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DirectorNameEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="26e4eec0-ad7b-461b-b14f-1a62feb4840a">
+      <column name="DirectorNameEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DirectorPositionTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6a81b243-552c-45a6-a4c7-98b2a4db8555">
+      <column name="DirectorPositionTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DirectorPositionEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="126ef7b3-0684-423b-b874-a40b7171401b">
+      <column name="DirectorPositionEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="JobTypeName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="27c1fc34-78ff-444b-aeb1-35077d222607">
+      <column name="JobTypeName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="JobDiscription" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="692b48aa-8579-449b-9f27-3b2ef9187628">
+      <column name="JobDiscription" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OfficerNameOne" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a21b2272-c54e-4b2f-8c5d-1e81551aa1ab">
+      <column name="OfficerNameOne" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OfficerPhoneOne" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="52d4b743-b18d-4063-b401-471c2134ac26">
+      <column name="OfficerPhoneOne" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OfficerNameTwo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="09da3e01-3208-4d7c-9a70-4ec2d9dffb0e">
+      <column name="OfficerNameTwo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OfficerPhoneTwo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="386c79cf-4f48-48f0-9cbd-1d42b1bd6b49">
+      <column name="OfficerPhoneTwo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="HouseRecordNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="619f887f-8893-4b60-822f-3738dfd0df46">
+      <column name="HouseRecordNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="HouseNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="e3d87b0f-fdef-4d10-9129-be95ab1e55a7">
+      <column name="HouseNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Soi" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="59d97b9c-089d-4674-a6a5-c638f5156e78">
+      <column name="Soi" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Road" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="722b199a-64f2-4f78-9af1-ec88dbe487e7">
+      <column name="Road" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SubdistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="771978f5-0c4c-4924-8b53-97ab1337f4a1">
+      <column name="SubdistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2620e359-bdae-4a61-ba7d-1a02e76c44cd">
+      <column name="DistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProvinceTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b865ae88-5dea-4689-a40b-6400711c0a27">
+      <column name="ProvinceTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Postcode" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="f79aeea2-f2cd-4a9a-93ba-45154eaf178e">
+      <column name="Postcode" not-null="False" length="10" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SubdistrictEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b2c8ac05-48d1-491a-865a-2a44bee28702">
+      <column name="SubdistrictEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DistrictEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ee6aac2f-7ccd-481b-8305-c834d70cc335">
+      <column name="DistrictEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProvinceEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="031b5e2b-26f1-44c3-ab83-3d106ea387be">
+      <column name="ProvinceEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Phone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7120ec7e-227a-4018-9e4b-1c77fd132076">
+      <column name="Phone" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="1a89dfc2-690b-4bfb-a7a3-b33d08c4a2fb">
       <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
@@ -523,8 +458,8 @@
     <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="64807510-58ed-4810-8dc5-29fb43da5fff">
       <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="0cac7ded-ba53-4659-a471-9a82156a0f06">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="0cac7ded-ba53-4659-a471-9a82156a0f06">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
     </property>
     <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="c28fc1c8-5530-440e-99a9-b690eebdee39">
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
@@ -563,30 +498,6 @@
         <property name="CompanyID" />
       </end2>
     </association>
-    <association name="Employer_Director" cardinality="OneToMany" p1:Guid="f9bc441b-5f87-4e43-85d5-fa22618f8c06">
-      <end1 multiplicity="One" name="Employer" class="Director" relation-class="Employer" constrained="True" lazy="False" p1:Guid="21402009-3f6e-44ff-99b3-99df4cbc92d5">
-        <property name="EmployerID" />
-      </end1>
-      <end2 multiplicity="Many" name="Directors" class="Employer" relation-class="Director" lazy="False" p1:Guid="daadc9a3-e4cf-4ab5-9289-bf65c77267a5">
-        <property name="EmployerID" />
-      </end2>
-    </association>
-    <association name="Employer_EmployerAddress" cardinality="OneToMany" p1:Guid="dfef3386-bc15-4bc9-800b-7d1bc00ee045">
-      <end1 multiplicity="One" name="Employer" class="EmployerAddress" relation-class="Employer" constrained="True" lazy="False" p1:Guid="bcd6db5a-4d29-4ddb-beb0-af76e03c4402">
-        <property name="EmployerID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerAddresses" class="Employer" relation-class="EmployerAddress" lazy="False" p1:Guid="86a17014-2d1e-4554-951a-5a936f284322">
-        <property name="EmployerID" />
-      </end2>
-    </association>
-    <association name="Employer_EmployerContact" cardinality="OneToMany" p1:Guid="2df49376-aedf-46fa-a4f7-9221e2f46766">
-      <end1 multiplicity="One" name="Employer" class="EmployerContact" relation-class="Employer" constrained="True" lazy="False" p1:Guid="1eb0320c-7ee4-44a9-b58d-c9d288169570">
-        <property name="EmployerID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerContacts" class="Employer" relation-class="EmployerContact" lazy="False" p1:Guid="2abbecb4-ed51-413f-9ab2-004622ab7093">
-        <property name="EmployerID" />
-      </end2>
-    </association>
     <association name="Employer_EmployerDocument" cardinality="OneToMany" p1:Guid="e1bdb99c-6752-45d7-b7d1-d78387d4e94b">
       <end1 multiplicity="One" name="Employer" class="EmployerDocument" relation-class="Employer" constrained="True" lazy="False" p1:Guid="d5875fd9-1711-4834-97a3-a4918e9f8abe">
         <property name="EmployerID" />
@@ -601,14 +512,6 @@
       </end1>
       <end2 multiplicity="Many" name="EmployerDocuments" class="DocumentType" relation-class="EmployerDocument" lazy="False" p1:Guid="d34da425-969e-4441-b27a-500c3d54193f">
         <property name="DocumenttypeID" />
-      </end2>
-    </association>
-    <association name="Employer_EmployerJob" cardinality="OneToMany" p1:Guid="61ecb87f-1cf4-433f-b82e-84bd355e2d7e">
-      <end1 multiplicity="One" name="Employer" class="EmployerJob" relation-class="Employer" constrained="True" lazy="False" p1:Guid="15a27b63-4b85-40aa-bd43-c0c09c4c6aa2">
-        <property name="EmployerID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerJobs" class="Employer" relation-class="EmployerJob" lazy="False" p1:Guid="756b4941-5081-44d1-a083-83f05e3e540e">
-        <property name="EmployerID" />
       </end2>
     </association>
     <association name="BusinessType_Employer" cardinality="OneToMany" p1:Guid="f1e8dc1c-61b3-468f-8052-7ef8c27fef36">
@@ -707,35 +610,11 @@
         <property name="UserManageID" />
       </end2>
     </association>
-    <association name="User_EmployerAddress" cardinality="OneToMany" p1:Guid="48e58a2e-2156-4535-92be-cbf154e6af49">
-      <end1 multiplicity="One" name="User" class="EmployerAddress" relation-class="User" constrained="True" lazy="False" p1:Guid="efd172f4-427c-4182-a533-895eb76f0d7a">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerAddresses" class="User" relation-class="EmployerAddress" lazy="False" p1:Guid="a29e7434-7b5a-4f15-b39d-622ab1a4c212">
-        <property name="UserManageID" />
-      </end2>
-    </association>
-    <association name="User_EmployerContact" cardinality="OneToMany" p1:Guid="18222bec-a427-4abd-bb5e-fce408a2f58b">
-      <end1 multiplicity="One" name="User" class="EmployerContact" relation-class="User" constrained="True" lazy="False" p1:Guid="14ef3633-d981-4781-8d6c-f0c0dee0d2d8">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerContacts" class="User" relation-class="EmployerContact" lazy="False" p1:Guid="583d51dd-9d1d-454c-93c4-ae81426e48e8">
-        <property name="UserManageID" />
-      </end2>
-    </association>
     <association name="User_EmployerDocument" cardinality="OneToMany" p1:Guid="8319d6a0-8e78-463d-8228-5abc66ce846e">
       <end1 multiplicity="One" name="User" class="EmployerDocument" relation-class="User" constrained="True" lazy="False" p1:Guid="778f3459-7b90-4033-83a1-bb4d49739518">
         <property name="UserID" />
       </end1>
       <end2 multiplicity="Many" name="EmployerDocuments" class="User" relation-class="EmployerDocument" lazy="False" p1:Guid="533f3f0d-6de1-41f5-9110-6ce573544988">
-        <property name="UserManageID" />
-      </end2>
-    </association>
-    <association name="User_EmployerJob" cardinality="OneToMany" p1:Guid="5f6188f7-26f2-4e22-8f33-982026eaf1d5">
-      <end1 multiplicity="One" name="User" class="EmployerJob" relation-class="User" constrained="True" lazy="False" p1:Guid="28e81811-9f33-4939-bc94-646714ae82fb">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerJobs" class="User" relation-class="EmployerJob" lazy="False" p1:Guid="4ef9e57c-5b80-43aa-b1f7-20aab017c114">
         <property name="UserManageID" />
       </end2>
     </association>

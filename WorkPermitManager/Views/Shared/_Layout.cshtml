@@ -1,4 +1,4 @@
-﻿@using ContainerEvaluationSystem.Helpers
+﻿@using WorkPermitManager.Helpers
 @{
     string SureActive = ViewContext.HttpContext.Request.Path;
     string baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.PathBase}";
@@ -108,7 +108,7 @@
                 <div class="logo-wrapper"><a href="#"><img class="img-fluid for-light" src="~/assets/images/logo/3.png" alt="" /><img class="img-fluid for-dark" src="~/assets/images/logo/logo_light.png" alt="" /></a></div>
             </div>
             <div class="col-4 col-xl-4 page-title">
-                <h4 class="f-w-700"> WorkPermit Manager </h4>
+                <h4 class="f-w-700"> WorkPermit Service </h4>
                 <nav>
                     <ol class="breadcrumb justify-content-sm-start align-items-center mb-0">
                         <li class="breadcrumb-item"><a href="#"> <i class="icofont icofont-@ViewData["Icon"] text-dark"> </i></a></li>
@@ -213,102 +213,57 @@
                                     <a href="index.html"><img class="img-fluid" src="~/assets/images/logo/Icon-one.png" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                 </li>
-                                @* <li class="sidebar-main-title">
-                                    <div>
-                                        <h6>ทะเบียนข้อมูล</h6>
-                                    </div>
-                                </li>
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Employers")  ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="PowerOfAttorney" asp-action="ListForm">
-                                        <i class="icofont icofont-files stroke-icon text-white"></i>
-                                        <span style="padding-left:10px"> ลูกค้า-นายจ้าง</span>
-                                    </a>
-                                </li> *@
-                                <li class="sidebar-main-title">
-                                    <div>
-                                        <h6>หนังสิอมอบอำนาจ</h6>
-                                    </div>
-                                </li>
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney") && !SureActive.StartsWith("/PowerOfAttorney/ListApprovalForm") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="PowerOfAttorney" asp-action="ListForm">
-                                        <i class="icofont icofont-files stroke-icon text-white"></i>
-                                        <span style="padding-left:10px"> รายการยื่นขอ</span>
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <a class="sidebar-link  @(SureActive.StartsWith("/Employers") ? "active bg-primary text-white custom-rounded" : "")" asp-controller="Employers" asp-action="EmployersPage">
+                                        <i class="stroke-icon text-white fa fa-briefcase"></i>
+                                        <i class="fill-icon text-white fa fa-briefcase"></i>
+                                        <span style="padding-left: 10px">
+                                            ทะเบียนลูกค้า-นายจ้าง
+                                        </span>
                                     </a>
                                 </li>
-                                <li class="sidebar-list">
-
-                                    <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/PowerOfAttorney/ListApprovalForm") ? "active bg-primary text-white custom-rounded" : "")"
-                                       asp-controller="PowerOfAttorney" asp-action="ListApprovalForm">
-                                        <i class="icofont icofont-checked stroke-icon text-white"></i>
-                                        <span style="padding-left:10px"> อนุมัติคำขอ</span>
+                                <li class="sidebar-list" id="autoservice-menu">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <a class="sidebar-link sidebar-title @(SureActive.StartsWith("/PowerOfAttorney") ? "active bg-primary text-white custom-rounded" : "")" href="javascript:void(0)" onclick="toggleMenu('autoservice-menu')">
+                                        <i class="stroke-icon text-white fa fa-file-text"></i>
+                                        <i class="fill-icon text-white fa fa-file-text"></i>
+                                        <span style="padding-left: 10px">
+                                            หนังสิอมอบอำนาจ
+                                        </span>
                                     </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a asp-controller="PowerOfAttorney" asp-action="Form">รายการยื่นขอ</a></li>
+                                        <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
+                                    </ul>
                                 </li>
                                 @if (User.GetLoggedPermission_Administrator() == "True")
                                 {
-                                    <li class="sidebar-main-title">
-                                        <div>
-                                            <h6>สำหรับผู้ดูแลระบบ</h6>
-                                        </div>
-                                    </li>
-                                    <li class="sidebar-list">
 
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageUsers") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManageUsers">
-                                            <i class="stroke-icon text-white fa fa-user"></i>
-                                            <i class="fill-icon text-white fa fa-user"></i>
-                                            <span style="padding-left:10px"> ข้อมูลผู้ใช้งาน</span>
+                                    <li class="sidebar-list" id="autoservice-menu">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title @(SureActive.StartsWith("/Administrator") ? "active bg-primary text-white custom-rounded" : "")" href="javascript:void(0)" onclick="toggleMenu('autoservice-menu')">
+                                            <i class="stroke-icon text-white fa fa-gear"></i>
+                                            <i class="fill-icon text-white fa fa-gear"></i>
+                                            <span style="padding-left: 10px">
+                                                สำหรับผู้ดูแลระบบ
+                                            </span>
                                         </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePermission") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManagePermission">
-                                            <i class="stroke-icon text-white fa fa-shield"></i>
-                                            <i class="fill-icon text-white fa fa-shield"></i>
-                                            <span style="padding-left:10px"> กำหนดสิทธิ์เข้าใช้งาน</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManagePosition") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManagePosition">
-                                            <i class="icofont icofont-briefcase-alt-1 text-white"></i>
-                                            <span style="padding-left:10px"> ข้อมูลตำแหน่งงาน</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageDepartment") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManageDepartment">
-                                            <i class="icofont icofont-company text-white"></i>
-                                            <span style="padding-left:10px"> ข้อมูลแผนก</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageCompany") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManageCompany">
-                                            <i class="icofont icofont-building-alt text-white"></i>
-                                            <span style="padding-left:10px"> ข้อมูลบริษัท</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLoginHistory") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManageLoginHistory">
-                                            <i class="icofont icofont-history text-white"></i>
-                                            <span style="padding-left:10px"> ประวัติการเข้าสู่ระบบ</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-list">
-
-                                        <a class="sidebar-link sidebar-title link-nav  @(SureActive.StartsWith("/Administrator/ManageLogSystemData") ? "active bg-primary text-white custom-rounded" : "")"
-                                           asp-controller="Administrator" asp-action="ManageLogSystemData">
-                                            <i class="icofont icofont-info-square text-white"></i>
-                                            <span style="padding-left:10px"> ประวัติการจัดการข้อมูล</span>
-                                        </a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a asp-controller="Administrator" asp-action="ManageUsers">ข้อมูลผู้ใช้งาน</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManagePermission">กำหนดสิทธิ์เข้าใช้งาน</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManagePosition">ข้อมูลตำแหน่งงาน</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManageDepartment">ข้อมูลแผนก</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManageCompany">ข้อมูลบริษัท</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManageLoginHistory">ประวัติการเข้าสู่ระบบ</a></li>
+                                            <li><a asp-controller="Administrator" asp-action="ManageLogSystemData">ประวัติการจัดการข้อมูล</a></li>
+                                            <li>
+                                                <a class="submenu-title" href="javascript:void(0)">ตั้งค่าทะเบียน<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
+                                                <ul class="nav-sub-childmenu submenu-content">
+                                                    <li><a asp-controller="Employers" asp-action="BusinessTypes">ประเภทกิจการ</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </li>
                                 }
                             </ul>

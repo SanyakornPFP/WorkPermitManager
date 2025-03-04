@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuaWNhdGlvblxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/BusinessTypes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXEJ1c2luZXNzVHlwZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/EmployersPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXEVtcGxveWVyc1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error400.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I0MDAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,12 +92,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3I1MDMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/PowerOfAttorney/ListApprovalForm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG93ZXJPZkF0dG9ybmV5XExpc3RBcHByb3ZhbEZvcm0uY3NodG1s
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/PowerOfAttorney/Approve.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG93ZXJPZkF0dG9ybmV5XEFwcHJvdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/PowerOfAttorney/ListForm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG93ZXJPZkF0dG9ybmV5XExpc3RGb3JtLmNzaHRtbA==
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/PowerOfAttorney/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG93ZXJPZkF0dG9ybmV5XEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Shared/Error.cshtml]

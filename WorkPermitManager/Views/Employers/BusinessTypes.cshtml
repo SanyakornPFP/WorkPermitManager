@@ -1,0 +1,346 @@
+﻿@{
+    ViewData["Controller"] = "ทะเบียนข้อมูล";
+    ViewData["Action"] = "ประเภทธุรกิจ";
+    ViewData["Icon"] = "building";
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row" style="display: none" id="showInsert">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right">ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> เพิ่มข้อมูล</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูล</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="card-wrapper border rounded-3 light-card checkbox-checked">
+                                <form id="myForm" method="post" class="row g-3" action="">
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <input name="BusinesstypeID" id="txtBusinesstypeID" type="hidden">
+                                        <label class="col-form-label" for="txtBusinesstypeTh">ชื่อประเภทธุรกิจ (ไทย)</label>
+                                        <input class="form-control" name="BusinesstypeTh" id="txtBusinesstypeTh" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="txtBusinesstypeEng">ชื่อประเภทธุรกิจ (อังกฤษ)</label>
+                                        <input class="form-control" name="BusinesstypeEng" id="txtBusinesstypeEng" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <button class="btn btn-pill btn-primary active" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
+                                        <button class="btn btn-pill btn-primary active" id="updateBtn" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0 card-no-border">
+                    <div class="flex justify-end space-x-2" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn" href="#">
+                            <i class="fa fa-plus text-white"></i> เพิ่มประเภทธุรกิจ
+                        </a>
+                    </div>
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="icofont icofont-briefcase-alt-1 text-white"></i> ข้อมูลประเภทธุรกิจ
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-2">
+                        <table class="display table table-bordered" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อประเภทธุรกิจ (ไทย)</th>
+                                    <th>ชื่อประเภทธุรกิจ (อังกฤษ)</th>
+                                    <th>ดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in (List<BusinessType>)ViewBag.BusinessTypeList)
+                                {
+                                    <tr>
+                                        <td>@item.BusinesstypeTh</td>
+                                        <td>@item.BusinesstypeEng</td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-BusinesstypeID="@item.BusinesstypeID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-BusinesstypeID="@item.BusinesstypeID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                $('#myForm')[0].reset();
+                // Hide the BusinesstypeID field and update button
+                $('#txtBusinesstypeID').hide();
+                $('#updateBtn').hide();
+                // Show the create button and header
+                $('#createHeader').show();
+                $('#updateHeader').hide();
+                $('#createBtn').show();
+                // Hide the cancel button
+                $('#cancelBtn').hide();
+            });
+        });
+
+        // เพิ่มข้อมูลประเภทธุรกิจ
+        document.getElementById('createBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var businesstypeTh = $('#txtBusinesstypeTh').val();
+            var businesstypeEng = $('#txtBusinesstypeEng').val();
+
+            if (!businesstypeTh || !businesstypeEng) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'กรุณากรอกข้อมูล',
+                    text: 'กรุณากรอกข้อมูลให้ครบถ้วนก่อนดำเนินการต่อ',
+                });
+                return;
+            }
+
+            $.ajax({
+                url : `@Url.Action("CheckBusinessTypeName", "Employers")`,
+                type: 'POST',
+                data: { BusinesstypeTh: businesstypeTh, BusinesstypeEng: businesstypeEng },
+                success: function (response) {
+                    if (response.success == false) {
+                        Swal.fire('ผิดพลาด', response.message, 'error');
+                    } else {
+                        Swal.fire({
+                            title: 'คุณแน่ใจหรือไม่?',
+                            text: "คุณจะไม่สามารถย้อนกลับได้!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#28a745', // Light green
+                            cancelButtonColor: '#d3d3d3', // Light gray
+                            confirmButtonText: 'ใช่, บันทึก!',
+                            cancelButtonText: 'ยกเลิก'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '@Url.Action("CreateBusinessType", "Employers")',
+                                    type: 'POST',
+                                    data: { BusinesstypeTh: businesstypeTh, BusinesstypeEng: businesstypeEng },
+                                    success: function (response) {
+                                        if (response.success == true) {
+                                            Swal.fire(
+                                                'บันทึกแล้ว!',
+                                                'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                                'success'
+                                            ).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            Swal.fire('ผิดพลาด', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                                        handleAjaxError(xhr);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                },
+            });
+        });
+
+        // แก้ไขข้อมูลประเภทธุรกิจ
+        document.querySelectorAll('.editBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var businesstypeID = this.getAttribute('data-BusinesstypeID');
+
+                $.ajax({
+                    url: '@Url.Action("GetBusinessTypeDetails", "Employers")',
+                    type: 'POST',
+                    data: { BusinesstypeID: businesstypeID },
+                    success: function (response) {
+                        if (response.success == false) {
+                            Swal.fire('ผิดพลาด', response.message, 'error');
+                        } else {
+                            $('#showInsert').show();
+                            $('#txtBusinesstypeID').val(response.businesstypeID);
+                            $('#txtBusinesstypeTh').val(response.businesstypeTh);
+                            $('#txtBusinesstypeEng').val(response.businesstypeEng);
+
+                            $('#createHeader').hide();
+                            $('#updateHeader').show();
+                            $('#createBtn').hide();
+                            $('#updateBtn').show();
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                        handleAjaxError(xhr);
+                    }
+                });
+            });
+        });
+
+        // ลบข้อมูลประเภทธุรกิจ
+        document.querySelectorAll('.deleteBtn').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var businesstypeID = this.getAttribute('data-BusinesstypeID');
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#d3d3d3',
+                    confirmButtonText: 'ใช่, ลบ!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("DeleteBusinessType", "Employers")',
+                            type: 'POST',
+                            data: { BusinesstypeID: businesstypeID },
+                            success: function (response) {
+                                if (response.success) {
+                                    Swal.fire(
+                                        'ลบแล้ว!',
+                                        response.message,
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        document.getElementById('updateBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var businesstypeID = $('#txtBusinesstypeID').val();
+            var businesstypeTh = $('#txtBusinesstypeTh').val();
+            var businesstypeEng = $('#txtBusinesstypeEng').val();
+
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่?',
+                text: "คุณจะไม่สามารถย้อนกลับได้!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#007bff', // Light blue
+                cancelButtonColor: '#d3d3d3', // Light gray
+                confirmButtonText: 'ใช่, บันทึก!',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Save the data here
+                    $.ajax({
+                        url: '@Url.Action("UpdateBusinessType", "Employers")', // manually specify the URL
+                        type: 'POST',
+                        data: { BusinesstypeID: businesstypeID, BusinesstypeTh: businesstypeTh, BusinesstypeEng: businesstypeEng },
+                        success: function (response) {
+                            if (response.success == true) {
+                                Swal.fire(
+                                    'บันทึกแล้ว!',
+                                    'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                    'success'
+                                ).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                })
+                            } else {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            handleAjaxError(xhr);
+                        }
+                    });
+                }
+            });
+        });
+
+         function handleAjaxError(xhr) {
+            console.log('Error:', xhr.status, xhr.statusText);
+
+            switch (xhr.status) {
+                case 400:
+                    window.open('@Url.Action("Error400", "Error")', '_blank');
+                    break;
+                case 401:
+                    window.open('@Url.Action("Error401", "Error")', '_blank');
+                    break;
+                case 403:
+                    window.open('@Url.Action("Error403", "Error")', '_blank');
+                    break;
+                case 404:
+                    window.open('@Url.Action("Error404", "Error")', '_blank');
+                    break;
+                case 500:
+                    window.open('@Url.Action("Error500", "Error")', '_blank');
+                    break;
+                case 503:
+                    window.open('@Url.Action("Error503", "Error")', '_blank');
+                    break;
+                default:
+                    console.log('An unexpected error occurred: ', xhr.status);
+            }
+        }
+    </script>
+}

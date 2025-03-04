@@ -1,10 +1,10 @@
-﻿using ContainerEvaluationSystem.Helpers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using WorkPermitManager.Data;
+using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
 
 namespace WorkPermitManager.Controllers
@@ -69,7 +69,7 @@ namespace WorkPermitManager.Controllers
                 _db.Users.Add(Createmodel);
                 await _db.SaveChangesAsync();
 
-                string[] function = ["PowerOfAttorney", "Administrator"];
+                string[] function = ["Employers", "PowerOfAttorney", "Administrator"];
                 if (Createmodel.AdministratorActive)
                 {
                     foreach (var item in function)
@@ -222,7 +222,7 @@ namespace WorkPermitManager.Controllers
                     _db.Users.Update(model);
                     await _db.SaveChangesAsync();
 
-                    string[] function = ["PowerOfAttorney", "Administrator"];
+                    string[] function = ["Employers", "PowerOfAttorney", "Administrator"];
 
                     if (model.AdministratorActive)
                     {
@@ -496,7 +496,6 @@ namespace WorkPermitManager.Controllers
                 ViewBag.PositionList = _db.Positions.Where(p => p.IsDeleted == false).ToList();
                 return View();
             }
-
         }
 
         #region Create Position
@@ -1396,6 +1395,7 @@ namespace WorkPermitManager.Controllers
             else
             {
                 ViewBag.LogSystemDataList = _db.LogSystemDatas
+                    .OrderByDescending(s => s.ActionTime)
                     .Select(s => new
                     {
                         s.LogID,
@@ -1483,8 +1483,6 @@ namespace WorkPermitManager.Controllers
             }
         }
         #endregion
-
-
 
         //Hashing คือการแปลงข้อมูลให้อยู่ในรูปแบบที่ไม่สามารถย้อนกลับได้ เหมาะสำหรับการตรวจสอบความถูกต้องของข้อมูล เช่น การตรวจสอบรหัสผ่าน
         public static string ComputeSha256Hash(string rawData)

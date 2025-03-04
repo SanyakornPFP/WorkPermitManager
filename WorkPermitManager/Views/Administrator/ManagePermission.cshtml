@@ -38,6 +38,13 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td><i class="icofont icofont-building-alt text-dark"> </i> ทะเบียนลูกค้า-นายจ้าง</td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="employersEdit_read" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="employersEdit_create" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="employersEdit_update" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="employersEdit_delete" type="checkbox"></td>
+                                                </tr>
+                                                <tr>
                                                     <td><i class="icofont icofont-files text-dark"> </i> หนังสิอมอบอำนาจ</td>
                                                     <td class="text-center"><input class="checkbox_animated" id="powerofattorneyEdit_read" type="checkbox"></td>
                                                     <td class="text-center"><input class="checkbox_animated" id="powerofattorneyEdit_create" type="checkbox"></td>
@@ -146,6 +153,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td><i class="icofont icofont-building-alt text-dark m-1"></i> ทะเบียนลูกค้า-นายจ้าง</td>
+                                        <td class="text-center" id="employers_read"></td>
+                                        <td class="text-center" id="employers_create"></td>
+                                        <td class="text-center" id="employers_update"></td>
+                                        <td class="text-center" id="employers_delete"></td>
+                                    </tr>
+                                    <tr>
                                         <td><i class="icofont icofont-files text-dark m-1"> </i> หนังสิอมอบอำนาจ</td>
                                         <td class="text-center" id="powerofattorney_read"></td>
                                         <td class="text-center" id="powerofattorney_create"></td>
@@ -200,6 +214,11 @@
                                 ? '<i class="fa fa-check-square-o text-success"></i>' // แสดงไอคอนเช็คถ้าค่าเป็น `true`
                                 : '<i class="fa fa-ban text-danger"></i>'; // แสดงไอคอนแบนถ้าค่าเป็น `false`
                         }
+                                $('#employers_read').html(getIcon(permissions.Employers.canRead));
+                                $('#employers_create').html(getIcon(permissions.Employers.canCreate));
+                                $('#employers_update').html(getIcon(permissions.Employers.canUpdate));
+                                $('#employers_delete').html(getIcon(permissions.Employers.canDelete));
+
 
                                 $('#powerofattorney_read').html(getIcon(permissions.PowerOfAttorney.canRead));
                                 $('#powerofattorney_create').html(getIcon(permissions.PowerOfAttorney.canCreate));
@@ -246,6 +265,11 @@
                             $('#txtUsername').val(response.username);
                             $('#txtfullName').val(response.fullName);
 
+                            $('#employersEdit_read').prop('checked', permissions.Employers.canRead);
+                            $('#employersEdit_create').prop('checked', permissions.Employers.canCreate);
+                            $('#employersEdit_update').prop('checked', permissions.Employers.canUpdate);
+                            $('#employersEdit_delete').prop('checked', permissions.Employers.canDelete);
+
                             $('#powerofattorneyEdit_read').prop('checked', permissions.PowerOfAttorney.canRead);
                             $('#powerofattorneyEdit_create').prop('checked', permissions.PowerOfAttorney.canCreate);
                             $('#powerofattorneyEdit_update').prop('checked', permissions.PowerOfAttorney.canUpdate);
@@ -276,11 +300,11 @@
                     ShowAllData: $('#showAllData').val(), // Assuming you set this value somewhere
                     Permissions: [
                         {
-                            FunctionName: 'Administrator',
-                            CanRead: $('#administratorEdit_read').prop('checked'),
-                            CanCreate: $('#administratorEdit_create').prop('checked'),
-                            CanUpdate: $('#administratorEdit_update').prop('checked'),
-                            CanDelete: $('#administratorEdit_delete').prop('checked'),
+                            FunctionName: 'Employers',
+                            CanRead: $('#employersEdit_read').prop('checked'),
+                            CanCreate: $('#employersEdit_create').prop('checked'),
+                            CanUpdate: $('#employersEdit_update').prop('checked'),
+                            CanDelete: $('#employersEdit_delete').prop('checked'),
                         },
                         {
                             FunctionName: 'PowerOfAttorney',
@@ -288,6 +312,13 @@
                             CanCreate: $('#powerofattorneyEdit_create').prop('checked'),
                             CanUpdate: $('#powerofattorneyEdit_update').prop('checked'),
                             CanDelete: $('#powerofattorneyEdit_delete').prop('checked'),
+                        },
+                        {
+                            FunctionName: 'Administrator',
+                            CanRead: $('#administratorEdit_read').prop('checked'),
+                            CanCreate: $('#administratorEdit_create').prop('checked'),
+                            CanUpdate: $('#administratorEdit_update').prop('checked'),
+                            CanDelete: $('#administratorEdit_delete').prop('checked'),
                         },
                     ]
                 };

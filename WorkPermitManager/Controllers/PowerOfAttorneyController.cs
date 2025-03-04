@@ -1,5 +1,4 @@
-﻿using ContainerEvaluationSystem.Helpers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Reporting.NETCore;
 using QRCoder;
@@ -7,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using WorkPermitManager.Data;
+using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
 
 namespace WorkPermitManager.Controllers
@@ -23,7 +23,7 @@ namespace WorkPermitManager.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult ListForm(string type)
+        public IActionResult Form(string type)
         {
             if (type == null)
             {
@@ -32,18 +32,28 @@ namespace WorkPermitManager.Controllers
 
             ViewBag.TypeForm = type;
 
-            var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false && s.Status == type)
-                .Select(s => new
-                {
-                    s.PowerOfAttorneyID,
-                    s.CodeForm,
-                    GrantorName = s.User_GrantorID.FullName,
-                    AttorneyName = s.User_AttorneyID.FullName,
-                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
-                    s.GrantorDateApprove,
-                    s.Status
-                })
-                .ToList();
+            var PowerOfAttorneyModel = _db.PowerOfAttorneys
+            .Select(s => new
+            {
+                s.PowerOfAttorneyID,
+                s.CodeForm,
+                GrantorName = s.User_GrantorID.FullName,
+                AttorneyName = s.User_AttorneyID.FullName,
+                CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                s.GrantorDateApprove,
+                s.Status,
+                s.IsActive
+            })
+            .ToList();
+
+            if (type != "ยกเลิก")
+            {
+                PowerOfAttorneyModel = PowerOfAttorneyModel.Where(s => s.IsActive && s.Status == type).ToList();
+            }
+            else
+            {
+                PowerOfAttorneyModel = PowerOfAttorneyModel.Where(s => s.IsActive == false).ToList();
+            }
 
             if (User.GetRole_AdministratorIsActive() == "True")
             {
@@ -78,14 +88,14 @@ namespace WorkPermitManager.Controllers
         }
 
         #region ListApprovalForm
-        public IActionResult ListApprovalForm(string type)
+        public IActionResult Approve(string type)
         {
             if (type == null)
             {
                 type = "รอการอนุมัติ";
             }
             ViewBag.TypeForm = type;
-            var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false && s.Status == type)
+            var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsActive && s.Status == type)
                 .Select(s => new
                 {
                     s.PowerOfAttorneyID,
@@ -271,7 +281,7 @@ namespace WorkPermitManager.Controllers
                 }
                 else
                 {
-                    PowerOfAttorney.IsDeleted = true;
+                    PowerOfAttorney.IsActive = false;
                     PowerOfAttorney.UpdatedAt = DateTime.Now;
                     PowerOfAttorney.UserManageID = int.Parse(User.GetLoggedInUserID());
                     await _db.SaveChangesAsync();
@@ -302,7 +312,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult DocumentCountStatus()
         {
-            var model = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false)
+            var model = _db.PowerOfAttorneys
                 .Select(s => new
                 {
                     s.PowerOfAttorneyID,
@@ -312,7 +322,7 @@ namespace WorkPermitManager.Controllers
                     AttorneyName = s.User_AttorneyID.FullName,
                     CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
                     s.Status,
-                    s.IsDeleted
+                    s.IsActive
                 })
                 .ToList();
 
@@ -323,10 +333,10 @@ namespace WorkPermitManager.Controllers
 
                 return Json(new
                 {
-                    waitapproval = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.IsDeleted == true).Count()
+                    waitapproval = CountStatus.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.IsActive == false).Count()
                 });
             }
             else
@@ -336,54 +346,10 @@ namespace WorkPermitManager.Controllers
                     .ToList();
                 return Json(new
                 {
-                    waitapproved = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.IsDeleted == true).Count()
-                });
-            }
-        }
-        #endregion
-
-        #region DocumentCountStatusApprove
-        [HttpPost]
-        public JsonResult DocumentCountStatusApprove()
-        {
-            var model = _db.PowerOfAttorneys.Where(s => s.IsDeleted == false)
-                .Select(s => new
-                {
-                    s.PowerOfAttorneyID,
-                    s.CodeForm,
-                    GrantorName = s.User_GrantorID.FullName,
-                    s.AttorneyID,
-                    AttorneyName = s.User_AttorneyID.FullName,
-                    CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
-                    s.Status
-                })
-                .ToList();
-
-            if (User.GetRole_AdministratorIsActive() == "True")
-            {
-                var CountStatus = model
-                    .ToList();
-
-                return Json(new
-                {
-                    waitapproval = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
-                });
-            }
-            else
-            {
-                var CountStatus = model
-                    .Where(s => s.AttorneyID == int.Parse(User.GetLoggedInUserID()))
-                    .ToList();
-                return Json(new
-                {
-                    waitapproved = CountStatus.Where(s => s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.Status == "ไม่อนุมัติ").Count(),
+                    waitapproved = CountStatus.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
+                    approved = CountStatus.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = CountStatus.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = CountStatus.Where(s => s.IsActive == false).Count()
                 });
             }
         }
