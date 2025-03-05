@@ -13,8 +13,6 @@
         <File Name="User.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="LogSystemData.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="LoginHistory.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
-        <File Name="BusinessType.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
-        <File Name="DocumentType.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="EmployerDocument.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="Employer.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
       </GeneratedFiles>

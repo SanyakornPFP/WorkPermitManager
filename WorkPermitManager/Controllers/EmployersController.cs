@@ -10,10 +10,12 @@ namespace WorkPermitManager.Controllers
     public class EmployersController : Controller
     {
         private readonly Db_WorkPermitManagerModel _db;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public EmployersController(Db_WorkPermitManagerModel db)
+        public EmployersController(Db_WorkPermitManagerModel db, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostingEnvironment = hostEnvironment;
         }
 
         #region Employers
@@ -28,7 +30,6 @@ namespace WorkPermitManager.Controllers
 
             ViewBag.SearchData = SearchData;
             ViewBag.EmployerList = employers;
-            ViewBag.BusinessTypeList = _db.BusinessTypes.Where(s => s.IsActive).ToList();
 
             return View();
         }
@@ -42,7 +43,7 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (string.IsNullOrEmpty(model.NameTh) || string.IsNullOrEmpty(model.NameEng) || model.BusinesstypeID == 0)
+            if (string.IsNullOrEmpty(model.NameTh) || string.IsNullOrEmpty(model.NameEng) || string.IsNullOrEmpty(model.BusinessTypeName))
             {
                 return NotFound();
             }
@@ -53,7 +54,7 @@ namespace WorkPermitManager.Controllers
                 {
                     NameTh = model.NameTh,
                     NameEng = model.NameEng,
-                    BusinesstypeID = model.BusinesstypeID,
+                    BusinessTypeName = model.BusinessTypeName,
                     CardID = model.CardID,
                     RegistrationNumber = model.RegistrationNumber,
                     RegistrationDate = model.RegistrationDate,
@@ -175,7 +176,7 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (model.EmployerID == 0 || string.IsNullOrEmpty(model.NameTh) || string.IsNullOrEmpty(model.NameEng) || model.BusinesstypeID == 0 || string.IsNullOrEmpty(model.RegistrationNumber) || model.RegisteredCapital <= 0)
+            if (model.EmployerID == 0 || string.IsNullOrEmpty(model.NameTh) || string.IsNullOrEmpty(model.NameEng) || string.IsNullOrEmpty(model.BusinessTypeName) || string.IsNullOrEmpty(model.RegistrationNumber) || model.RegisteredCapital <= 0)
             {
                 return NotFound();
             }
@@ -192,7 +193,7 @@ namespace WorkPermitManager.Controllers
                     {
                         data.NameTh,
                         data.NameEng,
-                        data.BusinesstypeID,
+                        data.BusinessTypeName,
                         data.RegistrationNumber,
                         data.RegistrationDate,
                         data.RegisteredCapital,
@@ -222,7 +223,7 @@ namespace WorkPermitManager.Controllers
 
                     data.NameTh = model.NameTh;
                     data.NameEng = model.NameEng;
-                    data.BusinesstypeID = model.BusinesstypeID;
+                    data.BusinessTypeName = model.BusinessTypeName;
                     data.CardID = model.CardID;
                     data.RegistrationNumber = model.RegistrationNumber;
                     data.RegistrationDate = model.RegistrationDate;
@@ -265,8 +266,8 @@ namespace WorkPermitManager.Controllers
                         UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        OldValue = $"NameTh: {oldValues.NameTh}, NameEng: {oldValues.NameEng}, BusinesstypeID: {oldValues.BusinesstypeID}, RegistrationNumber: {oldValues.RegistrationNumber}, RegistrationDate: {oldValues.RegistrationDate}, RegisteredCapital: {oldValues.RegisteredCapital}, DirectorNameTh: {oldValues.DirectorNameTh}, DirectorNameEng: {oldValues.DirectorNameEng}, DirectorPositionTh: {oldValues.DirectorPositionTh}, DirectorPositionEng: {oldValues.DirectorPositionEng}, JobTypeName: {oldValues.JobTypeName}, JobDiscription: {oldValues.JobDiscription}, HouseNo: {oldValues.HouseNo}, Soi: {oldValues.Soi}, Road: {oldValues.Road}, SubdistrictTh: {oldValues.SubdistrictTh}, DistrictTh: {oldValues.DistrictTh}, ProvinceTh: {oldValues.ProvinceTh}, Postcode: {oldValues.Postcode}, SubdistrictEng: {oldValues.SubdistrictEng}, DistrictEng: {oldValues.DistrictEng}, ProvinceEng: {oldValues.ProvinceEng}, Phone: {oldValues.Phone}",
-                        NewValue = $"NameTh: {model.NameTh}, NameEng: {model.NameEng}, BusinesstypeID: {model.BusinesstypeID}, RegistrationNumber: {model.RegistrationNumber}, RegistrationDate: {model.RegistrationDate}, RegisteredCapital: {model.RegisteredCapital}, DirectorNameTh: {model.DirectorNameTh}, DirectorNameEng: {model.DirectorNameEng}, DirectorPositionTh: {model.DirectorPositionTh}, DirectorPositionEng: {model.DirectorPositionEng}, JobTypeName: {model.JobTypeName}, JobDiscription: {model.JobDiscription}, HouseNo: {model.HouseNo}, Soi: {model.Soi}, Road: {model.Road}, SubdistrictTh: {model.SubdistrictTh}, DistrictTh: {model.DistrictTh}, ProvinceTh: {model.ProvinceTh}, Postcode: {model.Postcode}, SubdistrictEng: {model.SubdistrictEng}, DistrictEng: {model.DistrictEng}, ProvinceEng: {model.ProvinceEng}, Phone: {model.Phone}",
+                        OldValue = $"NameTh: {oldValues.NameTh}, NameEng: {oldValues.NameEng}, BusinessTypeName: {oldValues.BusinessTypeName}, RegistrationNumber: {oldValues.RegistrationNumber}, RegistrationDate: {oldValues.RegistrationDate}, RegisteredCapital: {oldValues.RegisteredCapital}, DirectorNameTh: {oldValues.DirectorNameTh}, DirectorNameEng: {oldValues.DirectorNameEng}, DirectorPositionTh: {oldValues.DirectorPositionTh}, DirectorPositionEng: {oldValues.DirectorPositionEng}, JobTypeName: {oldValues.JobTypeName}, JobDiscription: {oldValues.JobDiscription}, HouseNo: {oldValues.HouseNo}, Soi: {oldValues.Soi}, Road: {oldValues.Road}, SubdistrictTh: {oldValues.SubdistrictTh}, DistrictTh: {oldValues.DistrictTh}, ProvinceTh: {oldValues.ProvinceTh}, Postcode: {oldValues.Postcode}, SubdistrictEng: {oldValues.SubdistrictEng}, DistrictEng: {oldValues.DistrictEng}, ProvinceEng: {oldValues.ProvinceEng}, Phone: {oldValues.Phone}",
+                        NewValue = $"NameTh: {model.NameTh}, NameEng: {model.NameEng}, BusinessTypeName: {model.BusinessTypeName}, RegistrationNumber: {model.RegistrationNumber}, RegistrationDate: {model.RegistrationDate}, RegisteredCapital: {model.RegisteredCapital}, DirectorNameTh: {model.DirectorNameTh}, DirectorNameEng: {model.DirectorNameEng}, DirectorPositionTh: {model.DirectorPositionTh}, DirectorPositionEng: {model.DirectorPositionEng}, JobTypeName: {model.JobTypeName}, JobDiscription: {model.JobDiscription}, HouseNo: {model.HouseNo}, Soi: {model.Soi}, Road: {model.Road}, SubdistrictTh: {model.SubdistrictTh}, DistrictTh: {model.DistrictTh}, ProvinceTh: {model.ProvinceTh}, Postcode: {model.Postcode}, SubdistrictEng: {model.SubdistrictEng}, DistrictEng: {model.DistrictEng}, ProvinceEng: {model.ProvinceEng}, Phone: {model.Phone}",
                         Description = $"Updated employer with ID: {model.EmployerID}"
                     };
 
@@ -275,6 +276,70 @@ namespace WorkPermitManager.Controllers
                     await _db.SaveChangesAsync();
 
                     return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
+
+        #region Get Employer Details
+        [HttpPost]
+        public JsonResult GetEmployerDetails(int EmployerID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (EmployerID == 0)
+            {
+                return Json(new { success = false, message = "Employer ID is required" });
+            }
+            else
+            {
+                var model = _db.Employers
+                    .Where(p => p.EmployerID == EmployerID)
+                    .Select(s => new
+                    {
+                        s.EmployerID,
+                        s.NameTh,
+                        s.NameEng,
+                        s.BusinessTypeName,
+                        s.CardID,
+                        s.RegistrationNumber,
+                        s.RegistrationDate,
+                        s.RegisteredCapital,
+                        s.JobTypeName,
+                        s.JobDiscription,
+                        s.DirectorNameTh,
+                        s.DirectorNameEng,
+                        s.DirectorPositionTh,
+                        s.DirectorPositionEng,
+                        s.OfficerNameOne,
+                        s.OfficerPhoneOne,
+                        s.OfficerNameTwo,
+                        s.OfficerPhoneTwo,
+                        s.HouseRecordNumber,
+                        s.HouseNo,
+                        s.Soi,
+                        s.Road,
+                        s.SubdistrictTh,
+                        s.DistrictTh,
+                        s.ProvinceTh,
+                        s.Postcode,
+                        s.SubdistrictEng,
+                        s.DistrictEng,
+                        s.ProvinceEng,
+                        s.Phone
+
+                    })
+                    .FirstOrDefault();
+                if (model == null)
+                {
+                    return Json(new { success = false, message = "Employer not found" });
+                }
+                else
+                {
+                    return Json(new { success = true, data = model });
                 }
             }
         }
@@ -313,8 +378,8 @@ namespace WorkPermitManager.Controllers
                 var worksheet = package.Workbook.Worksheets.Add("Sample");
 
                 // Add headers
-                worksheet.Cells[1, 1].Value = "ชื่อนายจ้าง (ไทย)";
-                worksheet.Cells[1, 2].Value = "ชื่อนายจ้าง (อังกฤษ)";
+                worksheet.Cells[1, 1].Value = "ชื่อลูกค้า-นายจ้าง (ไทย)";
+                worksheet.Cells[1, 2].Value = "ชื่อลูกค้า-นายจ้าง (อังกฤษ)";
                 worksheet.Cells[1, 3].Value = "ประเภทธุรกิจ";
                 worksheet.Cells[1, 4].Value = "เลขประจำตัวประชาชน";
                 worksheet.Cells[1, 5].Value = "เลขทะเบียนนิติบุคคล";
@@ -390,7 +455,7 @@ namespace WorkPermitManager.Controllers
                             {
                                 NameTh = worksheet.Cells[row, 1].Text,
                                 NameEng = worksheet.Cells[row, 2].Text,
-                                BusinesstypeID = int.Parse(worksheet.Cells[row, 3].Text),
+                                BusinessTypeName = worksheet.Cells[row, 3].Text,
                                 CardID = worksheet.Cells[row, 4].Text,
                                 RegistrationNumber = worksheet.Cells[row, 5].Text,
                                 RegistrationDate = worksheet.Cells[row, 6].Text,
@@ -438,129 +503,129 @@ namespace WorkPermitManager.Controllers
             }
         }
         #endregion
-
-        #region Get Employer Details
-        [HttpPost]
-        public JsonResult GetEmployerDetails(int EmployerID)
-        {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
-            {
-                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
-            }
-
-            if (EmployerID == 0)
-            {
-                return Json(new { success = false, message = "Employer ID is required" });
-            }
-            else
-            {
-                var model = _db.Employers
-                    .Where(p => p.EmployerID == EmployerID)
-                    .Select(s => new
-                    {
-                        s.EmployerID,
-                        s.NameTh,
-                        s.NameEng,
-                        BusinesstypeTh = s.BusinessType.BusinesstypeTh,
-                        s.CardID,
-                        s.RegistrationNumber,
-                        s.RegistrationDate,
-                        s.RegisteredCapital,
-                        s.JobTypeName,
-                        s.JobDiscription,
-                        s.DirectorNameTh,
-                        s.DirectorNameEng,
-                        s.DirectorPositionTh,
-                        s.DirectorPositionEng,
-                        s.OfficerNameOne,
-                        s.OfficerPhoneOne,
-                        s.OfficerNameTwo,
-                        s.OfficerPhoneTwo,
-                        s.HouseRecordNumber,
-                        s.HouseNo,
-                        s.Soi,
-                        s.Road,
-                        s.SubdistrictTh,
-                        s.DistrictTh,
-                        s.ProvinceTh,
-                        s.Postcode,
-                        s.SubdistrictEng,
-                        s.DistrictEng,
-                        s.ProvinceEng,
-                        s.Phone
-
-                    })
-                    .FirstOrDefault();
-                if (model == null)
-                {
-                    return Json(new { success = false, message = "Employer not found" });
-                }
-                else
-                {
-                    return Json(new { success = true, data = model });
-                }
-            }
-        }
-        #endregion
         #endregion Employers
 
-        #region BusinessTypes Function
-        public IActionResult BusinessTypes()
+        #region EmployersDetail
+        public IActionResult EmployersDetail(int EmployerID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
-            {
-                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                var businessTypes = _db.BusinessTypes.Where(s => s.IsActive).ToList();
-                ViewBag.BusinessTypeList = businessTypes;
-            }
+            var employers = _db.Employers
+                .Where(s => s.EmployerID == EmployerID)
+                .Select(s => new
+                {
+                    s.EmployerID,
+                    NameTh = s.NameTh,
+                    NameEng = s.NameEng,
+                    BusinessTypeName = s.BusinessTypeName,
+                    RegistrationDate = s.RegistrationDate,
+                    CardID = s.CardID,
+                    RegistrationNumber = s.RegistrationNumber,
+                    RegisteredCapital = s.RegisteredCapital,
+                    JobDiscription = s.JobDiscription,
+                    DirectorNameTh = s.DirectorNameTh,
+                    DirectorNameEng = s.DirectorNameEng,
+                    DirectorPositionTh = s.DirectorPositionTh,
+                    DirectorPositionEng = s.DirectorPositionEng,
+                    OfficerNameOne = s.OfficerNameOne,
+                    OfficerPhoneOne = s.OfficerPhoneOne,
+                    OfficerNameTwo = s.OfficerNameTwo,
+                    OfficerPhoneTwo = s.OfficerPhoneTwo,
+                    s.HouseRecordNumber,
+                    Address = "บ้านเลขที่ " + s.HouseNo + " ซอย " + s.Soi + " ถนน " + s.Road + " แขวง " + s.SubdistrictTh + " เขต " + s.DistrictTh + " จังหวัด " + s.ProvinceTh + " รหัสไปรษณีย์ " + s.Postcode,
+                    Phone = s.Phone
+                })
+                .FirstOrDefault();
+            ViewBag.EmployerName = employers.NameTh + " (" + employers.NameEng + ")";
 
-            return View();
+            return View(employers);
+        }
+        #endregion EmployersDetail
+
+        #region EmployersDocument   
+        public IActionResult EmployersDocument(int EmployerID)
+        {
+            var employers = _db.Employers
+                .Where(s => s.EmployerID == EmployerID)
+                .Select(s => new
+                {
+                    s.EmployerID,
+                    NameTh = s.NameTh,
+                    NameEng = s.NameEng
+                })
+                .FirstOrDefault();
+            ViewBag.EmployerName = employers.NameTh + " (" + employers.NameEng + ")";
+
+            var document = _db.EmployerDocuments
+                .Where(s => s.EmployerID == EmployerID && s.IsActive)
+                .ToList();
+
+            ViewBag.DocumentList = document;
+
+            return View(employers);
         }
 
-        #region Create BusinessType
+        #region Create EmployerDocument
         [HttpPost]
-        public async Task<IActionResult> CreateBusinessType(string BusinesstypeTh, string BusinesstypeEng)
+        public async Task<IActionResult> CreateEmployerDocument(RequestEmployerDocumentModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateEmployers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateEmployerDocuments"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
-
-            if (string.IsNullOrEmpty(BusinesstypeTh) || string.IsNullOrEmpty(BusinesstypeEng))
-            {
-                return NotFound();
-            }
             else
             {
-                BusinessType createModel = new BusinessType
+                if (model.File == null)
                 {
-                    BusinesstypeTh = BusinesstypeTh,
-                    BusinesstypeEng = BusinesstypeEng,
+                    return NotFound();
+                }
+
+                var fileName = "DCO0" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(model.File.FileName);
+
+                string filePath = null;
+                string EmployerName = _db.Employers.Where(s => s.EmployerID == model.EmployerID).Select(s => s.NameTh).FirstOrDefault();
+                if (model.File != null)
+                {
+                    var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", EmployerName);
+                    if (!Directory.Exists(uploads))
+                    {
+                        Directory.CreateDirectory(uploads);
+                    }
+
+                    filePath = Path.Combine(uploads, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.File.CopyToAsync(fileStream);
+                    }
+                }
+
+                EmployerDocument createModel = new EmployerDocument
+                {
+                    DocumentName = fileName,
+                    EmployerID = model.EmployerID,
+                    DocumentTypeName = model.DocumentTypeName,
+                    Discription = model.Discription,
+                    ExpiryDate = model.ExpiryDate,
+                    PathFile = filePath,
                     CreatedAt = DateTime.Now,
                     IsActive = true,
                     UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
 
-                // Processing the BusinessType creation
-                _db.BusinessTypes.Add(createModel);
+                // Processing the EmployerDocument creation
+                _db.EmployerDocuments.Add(createModel);
                 await _db.SaveChangesAsync();
 
-                // Log the creation of the BusinessType
+                // Log the creation of the EmployerDocument
                 var logEntry = new LogSystemData
                 {
-                    TableName = "BusinessTypes",
+                    TableName = "EmployerDocuments",
                     Action = "Create",
-                    RecordID = createModel.BusinesstypeID,
+                    RecordID = createModel.DocumentID,
                     UserManageID = int.Parse(User.GetLoggedInUserID()),
                     ActionTime = DateTime.Now,
                     IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                     OldValue = null,
-                    NewValue = $"BusinesstypeTh: {createModel.BusinesstypeTh}, BusinesstypeEng: {createModel.BusinesstypeEng}",
-                    Description = $"Created new business type with Name: {createModel.BusinesstypeTh}"
+                    NewValue = $"DocumentID: {createModel.DocumentID}, DocumentName: {createModel.DocumentName}",
+                    Description = $"Created new employer document with ID: {createModel.DocumentID}"
                 };
 
                 // Save the log entry
@@ -572,48 +637,48 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
-        #region Delete BusinessType
+        #region Delete EmployerDocument
         [HttpPost]
-        public async Task<IActionResult> DeleteBusinessType(int BusinesstypeID)
+        public async Task<IActionResult> DeleteEmployerDocument(int DocumentID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteEmployers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteEmployerDocuments"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (BusinesstypeID == 0)
+            if (DocumentID == 0)
             {
                 return NotFound();
             }
             else
             {
-                var model = _db.BusinessTypes.FirstOrDefault(p => p.BusinesstypeID == BusinesstypeID);
+                var model = _db.EmployerDocuments.FirstOrDefault(p => p.DocumentID == DocumentID);
                 if (model == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    model.IsActive = true;
+                    model.IsActive = false;
                     model.UpdatedAt = DateTime.Now;
                     model.UserManageID = int.Parse(User.GetLoggedInUserID());
 
-                    // Processing the BusinessType deletion
-                    _db.BusinessTypes.Update(model);
+                    // Processing the EmployerDocument deletion
+                    _db.EmployerDocuments.Update(model);
                     await _db.SaveChangesAsync();
 
-                    // Log the deletion of the BusinessType
+                    // Log the deletion of the EmployerDocument
                     var logEntry = new LogSystemData
                     {
-                        TableName = "BusinessTypes",
+                        TableName = "EmployerDocuments",
                         Action = "Delete",
-                        RecordID = model.BusinesstypeID,
+                        RecordID = model.DocumentID,
                         UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        OldValue = $"BusinesstypeTh: {model.BusinesstypeTh}, BusinesstypeEng: {model.BusinesstypeEng}",
+                        OldValue = $"DocumentID: {model.DocumentID}, DocumentName: {model.DocumentName}",
                         NewValue = null,
-                        Description = $"Deleted business type with Name: {model.BusinesstypeTh}"
+                        Description = $"Deleted employer document with ID: {model.DocumentID}"
                     };
 
                     // Save the log entry
@@ -626,52 +691,79 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
-        #region Update BusinessType
+        #region Update EmployerDocument
         [HttpPost]
-        public async Task<IActionResult> UpdateBusinessType(int BusinesstypeID, string BusinesstypeTh, string BusinesstypeEng)
+        public async Task<IActionResult> UpdateEmployerDocument(RequestEmployerDocumentModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployerDocuments"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (BusinesstypeID == 0 || string.IsNullOrEmpty(BusinesstypeTh) || string.IsNullOrEmpty(BusinesstypeEng))
+            if (model.DocumentID == 0 || string.IsNullOrEmpty(model.DocumentTypeName))
             {
                 return NotFound();
             }
             else
             {
-                var model = _db.BusinessTypes.FirstOrDefault(p => p.BusinesstypeID == BusinesstypeID);
-                if (model == null)
+                var data = _db.EmployerDocuments.FirstOrDefault(p => p.DocumentID == model.DocumentID);
+                if (data == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    var oldTh = model.BusinesstypeTh;
-                    var oldEng = model.BusinesstypeEng;
+                    var oldValues = new
+                    {
+                        data.DocumentName,
+                        data.DocumentTypeName,
+                        data.Discription,
+                        data.ExpiryDate,
+                        data.PathFile
+                    };
 
-                    model.BusinesstypeTh = BusinesstypeTh;
-                    model.BusinesstypeEng = BusinesstypeEng;
-                    model.UpdatedAt = DateTime.Now;
-                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    string filePath = data.PathFile;
+                    string fileName = data.DocumentName;
+                    if (model.File != null)
+                    {
+                        var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", data.Employer.NameTh);
+                        if (!Directory.Exists(uploads))
+                        {
+                            Directory.CreateDirectory(uploads);
+                        }
 
-                    // Processing the BusinessType update
-                    _db.BusinessTypes.Update(model);
+                        fileName = "DCO0" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(model.File.FileName);
+                        filePath = Path.Combine(uploads, fileName);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await model.File.CopyToAsync(fileStream);
+                        }
+                    }
+
+                    data.DocumentName = fileName;
+                    data.DocumentTypeName = model.DocumentTypeName;
+                    data.Discription = model.Discription;
+                    data.ExpiryDate = model.ExpiryDate;
+                    data.PathFile = filePath;
+                    data.UpdatedAt = DateTime.Now;
+                    data.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                    // Processing the EmployerDocument update
+                    _db.EmployerDocuments.Update(data);
                     await _db.SaveChangesAsync();
 
-                    // Log the update of the BusinessType
+                    // Log the update of the EmployerDocument
                     var logEntry = new LogSystemData
                     {
-                        TableName = "BusinessTypes",
+                        TableName = "EmployerDocuments",
                         Action = "Update",
-                        RecordID = model.BusinesstypeID,
+                        RecordID = data.DocumentID,
                         UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        OldValue = $"BusinesstypeTh: {oldTh}, BusinesstypeEng: {oldEng}",
-                        NewValue = $"BusinesstypeTh: {model.BusinesstypeTh}, BusinesstypeEng: {model.BusinesstypeEng}",
-                        Description = $"Updated business type with Name: {oldTh} to {model.BusinesstypeTh}"
+                        OldValue = $"DocumentName: {oldValues.DocumentName}, DocumentTypeName: {oldValues.DocumentTypeName}, Discription: {oldValues.Discription}, ExpiryDate: {oldValues.ExpiryDate}, PathFile: {oldValues.PathFile}",
+                        NewValue = $"DocumentName: {data.DocumentName}, DocumentTypeName: {data.DocumentTypeName}, Discription: {data.Discription}, ExpiryDate: {data.ExpiryDate}, PathFile: {data.PathFile}",
+                        Description = $"Updated employer document with ID: {model.DocumentID}"
                     };
 
                     // Save the log entry
@@ -684,56 +776,50 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
-        #region Check BusinessType Name
+        #region Get EmployerDocument Details
         [HttpPost]
-        public JsonResult CheckBusinessTypeName(string BusinesstypeTh, string BusinesstypeEng)
+        public JsonResult GetEmployerDocumentDetails(int DocumentID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployerDocuments"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            var model = _db.BusinessTypes.FirstOrDefault(p => p.BusinesstypeTh == BusinesstypeTh || p.BusinesstypeEng == BusinesstypeEng);
-            if (model != null)
+            if (DocumentID == 0)
             {
-                return Json(new { success = false, message = "ไม่สามารถบันทึกข้อมูลเนื่องจากมีข้อมูลนี้อยู่แล้ว" });
+                return Json(new { success = false, message = "Document ID is required" });
             }
             else
             {
-                return Json(new { success = true });
-            }
-        }
-        #endregion
-
-        #region Get BusinessType Details
-        [HttpPost]
-        public JsonResult GetBusinessTypeDetails(int BusinesstypeID)
-        {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
-            {
-                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
-            }
-
-            if (BusinesstypeID == 0)
-            {
-                return Json("BusinessType ID is required");
-            }
-            else
-            {
-                var model = _db.BusinessTypes.FirstOrDefault(p => p.BusinesstypeID == BusinesstypeID);
+                var model = _db.EmployerDocuments
+                    .Where(p => p.DocumentID == DocumentID)
+                    .Select(s => new
+                    {
+                        s.DocumentID,
+                        s.DocumentName,
+                        s.EmployerID,
+                        s.DocumentTypeName,
+                        s.Discription,
+                        s.ExpiryDate,
+                        s.PathFile,
+                        s.CreatedAt,
+                        s.UpdatedAt,
+                        s.IsActive
+                    })
+                    .FirstOrDefault();
                 if (model == null)
                 {
-                    return Json("BusinessType not found");
+                    return Json(new { success = false, message = "Employer document not found" });
                 }
                 else
                 {
-                    return Json(model);
+                    return Json(new { success = true, data = model });
                 }
             }
         }
         #endregion
 
-        #endregion BusinessTypes Function
+        #endregion EmployersDocument
 
         private List<string> GetUserPermissions(int userId)
         {

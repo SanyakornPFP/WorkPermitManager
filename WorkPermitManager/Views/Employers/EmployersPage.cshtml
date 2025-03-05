@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Controller"] = "ทะเบียนลูกค้า-นายจ้าง";
-    ViewData["Action"] = "รายชื่อทั้งหมด";
+    ViewData["Action"] = ViewBag.SearchData == null || ViewBag.SearchData == "" ? "รายชื่อทั้งหมด" : "ค้นหารายชื่อ";
     ViewData["Icon"] = "briefcase";
 }
 
@@ -60,13 +60,8 @@
                                                 <input class="form-control" name="NameEng" id="txtNameEng" type="text" placeholder="กรุณากรอกข้อมูล">
                                             </div>
                                             <div class="col-xxl-12 col-sm-12">
-                                                <label class="col-form-label" for="ddlBusinesstypeID">ประเภทธุรกิจ</label>
-                                                <select class="form-control select2-In" name="BusinesstypeID" id="ddlBusinesstypeID">
-                                                    @foreach (var item in (List<BusinessType>)ViewBag.BusinessTypeList)
-                                                    {
-                                                        <option value="@item.BusinesstypeID">@item.BusinesstypeTh</option>
-                                                    }
-                                                </select>
+                                                <label class="col-form-label" for="txtBusinessTypeName">ประเภทธุรกิจ</label>
+                                                <input class="form-control" name="BusinessTypeName" id="txtBusinessTypeName" type="text" placeholder="กรุณากรอกข้อมูล">
                                             </div>
                                             <div class="col-xxl-6 col-sm-6">
                                                 <label class="col-form-label" for="txtCardID">เลขบัตรประจำตัวประชาชน</label>
@@ -208,8 +203,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header pb-0 card-no-border">
-                    <div class="flex justify-end space-x-2" style="float:right">
+                <div class="card-header">
+                    <div class="d-flex gap-2 justify-end" style="float:right">
                         <a class="btn btn-primary btn-sm" id="createOn" href="#">
                             <i class="fa fa-plus text-white"></i> เพิ่มข้อมูล
                         </a>
@@ -218,18 +213,27 @@
                         </a>
                     </div>
                     <div class="ribbon ribbon-primary ribbon-clip">
-                        <i class="fa fa-briefcase"></i> รายชื่อลูกค้า-นายจ้าง
+                        <i class="fa fa-briefcase"></i> ทะเบียนลูกค้า-นายจ้าง
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex justify-content-end mb-3">
+                        <form asp-action="EmployersPage" asp-controller="Employers" class="d-flex gap-1">
+                            <input type="text" name="SearchData" style="width: 400px" class="form-control me-2" id="SearchData" placeholder="กรอกชื่อลูกค้า-นายจ้าง" value="@ViewBag.SearchData">
+                            <button class="btn btn-light" type="submit" id="searchButton">
+                                <i class="fa fa-search"></i> ค้นหา
+                            </button>
+                        </form>
+                    </div>
                     <div class="table-responsive theme-scrollbar mt-2">
                         <table class="display table table-bordered" id="data-source-1" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ชื่อนายจ้าง (ไทย)</th>
-                                    <th>ชื่อนายจ้าง (อังกฤษ)</th>
+                                    <th>ชื่อ (ไทย)</th>
+                                    <th>ชื่อ (อังกฤษ)</th>
                                     <th>ประเภทธุรกิจ</th>
                                     <th class="text-center" width="10%">รายละเอียด</th>
+                                    <th class="text-center" width="10%">เลือก</th>
                                     <th>ดำเนินการ</th>
                                 </tr>
                             </thead>
@@ -239,10 +243,15 @@
                                     <tr>
                                         <td>@item.NameTh</td>
                                         <td>@item.NameEng</td>
-                                        <td>@item.BusinessType.BusinesstypeTh</td>
+                                        <td>@item.BusinessTypeName</td>
                                         <td class="text-center">
-                                            <a class="btn text-dark" data-EmployerID="@item.EmployerID">
+                                            <a href="#" class="detailBtn text-dark" data-EmployerID="@item.EmployerID">
                                                 <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="text-primary" asp-action="EmployersDetail" asp-controller="Employers" asp-route-EmployerID="@item.EmployerID">
+                                                <i class="fa fa-folder-open-o"></i>
                                             </a>
                                         </td>
                                         <td>
@@ -296,60 +305,111 @@
 <div class="modal fade bd-example-modal-xl" id="exampleModalfullscreen-lg" tabindex="-1" aria-labelledby="lgModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="lgModalLabel"><i class="fa fa-list-alt"></i> รายละเอียดข้อมูลถานประกอบการ/นายจ้าง</h1>
-                <button class="btn-close py-0" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body dark-modal">
-                <div class="modal-details">
-                    <div class="row">
-                        <div class="web-content col-6">
-                            <h5 class="f-w-600">ข้อมูลสถานประกอบการ/นายจ้าง</h5>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0"></div>
-                                <div class="flex-grow-1 ms-2">
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อนายจ้าง (ไทย): <span id="modalNameTh"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อนายจ้าง (อังกฤษ): <span id="modalNameEng"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ประเภทธุรกิจ: <span id="modalBusinesstypeID"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เลขประจำตัวประชาชน: <span id="modalCardID"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เลขทะเบียนนิติบุคคล: <span id="modalRegistrationNumber"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> วันที่จดทะเบียน: <span id="modalRegistrationDate"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ทุนจดทะเบียน: <span id="modalRegisteredCapital"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> รายละเอียดงาน: <span id="modalJobDiscription"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="web-content col-6">
-                            <h5 class="f-w-600">ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
-                            <div class="d-flex">
-                                <div class="flex-grow-1 ms-2">
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย): <span id="modalDirectorNameTh"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ): <span id="modalDirectorNameEng"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ตำแหน่งผู้มีอำนาจลงนาม (ไทย): <span id="modalDirectorPositionTh"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ): <span id="modalDirectorPositionEng"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="web-content col-6">
-                            <h5 class="f-w-600">ข้อมูลเจ้าหน้าที่</h5>
-                            <div class="d-flex">
-                                <div class="flex-grow-1 ms-2">
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เจ้าหน้าที่คนที่ 1: <span id="modalOfficerNameOne"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalOfficerPhoneOne"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เจ้าหน้าที่คนที่ 2: <span id="modalOfficerNameTwo"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalOfficerPhoneTwo"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="web-content col-6">
-                            <h5 class="f-w-600">ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
-                            <div class="d-flex">
-                                <div class="flex-grow-1 ms-2">
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> ที่อยู่: <span id="modalAddress"></span></p>
-                                    <p><i class="svg-modal" data-feather="arrow-right-circle"></i> เบอร์โทรศัพท์: <span id="modalPhone"></span></p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row p-2">
+                    <div class="col-12">
+                        <h5 class="f-w-600">ข้อมูลสถานประกอบการ/นายจ้าง</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th>ชื่อนายจ้าง (ไทย)</th>
+                                    <td><span id="modalNameTh"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ชื่อนายจ้าง (อังกฤษ)</th>
+                                    <td><span id="modalNameEng"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ประเภทธุรกิจ</th>
+                                    <td><span id="modalBusinessTypeName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>วันที่จดทะเบียน</th>
+                                    <td><span id="modalRegistrationDate"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เลขประจำตัวประชาชน</th>
+                                    <td><span id="modalCardID"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เลขทะเบียนนิติบุคคล</th>
+                                    <td><span id="modalRegistrationNumber"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ทุนจดทะเบียน</th>
+                                    <td><span id="modalRegisteredCapital"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>รายละเอียดงาน</th>
+                                    <td><span id="modalJobDiscription"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="f-w-600">ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th>ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</th>
+                                    <td><span id="modalDirectorNameTh"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                    <td><span id="modalDirectorNameEng"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</th>
+                                    <td><span id="modalDirectorPositionTh"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                    <td><span id="modalDirectorPositionEng"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="f-w-600">ข้อมูลเจ้าหน้าที่</h5>
+                        <table class="table table-bordered mt-2">
+                            <tbody>
+                                <tr>
+                                    <th>เจ้าหน้าที่คนที่ 1</th>
+                                    <td><span id="modalOfficerNameOne"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <td><span id="modalOfficerPhoneOne"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เจ้าหน้าที่คนที่ 2</th>
+                                    <td><span id="modalOfficerNameTwo"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <td><span id="modalOfficerPhoneTwo"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <h5 class="f-w-600">ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
+                        <table class="table table-bordered mt-2">
+                            <tbody>
+                                <tr>
+                                    <th>เลขที่ประจำบ้าน</th>
+                                    <td><span id="modalHouseRecordNumber"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>ที่อยู่</th>
+                                    <td><span id="modalAddress"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <td><span id="modalPhone"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -484,7 +544,7 @@
                 tab2.setAttribute('aria-selected', 'true');
             });
 
-            document.querySelectorAll('.btn.text-dark').forEach(function (button) {
+            document.querySelectorAll('.detailBtn').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
                     var employerID = this.getAttribute('data-EmployerID');
@@ -500,7 +560,7 @@
                                 var data = response.data;
                                 $('#modalNameTh').text(data.nameTh);
                                 $('#modalNameEng').text(data.nameEng);
-                                $('#modalBusinesstypeID').text(data.businesstypeTh);
+                                $('#modalBusinessTypeName').text(data.businessTypeName);
                                 $('#modalCardID').text(data.cardID);
                                 $('#modalRegistrationNumber').text(data.registrationNumber);
                                 $('#modalRegistrationDate').text(data.registrationDate);
@@ -515,7 +575,16 @@
                                 $('#modalOfficerPhoneOne').text(data.officerPhoneOne);
                                 $('#modalOfficerNameTwo').text(data.officerNameTwo);
                                 $('#modalOfficerPhoneTwo').text(data.officerPhoneTwo);
-                                $('#modalAddress').text(data.houseNo + ' ' + data.soi + ' ' + data.road + ' ' + data.subdistrictTh + ' ' + data.districtTh + ' ' + data.provinceTh + ' ' + data.postcode);
+                                $('#modalHouseRecordNumber').text(data.houseRecordNumber);
+                                $('#modalAddress').text(
+                                    'บ้านเลขที่ ' + data.houseNo + ' ' + // House number
+                                    'ซอย ' + data.soi + ' ' + // Alley or lane (Soi)
+                                    'ถนน ' + data.road + ' ' + // Road or street name
+                                    'แขวง ' + data.subdistrictTh + ' ' + // Subdistrict name in Thai
+                                    'เขต ' + data.districtTh + ' ' + // District name in Thai
+                                    'จังหวัด ' + data.provinceTh + ' ' + // Province name in Thai
+                                    'รหัสไปรษณีย์ ' + data.postcode // Postal code
+                                );
                                 $('#modalPhone').text(data.phone);
 
                                 $('#exampleModalfullscreen-lg').modal('show');
@@ -535,7 +604,7 @@
 
                 var nameTh = $('#txtNameTh').val();
                 var nameEng = $('#txtNameEng').val();
-                var businesstypeID = $('#ddlBusinesstypeID').val();
+                var businessTypeName = $('#txtBusinessTypeName').val();
                 var cardID = $('#txtCardID').val();
                 var registrationNumber = $('#txtRegistrationNumber').val();
                 var registrationDate = $('#txtRegistrationDate').val();
@@ -563,7 +632,7 @@
                 var provinceEng = $('#txtProvinceEng').val();
                 var phone = $('#txtPhone').val();
 
-                if (!nameTh || !nameEng || !businesstypeID || !registrationNumber || !registrationDate || !registeredCapital) {
+                if (!nameTh || !nameEng || !businessTypeName || !registrationNumber || !registrationDate || !registeredCapital) {
                     Swal.fire({
                         icon: 'error',
                         title: 'กรุณากรอกข้อมูล',
@@ -597,7 +666,7 @@
                                         data: {
                                             NameTh: nameTh,
                                             NameEng: nameEng,
-                                            BusinesstypeID: businesstypeID,
+                                            BusinessTypeName: businessTypeName,
                                             RegistrationNumber: registrationNumber,
                                             RegistrationDate: registrationDate,
                                             RegisteredCapital: registeredCapital,
@@ -657,7 +726,6 @@
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
                     var employerID = this.getAttribute('data-EmployerID');
-
                     $.ajax({
                         url: '@Url.Action("GetEmployerDetails", "Employers")',
                         type: 'POST',
@@ -666,37 +734,38 @@
                             if (response.success == false) {
                                 Swal.fire('ผิดพลาด', response.message, 'error');
                             } else {
+                                var data = response.data;
                                 $('#showInsert').show();
-                                $('#txtEmployerID').val(response.employerID);
-                                $('#txtNameTh').val(response.nameTh);
-                                $('#txtNameEng').val(response.nameEng);
-                                $('#ddlBusinesstypeID').val(response.businesstypeID);
-                                $('#txtRegistrationNumber').val(response.registrationNumber);
-                                $('#txtRegistrationDate').val(response.registrationDate);
-                                $('#txtRegisteredCapital').val(response.registeredCapital);
-                                $('#txtJobTypeName').val(response.jobTypeName);
-                                $('#txtJobDiscription').val(response.jobDiscription);
-                                $('#txtCardID').val(response.cardID);
-                                $('#txtDirectorNameTh').val(response.directorNameTh);
-                                $('#txtDirectorNameEng').val(response.directorNameEng);
-                                $('#txtDirectorPositionTh').val(response.directorPositionTh);
-                                $('#txtDirectorPositionEng').val(response.directorPositionEng);
-                                $('#txtOfficerNameOne').val(response.officerNameOne);
-                                $('#txtOfficerPhoneOne').val(response.officerPhoneOne);
-                                $('#txtOfficerNameTwo').val(response.officerNameTwo);
-                                $('#txtOfficerPhoneTwo').val(response.officerPhoneTwo);
-                                $('#txtHouseRecordNumber').val(response.houseRecordNumber);
-                                $('#txtHouseNo').val(response.houseNo);
-                                $('#txtSoi').val(response.soi);
-                                $('#txtRoad').val(response.road);
-                                $('#txtSubdistrictTh').val(response.subdistrictTh);
-                                $('#txtDistrictTh').val(response.districtTh);
-                                $('#txtProvinceTh').val(response.provinceTh);
-                                $('#txtPostcode').val(response.postcode);
-                                $('#txtSubdistrictEng').val(response.subdistrictEng);
-                                $('#txtDistrictEng').val(response.districtEng);
-                                $('#txtProvinceEng').val(response.provinceEng);
-                                $('#txtPhone').val(response.phone);
+                                $('#txtEmployerID').val(data.employerID);
+                                $('#txtNameTh').val(data.nameTh);
+                                $('#txtNameEng').val(data.nameEng);
+                                $('#txtBusinessTypeName').val(data.businessTypeName);
+                                $('#txtRegistrationNumber').val(data.registrationNumber);
+                                $('#txtRegistrationDate').val(data.registrationDate);
+                                $('#txtRegisteredCapital').val(data.registeredCapital);
+                                $('#txtJobTypeName').val(data.jobTypeName);
+                                $('#txtJobDiscription').val(data.jobDiscription);
+                                $('#txtCardID').val(data.cardID);
+                                $('#txtDirectorNameTh').val(data.directorNameTh);
+                                $('#txtDirectorNameEng').val(data.directorNameEng);
+                                $('#txtDirectorPositionTh').val(data.directorPositionTh);
+                                $('#txtDirectorPositionEng').val(data.directorPositionEng);
+                                $('#txtOfficerNameOne').val(data.officerNameOne);
+                                $('#txtOfficerPhoneOne').val(data.officerPhoneOne);
+                                $('#txtOfficerNameTwo').val(data.officerNameTwo);
+                                $('#txtOfficerPhoneTwo').val(data.officerPhoneTwo);
+                                $('#txtHouseRecordNumber').val(data.houseRecordNumber);
+                                $('#txtHouseNo').val(data.houseNo);
+                                $('#txtSoi').val(data.soi);
+                                $('#txtRoad').val(data.road);
+                                $('#txtSubdistrictTh').val(data.subdistrictTh);
+                                $('#txtDistrictTh').val(data.districtTh);
+                                $('#txtProvinceTh').val(data.provinceTh);
+                                $('#txtPostcode').val(data.postcode);
+                                $('#txtSubdistrictEng').val(data.subdistrictEng);
+                                $('#txtDistrictEng').val(data.districtEng);
+                                $('#txtProvinceEng').val(data.provinceEng);
+                                $('#txtPhone').val(data.phone);
                                 $('#createHeader').hide();
                                 $('#updateHeader').show();
                                 $('#createBtn').hide();
@@ -763,7 +832,7 @@
                 var employerID = $('#txtEmployerID').val();
                 var nameTh = $('#txtNameTh').val();
                 var nameEng = $('#txtNameEng').val();
-                var businesstypeID = $('#ddlBusinesstypeID').val();
+                var businessTypeName = $('#txtBusinessTypeName').val();
                 var registrationNumber = $('#txtRegistrationNumber').val();
                 var registrationDate = $('#txtRegistrationDate').val();
                 var registeredCapital = $('#txtRegisteredCapital').val();
@@ -810,7 +879,7 @@
                                 EmployerID: employerID,
                                 NameTh: nameTh,
                                 NameEng: nameEng,
-                                BusinesstypeID: businesstypeID,
+                                BusinessTypeName: businessTypeName,
                                 RegistrationNumber: registrationNumber,
                                 RegistrationDate: registrationDate,
                                 RegisteredCapital: registeredCapital,

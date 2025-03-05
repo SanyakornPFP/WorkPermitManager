@@ -286,67 +286,27 @@
       <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
     </property>
   </class>
-  <class name="BusinessType" entity-set="BusinessTypes" table="BusinessTypes" schema="dbo" p1:Guid="e768120c-3f99-491b-9d12-bccfad732f18">
-    <id name="BusinesstypeID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="29e3e1c0-1caf-4454-987d-8a181ebd6b89">
-      <column name="BusinesstypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="BusinesstypeTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="4f1ea9d0-ff8f-43cb-bd84-de5a7e3c8185">
-      <column name="BusinesstypeTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="BusinesstypeEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="b1b0d223-8cce-4df6-8a2a-475c3c252be4">
-      <column name="BusinesstypeEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="9eae038a-4ed2-438b-bdde-0fab0b249c66">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="c53adb8a-52b3-4e21-adfc-7e6d56232ced">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="d6fc4c2e-b961-4ab1-959d-933c22a8ee77">
-      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="43d49aa4-fbd9-44aa-850b-fafde1c95611">
-      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
-  <class name="DocumentType" entity-set="DocumentTypes" table="DocumentTypes" schema="dbo" p1:Guid="873f1108-4a37-4a5c-9a6c-3aa2a2b2d228">
-    <id name="DocumenttypeID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a4c5b0cf-4bbe-402c-a749-60a862790edf">
-      <column name="DocumenttypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </id>
-    <property name="DocumentnameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="3ac5cc8e-ef31-4025-8e40-62a5e4eb1fc7">
-      <column name="DocumentnameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="DocumentnameEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="424e80c0-f3e6-4755-b2e9-c008586a7319">
-      <column name="DocumentnameEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="304c66f8-c456-42f5-92f5-fee034758110">
-      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="85c1f070-313e-4d9b-98f8-1e326b9990bc">
-      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
-    </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="1b6203e8-5001-42bc-99da-a87f3f26a29d">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
-    </property>
-    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="5fbaf406-3f64-47ae-a5ea-a1b04147f376">
-      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
-  </class>
   <class name="EmployerDocument" entity-set="EmployerDocuments" table="EmployerDocuments" schema="dbo" p1:Guid="037d1025-2a44-4beb-b44a-3643a759caa9">
     <id name="DocumentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="584be7fd-b4b2-4964-8caf-7b8a7f3f01ee">
       <column name="DocumentID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
+    <property name="DocumentName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="61241ee5-7e4f-4fc1-8ed3-0ac2de280357">
+      <column name="DocumentName" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="c85f3e7a-aca0-4451-b3f4-51042b57fcad">
       <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="DocumenttypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="fc5efa20-51a2-492f-90d8-0bd02f3be030">
-      <column name="DocumenttypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    <property name="DocumentTypeName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6ab0e034-2c70-456d-878a-928d1f4454c1">
+      <column name="DocumentTypeName" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="Discription" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bc40e3b5-ac0a-42d0-b1cd-8f73ca7a57fd">
       <column name="Discription" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
-    <property name="ExpiryDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="9ce992cb-8f1f-407e-9059-b628918bc419">
-      <column name="ExpiryDate" not-null="True" sql-type="date" p1:unicode="False" />
+    <property name="ExpiryDate" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9ce992cb-8f1f-407e-9059-b628918bc419">
+      <column name="ExpiryDate" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="PathFile" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="722dc8b3-1dc2-4cc0-95b5-6969415aea0e">
+      <column name="PathFile" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ed0411bc-ead8-40e1-b10a-8e9b45d6716b">
       <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
@@ -354,8 +314,8 @@
     <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="cd5d720e-096f-48ff-aae0-b589ad266948">
       <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
-    <property name="IsActive" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ed8a6ad0-4f3f-4907-a627-f46f1458496d">
-      <column name="IsActive" default="1" not-null="False" sql-type="bit" p1:unicode="False" />
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="ed8a6ad0-4f3f-4907-a627-f46f1458496d">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
     </property>
     <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="b77905d1-f893-4546-920c-f8037eec545a">
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
@@ -371,8 +331,8 @@
     <property name="NameEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="fc92ae06-b388-498e-a5f0-2833dc1a3388">
       <column name="NameEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="BusinesstypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="14f5fa4a-dd12-4a96-ad66-f6c1042a2a49">
-      <column name="BusinesstypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    <property name="BusinessTypeName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="85cc2f36-4241-4e26-9839-7e34bf255de2">
+      <column name="BusinessTypeName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="457d77cc-8f17-43e3-82f9-53ca06a7fe0b">
       <column name="CardID" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
@@ -506,22 +466,6 @@
         <property name="EmployerID" />
       </end2>
     </association>
-    <association name="DocumentType_EmployerDocument" cardinality="OneToMany" p1:Guid="648f5ad9-55f2-4141-87d1-39f4728f74fc">
-      <end1 multiplicity="One" name="DocumentType" class="EmployerDocument" relation-class="DocumentType" constrained="True" lazy="False" p1:Guid="32d5852b-6ddf-4c8a-a0a5-4a0943f2a06b">
-        <property name="DocumenttypeID" />
-      </end1>
-      <end2 multiplicity="Many" name="EmployerDocuments" class="DocumentType" relation-class="EmployerDocument" lazy="False" p1:Guid="d34da425-969e-4441-b27a-500c3d54193f">
-        <property name="DocumenttypeID" />
-      </end2>
-    </association>
-    <association name="BusinessType_Employer" cardinality="OneToMany" p1:Guid="f1e8dc1c-61b3-468f-8052-7ef8c27fef36">
-      <end1 multiplicity="One" name="BusinessType" class="Employer" relation-class="BusinessType" constrained="True" lazy="False" p1:Guid="9ad2b598-f60f-4b0b-b31c-a22f434c8244">
-        <property name="BusinesstypeID" />
-      </end1>
-      <end2 multiplicity="Many" name="Employers" class="BusinessType" relation-class="Employer" lazy="False" p1:Guid="333e100e-338c-47db-8ab4-beda320c60f5">
-        <property name="BusinesstypeID" />
-      </end2>
-    </association>
     <association name="User_PowerOfAttorney" cardinality="OneToMany" p1:Guid="973d579b-1ca0-44aa-b5a9-1d332131c891">
       <end1 multiplicity="One" name="User_GrantorID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="8fc0419b-6a9a-4944-9597-2144127867d6">
         <property name="UserID" />
@@ -592,22 +536,6 @@
       </end1>
       <end2 multiplicity="Many" name="LoginHistories" class="User" relation-class="LoginHistory" lazy="False" p1:Guid="5b79d5d8-9aec-4cca-908c-2a7edf08d711">
         <property name="UserID" />
-      </end2>
-    </association>
-    <association name="User_BusinessType" cardinality="OneToMany" p1:Guid="1129b782-60ea-4029-add1-d298b8f8b5b0">
-      <end1 multiplicity="One" name="User" class="BusinessType" relation-class="User" constrained="True" lazy="False" p1:Guid="eaf119d1-d28a-406a-a377-9dedc19b4610">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="BusinessTypes" class="User" relation-class="BusinessType" lazy="False" p1:Guid="63b07d9a-d96d-4848-b2fa-06cfc979a09e">
-        <property name="UserManageID" />
-      </end2>
-    </association>
-    <association name="User_DocumentType" cardinality="OneToMany" p1:Guid="966c3ca2-2e3a-465a-ab51-1315320edc3a">
-      <end1 multiplicity="One" name="User" class="DocumentType" relation-class="User" constrained="True" lazy="False" p1:Guid="ad25a0f7-9d60-4ced-a989-6cecfeeb163b">
-        <property name="UserID" />
-      </end1>
-      <end2 multiplicity="Many" name="DocumentTypes" class="User" relation-class="DocumentType" lazy="False" p1:Guid="9d2312b8-c4c4-4039-9083-2a7829cffce1">
-        <property name="UserManageID" />
       </end2>
     </association>
     <association name="User_EmployerDocument" cardinality="OneToMany" p1:Guid="8319d6a0-8e78-463d-8228-5abc66ce846e">

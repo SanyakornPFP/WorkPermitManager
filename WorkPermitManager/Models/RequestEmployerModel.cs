@@ -5,7 +5,7 @@
         public int? EmployerID { get; set; }
         public string NameTh { get; set; }
         public string NameEng { get; set; }
-        public int BusinesstypeID { get; set; }
+        public string BusinessTypeName { get; set; }
         public string CardID { get; set; }
         public string RegistrationNumber { get; set; }
         public string RegistrationDate { get; set; }
