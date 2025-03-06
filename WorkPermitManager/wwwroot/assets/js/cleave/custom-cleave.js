@@ -7,7 +7,7 @@
   });
 
   // Date
-  var cleave = new Cleave("#cleave-date1", {
+  var cleave = new Cleave(".cleave-date1", {
     date: true,
     delimiter: "-",
     datePattern: ["d", "m", "Y"],

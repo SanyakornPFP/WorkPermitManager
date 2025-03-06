@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nWAxE+/MCk+y7IZnUhWFpFxdAznoEWVlgWBmGmvateQ=",
+  "Hash": "f75rqVzZn0l8SERMZwQKIUW3mGNEKfCaVTbLTGVoVCo=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -14150,12 +14150,12 @@
       "OriginalItemSpec": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\typeahead\\data\\films\\queries\\cimarro.json"
     },
     {
-      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-119ihj51eu.gz",
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-ntti7dxgi2.gz",
       "SourceId": "WorkPermitManager",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WorkPermitManager",
-      "RelativePath": "assets/js/datatable/datatables/datatable.custom#[.{fingerprint=119ihj51eu}]?.js.gz",
+      "RelativePath": "assets/js/datatable/datatables/datatable.custom#[.{fingerprint=ntti7dxgi2}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -14164,8 +14164,8 @@
       "RelatedAsset": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "duy0no2z4i",
-      "Integrity": "ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY=",
+      "Fingerprint": "dtrux4nl00",
+      "Integrity": "rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js"
@@ -28031,12 +28031,12 @@
       "OriginalItemSpec": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\animation\\aos\\aos.js"
     },
     {
-      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-obl5tdjeiv.gz",
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-8oo8ac6jrl.gz",
       "SourceId": "WorkPermitManager",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WorkPermitManager",
-      "RelativePath": "assets/js/cleave/custom-cleave#[.{fingerprint=obl5tdjeiv}]?.js.gz",
+      "RelativePath": "assets/js/cleave/custom-cleave#[.{fingerprint=8oo8ac6jrl}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -28045,8 +28045,8 @@
       "RelatedAsset": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\cleave\\custom-cleave.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "0eacg3hmth",
-      "Integrity": "mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I=",
+      "Fingerprint": "edsq5zb52t",
+      "Integrity": "IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\cleave\\custom-cleave.js"
@@ -51439,8 +51439,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "obl5tdjeiv",
-      "Integrity": "zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=",
+      "Fingerprint": "8oo8ac6jrl",
+      "Integrity": "6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\cleave\\custom-cleave.js"
@@ -52384,8 +52384,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "119ihj51eu",
-      "Integrity": "NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=",
+      "Fingerprint": "ntti7dxgi2",
+      "Integrity": "hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js"
@@ -83343,6 +83343,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "uploads/EmployersDocument/asdasd/D0020250306092237#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "yzs3fq2saw",
+      "Integrity": "juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf"
     }
   ],
   "Endpoints": [
@@ -303131,13 +303152,13 @@
       ]
     },
     {
-      "Route": "assets/js/cleave/custom-cleave.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-obl5tdjeiv.gz",
+      "Route": "assets/js/cleave/custom-cleave.8oo8ac6jrl.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-8oo8ac6jrl.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002277904328"
+          "Quality": "0.002242152466"
         }
       ],
       "ResponseHeaders": [
@@ -303147,19 +303168,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "438"
+          "Value": "445"
         },
         {
           "Name": "ETag",
-          "Value": "\"mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I=\""
+          "Value": "\"IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -303175,18 +303196,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=\""
+          "Value": "W/\"6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "8oo8ac6jrl"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/js/cleave/custom-cleave.js"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4="
+          "Value": "sha256-6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos="
         }
       ]
     },
     {
-      "Route": "assets/js/cleave/custom-cleave.js",
+      "Route": "assets/js/cleave/custom-cleave.8oo8ac6jrl.js",
       "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\cleave\\custom-cleave.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -303204,121 +303233,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=\""
+          "Value": "\"6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/cleave/custom-cleave.js.gz",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-obl5tdjeiv.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "438"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/cleave/custom-cleave.obl5tdjeiv.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-obl5tdjeiv.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.002277904328"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "438"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "obl5tdjeiv"
+          "Value": "8oo8ac6jrl"
         },
         {
           "Name": "label",
@@ -303326,13 +303255,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4="
+          "Value": "sha256-6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos="
         }
       ]
     },
     {
-      "Route": "assets/js/cleave/custom-cleave.obl5tdjeiv.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\cleave\\custom-cleave.js",
+      "Route": "assets/js/cleave/custom-cleave.8oo8ac6jrl.js.gz",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-8oo8ac6jrl.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -303341,7 +303270,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1353"
+          "Value": "445"
         },
         {
           "Name": "Content-Type",
@@ -303349,56 +303278,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=\""
+          "Value": "\"IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "obl5tdjeiv"
-        },
-        {
-          "Name": "label",
-          "Value": "assets/js/cleave/custom-cleave.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/cleave/custom-cleave.obl5tdjeiv.js.gz",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-obl5tdjeiv.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "438"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -303416,7 +303300,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "obl5tdjeiv"
+          "Value": "8oo8ac6jrl"
         },
         {
           "Name": "label",
@@ -303424,7 +303308,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-mEvN3dNJr2YH3nHEMr36uvzsdgKzjUGMq1sToV56B8I="
+          "Value": "sha256-IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/cleave/custom-cleave.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-8oo8ac6jrl.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002242152466"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "445"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/cleave/custom-cleave.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\cleave\\custom-cleave.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1353"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/cleave/custom-cleave.js.gz",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\s0pjtealvx-8oo8ac6jrl.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "445"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 01:43:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IpOK7R+ZqGU0oOIAPzmG3o7mSM8bHyKcAS7rukEDNMw="
         }
       ]
     },
@@ -316541,13 +316562,13 @@
       ]
     },
     {
-      "Route": "assets/js/datatable/datatables/datatable.custom.119ihj51eu.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-119ihj51eu.gz",
+      "Route": "assets/js/datatable/datatables/datatable.custom.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-ntti7dxgi2.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000164636154"
+          "Quality": "0.000164392569"
         }
       ],
       "ResponseHeaders": [
@@ -316557,19 +316578,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6073"
+          "Value": "6082"
         },
         {
           "Name": "ETag",
-          "Value": "\"ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY=\""
+          "Value": "\"rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -316585,26 +316606,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=\""
+          "Value": "W/\"hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "119ihj51eu"
-        },
-        {
-          "Name": "label",
-          "Value": "assets/js/datatable/datatables/datatable.custom.js"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA="
+          "Value": "sha256-hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y="
         }
       ]
     },
     {
-      "Route": "assets/js/datatable/datatables/datatable.custom.119ihj51eu.js",
+      "Route": "assets/js/datatable/datatables/datatable.custom.js",
       "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -316614,7 +316627,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "26093"
+          "Value": "26125"
         },
         {
           "Name": "Content-Type",
@@ -316622,11 +316635,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=\""
+          "Value": "\"hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/datatable/datatables/datatable.custom.js.gz",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-ntti7dxgi2.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6082"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/datatable/datatables/datatable.custom.ntti7dxgi2.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-ntti7dxgi2.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000164392569"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6082"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ntti7dxgi2"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/js/datatable/datatables/datatable.custom.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y="
+        }
+      ]
+    },
+    {
+      "Route": "assets/js/datatable/datatables/datatable.custom.ntti7dxgi2.js",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26125"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -316636,7 +316794,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "119ihj51eu"
+          "Value": "ntti7dxgi2"
         },
         {
           "Name": "label",
@@ -316644,13 +316802,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA="
+          "Value": "sha256-hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y="
         }
       ]
     },
     {
-      "Route": "assets/js/datatable/datatables/datatable.custom.119ihj51eu.js.gz",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-119ihj51eu.gz",
+      "Route": "assets/js/datatable/datatables/datatable.custom.ntti7dxgi2.js.gz",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-ntti7dxgi2.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -316659,7 +316817,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6073"
+          "Value": "6082"
         },
         {
           "Name": "Content-Type",
@@ -316667,11 +316825,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY=\""
+          "Value": "\"rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
+          "Value": "Thu, 06 Mar 2025 03:51:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -316689,7 +316847,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "119ihj51eu"
+          "Value": "ntti7dxgi2"
         },
         {
           "Name": "label",
@@ -316697,144 +316855,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/datatable/datatables/datatable.custom.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-119ihj51eu.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000164636154"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6073"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/datatable/datatables/datatable.custom.js",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\js\\datatable\\datatables\\datatable.custom.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "26093"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA="
-        }
-      ]
-    },
-    {
-      "Route": "assets/js/datatable/datatables/datatable.custom.js.gz",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\obj\\Debug\\net9.0\\compressed\\du6ybtn01n-119ihj51eu.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6073"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 11 Jan 2025 02:34:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-ZWfKBwvYAbQ4aRsLjWPEXqqLaNXOyqoemoJ7KgBv7bY="
+          "Value": "sha256-rxYs+25F5BDkvny1qGPYL9BIVp0SnuvE64yh3FlA0ro="
         }
       ]
     },
@@ -634047,6 +634068,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-PqlfyulrNGHxPakyOwAwrhiaOrDB+ftsV1IeKsVg+yE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/EmployersDocument/asdasd/D0020250306092237.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "224659"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 02:22:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/EmployersDocument/asdasd/D0020250306092237.yzs3fq2saw.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "224659"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 02:22:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yzs3fq2saw"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/EmployersDocument/asdasd/D0020250306092237.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE="
         }
       ]
     },

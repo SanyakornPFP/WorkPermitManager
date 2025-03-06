@@ -13,8 +13,14 @@
                         <i class="fa fa-briefcase"></i> สถานประกอบการ/นายจ้าง :  @ViewBag.EmployerName
                     </div>
                     <div class="d-flex gap-2 justify-end" style="float:right">
+                        <a class="btn btn-secondary btn-sm" asp-action="EmployersPowerOfAttorney" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
+                            <i class="fa fa-edit text-white"></i> ตั้งค่าการมอบอำนาจ
+                        </a>
                         <a class="btn btn-success btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
                             <i class="fa fa-folder-open-o text-white"></i> จัดเก็บเอกสาร
+                        </a>
+                        <a class="btn btn-light btn-sm" asp-action="EmployersPage" asp-controller="Employers">
+                            <i class="fa fa-caret-left text-dark"></i> ย้อนกลับ
                         </a>
                     </div>
                 </div>
@@ -22,100 +28,105 @@
                     <div class="row p-1">
                         <div class="col-12">
                             <div class="d-flex justify-content-between">
-                                <h5 class="f-w-600">ข้อมูลสถานประกอบการ/นายจ้าง</h5>
-                                <a class="btn btn-light btn-sm" asp-action="EmployersPage" asp-controller="Employers">
-                                    <i class="fa fa-caret-left text-dark"></i> ย้อนกลับ
-                                </a>
+                                <h5 class="f-w-600"><i class="fa fa-building"></i> ข้อมูลสถานประกอบการ/นายจ้าง</h5>
+                                <div class="gap-2">
+                                    <a class="btn btn-light btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
+                                        <i class="fa fa-file-pdf-o text-danger"></i> ใบมอบอำนาจ
+                                    </a>
+                                    <a class="btn btn-light btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
+                                        <i class="fa fa-file-pdf-o text-danger"></i> ใบมอบอำนาจ นจ.
+                                    </a>
+                                </div>
                             </div>
-                            <table class="table table-bordered mt-3 mb-4">
+                            <table class="table table-bordered mt-2 mb-4">
                                 <tbody>
                                     <tr>
-                                        <th>ประเภทธุรกิจ</th>
+                                        <th class="bg-light">ประเภทธุรกิจ</th>
                                         <td>@Model.BusinessTypeName</td>
                                     </tr>
                                     <tr>
-                                        <th>วันที่จดทะเบียน</th>
+                                        <th class="bg-light">วันที่จดทะเบียน</th>
                                         <td>@Model.RegistrationDate</td>
                                     </tr>
                                     <tr>
-                                        <th>เลขประจำตัวประชาชน</th>
+                                        <th class="bg-light">เลขประจำตัวประชาชน</th>
                                         <td>@Model.CardID</td>
                                     </tr>
                                     <tr>
-                                        <th>เลขทะเบียนนิติบุคคล</th>
+                                        <th class="bg-light">เลขทะเบียนนิติบุคคล</th>
                                         <td>@Model.RegistrationNumber</td>
                                     </tr>
                                     <tr>
-                                        <th>ทุนจดทะเบียน</th>
+                                        <th class="bg-light">ทุนจดทะเบียน</th>
                                         <td>@Model.RegisteredCapital</td>
                                     </tr>
                                     <tr>
-                                        <th>รายละเอียดงาน</th>
+                                        <th class="bg-light">รายละเอียดงาน</th>
                                         <td>@Model.JobDiscription</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-6">
-                            <h5 class="f-w-600">ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
+                            <h5 class="f-w-600"><i class="fa fa-edit"></i> ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
                             <table class="table table-bordered mt-2 mb-4">
                                 <tbody>
                                     <tr>
-                                        <th>ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</th>
+                                        <th class="bg-light">ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</th>
                                         <td>@Model.DirectorNameTh</td>
                                     </tr>
                                     <tr>
-                                        <th>ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                        <th class="bg-light">ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</th>
                                         <td>@Model.DirectorNameEng</td>
                                     </tr>
                                     <tr>
-                                        <th>ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</th>
+                                        <th class="bg-light">ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</th>
                                         <td>@Model.DirectorPositionTh</td>
                                     </tr>
                                     <tr>
-                                        <th>ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                        <th class="bg-light">ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</th>
                                         <td>@Model.DirectorPositionEng</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-6">
-                            <h5 class="f-w-600">ข้อมูลเจ้าหน้าที่</h5>
+                            <h5 class="f-w-600"><i class="fa fa-users"></i> ข้อมูลเจ้าหน้าที่</h5>
                             <table class="table table-bordered mt-2">
                                 <tbody>
                                     <tr>
-                                        <th>เจ้าหน้าที่คนที่ 1</th>
+                                        <th class="bg-light">เจ้าหน้าที่คนที่ 1</th>
                                         <td>@Model.OfficerNameOne</td>
                                     </tr>
                                     <tr>
-                                        <th>เบอร์โทรศัพท์</th>
+                                        <th class="bg-light">เบอร์โทรศัพท์</th>
                                         <td>@Model.OfficerPhoneOne</td>
                                     </tr>
                                     <tr>
-                                        <th>เจ้าหน้าที่คนที่ 2</th>
+                                        <th class="bg-light">เจ้าหน้าที่คนที่ 2</th>
                                         <td>@Model.OfficerNameTwo</td>
                                     </tr>
                                     <tr>
-                                        <th>เบอร์โทรศัพท์</th>
+                                        <th class="bg-light">เบอร์โทรศัพท์</th>
                                         <td>@Model.OfficerPhoneTwo</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-12">
-                            <h5 class="f-w-600">ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
+                            <h5 class="f-w-600"><i class="fa fa-thumb-tack"></i> ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
                             <table class="table table-bordered mt-2">
                                 <tbody>
                                     <tr>
-                                        <th>เลขที่ประจำบ้าน</th>
+                                        <th class="bg-light">เลขที่ประจำบ้าน</th>
                                         <td>@Model.HouseRecordNumber</td>
                                     </tr>
                                     <tr>
-                                        <th>ที่อยู่</th>
+                                        <th class="bg-light">ที่อยู่</th>
                                         <td>@Model.Address</td>
                                     </tr>
                                     <tr>
-                                        <th>เบอร์โทรศัพท์</th>
+                                        <th class="bg-light">เบอร์โทรศัพท์</th>
                                         <td>@Model.Phone</td>
                                     </tr>
                                 </tbody>

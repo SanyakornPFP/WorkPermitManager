@@ -567,7 +567,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployerDocument(RequestEmployerDocumentModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateEmployerDocuments"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateEmployers"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -578,13 +578,13 @@ namespace WorkPermitManager.Controllers
                     return NotFound();
                 }
 
-                var fileName = "DCO0" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(model.File.FileName);
+                var fileName = "D00" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(model.File.FileName);
 
                 string filePath = null;
                 string EmployerName = _db.Employers.Where(s => s.EmployerID == model.EmployerID).Select(s => s.NameTh).FirstOrDefault();
                 if (model.File != null)
                 {
-                    var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", EmployerName);
+                    var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "EmployersDocument", EmployerName);
                     if (!Directory.Exists(uploads))
                     {
                         Directory.CreateDirectory(uploads);
@@ -600,7 +600,7 @@ namespace WorkPermitManager.Controllers
                 EmployerDocument createModel = new EmployerDocument
                 {
                     DocumentName = fileName,
-                    EmployerID = model.EmployerID,
+                    EmployerID = model.EmployerID ?? 0,
                     DocumentTypeName = model.DocumentTypeName,
                     Discription = model.Discription,
                     ExpiryDate = model.ExpiryDate,
@@ -641,7 +641,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteEmployerDocument(int DocumentID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteEmployerDocuments"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteEmployers"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -695,7 +695,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateEmployerDocument(RequestEmployerDocumentModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployerDocuments"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployers"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -726,7 +726,7 @@ namespace WorkPermitManager.Controllers
                     string fileName = data.DocumentName;
                     if (model.File != null)
                     {
-                        var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", data.Employer.NameTh);
+                        var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", "EmployersDocument", data.Employer.NameTh);
                         if (!Directory.Exists(uploads))
                         {
                             Directory.CreateDirectory(uploads);
@@ -780,7 +780,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetEmployerDocumentDetails(int DocumentID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployerDocuments"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -802,6 +802,7 @@ namespace WorkPermitManager.Controllers
                         s.Discription,
                         s.ExpiryDate,
                         s.PathFile,
+                        UserName = s.User.FullName,
                         s.CreatedAt,
                         s.UpdatedAt,
                         s.IsActive
@@ -819,8 +820,63 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
+
+        [HttpGet]
+        public IActionResult DownloadDocument(int documentID)
+        {
+            var document = _db.EmployerDocuments.FirstOrDefault(d => d.DocumentID == documentID);
+            if (document == null)
+            {
+                return NotFound();
+            }
+
+            var filePath = document.PathFile;
+            var fileName = document.DocumentName;
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(filePath, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+
+            return File(memory, GetContentType(filePath), fileName);
+        }
+
+        private string GetContentType(string path)
+        {
+            var types = GetMimeTypes();
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return types.ContainsKey(ext) ? types[ext] : "application/octet-stream";
+        }
+
+        private Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                { ".txt", "text/plain" },
+                { ".pdf", "application/pdf" },
+                { ".doc", "application/vnd.ms-word" },
+                { ".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
+                { ".xls", "application/vnd.ms-excel" },
+                { ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+                { ".png", "image/png" },
+                { ".jpg", "image/jpeg" },
+                { ".jpeg", "image/jpeg" },
+                { ".gif", "image/gif" },
+                { ".csv", "text/csv" }
+            };
+        }
+
         #endregion EmployersDocument
 
+        #region EmployerAuthorization
+        #endregion EmployerAuthorization
         private List<string> GetUserPermissions(int userId)
         {
             // Fetch user permissions from the database

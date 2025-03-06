@@ -18,36 +18,42 @@ using System.Linq.Expressions;
 
 namespace WorkPermitManager.Models
 {
-    public partial class EmployerDocument {
+    public partial class EmployerAuthorizationConfig {
 
-        public EmployerDocument()
+        public EmployerAuthorizationConfig()
         {
             OnCreated();
         }
 
-        public virtual int DocumentID { get; set; }
-
-        public virtual string DocumentName { get; set; }
+        public virtual int EmployerAuthorizationConfigID { get; set; }
 
         public virtual int EmployerID { get; set; }
 
-        public virtual string DocumentTypeName { get; set; }
+        public virtual int AuthorizedPersonImportID { get; set; }
 
-        public virtual string Discription { get; set; }
+        public virtual int AuthorizedPersonMouID { get; set; }
 
-        public virtual string ExpiryDate { get; set; }
+        public virtual string Witness1 { get; set; }
 
-        public virtual string PathFile { get; set; }
+        public virtual string Witness2 { get; set; }
+
+        public virtual string AssignorName { get; set; }
+
+        public virtual string AssignorCompany { get; set; }
+
+        public virtual bool IsActive { get; set; }
 
         public virtual DateTime? CreatedAt { get; set; }
 
         public virtual DateTime? UpdatedAt { get; set; }
 
-        public virtual bool IsActive { get; set; }
-
         public virtual int UserManageID { get; set; }
 
         public virtual Employer Employer { get; set; }
+
+        public virtual EmployerAuthorizedPerson EmployerAuthorizedPerson_AuthorizedPersonImportID { get; set; }
+
+        public virtual EmployerAuthorizedPerson EmployerAuthorizedPerson_AuthorizedPersonMouID { get; set; }
 
         public virtual User User { get; set; }
 

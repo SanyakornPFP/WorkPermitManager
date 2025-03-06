@@ -280,7 +280,7 @@
 </div>
 <!-- Modal for Upload Excel -->
 <div class="modal fade" id="uploadExcelModal" tabindex="-1" aria-labelledby="uploadExcelModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="uploadExcelModalLabel"><i class="fa fa-upload text-dark"></i> อัพโหลดไฟล์ Excel</h5>
@@ -293,7 +293,7 @@
                         <input class="form-control" type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
                     </div>
                     <div class="mt-3 d-flex justify-content-between">
-                        <a href="@Url.Action("DownloadSampleExcel", "Employers")" class="btn btn-light">ดาวน์โหลดไฟล์ตัวอย่าง Excel</a>
+                        <a href="@Url.Action("DownloadSampleExcel", "Employers")" class="btn btn-success">ดาวน์โหลดไฟล์ตัวอย่าง Excel</a>
                         <button type="submit" class="btn btn-primary">อัพโหลด</button>
                     </div>
                 </form>
@@ -308,104 +308,104 @@
             <div class="modal-body dark-modal">
                 <div class="row p-2">
                     <div class="col-12">
-                        <h5 class="f-w-600">ข้อมูลสถานประกอบการ/นายจ้าง</h5>
+                        <h5 class="f-w-600"><i class="fa fa-building"></i> ข้อมูลสถานประกอบการ/นายจ้าง</h5>
                         <table class="table table-bordered mt-2 mb-4">
                             <tbody>
                                 <tr>
-                                    <th>ชื่อนายจ้าง (ไทย)</th>
+                                    <th class="bg-light">ชื่อนายจ้าง (ไทย)</th>
                                     <td><span id="modalNameTh"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ชื่อนายจ้าง (อังกฤษ)</th>
+                                    <th class="bg-light">ชื่อนายจ้าง (อังกฤษ)</th>
                                     <td><span id="modalNameEng"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ประเภทธุรกิจ</th>
+                                    <th class="bg-light">ประเภทธุรกิจ</th>
                                     <td><span id="modalBusinessTypeName"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>วันที่จดทะเบียน</th>
+                                    <th class="bg-light">วันที่จดทะเบียน</th>
                                     <td><span id="modalRegistrationDate"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เลขประจำตัวประชาชน</th>
+                                    <th class="bg-light">เลขประจำตัวประชาชน</th>
                                     <td><span id="modalCardID"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เลขทะเบียนนิติบุคคล</th>
+                                    <th class="bg-light">เลขทะเบียนนิติบุคคล</th>
                                     <td><span id="modalRegistrationNumber"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ทุนจดทะเบียน</th>
+                                    <th class="bg-light">ทุนจดทะเบียน</th>
                                     <td><span id="modalRegisteredCapital"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>รายละเอียดงาน</th>
+                                    <th class="bg-light">รายละเอียดงาน</th>
                                     <td><span id="modalJobDiscription"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-6">
-                        <h5 class="f-w-600">ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
+                        <h5 class="f-w-600"><i class="fa fa-edit"></i> ข้อมูลกรรมการผู้มีอำนาจลงนาม</h5>
                         <table class="table table-bordered mt-2 mb-4">
                             <tbody>
                                 <tr>
-                                    <th>ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</th>
+                                    <th class="bg-light">ชื่อกรรมการผู้มีอำนาจลงนาม (ไทย)</th>
                                     <td><span id="modalDirectorNameTh"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                    <th class="bg-light">ชื่อกรรมการผู้มีอำนาจลงนาม (อังกฤษ)</th>
                                     <td><span id="modalDirectorNameEng"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</th>
+                                    <th class="bg-light">ตำแหน่งผู้มีอำนาจลงนาม (ไทย)</th>
                                     <td><span id="modalDirectorPositionTh"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</th>
+                                    <th class="bg-light">ตำแหน่งผู้มีอำนาจลงนาม (อังกฤษ)</th>
                                     <td><span id="modalDirectorPositionEng"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-6">
-                        <h5 class="f-w-600">ข้อมูลเจ้าหน้าที่</h5>
+                        <h5 class="f-w-600"><i class="fa fa-users"></i> ข้อมูลเจ้าหน้าที่</h5>
                         <table class="table table-bordered mt-2">
                             <tbody>
                                 <tr>
-                                    <th>เจ้าหน้าที่คนที่ 1</th>
+                                    <th class="bg-light">เจ้าหน้าที่คนที่ 1</th>
                                     <td><span id="modalOfficerNameOne"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เบอร์โทรศัพท์</th>
+                                    <th class="bg-light">เบอร์โทรศัพท์</th>
                                     <td><span id="modalOfficerPhoneOne"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เจ้าหน้าที่คนที่ 2</th>
+                                    <th class="bg-light">เจ้าหน้าที่คนที่ 2</th>
                                     <td><span id="modalOfficerNameTwo"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เบอร์โทรศัพท์</th>
+                                    <th class="bg-light">เบอร์โทรศัพท์</th>
                                     <td><span id="modalOfficerPhoneTwo"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-12">
-                        <h5 class="f-w-600">ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
+                        <h5 class="f-w-600"><i class="fa fa-thumb-tack"></i> ข้อมูลที่อยู่และเบอร์โทรศัพท์</h5>
                         <table class="table table-bordered mt-2">
                             <tbody>
                                 <tr>
-                                    <th>เลขที่ประจำบ้าน</th>
+                                    <th class="bg-light">เลขที่ประจำบ้าน</th>
                                     <td><span id="modalHouseRecordNumber"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>ที่อยู่</th>
+                                    <th class="bg-light">ที่อยู่</th>
                                     <td><span id="modalAddress"></span></td>
                                 </tr>
                                 <tr>
-                                    <th>เบอร์โทรศัพท์</th>
+                                    <th class="bg-light">เบอร์โทรศัพท์</th>
                                     <td><span id="modalPhone"></span></td>
                                 </tr>
                             </tbody>

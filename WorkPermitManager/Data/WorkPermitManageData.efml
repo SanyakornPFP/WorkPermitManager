@@ -425,6 +425,106 @@
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
+  <class name="EmployerAuthorizationConfig" entity-set="EmployerAuthorizationConfigs" table="EmployerAuthorizationConfig" schema="dbo" p1:Guid="e1a09c95-bd8e-4665-98e9-95f9f580e312">
+    <id name="EmployerAuthorizationConfigID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="0d6d406a-5dc6-42a4-8d60-2549a1b48aa2">
+      <column name="EmployerAuthorizationConfigID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="1cdaaea9-0ff5-4c51-83a5-ab4aea1da032">
+      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="AuthorizedPersonImportID" type="Int32" p1:ValidateRequired="true" p1:Guid="127f8e58-1b28-4192-8f38-4551b9220bf0">
+      <column name="AuthorizedPersonImportID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="AuthorizedPersonMouID" type="Int32" p1:ValidateRequired="true" p1:Guid="50e49af7-d083-40eb-a8c4-d0cb88f51db8">
+      <column name="AuthorizedPersonMouID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Witness1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e42d7fc6-898b-4e7d-aaec-16a3e1152480">
+      <column name="Witness1" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Witness2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a46a39d8-2d80-4f31-bf98-df1f5451f29e">
+      <column name="Witness2" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AssignorName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1e7ed93c-d960-452b-ba3a-24c290810040">
+      <column name="AssignorName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AssignorCompany" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ed3d5aa2-27fa-4d7f-9e12-57a89578e67c">
+      <column name="AssignorCompany" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="17547616-d560-4d59-a989-77f4fe04caef">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ec73b6d2-8475-4964-a142-c7680b867f30">
+      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="77be70ef-d201-4845-ab78-fdf81d1353d8">
+      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="4fb5c2c8-9a99-4ef5-b393-3c4d726a2747">
+      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="EmployerAuthorizedPerson" entity-set="EmployerAuthorizedPeople" table="EmployerAuthorizedPerson" schema="dbo" p1:Guid="678b5a39-9082-4c25-a1c1-21e74bd9fc4b">
+    <id name="EmployerAuthorizedPersonID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="1cc71dad-d06e-49a6-9a95-aeb482202969">
+      <column name="EmployerAuthorizedPersonID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="5017ec00-ae7e-436d-932a-b7a1ecb5df95">
+      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="NameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="b6d86eb9-27eb-482e-a013-a74d38799db6">
+      <column name="NameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="NameEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8d1bf980-dca4-4d19-ba8e-8f516a9eb353">
+      <column name="NameEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="LicenseNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="d87bf781-97d6-4aab-afb2-46c902173dbf">
+      <column name="LicenseNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CompanyName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f373bd32-e3e1-4f1e-9d4d-ecbd1cedf691">
+      <column name="CompanyName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsAuthorized" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="cc5511c6-2639-4175-85f1-6fcdbf68be0d">
+      <column name="IsAuthorized" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="13" p1:ValidateRequired="false" p1:Guid="49193f53-3976-4a0d-a1b8-4013ab3335ea">
+      <column name="CardID" not-null="False" length="13" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="HouseNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="d7a498ca-9a43-4b47-8fd2-98b039c135fe">
+      <column name="HouseNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="VillageNo" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="8692c43c-6b19-4f5a-9364-7f79a504da14">
+      <column name="VillageNo" not-null="False" length="10" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Soi" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="1990db30-9661-4c8b-a55e-b03298c5810a">
+      <column name="Soi" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Road" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="de2ce81a-aacb-4f52-97d2-8b1e19d4bd2b">
+      <column name="Road" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SubdistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f23ba71c-b454-446e-83da-d3530a494901">
+      <column name="SubdistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DistrictTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bbf486f7-3a14-4d3d-a774-730286b6ac4d">
+      <column name="DistrictTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProvinceTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4f52a4fc-5205-48a8-a2c0-d8b8aa9aa2e6">
+      <column name="ProvinceTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Phone" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="f44f923d-3e92-4229-bfcb-2f955ec0fb25">
+      <column name="Phone" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="e3adc0b8-a2c4-4d9a-afcb-bb3eff2bfe0b">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="c026f60b-1e86-4a78-a671-0bee7253e8a7">
+      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="e54ea241-047b-4c3e-993d-23970589081d">
+      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="9406f667-76b4-4ae2-8aff-d703c0c39be3">
+      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="Company_PowerOfAttorney" cardinality="OneToMany" p1:Guid="6080cab6-7b9d-475e-b5dd-1161e450571e">
       <end1 multiplicity="One" name="Company_CompanyID" class="PowerOfAttorney" relation-class="Company" constrained="True" lazy="False" p1:Guid="d5690cc4-3092-4b37-a3f4-8741d6a1dbda">
@@ -551,6 +651,54 @@
         <property name="UserID" />
       </end1>
       <end2 multiplicity="Many" name="Employers" class="User" relation-class="Employer" lazy="False" p1:Guid="d3ee891b-0137-4569-a974-dfad709a9a2c">
+        <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="Employer_EmployerAuthorizationConfig" cardinality="OneToMany" p1:Guid="8a342b63-f2d3-4ead-9281-f9be3e4f6d97">
+      <end1 multiplicity="One" name="Employer" class="EmployerAuthorizationConfig" relation-class="Employer" constrained="True" lazy="False" p1:Guid="2ec0d63a-f35e-4eb7-95fc-b2f76670e968">
+        <property name="EmployerID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs" class="Employer" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="69a3aed4-b39d-4e33-a6c1-c1f293c88b0d">
+        <property name="EmployerID" />
+      </end2>
+    </association>
+    <association name="EmployerAuthorizedPerson_EmployerAuthorizationConfig" cardinality="OneToMany" p1:Guid="75f0006f-ca83-4c90-89df-7a45904ce153">
+      <end1 multiplicity="One" name="EmployerAuthorizedPerson_AuthorizedPersonImportID" class="EmployerAuthorizationConfig" relation-class="EmployerAuthorizedPerson" constrained="True" lazy="False" p1:Guid="b734ffdf-bcb0-4334-b63a-958d3c6f1aa9">
+        <property name="EmployerAuthorizedPersonID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedPersonImportID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="9a636b73-d831-4927-8c76-43a6a8364bc7">
+        <property name="AuthorizedPersonImportID" />
+      </end2>
+    </association>
+    <association name="EmployerAuthorizedPerson_EmployerAuthorizationConfig1" cardinality="OneToMany" p1:Guid="4c2fb12c-59d6-4ce6-b823-54fd5ca42fed">
+      <end1 multiplicity="One" name="EmployerAuthorizedPerson_AuthorizedPersonMouID" class="EmployerAuthorizationConfig" relation-class="EmployerAuthorizedPerson" constrained="True" lazy="False" p1:Guid="1a051932-c0be-4006-9004-0acc1407a037">
+        <property name="EmployerAuthorizedPersonID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedPersonMouID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="d0c6e9d4-583f-4193-b00b-470d8c1e2331">
+        <property name="AuthorizedPersonMouID" />
+      </end2>
+    </association>
+    <association name="Employer_EmployerAuthorizedPerson" cardinality="OneToMany" p1:Guid="8a5a2127-b780-44b3-a3a2-4f3c7241ae63">
+      <end1 multiplicity="One" name="Employer" class="EmployerAuthorizedPerson" relation-class="Employer" constrained="True" lazy="False" p1:Guid="4f3f4f5a-dc23-4a18-af24-02f5ee368c7f">
+        <property name="EmployerID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizedPeople" class="Employer" relation-class="EmployerAuthorizedPerson" lazy="False" p1:Guid="d952189d-ec83-4864-8e42-84183defb06f">
+        <property name="EmployerID" />
+      </end2>
+    </association>
+    <association name="User_EmployerAuthorizationConfig" cardinality="OneToMany" p1:Guid="3d762a87-fd18-4d10-a966-9367bedc2625">
+      <end1 multiplicity="One" name="User" class="EmployerAuthorizationConfig" relation-class="User" constrained="True" lazy="False" p1:Guid="08b0713b-ac5d-468d-981f-26ee44e56218">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs" class="User" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="8007c209-ab2c-4fba-97fd-011f61f42e9b">
+        <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="User_EmployerAuthorizedPerson" cardinality="OneToMany" p1:Guid="1d6d2d87-87d6-4a9a-a04a-f3961debbf43">
+      <end1 multiplicity="One" name="User" class="EmployerAuthorizedPerson" relation-class="User" constrained="True" lazy="False" p1:Guid="cec17f89-2ae6-4f10-a5db-d2ee3ba983fe">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizedPeople" class="User" relation-class="EmployerAuthorizedPerson" lazy="False" p1:Guid="f67775c7-41c0-486c-853b-aa6487912fd8">
         <property name="UserManageID" />
       </end2>
     </association>

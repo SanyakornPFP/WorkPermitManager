@@ -3962,3 +3962,4 @@ wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.j
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 wwwroot\qr-code.png
 wwwroot\Report\PowerOfAttorney\PA-001.rdlc
+wwwroot\uploads\EmployersDocument\asdasd\D0020250306092237.pdf

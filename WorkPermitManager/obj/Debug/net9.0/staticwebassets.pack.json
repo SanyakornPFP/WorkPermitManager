@@ -9125,6 +9125,10 @@
       "PackagePath": "staticwebassets\\qr-code.png"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf",
+      "PackagePath": "staticwebassets\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.WorkPermitManager.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
