@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f75rqVzZn0l8SERMZwQKIUW3mGNEKfCaVTbLTGVoVCo=",
+  "Hash": "NW/S8Qhp4XqOQKHa8sDOPdLYGGmNGc5ZdOdHtfqYmN4=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -83322,6 +83322,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\qr-code.png"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\Employers\\EM-001.rdlc",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "Report/Employers/EM-001#[.{fingerprint}]?.rdlc",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6ml8gpypxs",
+      "Integrity": "kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Report\\Employers\\EM-001.rdlc"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
@@ -633986,6 +634007,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-uE/8baKjQ2EXZZAVQjzbVPf6w7Zi+DtIfCBYvIbM2xA="
+        }
+      ]
+    },
+    {
+      "Route": "Report/Employers/EM-001.6ml8gpypxs.rdlc",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\Employers\\EM-001.rdlc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "372476"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 08 Mar 2025 04:30:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6ml8gpypxs"
+        },
+        {
+          "Name": "label",
+          "Value": "Report/Employers/EM-001.rdlc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="
+        }
+      ]
+    },
+    {
+      "Route": "Report/Employers/EM-001.rdlc",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\Employers\\EM-001.rdlc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "372476"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 08 Mar 2025 04:30:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="
         }
       ]
     },

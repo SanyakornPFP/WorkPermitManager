@@ -12270,8 +12270,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>65yxivzj85</Fingerprint>
-      <Integrity>5rbGlir6pqSMfKCEWor2VWli/nLfQJvtwCRNZB4Smvk=</Integrity>
+      <Fingerprint>7sehtkv6fb</Fingerprint>
+      <Integrity>6R3U2eaaAy/2gV3feGqVM2ZDL1xcDpF8R0aa+ydDgr4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\images\logo\3.png'))</OriginalItemSpec>
@@ -12288,8 +12288,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>q2x647p5s9</Fingerprint>
-      <Integrity>8rxFE7c5HrI4qRy5g2ZsUSCFmGG4SfnKLvLb/r6g2Ak=</Integrity>
+      <Fingerprint>4gxa8l2vio</Fingerprint>
+      <Integrity>LNzxeAsdiGbJMHsX9YW27mqGGiSA/iZkVbTkGEdz89Q=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\images\logo\4.png'))</OriginalItemSpec>
@@ -13692,8 +13692,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>obl5tdjeiv</Fingerprint>
-      <Integrity>zMNm3/khRcH7OHDfb4fkTaICVbpVP8JZNYOyYQEilj4=</Integrity>
+      <Fingerprint>8oo8ac6jrl</Fingerprint>
+      <Integrity>6Ej+speosF1D1SO6QmCrib2FuoipZNPAqmdpv+z4Wos=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\cleave\custom-cleave.js'))</OriginalItemSpec>
@@ -14484,8 +14484,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>119ihj51eu</Fingerprint>
-      <Integrity>NWvq/yxIRuVQjI/dtHOjW2eTooidShWRkEzy8F3S5oA=</Integrity>
+      <Fingerprint>ntti7dxgi2</Fingerprint>
+      <Integrity>hc01tWrG3dLA4VmkV5G0DikUgIlWmvZkB6ByuG1Ju/Y=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\datatable\datatables\datatable.custom.js'))</OriginalItemSpec>
@@ -41022,6 +41022,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qr-code.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\Employers\EM-001.rdlc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WorkPermitManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WorkPermitManager</BasePath>
+      <RelativePath>Report/Employers/EM-001.rdlc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>6ml8gpypxs</Fingerprint>
+      <Integrity>kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\Employers\EM-001.rdlc'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))">
       <SourceType>Package</SourceType>
       <SourceId>WorkPermitManager</SourceId>
@@ -41039,6 +41057,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\EmployersDocument\asdasd\D0020250306092237.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WorkPermitManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WorkPermitManager</BasePath>
+      <RelativePath>uploads/EmployersDocument/asdasd/D0020250306092237.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yzs3fq2saw</Fingerprint>
+      <Integrity>juzOe9D34oxLlTAfxz3eKzDNQeaM0kPvZ/p8nZn/7VE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\EmployersDocument\asdasd\D0020250306092237.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WorkPermitManager.niunzl2gmw.bundle.scp.css'))">
       <SourceType>Package</SourceType>

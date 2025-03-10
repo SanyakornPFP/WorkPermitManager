@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Reporting.NETCore;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using System.Globalization;
 using WorkPermitManager.Data;
 using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
@@ -21,17 +25,24 @@ namespace WorkPermitManager.Controllers
         #region Employers
         public IActionResult EmployersPage(string SearchData)
         {
-            var employers = _db.Employers.Where(s => s.IsActive).ToList();
-
-            if (!string.IsNullOrEmpty(SearchData))
+            if (User.GetLoggedPermission_Employers() == "True")
             {
-                employers = employers.Where(s => s.NameTh.Contains(SearchData) || s.NameEng.Contains(SearchData)).ToList();
+                var employers = _db.Employers.Where(s => s.IsActive).OrderByDescending(s => s.EmployerID).ToList();
+
+                if (!string.IsNullOrEmpty(SearchData))
+                {
+                    employers = employers.Where(s => s.NameTh.Contains(SearchData) || s.NameEng.Contains(SearchData)).ToList();
+                }
+
+                ViewBag.SearchData = SearchData;
+                ViewBag.EmployerList = employers;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Form", "PowerOfAttorney");
             }
 
-            ViewBag.SearchData = SearchData;
-            ViewBag.EmployerList = employers;
-
-            return View();
         }
 
         #region Create Employer
@@ -397,19 +408,20 @@ namespace WorkPermitManager.Controllers
                 worksheet.Cells[1, 17].Value = "เบอร์โทรศัพท์เจ้าหน้าที่คนที่ 2";
                 worksheet.Cells[1, 18].Value = "เลขรหัสประจำบ้าน";
                 worksheet.Cells[1, 19].Value = "บ้านเลขที่";
-                worksheet.Cells[1, 20].Value = "ซอย";
-                worksheet.Cells[1, 21].Value = "ถนน";
-                worksheet.Cells[1, 22].Value = "ตำบล (ไทย)";
-                worksheet.Cells[1, 23].Value = "อำเภอ (ไทย)";
-                worksheet.Cells[1, 24].Value = "จังหวัด (ไทย)";
-                worksheet.Cells[1, 25].Value = "รหัสไปรษณีย์";
-                worksheet.Cells[1, 26].Value = "ตำบล (อังกฤษ)";
-                worksheet.Cells[1, 27].Value = "อำเภอ (อังกฤษ)";
-                worksheet.Cells[1, 28].Value = "จังหวัด (อังกฤษ)";
-                worksheet.Cells[1, 29].Value = "เบอร์โทรศัพท์";
+                worksheet.Cells[1, 20].Value = "หมู่";
+                worksheet.Cells[1, 21].Value = "ซอย";
+                worksheet.Cells[1, 22].Value = "ถนน";
+                worksheet.Cells[1, 23].Value = "ตำบล (ไทย)";
+                worksheet.Cells[1, 24].Value = "อำเภอ (ไทย)";
+                worksheet.Cells[1, 25].Value = "จังหวัด (ไทย)";
+                worksheet.Cells[1, 26].Value = "รหัสไปรษณีย์";
+                worksheet.Cells[1, 27].Value = "ตำบล (อังกฤษ)";
+                worksheet.Cells[1, 28].Value = "อำเภอ (อังกฤษ)";
+                worksheet.Cells[1, 29].Value = "จังหวัด (อังกฤษ)";
+                worksheet.Cells[1, 30].Value = "เบอร์โทรศัพท์";
 
                 // Format header
-                using (var range = worksheet.Cells[1, 1, 1, 29])
+                using (var range = worksheet.Cells[1, 1, 1, 30])
                 {
                     range.Style.Font.Bold = true;
                     range.Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -433,6 +445,8 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "กรุณาเลือกไฟล์ Excel" });
             }
 
+            var uploadResults = new List<UploadExcelResultModel>();
+
             try
             {
                 using (var stream = new MemoryStream())
@@ -451,43 +465,100 @@ namespace WorkPermitManager.Controllers
 
                         for (int row = 2; row <= rowCount; row++)
                         {
-                            var employer = new Employer
+                            try
                             {
-                                NameTh = worksheet.Cells[row, 1].Text,
-                                NameEng = worksheet.Cells[row, 2].Text,
-                                BusinessTypeName = worksheet.Cells[row, 3].Text,
-                                CardID = worksheet.Cells[row, 4].Text,
-                                RegistrationNumber = worksheet.Cells[row, 5].Text,
-                                RegistrationDate = worksheet.Cells[row, 6].Text,
-                                RegisteredCapital = decimal.Parse(worksheet.Cells[row, 7].Text),
-                                DirectorNameTh = worksheet.Cells[row, 8].Text,
-                                DirectorNameEng = worksheet.Cells[row, 9].Text,
-                                DirectorPositionTh = worksheet.Cells[row, 10].Text,
-                                DirectorPositionEng = worksheet.Cells[row, 11].Text,
-                                JobTypeName = worksheet.Cells[row, 12].Text,
-                                JobDiscription = worksheet.Cells[row, 13].Text,
-                                OfficerNameOne = worksheet.Cells[row, 14].Text,
-                                OfficerPhoneOne = worksheet.Cells[row, 15].Text,
-                                OfficerNameTwo = worksheet.Cells[row, 16].Text,
-                                OfficerPhoneTwo = worksheet.Cells[row, 17].Text,
-                                HouseRecordNumber = worksheet.Cells[row, 18].Text,
-                                HouseNo = worksheet.Cells[row, 19].Text,
-                                Soi = worksheet.Cells[row, 20].Text,
-                                Road = worksheet.Cells[row, 21].Text,
-                                SubdistrictTh = worksheet.Cells[row, 22].Text,
-                                DistrictTh = worksheet.Cells[row, 23].Text,
-                                ProvinceTh = worksheet.Cells[row, 24].Text,
-                                Postcode = worksheet.Cells[row, 25].Text,
-                                SubdistrictEng = worksheet.Cells[row, 26].Text,
-                                DistrictEng = worksheet.Cells[row, 27].Text,
-                                ProvinceEng = worksheet.Cells[row, 28].Text,
-                                Phone = worksheet.Cells[row, 29].Text,
-                                CreatedAt = DateTime.Now,
-                                IsActive = true,
-                                UserManageID = int.Parse(User.GetLoggedInUserID())
-                            };
+                                var nameTh = worksheet.Cells[row, 1].Text;
+                                var registeredCapitalText = worksheet.Cells[row, 7].Text;
+                                var registeredCapital = string.IsNullOrEmpty(registeredCapitalText) ? 0 : decimal.Parse(registeredCapitalText);
 
-                            employers.Add(employer);
+                                // Check if the employer already exists
+                                var existingEmployer = _db.Employers.FirstOrDefault(e => e.NameTh.Contains(nameTh));
+                                if (existingEmployer != null)
+                                {
+                                    existingEmployer.NameTh = nameTh;
+                                    existingEmployer.NameEng = worksheet.Cells[row, 2].Text;
+                                    existingEmployer.BusinessTypeName = worksheet.Cells[row, 3].Text;
+                                    existingEmployer.CardID = worksheet.Cells[row, 4].Text;
+                                    existingEmployer.RegistrationNumber = worksheet.Cells[row, 5].Text;
+                                    existingEmployer.RegistrationDate = worksheet.Cells[row, 6].Text;
+                                    existingEmployer.RegisteredCapital = registeredCapital;
+                                    existingEmployer.DirectorNameTh = worksheet.Cells[row, 8].Text;
+                                    existingEmployer.DirectorNameEng = worksheet.Cells[row, 9].Text;
+                                    existingEmployer.DirectorPositionTh = worksheet.Cells[row, 10].Text;
+                                    existingEmployer.DirectorPositionEng = worksheet.Cells[row, 11].Text;
+                                    existingEmployer.JobTypeName = worksheet.Cells[row, 12].Text;
+                                    existingEmployer.JobDiscription = worksheet.Cells[row, 13].Text;
+                                    existingEmployer.OfficerNameOne = worksheet.Cells[row, 14].Text;
+                                    existingEmployer.OfficerPhoneOne = worksheet.Cells[row, 15].Text;
+                                    existingEmployer.OfficerNameTwo = worksheet.Cells[row, 16].Text;
+                                    existingEmployer.OfficerPhoneTwo = worksheet.Cells[row, 17].Text;
+                                    existingEmployer.HouseRecordNumber = worksheet.Cells[row, 18].Text;
+                                    existingEmployer.HouseNo = worksheet.Cells[row, 19].Text;
+                                    existingEmployer.VillageNo = worksheet.Cells[row, 20].Text;
+                                    existingEmployer.Soi = worksheet.Cells[row, 21].Text;
+                                    existingEmployer.Road = worksheet.Cells[row, 22].Text;
+                                    existingEmployer.SubdistrictTh = worksheet.Cells[row, 23].Text;
+                                    existingEmployer.DistrictTh = worksheet.Cells[row, 24].Text;
+                                    existingEmployer.ProvinceTh = worksheet.Cells[row, 25].Text;
+                                    existingEmployer.Postcode = worksheet.Cells[row, 26].Text;
+                                    existingEmployer.SubdistrictEng = worksheet.Cells[row, 27].Text;
+                                    existingEmployer.DistrictEng = worksheet.Cells[row, 28].Text;
+                                    existingEmployer.ProvinceEng = worksheet.Cells[row, 29].Text;
+                                    existingEmployer.Phone = worksheet.Cells[row, 30].Text;
+                                    existingEmployer.CreatedAt = DateTime.Now;
+                                    existingEmployer.IsActive = true;
+                                    existingEmployer.UserManageID = int.Parse(User.GetLoggedInUserID());
+                                    _db.Employers.Update(existingEmployer);
+                                    _db.SaveChanges();
+
+                                    uploadResults.Add(new UploadExcelResultModel { RowNumber = row - 1, CompanyName = nameTh, Status = "ไม่สำเร็จ", Message = "ชื่อไทยนี้มีอยู่ในระบบแล้ว" });
+                                    continue;
+                                }
+
+                                var employer = new Employer
+                                {
+                                    NameTh = nameTh,
+                                    NameEng = worksheet.Cells[row, 2].Text,
+                                    BusinessTypeName = worksheet.Cells[row, 3].Text,
+                                    CardID = worksheet.Cells[row, 4].Text,
+                                    RegistrationNumber = worksheet.Cells[row, 5].Text,
+                                    RegistrationDate = worksheet.Cells[row, 6].Text,
+                                    RegisteredCapital = registeredCapital,
+                                    DirectorNameTh = worksheet.Cells[row, 8].Text,
+                                    DirectorNameEng = worksheet.Cells[row, 9].Text,
+                                    DirectorPositionTh = worksheet.Cells[row, 10].Text,
+                                    DirectorPositionEng = worksheet.Cells[row, 11].Text,
+                                    JobTypeName = worksheet.Cells[row, 12].Text,
+                                    JobDiscription = worksheet.Cells[row, 13].Text,
+                                    OfficerNameOne = worksheet.Cells[row, 14].Text,
+                                    OfficerPhoneOne = worksheet.Cells[row, 15].Text,
+                                    OfficerNameTwo = worksheet.Cells[row, 16].Text,
+                                    OfficerPhoneTwo = worksheet.Cells[row, 17].Text,
+                                    HouseRecordNumber = worksheet.Cells[row, 18].Text,
+                                    HouseNo = worksheet.Cells[row, 19].Text,
+                                    VillageNo = worksheet.Cells[row, 20].Text,
+                                    Soi = worksheet.Cells[row, 21].Text,
+                                    Road = worksheet.Cells[row, 22].Text,
+                                    SubdistrictTh = worksheet.Cells[row, 23].Text,
+                                    DistrictTh = worksheet.Cells[row, 24].Text,
+                                    ProvinceTh = worksheet.Cells[row, 25].Text,
+                                    Postcode = worksheet.Cells[row, 26].Text,
+                                    SubdistrictEng = worksheet.Cells[row, 27].Text,
+                                    DistrictEng = worksheet.Cells[row, 28].Text,
+                                    ProvinceEng = worksheet.Cells[row, 29].Text,
+                                    Phone = worksheet.Cells[row, 30].Text,
+                                    CreatedAt = DateTime.Now,
+                                    IsActive = true,
+                                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                                };
+
+                                employers.Add(employer);
+                                uploadResults.Add(new UploadExcelResultModel { RowNumber = row, CompanyName = nameTh, Status = "สำเร็จ", Message = "บันทึกข้อมูลสำเร็จ" });
+                            }
+                            catch (Exception ex)
+                            {
+                                uploadResults.Add(new UploadExcelResultModel { RowNumber = row, CompanyName = worksheet.Cells[row, 1].Text, Status = "ไม่สำเร็จ", Message = "เกิดข้อผิดพลาด: " + ex.Message });
+                            }
                         }
 
                         _db.Employers.AddRange(employers);
@@ -495,14 +566,22 @@ namespace WorkPermitManager.Controllers
                     }
                 }
 
-                return Json(new { success = true });
+                var resultsJson = JsonConvert.SerializeObject(uploadResults);
+                return Json(new { success = true, results = resultsJson });
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = "เกิดข้อผิดพลาดในการอัพโหลดไฟล์: " + ex.Message });
             }
         }
+
+        public IActionResult UploadExcelResults()
+        {
+            return View();
+        }
+
         #endregion
+
         #endregion Employers
 
         #region EmployersDetail
@@ -530,7 +609,14 @@ namespace WorkPermitManager.Controllers
                     OfficerNameTwo = s.OfficerNameTwo,
                     OfficerPhoneTwo = s.OfficerPhoneTwo,
                     s.HouseRecordNumber,
-                    Address = "บ้านเลขที่ " + s.HouseNo + " ซอย " + s.Soi + " ถนน " + s.Road + " แขวง " + s.SubdistrictTh + " เขต " + s.DistrictTh + " จังหวัด " + s.ProvinceTh + " รหัสไปรษณีย์ " + s.Postcode,
+                    Address = "บ้านเลขที่ " + (s.HouseNo ?? "-") + " " +
+                      (string.IsNullOrEmpty(s.VillageNo) ? "" : "หมู่ " + s.VillageNo + " ") +
+                      (string.IsNullOrEmpty(s.Soi) ? "" : "ซอย " + s.Soi + " ") +
+                      (string.IsNullOrEmpty(s.Road) ? "" : "ถนน " + s.Road + " ") +
+                      "แขวง " + (s.SubdistrictTh ?? "-") + " " +
+                      "เขต " + (s.DistrictTh ?? "-") + " " +
+                      "จังหวัด " + (s.ProvinceTh ?? "-") + " " +
+                      "รหัสไปรษณีย์ " + (s.Postcode ?? "-"),
                     Phone = s.Phone
                 })
                 .FirstOrDefault();
@@ -821,6 +907,7 @@ namespace WorkPermitManager.Controllers
         #endregion
 
 
+
         [HttpGet]
         public IActionResult DownloadDocument(int documentID)
         {
@@ -875,8 +962,444 @@ namespace WorkPermitManager.Controllers
 
         #endregion EmployersDocument
 
-        #region EmployerAuthorization
-        #endregion EmployerAuthorization
+        #region EmployerAuthorized 
+        public IActionResult EmployerAuthorized(int EmployerID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
+            {
+                TempData["ErrorMessage"] = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล";
+                return RedirectToAction("Index", "Home");
+            }
+
+            var employers = _db.Employers
+                .Where(s => s.EmployerID == EmployerID)
+                .Select(s => new
+                {
+                    s.EmployerID,
+                    NameTh = s.NameTh,
+                    NameEng = s.NameEng
+                })
+                .FirstOrDefault();
+
+            ViewBag.EmployerName = employers.NameTh + " (" + employers.NameEng + ")";
+            ViewBag.EmployerID = EmployerID;
+            ViewBag.EmployerAuthorizedPersonList = _db.EmployerAuthorizedPeople.Where(e => e.EmployerID == EmployerID && e.IsActive).ToList();
+
+            var EmployerAuthorizationConfig = _db.EmployerAuthorizationConfigs
+                .Where(s => s.EmployerID == EmployerID)
+                .Select(s => new
+                {
+                    s.EmployerAuthorizationConfigID,
+                    s.AuthorizedPersonAssignorID,
+                    s.AuthorizedPersonImportID,
+                    s.AuthorizedPersonMouID,
+                    s.AuthorizedWitness1ID,
+                    s.AuthorizedWitness2ID,
+                    AuthorizedPersonImport = s.EmployerAuthorizedPerson_AuthorizedPersonImportID.NameTh,
+                    AuthorizedPersonMou = s.EmployerAuthorizedPerson_AuthorizedPersonMouID.NameTh,
+                    AuthorizedWitness1 = s.EmployerAuthorizedPerson_AuthorizedWitness1ID.NameTh,
+                    AuthorizedWitness2 = s.EmployerAuthorizedPerson_AuthorizedWitness2ID.NameTh,
+                    AuthorizedPersonAssignor = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.NameTh,
+                    AuthorizedCompanyAssignor = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.CompanyName,
+                })
+                .FirstOrDefault();
+
+            if (EmployerAuthorizationConfig == null)
+            {
+                ViewBag.EmployerAuthorizationConfigID = 0;
+                ViewBag.AuthorizedPersonImport = "-";
+                ViewBag.AuthorizedPersonMou = "-";
+                ViewBag.AuthorizedWitness1 = "-";
+                ViewBag.AuthorizedWitness2 = "-";
+                ViewBag.AuthorizedPersonAssignor = "-";
+                ViewBag.AuthorizedCompanyAssignor = "-";
+                ViewBag.AuthorizedPersonAssignorID = 0;
+                ViewBag.AuthorizedPersonImportID = 0;
+                ViewBag.AuthorizedPersonMouID = 0;
+                ViewBag.AuthorizedWitness1ID = 0;
+                ViewBag.AuthorizedWitness2ID = 0;
+
+            }
+            else
+            {
+                ViewBag.EmployerAuthorizationConfigID = EmployerAuthorizationConfig.EmployerAuthorizationConfigID;
+                ViewBag.AuthorizedPersonImport = EmployerAuthorizationConfig.AuthorizedPersonImport;
+                ViewBag.AuthorizedPersonMou = EmployerAuthorizationConfig.AuthorizedPersonMou;
+                ViewBag.AuthorizedWitness1 = EmployerAuthorizationConfig.AuthorizedWitness1;
+                ViewBag.AuthorizedWitness2 = EmployerAuthorizationConfig.AuthorizedWitness2;
+                ViewBag.AuthorizedPersonAssignor = EmployerAuthorizationConfig.AuthorizedPersonAssignor;
+                ViewBag.AuthorizedCompanyAssignor = EmployerAuthorizationConfig.AuthorizedCompanyAssignor;
+                ViewBag.AuthorizedPersonAssignorID = EmployerAuthorizationConfig.AuthorizedPersonAssignorID;
+                ViewBag.AuthorizedPersonImportID = EmployerAuthorizationConfig.AuthorizedPersonImportID;
+                ViewBag.AuthorizedPersonMouID = EmployerAuthorizationConfig.AuthorizedPersonMouID;
+                ViewBag.AuthorizedWitness1ID = EmployerAuthorizationConfig.AuthorizedWitness1ID;
+                ViewBag.AuthorizedWitness2ID = EmployerAuthorizationConfig.AuthorizedWitness2ID;
+
+            }
+
+            return View(EmployerAuthorizationConfig);
+        }
+
+        #region UpdateEmployerAuthorizationConfig
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmployerAuthorizationConfig(RequestEmployerAuthorizationConfigModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            var config = await _db.EmployerAuthorizationConfigs
+                .FirstOrDefaultAsync(e => e.EmployerAuthorizationConfigID == model.EmployerAuthorizationConfigID);
+
+            if (config == null)
+            {
+                config = new EmployerAuthorizationConfig
+                {
+                    EmployerID = model.EmployerID,
+                    AuthorizedPersonImportID = model.AuthorizedPersonImportID,
+                    AuthorizedPersonMouID = model.AuthorizedPersonMouID,
+                    AuthorizedWitness1ID = model.AuthorizedWitness1ID,
+                    AuthorizedWitness2ID = model.AuthorizedWitness2ID,
+                    AuthorizedPersonAssignorID = model.AuthorizedPersonAssignorID,
+                    IsActive = true,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                };
+
+                _db.EmployerAuthorizationConfigs.Add(config);
+            }
+            else
+            {
+                config.AuthorizedPersonImportID = model.AuthorizedPersonImportID;
+                config.AuthorizedPersonMouID = model.AuthorizedPersonMouID;
+                config.AuthorizedWitness1ID = model.AuthorizedWitness1ID;
+                config.AuthorizedWitness2ID = model.AuthorizedWitness2ID;
+                config.AuthorizedPersonAssignorID = model.AuthorizedPersonAssignorID;
+                config.UpdatedAt = DateTime.Now;
+                config.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                _db.EmployerAuthorizationConfigs.Update(config);
+            }
+
+            await _db.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+        #endregion
+
+        #region Create EmployerAuthorizedPerson
+        [HttpPost]
+        public async Task<IActionResult> CreateEmployerAuthorizedPerson(RequestEmployerAuthorizedPersonDetailsModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (string.IsNullOrEmpty(model.NameTh))
+            {
+                return NotFound();
+            }
+            else
+            {
+                EmployerAuthorizedPerson createModel = new EmployerAuthorizedPerson
+                {
+                    EmployerID = model.EmployerID,
+                    NameTh = model.NameTh,
+                    NameEng = model.NameEng,
+                    LicenseNumber = model.LicenseNumber,
+                    CompanyName = model.CompanyName,
+                    CardID = model.CardID,
+                    HouseNo = model.HouseNo,
+                    VillageNo = model.VillageNo,
+                    Soi = model.Soi,
+                    Road = model.Road,
+                    SubdistrictTh = model.SubdistrictTh,
+                    DistrictTh = model.DistrictTh,
+                    ProvinceTh = model.ProvinceTh,
+                    Phone = model.Phone,
+                    IsActive = true,
+                    CreatedAt = DateTime.Now,
+                    UserManageID = int.Parse(User.GetLoggedInUserID())
+                };
+
+                _db.EmployerAuthorizedPeople.Add(createModel);
+                await _db.SaveChangesAsync();
+
+                var logEntry = new LogSystemData
+                {
+                    TableName = "EmployerAuthorizedPeople",
+                    Action = "Create",
+                    RecordID = createModel.EmployerAuthorizedPersonID,
+                    UserManageID = int.Parse(User.GetLoggedInUserID()),
+                    ActionTime = DateTime.Now,
+                    IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                    OldValue = null,
+                    NewValue = $"NameTh: {createModel.NameTh}, NameEng: {createModel.NameEng}",
+                    Description = $"Created new EmployerAuthorizedPerson with NameTh: {createModel.NameTh}, NameEng: {createModel.NameEng}"
+                };
+
+                _db.LogSystemDatas.Add(logEntry);
+                await _db.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+        }
+        #endregion
+
+        #region Delete EmployerAuthorizedPerson
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmployerAuthorizedPerson(int EmployerAuthorizedPersonID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (EmployerAuthorizedPersonID == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var model = _db.EmployerAuthorizedPeople.FirstOrDefault(e => e.EmployerAuthorizedPersonID == EmployerAuthorizedPersonID);
+                if (model == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    model.IsActive = false;
+                    model.UpdatedAt = DateTime.Now;
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                    _db.EmployerAuthorizedPeople.Update(model);
+                    await _db.SaveChangesAsync();
+
+                    var logEntry = new LogSystemData
+                    {
+                        TableName = "EmployerAuthorizedPeople",
+                        Action = "Delete",
+                        RecordID = model.EmployerAuthorizedPersonID,
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        ActionTime = DateTime.Now,
+                        IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        OldValue = $"NameTh: {model.NameTh}, NameEng: {model.NameEng}",
+                        NewValue = null,
+                        Description = $"Deleted EmployerAuthorizedPerson with NameTh: {model.NameTh}, NameEng: {model.NameEng}"
+                    };
+
+                    _db.LogSystemDatas.Add(logEntry);
+                    await _db.SaveChangesAsync();
+
+                    return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
+
+        #region Update EmployerAuthorizedPerson
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmployerAuthorizedPerson(RequestEmployerAuthorizedPersonDetailsModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (model.EmployerAuthorizedPersonID == 0 || string.IsNullOrEmpty(model.NameTh))
+            {
+                return NotFound();
+            }
+            else
+            {
+                var data = _db.EmployerAuthorizedPeople.FirstOrDefault(e => e.EmployerAuthorizedPersonID == model.EmployerAuthorizedPersonID);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var oldNameTh = model.NameTh;
+                    var oldNameEng = model.NameEng;
+
+                    data.NameTh = model.NameTh;
+                    data.NameEng = model.NameEng;
+                    data.LicenseNumber = model.LicenseNumber;
+                    data.CompanyName = model.CompanyName;
+                    data.CardID = model.CardID;
+                    data.HouseNo = model.HouseNo;
+                    data.VillageNo = model.VillageNo;
+                    data.Soi = model.Soi;
+                    data.Road = model.Road;
+                    data.SubdistrictTh = model.SubdistrictTh;
+                    data.DistrictTh = model.DistrictTh;
+                    data.ProvinceTh = model.ProvinceTh;
+                    data.Phone = model.Phone;
+                    data.UpdatedAt = DateTime.Now;
+                    data.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                    _db.EmployerAuthorizedPeople.Update(data);
+                    await _db.SaveChangesAsync();
+
+                    var logEntry = new LogSystemData
+                    {
+                        TableName = "EmployerAuthorizedPeople",
+                        Action = "Update",
+                        RecordID = data.EmployerAuthorizedPersonID,
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        ActionTime = DateTime.Now,
+                        IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        OldValue = $"NameTh: {oldNameTh}, NameEng: {oldNameEng}",
+                        NewValue = $"NameTh: {model.NameTh}, NameEng: {model.NameEng}",
+                        Description = $"Updated EmployerAuthorizedPerson with NameTh: {oldNameTh}, NameEng: {oldNameEng} to NameTh: {model.NameTh}, NameEng: {model.NameEng}"
+                    };
+
+                    _db.LogSystemDatas.Add(logEntry);
+                    await _db.SaveChangesAsync();
+
+                    return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
+
+        #region Check EmployerAuthorizedPerson Name
+        [HttpPost]
+        public JsonResult CheckEmployerAuthorizedPersonName(string NameTh, string NameEng)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (string.IsNullOrEmpty(NameTh))
+            {
+                return Json("NameTh and NameEng are required");
+            }
+            else
+            {
+                var model = _db.EmployerAuthorizedPeople.FirstOrDefault(e => e.NameTh == NameTh && e.NameEng == NameEng);
+                if (model != null)
+                {
+                    return Json("EmployerAuthorizedPerson name already exists");
+                }
+                else
+                {
+                    return Json(true);
+                }
+            }
+        }
+        #endregion
+
+        #region Get EmployerAuthorizedPerson Details
+        [HttpPost]
+        public JsonResult GetEmployerAuthorizedPersonDetails(int EmployerAuthorizedPersonID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadEmployers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (EmployerAuthorizedPersonID == 0)
+            {
+                return Json("EmployerAuthorizedPerson ID is required");
+            }
+            else
+            {
+                var model = _db.EmployerAuthorizedPeople.FirstOrDefault(e => e.EmployerAuthorizedPersonID == EmployerAuthorizedPersonID);
+                if (model == null)
+                {
+                    return Json("EmployerAuthorizedPerson not found");
+                }
+                else
+                {
+                    return Json(model);
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+        [HttpGet]
+        public IActionResult ReportPowerOfAttorney(int EmployerID)
+        {
+            var Model = _db.EmployerAuthorizationConfigs
+                .Where(s => s.EmployerID == EmployerID)
+                .Select(s => new
+                {
+                    AttorneyName = s.EmployerAuthorizedPerson_AuthorizedPersonImportID.NameTh,
+                    AttorneyCardID = s.EmployerAuthorizedPerson_AuthorizedPersonImportID.CardID,
+                    AttorneyLocation =
+                        "บ้านเลขที่ " + (s.EmployerAuthorizedPerson_AuthorizedPersonImportID.HouseNo ?? "-") + " " +
+                        "หมู่ที่ " + (s.EmployerAuthorizedPerson_AuthorizedPersonImportID.VillageNo ?? "-") + " " +
+                        (string.IsNullOrEmpty(s.EmployerAuthorizedPerson_AuthorizedPersonImportID.Soi) ? "" : "ซอย " + s.EmployerAuthorizedPerson_AuthorizedPersonImportID.Soi + " ") +
+                        (string.IsNullOrEmpty(s.EmployerAuthorizedPerson_AuthorizedPersonImportID.Road) ? "" : "ถนน " + s.EmployerAuthorizedPerson_AuthorizedPersonImportID.Road + " ") +
+                        "ตำบล " + (s.EmployerAuthorizedPerson_AuthorizedPersonImportID.SubdistrictTh ?? "-") + " " +
+                        "อำเภอ " + (s.EmployerAuthorizedPerson_AuthorizedPersonImportID.DistrictTh ?? "-") + " " +
+                        "จังหวัด " + (s.EmployerAuthorizedPerson_AuthorizedPersonImportID.ProvinceTh ?? "-"),
+                    AuthorizedPersonMou = s.EmployerAuthorizedPerson_AuthorizedPersonMouID.NameTh,
+                    Witness1Name = s.EmployerAuthorizedPerson_AuthorizedWitness1ID.NameTh,
+                    Witness2Name = s.EmployerAuthorizedPerson_AuthorizedWitness2ID.NameTh,
+                    GrantorName = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.NameTh,
+                    GrantorCardID = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.CardID,
+                    GrantorLicenseNumber = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.LicenseNumber,
+                    GrantorLocation =
+                        "บ้านเลขที่ " + (s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.HouseNo ?? "-") + " " +
+                        "หมู่ที่ " + (s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.VillageNo ?? "-") + " " +
+                        (string.IsNullOrEmpty(s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.Soi) ? "" : "ซอย " + s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.Soi + " ") +
+                        (string.IsNullOrEmpty(s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.Road) ? "" : "ถนน " + s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.Road + " ") +
+                        "ตำบล " + (s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.SubdistrictTh ?? "-") + " " +
+                        "อำเภอ " + (s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.DistrictTh ?? "-") + " " +
+                        "จังหวัด " + (s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.ProvinceTh ?? "-"),
+                    GrantorCompany = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.CompanyName,
+                    Location = s.EmployerAuthorizedPerson_AuthorizedPersonAssignorID.CompanyName,
+                })
+                .FirstOrDefault();
+
+            if (Model == null || string.IsNullOrEmpty(Model.AttorneyName) || string.IsNullOrEmpty(Model.AttorneyCardID) ||
+               string.IsNullOrEmpty(Model.GrantorName) || string.IsNullOrEmpty(Model.GrantorCardID))
+            {
+                return Json(new { success = false, message = "ข้อมูลไม่ครบถ้วน กรุณาตั้งค่าผู้มอบอำนาจและรับอำนาจ", redirectUrl = Url.Action("EmployerAuthorized", "Employers", new { EmployerID }) });
+            }
+
+            string renderFormat = "PDF";
+            string mimetype = "application/pdf";
+            using var report = new LocalReport();
+            report.ReportPath = $"{this._hostingEnvironment.WebRootPath}\\Report\\Employers\\EM-001.rdlc";
+            report.EnableExternalImages = true;
+            var thaiCulture = new CultureInfo("th-TH");
+
+            ReportParameter[] parameters = new ReportParameter[]
+            {
+                new ReportParameter("CreationDate", "        "+ DateTime.Now.ToString("MMMM พ.ศ. yyyy", thaiCulture)),
+                new ReportParameter("Location", Model.Location),
+                new ReportParameter("GrantorName", Model.GrantorName),
+                new ReportParameter("GrantorNameCompany",Model.GrantorCompany != null ? Model.GrantorCompany + " โดย " + Model.GrantorName : Model.GrantorName),
+                new ReportParameter("GrantorCardID", Model.GrantorLicenseNumber != null ?  Model.GrantorLicenseNumber : Model.GrantorCardID),
+                new ReportParameter("GrantorLocation", Model.GrantorLocation),
+                new ReportParameter("AttorneyName", Model.AttorneyName),
+                new ReportParameter("AttorneyCardID", Model.AttorneyCardID),
+                new ReportParameter("AttorneyLocation", Model.AttorneyLocation),
+                new ReportParameter("Witness1Name", Model.Witness1Name),
+                new ReportParameter("Witness2Name", Model.Witness2Name),
+            };
+
+            report.SetParameters(parameters);
+
+            var pdf = report.Render(format: renderFormat);
+
+            var contentDisposition = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "EM00" + EmployerID + ".pdf",
+                Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
+            };
+
+            return new FileContentResult(pdf, mimetype);
+        }
+
         private List<string> GetUserPermissions(int userId)
         {
             // Fetch user permissions from the database

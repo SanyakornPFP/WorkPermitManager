@@ -3961,5 +3961,6 @@ wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 wwwroot\qr-code.png
+wwwroot\Report\Employers\EM-001.rdlc
 wwwroot\Report\PowerOfAttorney\PA-001.rdlc
 wwwroot\uploads\EmployersDocument\asdasd\D0020250306092237.pdf

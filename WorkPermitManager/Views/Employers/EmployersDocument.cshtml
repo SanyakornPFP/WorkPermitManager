@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Controller"] = "ทะเบียนลูกค้า-นายจ้าง";
     ViewData["Action"] = "จัดการเอกสาร";
-    ViewData["Icon"] = "briefcase";
+    ViewData["Icon"] = "folder-open-o";
 }
 <!-- Container-fluid starts-->
 <div class="container-fluid">
@@ -47,7 +47,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="ribbon ribbon-primary ribbon-clip">
-                        <i class="fa fa-briefcase"></i> สถานประกอบการ/นายจ้าง :  @ViewBag.EmployerName
+                        <i class="fa fa-folder-open-o"></i> จัดเก็บเอกสาร <i class="fa fa-caret-right"></i> @ViewBag.EmployerName
                     </div>
                     <div class="d-flex gap-2 justify-end" style="float:right">
                         <a class="btn btn-primary btn-sm" id="createOn" href="#">
@@ -147,7 +147,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">ปิด</button>
             </div>
         </div>
     </div>

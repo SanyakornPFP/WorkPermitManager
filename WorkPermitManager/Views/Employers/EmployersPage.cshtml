@@ -1,7 +1,8 @@
 ﻿@{
-    ViewData["Controller"] = "ทะเบียนลูกค้า-นายจ้าง";
+    ViewData["Controller"] = "ทะเบียนสถานประกอบ/นายจ้าง";
     ViewData["Action"] = ViewBag.SearchData == null || ViewBag.SearchData == "" ? "รายชื่อทั้งหมด" : "ค้นหารายชื่อ";
-    ViewData["Icon"] = "briefcase";
+    ViewData["Icon"] = "building";
+    int CountRow = 0;
 }
 
 <!-- Container-fluid starts-->
@@ -23,7 +24,7 @@
                                         <div class="horizontal-wizard">
                                             <div class="stroke-icon-wizard" style="font-weight:bold"><span>1</span></div>
                                             <div class="horizontal-wizard-content business-wizard">
-                                                <h6 style="font-weight:bold">ข้อมูลรายละเอียดสถานประกอบการ</h6>
+                                                <h6 style="font-weight:bold">ข้อมูลรายละเอียดสถานประกอบการ/นายจ้าง</h6>
                                             </div>
                                         </div>
                                     </a>
@@ -146,6 +147,10 @@
                                                 <input class="form-control" name="HouseNo" id="txtHouseNo" type="text" placeholder="กรุณากรอกข้อมูล">
                                             </div>
                                             <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtVillageNo">หมู่</label>
+                                                <input class="form-control" name="VillageNo" id="txtVillageNo" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-6 col-sm-6">
                                                 <label class="col-form-label" for="txtSoi">ซอย</label>
                                                 <input class="form-control" name="Soi" id="txtSoi" type="text" placeholder="กรุณากรอกข้อมูล">
                                             </div>
@@ -213,7 +218,7 @@
                         </a>
                     </div>
                     <div class="ribbon ribbon-primary ribbon-clip">
-                        <i class="fa fa-briefcase"></i> ทะเบียนลูกค้า-นายจ้าง
+                        <i class="fa fa-building"></i> ทะเบียนสถานประกอบการ/นายจ้าง
                     </div>
                 </div>
                 <div class="card-body">
@@ -229,6 +234,7 @@
                         <table class="display table table-bordered" id="data-source-1" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th style="display:none">#</th>
                                     <th>ชื่อ (ไทย)</th>
                                     <th>ชื่อ (อังกฤษ)</th>
                                     <th>ประเภทธุรกิจ</th>
@@ -240,7 +246,9 @@
                             <tbody>
                                 @foreach (var item in (List<Employer>)ViewBag.EmployerList)
                                 {
+                                    CountRow++;
                                     <tr>
+                                        <td style="display:none">@CountRow</td>
                                         <td>@item.NameTh</td>
                                         <td>@item.NameEng</td>
                                         <td>@item.BusinessTypeName</td>
@@ -431,26 +439,36 @@
                 e.preventDefault();
                 var formData = new FormData(this);
 
-                $.ajax({
-                    url: '@Url.Action("UploadExcel", "Employers")',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.success) {
-                            Swal.fire('สำเร็จ', 'อัพโหลดไฟล์สำเร็จ', 'success').then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.reload();
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณต้องการอัพโหลดไฟล์นี้หรือไม่?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'ใช่, อัพโหลด!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("UploadExcel", "Employers")',
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                               console.log('Response:', response); // เพิ่มการแสดงผลการตอบสนอง
+                                if (response.success) {
+                                    localStorage.setItem('uploadResults', response.results);
+                                    window.location.href = '@Url.Action("UploadExcelResults", "Employers")';
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
                                 }
-                            });
-                        } else {
-                            Swal.fire('ผิดพลาด', response.message, 'error');
-                        }
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        console.error('Error:', xhr.status, textStatus, errorThrown);
-                        Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการอัพโหลดไฟล์', 'error');
+                            },
+                            error: function(xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                                Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการอัพโหลดไฟล์', 'error');
+                            }
+                        });
                     }
                 });
             });
@@ -577,13 +595,14 @@
                                 $('#modalOfficerPhoneTwo').text(data.officerPhoneTwo);
                                 $('#modalHouseRecordNumber').text(data.houseRecordNumber);
                                 $('#modalAddress').text(
-                                    'บ้านเลขที่ ' + data.houseNo + ' ' + // House number
-                                    'ซอย ' + data.soi + ' ' + // Alley or lane (Soi)
-                                    'ถนน ' + data.road + ' ' + // Road or street name
-                                    'แขวง ' + data.subdistrictTh + ' ' + // Subdistrict name in Thai
-                                    'เขต ' + data.districtTh + ' ' + // District name in Thai
-                                    'จังหวัด ' + data.provinceTh + ' ' + // Province name in Thai
-                                    'รหัสไปรษณีย์ ' + data.postcode // Postal code
+                                    'บ้านเลขที่ ' + (data.houseNo || '-') + ' ' + // House number
+                                    'หมู่ ' + (data.villageNo || '-') + ' ' + // Village number
+                                    (data.soi ? 'ซอย ' + data.soi + ' ' : '') + // Alley or lane (Soi)
+                                    (data.road ? 'ถนน ' + data.road + ' ' : '') + // Road or street name
+                                    'แขวง ' + (data.subdistrictTh || '-') + ' ' + // Subdistrict name in Thai
+                                    'เขต ' + (data.districtTh || '-') + ' ' + // District name in Thai
+                                    'จังหวัด ' + (data.provinceTh || '-') + ' ' + // Province name in Thai
+                                    'รหัสไปรษณีย์ ' + (data.postcode || '-') // Postal code
                                 );
                                 $('#modalPhone').text(data.phone);
 
@@ -621,6 +640,7 @@
                 var officerPhoneTwo = $('#txttxtOfficerPhoneTwo').val();
                 var houseRecordNumber = $('#txtHouseRecordNumber').val();
                 var houseNo = $('#txtHouseNo').val();
+                var villageNo = $('#txtVillageNo').val();
                 var soi = $('#txtSoi').val();
                 var road = $('#txtRoad').val();
                 var subdistrictTh = $('#txtSubdistrictTh').val();
@@ -655,7 +675,6 @@
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonColor: '#28a745', // Light green
-                                cancelButtonColor: '#d3d3d3', // Light gray
                                 confirmButtonText: 'ใช่, บันทึก!',
                                 cancelButtonText: 'ยกเลิก'
                             }).then((result) => {
@@ -679,6 +698,7 @@
                                             JobDiscription: jobDiscription,
                                             HouseRecordNumber: houseRecordNumber,
                                             HouseNo: houseNo,
+                                            VillageNo: villageNo,
                                             Soi: soi,
                                             Road: road,
                                             SubdistrictTh: subdistrictTh,
@@ -756,6 +776,7 @@
                                 $('#txtOfficerPhoneTwo').val(data.officerPhoneTwo);
                                 $('#txtHouseRecordNumber').val(data.houseRecordNumber);
                                 $('#txtHouseNo').val(data.houseNo);
+                                $('#txtVillageNo').val(data.villageNo);
                                 $('#txtSoi').val(data.soi);
                                 $('#txtRoad').val(data.road);
                                 $('#txtSubdistrictTh').val(data.subdistrictTh);
@@ -792,7 +813,6 @@
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#d33',
-                        cancelButtonColor: '#d3d3d3',
                         confirmButtonText: 'ใช่, ลบ!',
                         cancelButtonText: 'ยกเลิก'
                     }).then((result) => {
@@ -849,6 +869,7 @@
                 var officerPhoneTwo = $('#txtOfficerPhoneTwo').val();
                 var houseRecordNumber = $('#txtHouseRecordNumber').val();
                 var houseNo = $('#txtHouseNo').val();
+                var villageNo = $('#txtVillageNo').val();
                 var soi = $('#txtSoi').val();
                 var road = $('#txtRoad').val();
                 var subdistrictTh = $('#txtSubdistrictTh').val();
@@ -866,7 +887,6 @@
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#007bff', // Light blue
-                    cancelButtonColor: '#d3d3d3', // Light gray
                     confirmButtonText: 'ใช่, บันทึก!',
                     cancelButtonText: 'ยกเลิก'
                 }).then((result) => {
@@ -892,6 +912,7 @@
                                 JobDiscription: jobDiscription,
                                 HouseRecordNumber: houseRecordNumber,
                                 HouseNo: houseNo,
+                                VillageNo: villageNo,
                                 Soi: soi,
                                 Road: road,
                                 SubdistrictTh: subdistrictTh,

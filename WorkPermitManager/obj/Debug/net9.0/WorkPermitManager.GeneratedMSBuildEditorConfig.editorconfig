@@ -60,8 +60,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuaWNhdGlvblxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/EmployerAuthorization.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXEVtcGxveWVyQXV0aG9yaXphdGlvbi5jc2h0bWw=
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/EmployerAuthorized.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXEVtcGxveWVyQXV0aG9yaXplZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/EmployersDetail.cshtml]
@@ -74,6 +74,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/EmployersPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXEVtcGxveWVyc1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Employers/UploadExcelResults.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJzXFVwbG9hZEV4Y2VsUmVzdWx0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Error/Error400.cshtml]

@@ -51,39 +51,39 @@
     <link href="https://fastly.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         .select2-selection--single {
-            border: 1px solid #d2d6da !important;
-            height: 3px !important;
-            padding: 1px !important;
-            font-weight: 400 !important;
-            line-height: 0.5 !important;
-            color: var(--bs-body-color) !important;
-            background-color: var(--bs-body-bg) !important;
-            background-clip: padding-box !important;
-            border: var(--bs-border-width) solid var(--bs-border-color) !important;
-            border-radius: var(--bs-border-radius) !important;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+        border: 1px solid #d2d6da !important;
+        height: 3px !important;
+        padding: 1px !important;
+        font-weight: 400 !important;
+        line-height: 0.5 !important;
+        color: var(--bs-body-color) !important;
+        background-color: var(--bs-body-bg) !important;
+        background-clip: padding-box !important;
+        border: var(--bs-border-width) solid var(--bs-border-color) !important;
+        border-radius: var(--bs-border-radius) !important;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
         }
 
         .select2-container--default {
-            height: 38px !important;
+        height: 38px !important;
         }
 
         .select2-container .select2-selection--single {
-            border-radius: 0.25rem !important;
-            height: 38px !important;
+        border-radius: 0.25rem !important;
+        height: 38px !important;
         }
 
         .select2-container--below {
-            height: 38px !important;
+        height: 38px !important;
         }
 
         .select2-selection__arrow {
-            height: 38px !important;
+        height: 38px !important;
         }
 
         .select2-selection__rendered {
-            line-height: 38px !important;
-            font-size: 14px;
+        line-height: 38px !important;
+        font-size: 14px;
         }
     </style>
     @await RenderSectionAsync("Styles", required: false)
@@ -213,30 +213,41 @@
                                     <a href="index.html"><img class="img-fluid" src="~/assets/images/logo/Icon-one.png" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                 </li>
-                                <li class="sidebar-list">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link  @(SureActive.StartsWith("/Employers") ? "active bg-primary text-white custom-rounded" : "")" asp-controller="Employers" asp-action="EmployersPage">
-                                        <i class="stroke-icon text-white fa fa-briefcase"></i>
-                                        <i class="fill-icon text-white fa fa-briefcase"></i>
-                                        <span style="padding-left: 10px">
-                                            ทะเบียนลูกค้า-นายจ้าง
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-list" id="autoservice-menu">
-                                    <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title @(SureActive.StartsWith("/PowerOfAttorney") ? "active bg-primary text-white custom-rounded" : "")" href="javascript:void(0)" onclick="toggleMenu('autoservice-menu')">
-                                        <i class="stroke-icon text-white fa fa-file-text"></i>
-                                        <i class="fill-icon text-white fa fa-file-text"></i>
-                                        <span style="padding-left: 10px">
-                                            หนังสิอมอบอำนาจ
-                                        </span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li><a asp-controller="PowerOfAttorney" asp-action="Form">รายการยื่นขอ</a></li>
-                                        <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
-                                    </ul>
-                                </li>
+                                @if (User.GetLoggedPermission_Employers() == "True")
+                                {
+
+                                    <li class="sidebar-list">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link  @(SureActive.StartsWith("/Employers") ? "active bg-primary text-white custom-rounded" : "")" asp-controller="Employers" asp-action="EmployersPage">
+                                            <i class="stroke-icon text-white fa fa-building"></i>
+                                            <i class="fill-icon text-white fa fa-building"></i>
+                                            <span style="padding-left: 10px">
+                                                ทะเบียนสถานประกอบการ
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                }
+                                @if (User.GetLoggedPermission_PowerOfAttorney() == "True")
+
+                                {
+
+                                    <li class="sidebar-list" id="autoservice-menu">
+                                        <i class="fa fa-thumb-tack"></i>
+                                        <a class="sidebar-link sidebar-title @(SureActive.StartsWith("/PowerOfAttorney") ? "active bg-primary text-white custom-rounded" : "")" href="javascript:void(0)" onclick="toggleMenu('autoservice-menu')">
+                                            <i class="stroke-icon text-white fa fa-file-text"></i>
+                                            <i class="fill-icon text-white fa fa-file-text"></i>
+                                            <span style="padding-left: 10px">
+                                                หนังสิอมอบอำนาจ
+                                            </span>
+                                        </a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a asp-controller="PowerOfAttorney" asp-action="Form">รายการยื่นขอ</a></li>
+                                            <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
+                                        </ul>
+                                    </li>
+
+                                }
                                 @if (User.GetLoggedPermission_Administrator() == "True")
                                 {
 

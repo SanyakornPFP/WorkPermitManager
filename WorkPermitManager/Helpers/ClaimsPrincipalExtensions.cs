@@ -109,6 +109,23 @@ namespace WorkPermitManager.Helpers
             return principal.FindFirst("ViewAdministrator").Value.ToString();
         }
 
+        public static string GetLoggedPermission_PowerOfAttorney(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("ViewPowerOfAttorney").Value.ToString();
+        }
+
+        public static string GetLoggedPermission_Employers(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("ViewEmployers").Value.ToString();
+        }
+
+
         public static string GetRole_AdministratorIsActive(this ClaimsPrincipal principal)
         {
             if (principal == null)

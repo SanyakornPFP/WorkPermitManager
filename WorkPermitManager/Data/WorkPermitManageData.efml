@@ -382,6 +382,9 @@
     <property name="HouseNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="e3d87b0f-fdef-4d10-9129-be95ab1e55a7">
       <column name="HouseNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="VillageNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="45c678bd-ada1-4812-805b-b40c4cc57883">
+      <column name="VillageNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="Soi" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="59d97b9c-089d-4674-a6a5-c638f5156e78">
       <column name="Soi" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
@@ -438,17 +441,14 @@
     <property name="AuthorizedPersonMouID" type="Int32" p1:ValidateRequired="true" p1:Guid="50e49af7-d083-40eb-a8c4-d0cb88f51db8">
       <column name="AuthorizedPersonMouID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="Witness1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e42d7fc6-898b-4e7d-aaec-16a3e1152480">
-      <column name="Witness1" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="AuthorizedWitness1ID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3efa72ac-4e52-4f1e-8002-26fb9e9ba752">
+      <column name="AuthorizedWitness1ID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="Witness2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a46a39d8-2d80-4f31-bf98-df1f5451f29e">
-      <column name="Witness2" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="AuthorizedWitness2ID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="38c22f18-84d1-4326-a1d1-c0be99775eff">
+      <column name="AuthorizedWitness2ID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="AssignorName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1e7ed93c-d960-452b-ba3a-24c290810040">
-      <column name="AssignorName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="AssignorCompany" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ed3d5aa2-27fa-4d7f-9e12-57a89578e67c">
-      <column name="AssignorCompany" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="AuthorizedPersonAssignorID" type="Int32" p1:ValidateRequired="true" p1:Guid="0db44fc0-e59e-47a7-9b93-03506aae1db6">
+      <column name="AuthorizedPersonAssignorID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="17547616-d560-4d59-a989-77f4fe04caef">
       <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
@@ -700,6 +700,30 @@
       </end1>
       <end2 multiplicity="Many" name="EmployerAuthorizedPeople" class="User" relation-class="EmployerAuthorizedPerson" lazy="False" p1:Guid="f67775c7-41c0-486c-853b-aa6487912fd8">
         <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="EmployerAuthorizedPerson_EmployerAuthorizationConfig2" cardinality="OneToMany" p1:Guid="bd7e6965-ead8-4e4c-90f6-2320a130bca2">
+      <end1 multiplicity="One" name="EmployerAuthorizedPerson_AuthorizedPersonAssignorID" class="EmployerAuthorizationConfig" relation-class="EmployerAuthorizedPerson" constrained="True" lazy="False" p1:Guid="e8afa9e1-b518-402b-96dd-0f999d158d59">
+        <property name="EmployerAuthorizedPersonID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedPersonAssignorID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="0e9709c1-61e3-4b4e-845c-7fb9609ab455">
+        <property name="AuthorizedPersonAssignorID" />
+      </end2>
+    </association>
+    <association name="EmployerAuthorizedPerson_EmployerAuthorizationConfig3" cardinality="OneToMany" p1:Guid="7e92a039-c504-43fd-b4e3-865b3e9fdb1b">
+      <end1 multiplicity="ZeroOrOne" name="EmployerAuthorizedPerson_AuthorizedWitness1ID" class="EmployerAuthorizationConfig" relation-class="EmployerAuthorizedPerson" constrained="True" lazy="False" p1:Guid="2c686f82-7227-4274-8631-1be2154d7e9e">
+        <property name="EmployerAuthorizedPersonID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedWitness1ID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="a562d064-2a6e-44a9-8e96-eb65b9c7e058">
+        <property name="AuthorizedWitness1ID" />
+      </end2>
+    </association>
+    <association name="EmployerAuthorizedPerson_EmployerAuthorizationConfig4" cardinality="OneToMany" p1:Guid="f0db0f93-575e-4b21-a526-1af06e8952ff">
+      <end1 multiplicity="ZeroOrOne" name="EmployerAuthorizedPerson_AuthorizedWitness2ID" class="EmployerAuthorizationConfig" relation-class="EmployerAuthorizedPerson" constrained="True" lazy="False" p1:Guid="eeb26012-8a70-4987-8a89-c137fcafcf32">
+        <property name="EmployerAuthorizedPersonID" />
+      </end1>
+      <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedWitness2ID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="214c75f7-05c1-4517-a6d2-0e07165f9d14">
+        <property name="AuthorizedWitness2ID" />
       </end2>
     </association>
   </associations>

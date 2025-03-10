@@ -3,6 +3,88 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
+      "Route": "Report/Employers/EM-001.6ml8gpypxs.rdlc",
+      "AssetFile": "Report/Employers/EM-001.rdlc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "372476"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 08 Mar 2025 04:30:09 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6ml8gpypxs"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="
+        },
+        {
+          "Name": "label",
+          "Value": "Report/Employers/EM-001.rdlc"
+        }
+      ]
+    },
+    {
+      "Route": "Report/Employers/EM-001.rdlc",
+      "AssetFile": "Report/Employers/EM-001.rdlc",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "372476"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 08 Mar 2025 04:30:09 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="
+        }
+      ]
+    },
+    {
       "Route": "Report/PowerOfAttorney/PA-001.67s8m0ofv2.rdlc",
       "AssetFile": "Report/PowerOfAttorney/PA-001.rdlc",
       "Selectors": [],

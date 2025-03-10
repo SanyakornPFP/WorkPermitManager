@@ -22,6 +22,7 @@
         public string OfficerPhoneTwo { get; set; }
         public string HouseRecordNumber { get; set; }
         public string HouseNo { get; set; }
+        public string VillageNo { get; set; }
         public string Soi { get; set; }
         public string Road { get; set; }
         public string SubdistrictTh { get; set; }

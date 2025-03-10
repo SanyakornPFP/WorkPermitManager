@@ -7,6 +7,9 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Azure.Core.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Azure.Identity.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Castle.Core.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\EPPlus.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\EPPlus.Interfaces.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\EPPlus.System.Drawing.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Humanizer.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
@@ -31,7 +34,15 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.Configuration.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.Configuration.Json.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.DependencyModel.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.FileProviders.Physical.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Extensions.Primitives.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Identity.Client.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Abstractions.dll
@@ -40,6 +51,7 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.IO.RecyclableMemoryStream.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.NET.StringTools.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.dll
@@ -83,6 +95,7 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Reflection.MetadataLoadContext.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Resources.Extensions.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Runtime.Caching.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Security.Cryptography.Pkcs.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.ServiceModel.Http.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.ServiceModel.Duplex.dll
@@ -281,5 +294,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\WorkPermitManager.deps.json

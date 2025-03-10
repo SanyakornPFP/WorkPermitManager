@@ -275,7 +275,9 @@
     $("#example-style-7").DataTable();
     $("#example-style-8").DataTable();
     // Data sources tables
-    $("#data-source-1").DataTable();
+    $("#data-source-1").DataTable({
+       "pageLength": 100
+    });
     $("#data-source-2").DataTable({
       ajax: "../assets/ajax/arrays.txt",
     });

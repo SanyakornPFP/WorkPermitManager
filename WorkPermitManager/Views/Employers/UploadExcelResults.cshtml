@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Controller"] = "ทะเบียนสถานประกอบ/นายจ้าง";
+    ViewData["Action"] = "ผลการอัพโหลดข้อมูล";
+    ViewData["Icon"] = "upload";
+}
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="fa fa-upload"></i> ผลการอัพโหลดข้อมูล
+                    </div>
+                    <div class="d-flex gap-2 justify-end" style="float:right">
+                        <a class="btn btn-light btn-sm" asp-action="EmployersPage" asp-controller="Employers">
+                            <i class="fa fa-caret-left text-dark"></i> กลับหน้าหลัก
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row p-1">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="f-w-600"><i class="fa fa-building"></i> รายชื่อสถานประกอบการ/นายจ้าง</h5>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>แถวที่</th>
+                                        <th>ชื่อบริษัท</th>
+                                        <th>สถานะ</th>
+                                        <th>ข้อความ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ผลลัพธ์จะถูกเพิ่มที่นี่โดย JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var resultsJson = localStorage.getItem('uploadResults');
+            if (resultsJson) {
+                var results = JSON.parse(resultsJson);
+                var tbody = document.querySelector('tbody');
+                results.forEach(function(result) {
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${result.RowNumber}</td>
+                        <td>${result.CompanyName}</td>
+                        <td>${result.Status === 'สำเร็จ' ? '<span class="badge badge-success">สำเร็จ</span>' : '<span class="badge badge-danger">ไม่สำเร็จ</span>'}</td>
+                        <td>${result.Message}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                localStorage.removeItem('uploadResults');
+            }
+        });
+    </script>
+}

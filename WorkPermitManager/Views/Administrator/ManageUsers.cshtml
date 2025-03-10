@@ -367,12 +367,22 @@
                 document.getElementById('txtUserIDChange').style.display = 'none';
             });
 
-            createOnChangePass.addEventListener('click', function (e) {
-                e.preventDefault();
-                showChangePass.style.display = 'block';  // Show the form
-            });
+
         });
 
+         document.addEventListener('DOMContentLoaded', function () {
+            var createOnChangePass = document.getElementById('createOnChangePass');
+            var showChangePass = document.getElementById('showChangePass');
+
+            if (createOnChangePass) {
+                createOnChangePass.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showChangePass.style.display = 'block';  // Show the form
+                });
+            } else {
+                console.error('Element with id "createOnChangePass" not found.');
+            }
+        });
                 // Create User
         document.getElementById('createBtn').addEventListener('click', function (e) {
             e.preventDefault();
@@ -478,7 +488,7 @@
                             $('#selectDepartmentID').val(response.departmentID).trigger('change');
                             $('#selectCompanyID').val(response.companyID).trigger('change');
 
-                            if(response.administratorIsActive == 'admin') {
+                            if(response.administratorActive) {
                                 $('#selectAdministratorIsActive').val('admin').trigger('change');
                             } else {
                                 $('#selectAdministratorIsActive').val('user').trigger('change');

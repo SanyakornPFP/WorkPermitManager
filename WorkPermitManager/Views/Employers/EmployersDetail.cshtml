@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Controller"] = "ทะเบียนลูกค้า-นายจ้าง";
+    ViewData["Controller"] = "ทะเบียนสถานประกอบ/นายจ้าง";
     ViewData["Action"] = "รายละเอียดข้อมูล";
-    ViewData["Icon"] = "briefcase";
+    ViewData["Icon"] = "building";
 }
 <!-- Container-fluid starts-->
 <div class="container-fluid">
@@ -13,7 +13,7 @@
                         <i class="fa fa-briefcase"></i> สถานประกอบการ/นายจ้าง :  @ViewBag.EmployerName
                     </div>
                     <div class="d-flex gap-2 justify-end" style="float:right">
-                        <a class="btn btn-secondary btn-sm" asp-action="EmployersPowerOfAttorney" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
+                        <a class="btn btn-secondary btn-sm" asp-action="EmployerAuthorized" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
                             <i class="fa fa-edit text-white"></i> ตั้งค่าการมอบอำนาจ
                         </a>
                         <a class="btn btn-success btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
@@ -30,11 +30,8 @@
                             <div class="d-flex justify-content-between">
                                 <h5 class="f-w-600"><i class="fa fa-building"></i> ข้อมูลสถานประกอบการ/นายจ้าง</h5>
                                 <div class="gap-2">
-                                    <a class="btn btn-light btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
-                                        <i class="fa fa-file-pdf-o text-danger"></i> ใบมอบอำนาจ
-                                    </a>
-                                    <a class="btn btn-light btn-sm" asp-action="EmployersDocument" asp-controller="Employers" asp-route-EmployerID="@Model.EmployerID">
-                                        <i class="fa fa-file-pdf-o text-danger"></i> ใบมอบอำนาจ นจ.
+                                    <a class="btn btn-light btn-sm" id="printPowerOfAttorney" data-employerid="@Model.EmployerID" href="#">
+                                        <i class="fa fa-file-pdf-o text-danger"></i> พิมพ์ใบมอบอำนาจ
                                     </a>
                                 </div>
                             </div>
@@ -138,3 +135,41 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#printPowerOfAttorney').on('click', function(e) {
+                e.preventDefault();
+                var employerID = $(this).data('employerid');
+
+                $.ajax({
+                    url: '@Url.Action("ReportPowerOfAttorney", "Employers")',
+                    type: 'GET',
+                    data: { EmployerID: employerID },
+                    success: function(response) {
+                        if (response.success) {
+                            var blob = new Blob([response], { type: 'application/pdf' });
+                            var url = window.URL.createObjectURL(blob);
+                            window.open(url, '_blank');
+                        } else {
+                            Swal.fire({
+                                title: 'ผิดพลาด',
+                                text: response.message,
+                                icon: 'error'
+                            }).then((result) => {
+                                if (result.isConfirmed && response.redirectUrl) {
+                                    window.location.href = response.redirectUrl;
+                                }
+                            });
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.error('Error:', xhr.status, textStatus, errorThrown);
+                        Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการสร้างรายงาน', 'error');
+                    }
+                });
+            });
+        });
+    </script>
+}

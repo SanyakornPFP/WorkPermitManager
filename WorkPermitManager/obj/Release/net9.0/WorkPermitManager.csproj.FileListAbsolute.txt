@@ -1047,7 +1047,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\c
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\353oso7x9m-c0fyxo8rnm.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\fud2nnio92-akzijf0qkn.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\3ax1i372y2-ycfbg769w9.gz
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\s0pjtealvx-obl5tdjeiv.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\cx7s5wlogb-6l5cxyue69.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\14kjwz62fd-jl2ts4w18x.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\gelfknzdeb-vpq2xa6gtk.gz
@@ -1091,7 +1090,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\c
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\9kwbyxy07h-h3vyjjb1xp.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\dep1vh43xm-pony5h4ism.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\v80k59qryl-8qfed434d9.gz
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\du6ybtn01n-119ihj51eu.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\8kqlgboqof-6nwapz7omv.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\dnc83d94je-1m5d0efavm.gz
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\6ma7p1rrju-nb50cm26xh.gz
@@ -2016,3 +2014,19 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\r
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.pdb
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.genruntimeconfig.cache
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\ref\WorkPermitManager.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\EPPlus.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\EPPlus.Interfaces.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\EPPlus.System.Drawing.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.Configuration.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.Configuration.Json.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\System.Security.Cryptography.Pkcs.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\s0pjtealvx-8oo8ac6jrl.gz
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\compressed\du6ybtn01n-ntti7dxgi2.gz

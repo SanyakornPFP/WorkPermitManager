@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using WorkPermitManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Set the license context for EPPlus
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,6 +23,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
       options.AccessDeniedPath = "/AccessDenied";
       options.SlidingExpiration = true;
   });
+
+// Add session services
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 
 var app = builder.Build();
 
@@ -42,6 +55,8 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapDefaultControllerRoute();
 
+// Use session
+app.UseSession();
 
 app.MapStaticAssets();
 
