@@ -69,7 +69,7 @@ namespace WorkPermitManager.Controllers
                 _db.Users.Add(Createmodel);
                 await _db.SaveChangesAsync();
 
-                string[] function = ["Employers", "PowerOfAttorney", "Administrator"];
+                string[] function = ["Employers", "Services", "PowerOfAttorney", "Administrator"];
                 if (Createmodel.AdministratorActive)
                 {
                     foreach (var item in function)
@@ -222,7 +222,7 @@ namespace WorkPermitManager.Controllers
                     _db.Users.Update(model);
                     await _db.SaveChangesAsync();
 
-                    string[] function = ["Employers", "PowerOfAttorney", "Administrator"];
+                    string[] function = ["Employers", "Services", "PowerOfAttorney", "Administrator"];
 
                     if (model.AdministratorActive)
                     {

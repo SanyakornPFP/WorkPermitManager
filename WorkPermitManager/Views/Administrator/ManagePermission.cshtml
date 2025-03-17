@@ -45,6 +45,13 @@
                                                     <td class="text-center"><input class="checkbox_animated" id="employersEdit_delete" type="checkbox"></td>
                                                 </tr>
                                                 <tr>
+                                                    <td><i class="fa fa-paste text-dark"> </i> งานบริการ</td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="servicesEdit_read" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="servicesEdit_create" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="servicesEdit_update" type="checkbox"></td>
+                                                    <td class="text-center"><input class="checkbox_animated" id="servicesEdit_delete" type="checkbox"></td>
+                                                </tr>
+                                                <tr>
                                                     <td><i class="icofont icofont-files text-dark"> </i> หนังสิอมอบอำนาจ</td>
                                                     <td class="text-center"><input class="checkbox_animated" id="powerofattorneyEdit_read" type="checkbox"></td>
                                                     <td class="text-center"><input class="checkbox_animated" id="powerofattorneyEdit_create" type="checkbox"></td>
@@ -160,6 +167,13 @@
                                         <td class="text-center" id="employers_delete"></td>
                                     </tr>
                                     <tr>
+                                        <td><i class="fa fa-paste text-dark m-1"></i> งานบริการ</td>
+                                        <td class="text-center" id="services_read"></td>
+                                        <td class="text-center" id="services_create"></td>
+                                        <td class="text-center" id="services_update"></td>
+                                        <td class="text-center" id="services_delete"></td>
+                                    </tr>
+                                    <tr>
                                         <td><i class="icofont icofont-files text-dark m-1"> </i> หนังสิอมอบอำนาจ</td>
                                         <td class="text-center" id="powerofattorney_read"></td>
                                         <td class="text-center" id="powerofattorney_create"></td>
@@ -220,6 +234,11 @@
                                 $('#employers_delete').html(getIcon(permissions.Employers.canDelete));
 
 
+                                $('#services_read').html(getIcon(permissions.Services.canRead));
+                                $('#services_create').html(getIcon(permissions.Services.canCreate));
+                                $('#services_update').html(getIcon(permissions.Services.canUpdate));
+                                $('#services_delete').html(getIcon(permissions.Services.canDelete));
+
                                 $('#powerofattorney_read').html(getIcon(permissions.PowerOfAttorney.canRead));
                                 $('#powerofattorney_create').html(getIcon(permissions.PowerOfAttorney.canCreate));
                                 $('#powerofattorney_update').html(getIcon(permissions.PowerOfAttorney.canUpdate));
@@ -269,6 +288,11 @@
                             $('#employersEdit_create').prop('checked', permissions.Employers.canCreate);
                             $('#employersEdit_update').prop('checked', permissions.Employers.canUpdate);
                             $('#employersEdit_delete').prop('checked', permissions.Employers.canDelete);
+
+                            $('#servicesEdit_read').prop('checked', permissions.Services.canRead);
+                            $('#servicesEdit_create').prop('checked', permissions.Services.canCreate);
+                            $('#servicesEdit_update').prop('checked', permissions.Services.canUpdate);
+                            $('#servicesEdit_delete').prop('checked', permissions.Services.canDelete);
 
                             $('#powerofattorneyEdit_read').prop('checked', permissions.PowerOfAttorney.canRead);
                             $('#powerofattorneyEdit_create').prop('checked', permissions.PowerOfAttorney.canCreate);

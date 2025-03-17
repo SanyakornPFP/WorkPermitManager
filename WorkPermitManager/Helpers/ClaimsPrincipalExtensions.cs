@@ -125,6 +125,13 @@ namespace WorkPermitManager.Helpers
             return principal.FindFirst("ViewEmployers").Value.ToString();
         }
 
+        public static string GetLoggedPermission_Services(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("ViewServices").Value.ToString();
+        }
 
         public static string GetRole_AdministratorIsActive(this ClaimsPrincipal principal)
         {

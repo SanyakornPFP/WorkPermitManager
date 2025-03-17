@@ -18,34 +18,34 @@ using System.Linq.Expressions;
 
 namespace WorkPermitManager.Models
 {
-    public partial class Company {
+    public partial class ServiceItem {
 
-        public Company()
+        public ServiceItem()
         {
-            this.PowerOfAttorneys_CompanyID = new List<PowerOfAttorney>();
-            this.Users = new List<User>();
+            this.Services = new List<Service>();
+            this.ServiceWorkers = new List<ServiceWorker>();
             OnCreated();
         }
 
-        public virtual int CompanyID { get; set; }
+        public virtual int ServiceItemID { get; set; }
 
-        public virtual string CompanyName { get; set; }
+        public virtual string ServiceItemName { get; set; }
 
-        public virtual string CompanyAddress { get; set; }
+        public virtual string Descriptions { get; set; }
 
-        public virtual bool? OwnerSystem { get; set; }
+        public virtual string Note { get; set; }
 
-        public virtual DateTime? CreatedDate { get; set; }
+        public virtual bool IsActive { get; set; }
 
-        public virtual DateTime? UpdatedDate { get; set; }
+        public virtual DateTime? CreateAt { get; set; }
+
+        public virtual DateTime? UpdateAt { get; set; }
 
         public virtual int? UserManageID { get; set; }
 
-        public virtual bool IsDeleted { get; set; }
+        public virtual IList<Service> Services { get; set; }
 
-        public virtual IList<PowerOfAttorney> PowerOfAttorneys_CompanyID { get; set; }
-
-        public virtual IList<User> Users { get; set; }
+        public virtual IList<ServiceWorker> ServiceWorkers { get; set; }
 
         #region Extensibility Method Definitions
 

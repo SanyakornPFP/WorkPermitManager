@@ -162,6 +162,7 @@ namespace WorkPermitManager.Controllers
                 new Claim("ProfileImage", dataUser.ProfilePicture  == null ? "NULL" :dataUser.ProfilePicture),
                 new Claim("SignatureImage", dataUser.Signature  == null ? "NULL" :dataUser.Signature),
                 new Claim("ViewEmployers", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Employers")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewServices", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Services")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("AdministratorIsActive", user.AdministratorActive == true ? "True" : "False"),

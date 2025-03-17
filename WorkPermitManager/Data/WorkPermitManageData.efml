@@ -525,6 +525,200 @@
       <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
+  <class name="Service" entity-set="Services" table="Service" schema="dbo" p1:Guid="7fad6026-7592-4e66-b6af-b39169f3406e">
+    <id name="ServiceID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="ce613073-4066-4e9f-b12e-deaa599bd305">
+      <column name="ServiceID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="EmployerID" type="Int32" p1:ValidateRequired="true" p1:Guid="0f60c9dd-63f0-42c6-9c42-ffa80dc251cf">
+      <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ServiceTypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="a7a36314-cd5a-411b-a16d-14371284cd89">
+      <column name="ServiceTypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ServiceItemID" type="Int32" p1:ValidateRequired="true" p1:Guid="7fd183b0-c323-40d4-ad12-a4bbe44f317b">
+      <column name="ServiceItemID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Note" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="5d1cf66c-b58b-44b2-aaef-43facaf2c83c">
+      <column name="Note" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="RecordDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="f59b5d87-0af7-48df-9785-e4c5f6d4fb49">
+      <column name="RecordDate" not-null="True" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="Recorder" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="17ce632f-9da8-4325-b6e7-948a12bd887f">
+      <column name="Recorder" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SignatureName" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="ffa53f06-8aff-4ae4-ac0b-707e1634c2b0">
+      <column name="SignatureName" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsMou" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="94f7c7f4-61c9-4d13-882a-6896835cc935">
+      <column name="IsMou" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="QuotationNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="7ff113e5-4148-4f4d-a6f5-cb969a63729b">
+      <column name="QuotationNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ExpectedPeople" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b3761b2e-84dc-4581-9ff2-061f74d9ad63">
+      <column name="ExpectedPeople" default="0" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="TotalPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4b2f2413-6802-436f-8991-b3051964e9f7">
+      <column name="TotalPrice" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Deposit" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="65675576-3144-47ca-9115-7f55f6032838">
+      <column name="Deposit" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="RemainingPayment" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ac4896af-4f14-40dd-b69a-2482fa311607">
+      <column name="RemainingPayment" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="OutstandingAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8956cb6c-3789-4c29-bcbf-dfdf251a839a">
+      <column name="OutstandingAmount" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Status" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="02f2f1d1-118d-426c-ab72-467cad21adff">
+      <column name="Status" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsSentToAccounting" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="1dfcd2d5-3bda-4dec-a8fb-6ea104bea554">
+      <column name="IsSentToAccounting" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="26859875-c7f4-46ce-a18e-e4823154e238">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="fcf7111b-caf0-47c8-9102-fb2412b3d0c2">
+      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="225bb6c2-58c8-470e-9068-035c3b9a61dc">
+      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="faa4993d-b918-4b36-8d03-599e5b9287cd">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ServiceItem" entity-set="ServiceItems" table="ServiceItem" schema="dbo" p1:Guid="65e8a396-c27e-4df8-b625-f2b4555c0447">
+    <id name="ServiceItemID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="29ecd77a-e5cf-4c13-8028-725dcecc9f9a">
+      <column name="ServiceItemID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ServiceItemName" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="5f32d12d-2504-4eb9-91b0-70441596d427">
+      <column name="ServiceItemName" not-null="True" length="255" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="Descriptions" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1110a0a1-3368-4dc0-ab6d-8b2fce023e9d">
+      <column name="Descriptions" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Note" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ee8e974f-c5d5-4922-8275-135475f13252">
+      <column name="Note" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="1af34bc7-6601-433a-99fa-57914f5cb7f6">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreateAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b9a29ca2-0059-412b-a502-f11585743ffb">
+      <column name="CreateAt" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdateAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6687282c-6d79-41ec-a61a-6ccb20d8cef0">
+      <column name="UpdateAt" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2592bf0f-e9fe-47f0-b517-359feaa53b39">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ServiceType" entity-set="ServiceTypes" table="ServiceType" schema="dbo" p1:Guid="981c8598-0916-4619-844e-1dbc26395f75">
+    <id name="ServiceTypeID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="577665d3-a4eb-4bbb-9501-5b8aa59f4254">
+      <column name="ServiceTypeID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ServiceTypeName" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="c33c293e-8bf3-49cb-8f89-48ba3725c387">
+      <column name="ServiceTypeName" not-null="True" length="255" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="Descriptions" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cbec44f4-f616-4196-a848-d0d025e72541">
+      <column name="Descriptions" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Note" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e77ee18e-209c-41d6-95ff-4d7c9a05682e">
+      <column name="Note" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="8db6b777-f2cb-4930-a076-68d5276e83a2">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="CreateAt" type="DateTime" p1:ValidateRequired="true" p1:Guid="68d7b83d-68de-4eb9-8a40-38d177fd8c9d">
+      <column name="CreateAt" not-null="True" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdateAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9dbc3c3b-d4a4-4d04-9884-24d7a04957fa">
+      <column name="UpdateAt" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:ValidateRequired="true" p1:Guid="c665dc29-e6a9-47bd-9720-9f68e9d25560">
+      <column name="UserManageID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ServiceWorker" entity-set="ServiceWorkers" table="ServiceWorker" schema="dbo" p1:Guid="17feef61-bb36-412e-a29e-cf47474e1cc2">
+    <id name="ServiceWorkerID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="579402f0-b75b-4c6e-ac8b-a998ad7bade3">
+      <column name="ServiceWorkerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ServiceID" type="Int32" p1:ValidateRequired="true" p1:Guid="1414fb9d-9e3b-4213-8054-69c940cc9022">
+      <column name="ServiceID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="PassportNumber" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="a88e940b-3baf-459a-86d2-e770fa46d7d2">
+      <column name="PassportNumber" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Nationality" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="da9532f5-ab4c-4c93-911d-702cd2350d77">
+      <column name="Nationality" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Title" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="f34f6035-4e98-4963-bf2b-2754f529ffe0">
+      <column name="Title" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FirstNameEN" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="bccef476-d65f-49e4-8690-c68b83d4864b">
+      <column name="FirstNameEN" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FirstNameTH" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="056068a0-76dd-4bac-bea2-feb79e72fc41">
+      <column name="FirstNameTH" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="LastNameEN" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="d341cc26-f21b-4b70-b93c-4e5210fb5b3e">
+      <column name="LastNameEN" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="LastNameTH" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="b12e29e9-6506-4c52-b59f-71c05a009ffd">
+      <column name="LastNameTH" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ServiceItemID" type="Int32" p1:ValidateRequired="true" p1:Guid="59672e4d-655a-4e10-a383-c49374353d16">
+      <column name="ServiceItemID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ServiceFee" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="aa949566-b942-43c9-86ac-084ffa666cce">
+      <column name="ServiceFee" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Expiry90Days" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e3a855c3-fb54-4188-9693-2b370f3eca7b">
+      <column name="Expiry90Days" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="Note" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="78f51549-a287-43ae-8322-557129febac3">
+      <column name="Note" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DateOfBirth" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6b32dfeb-27eb-4e70-9ed2-977b68eaa0c4">
+      <column name="DateOfBirth" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="PassportIssueDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b4136873-5e83-456f-9203-4235dc529a93">
+      <column name="PassportIssueDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="PassportExpiryDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f2d72ba9-3916-4edb-9a9b-b9141479dea2">
+      <column name="PassportExpiryDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="WorkPermitNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="8d46b2ff-12c0-479d-8d2e-652ba9d8c382">
+      <column name="WorkPermitNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="EntryVisaNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b1d8a1c6-9cab-4471-9eef-10decedd48d7">
+      <column name="EntryVisaNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PlaceOfBirth" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="6c9d27ff-f30c-4b93-9f6d-cd916045dcd9">
+      <column name="PlaceOfBirth" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PassportIssuedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="753ac717-0f5b-46c5-a1a7-6273c83c13cb">
+      <column name="PassportIssuedAt" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Country" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b181bc8a-a022-4ff8-94ed-c5595802ccfe">
+      <column name="Country" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ed7b9a9b-ca9d-4f75-bb81-117095919180">
+      <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="41c4722e-8bdc-41e4-90dd-6bba4879e138">
+      <column name="UpdatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsActive" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f7486481-1382-48d5-aa7a-0e3bc0eaad50">
+      <column name="IsActive" default="1" not-null="True" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="UserManageID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="13813fd8-5623-4ef9-b757-1ef721969813">
+      <column name="UserManageID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="Company_PowerOfAttorney" cardinality="OneToMany" p1:Guid="6080cab6-7b9d-475e-b5dd-1161e450571e">
       <end1 multiplicity="One" name="Company_CompanyID" class="PowerOfAttorney" relation-class="Company" constrained="True" lazy="False" p1:Guid="d5690cc4-3092-4b37-a3f4-8741d6a1dbda">
@@ -724,6 +918,46 @@
       </end1>
       <end2 multiplicity="Many" name="EmployerAuthorizationConfigs_AuthorizedWitness2ID" class="EmployerAuthorizedPerson" relation-class="EmployerAuthorizationConfig" lazy="False" p1:Guid="214c75f7-05c1-4517-a6d2-0e07165f9d14">
         <property name="AuthorizedWitness2ID" />
+      </end2>
+    </association>
+    <association name="Employer_Service" cardinality="OneToMany" p1:Guid="88365792-90d8-495a-91fd-be82152f460b">
+      <end1 multiplicity="One" name="Employer" class="Service" relation-class="Employer" constrained="True" lazy="False" p1:Guid="7d0a363b-5d3c-4907-807b-0845abbc99e4">
+        <property name="EmployerID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="Employer" relation-class="Service" lazy="False" p1:Guid="26316e2a-7a5c-4d14-890d-1a135fda6775">
+        <property name="EmployerID" />
+      </end2>
+    </association>
+    <association name="ServiceType_Service" cardinality="OneToMany" p1:Guid="319f8b7d-876f-4c4b-892a-8483c1d5fa17">
+      <end1 multiplicity="One" name="ServiceType" class="Service" relation-class="ServiceType" constrained="True" lazy="False" p1:Guid="7ae9b5ae-da64-4678-a330-d5c536448d5c">
+        <property name="ServiceTypeID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="ServiceType" relation-class="Service" lazy="False" p1:Guid="1925d4c4-f7ce-466c-997a-dd971dc7c1a2">
+        <property name="ServiceTypeID" />
+      </end2>
+    </association>
+    <association name="ServiceItem_Service" cardinality="OneToMany" p1:Guid="7b50552f-67da-4876-bafb-0f0a43392fd1">
+      <end1 multiplicity="One" name="ServiceItem" class="Service" relation-class="ServiceItem" constrained="True" lazy="False" p1:Guid="afaadd25-5e99-434f-b125-5083f66ca521">
+        <property name="ServiceItemID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="ServiceItem" relation-class="Service" lazy="False" p1:Guid="2392bb6b-f138-432a-9718-243487379441">
+        <property name="ServiceItemID" />
+      </end2>
+    </association>
+    <association name="Service_ServiceWorker" cardinality="OneToMany" p1:Guid="64d99b45-8f49-480c-9384-d11684c1b4ce">
+      <end1 multiplicity="One" name="Service" class="ServiceWorker" relation-class="Service" constrained="True" lazy="False" p1:Guid="a7607057-1c1d-4702-816a-f2a1d2c9b334">
+        <property name="ServiceID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceWorkers" class="Service" relation-class="ServiceWorker" lazy="False" p1:Guid="07592791-8ccc-4920-bfce-501cf03a6ac6">
+        <property name="ServiceID" />
+      </end2>
+    </association>
+    <association name="ServiceItem_ServiceWorker" cardinality="OneToMany" p1:Guid="c47790c4-8fb1-4f73-9bca-07d9cf88bb90">
+      <end1 multiplicity="One" name="ServiceItem" class="ServiceWorker" relation-class="ServiceItem" constrained="True" lazy="False" p1:Guid="2eb2a702-888e-4d1e-a379-b8c91e729ab9">
+        <property name="ServiceItemID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceWorkers" class="ServiceItem" relation-class="ServiceWorker" lazy="False" p1:Guid="42dedf63-65b4-4923-a029-f52e5201a69f">
+        <property name="ServiceItemID" />
       </end2>
     </association>
   </associations>

@@ -17,6 +17,10 @@
         <File Name="Employer.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="EmployerAuthorizationConfig.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
         <File Name="EmployerAuthorizedPerson.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="Service.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="ServiceItem.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="ServiceType.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
+        <File Name="ServiceWorker.cs" DestinationFolder="D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\Models" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
