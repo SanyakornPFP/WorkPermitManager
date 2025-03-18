@@ -17,34 +17,261 @@ namespace WorkPermitManager.Controllers
             _hostingEnvironment = hostEnvironment;
         }
 
-        public IActionResult ServicePage()
+        #region Service
+        public IActionResult Services()
         {
-
             ViewBag.ServiceList = _db.Services
-                .Select(s => new
-                {
-                    s.ServiceID,
-                    s.RecordDate,
-                    s.Employer.NameTh,
-                    s.ServiceType.ServiceTypeName,
-                    s.ServiceItem.ServiceItemName,
-                    s.ExpectedPeople,
-                    ServiceWorkerCount = s.ServiceWorkers.Where(s => s.IsActive).Count(),
-                    s.QuotationNumber,
-                    s.Status,
-                    s.IsMou
-                })
-                .OrderByDescending(s => s.ServiceID)
-                .ToList();
+               .Select(s => new
+               {
+                   s.ServiceID,
+                   s.RecordDate,
+                   s.Employer.NameTh,
+                   s.ServiceType.ServiceTypeName,
+                   s.ServiceItem.ServiceItemName,
+                   s.ExpectedPeople,
+                   ServiceWorkerCount = s.ServiceWorkers.Where(s => s.IsActive).Count(),
+                   s.QuotationNumber,
+                   s.Status,
+                   s.IsMou
+               })
+               .OrderByDescending(s => s.ServiceID)
+               .ToList();
 
             ///Select List
             ViewBag.EmployerList = _db.Employers.Where(s => s.IsActive).ToList();
             ViewBag.ServiceTypeList = _db.ServiceTypes.Where(s => s.IsActive).ToList();
-            ViewBag.ServiceItem = _db.ServiceItems.Where(s => s.IsActive).ToList();
+            ViewBag.ServiceItemList = _db.ServiceItems.Where(s => s.IsActive).ToList();
 
             return View();
-
         }
+
+        #region Create Service
+        [HttpPost]
+        public async Task<IActionResult> CreateService(Service model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServices"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+            else
+            {
+                model.CreatedAt = DateTime.Now;
+                model.IsActive = true;
+                model.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                _db.Services.Add(model);
+                await _db.SaveChangesAsync();
+
+                var logEntry = new LogSystemData
+                {
+                    TableName = "Services",
+                    Action = "Create",
+                    RecordID = model.ServiceID,
+                    UserManageID = int.Parse(User.GetLoggedInUserID()),
+                    ActionTime = DateTime.Now,
+                    IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                    OldValue = null,
+                    NewValue = $"ServiceID: {model.ServiceID}, ServiceTypeID: {model.ServiceTypeID}, ServiceItemID: {model.ServiceItemID}",
+                    Description = $"Created new service with ID: {model.ServiceID}"
+                };
+
+                _db.LogSystemDatas.Add(logEntry);
+                await _db.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+        }
+        #endregion
+
+        #region Delete Service
+        [HttpPost]
+        public async Task<IActionResult> DeleteService(int ServiceID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServices"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (ServiceID == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var model = _db.Services.FirstOrDefault(p => p.ServiceID == ServiceID);
+                if (model == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    model.IsActive = false;
+                    model.UpdatedAt = DateTime.Now;
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                    _db.Services.Update(model);
+                    await _db.SaveChangesAsync();
+
+                    var logEntry = new LogSystemData
+                    {
+                        TableName = "Services",
+                        Action = "Delete",
+                        RecordID = model.ServiceID,
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        ActionTime = DateTime.Now,
+                        IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        OldValue = $"ServiceID: {model.ServiceID}, ServiceTypeID: {model.ServiceTypeID}, ServiceItemID: {model.ServiceItemID}",
+                        NewValue = null,
+                        Description = $"Deleted service with ID: {model.ServiceID}"
+                    };
+
+                    _db.LogSystemDatas.Add(logEntry);
+                    await _db.SaveChangesAsync();
+
+                    return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
+
+        #region Update Service
+        [HttpPost]
+        public async Task<IActionResult> UpdateService(Service model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServices"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (model.ServiceID == 0 || string.IsNullOrEmpty(model.ServiceTypeID.ToString()) || string.IsNullOrEmpty(model.ServiceItemID.ToString()))
+            {
+                return NotFound();
+            }
+            else
+            {
+                var data = _db.Services.FirstOrDefault(p => p.ServiceID == model.ServiceID);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var oldValues = new
+                    {
+                        data.ServiceTypeID,
+                        data.ServiceItemID,
+                        data.Note,
+                        data.RecordDate,
+                        data.Recorder,
+                        data.SignatureName,
+                        data.IsMou,
+                        data.QuotationNumber,
+                        data.ExpectedPeople,
+                        data.TotalPrice,
+                        data.Deposit,
+                        data.RemainingPayment,
+                        data.OutstandingAmount,
+                        data.Status,
+                        data.IsSentToAccounting
+                    };
+
+                    data.ServiceTypeID = model.ServiceTypeID;
+                    data.ServiceItemID = model.ServiceItemID;
+                    data.Note = model.Note;
+                    data.RecordDate = model.RecordDate;
+                    data.Recorder = model.Recorder;
+                    data.SignatureName = model.SignatureName;
+                    data.IsMou = model.IsMou;
+                    data.QuotationNumber = model.QuotationNumber;
+                    data.ExpectedPeople = model.ExpectedPeople;
+                    data.TotalPrice = model.TotalPrice;
+                    data.Deposit = model.Deposit;
+                    data.RemainingPayment = model.RemainingPayment;
+                    data.OutstandingAmount = model.OutstandingAmount;
+                    data.Status = model.Status;
+                    data.IsSentToAccounting = model.IsSentToAccounting;
+                    data.UpdatedAt = DateTime.Now;
+                    data.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+                    _db.Services.Update(data);
+                    await _db.SaveChangesAsync();
+
+                    var logEntry = new LogSystemData
+                    {
+                        TableName = "Services",
+                        Action = "Update",
+                        RecordID = data.ServiceID,
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        ActionTime = DateTime.Now,
+                        IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        OldValue = $"ServiceTypeID: {oldValues.ServiceTypeID}, ServiceItemID: {oldValues.ServiceItemID}, Note: {oldValues.Note}, RecordDate: {oldValues.RecordDate}, Recorder: {oldValues.Recorder}, SignatureName: {oldValues.SignatureName}, IsMou: {oldValues.IsMou}, QuotationNumber: {oldValues.QuotationNumber}, ExpectedPeople: {oldValues.ExpectedPeople}, TotalPrice: {oldValues.TotalPrice}, Deposit: {oldValues.Deposit}, RemainingPayment: {oldValues.RemainingPayment}, OutstandingAmount: {oldValues.OutstandingAmount}, Status: {oldValues.Status}, IsSentToAccounting: {oldValues.IsSentToAccounting}",
+                        NewValue = $"ServiceTypeID: {data.ServiceTypeID}, ServiceItemID: {data.ServiceItemID}, Note: {data.Note}, RecordDate: {data.RecordDate}, Recorder: {data.Recorder}, SignatureName: {data.SignatureName}, IsMou: {data.IsMou}, QuotationNumber: {data.QuotationNumber}, ExpectedPeople: {data.ExpectedPeople}, TotalPrice: {data.TotalPrice}, Deposit: {data.Deposit}, RemainingPayment: {data.RemainingPayment}, OutstandingAmount: {data.OutstandingAmount}, Status: {data.Status}, IsSentToAccounting: {data.IsSentToAccounting}",
+                        Description = $"Updated service with ID: {model.ServiceID}"
+                    };
+
+                    _db.LogSystemDatas.Add(logEntry);
+                    await _db.SaveChangesAsync();
+
+                    return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
+
+        #region Get Service Details
+        [HttpPost]
+        public JsonResult GetServiceDetails(int ServiceID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServices"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            if (ServiceID == 0)
+            {
+                return Json(new { success = false, message = "Service ID is required" });
+            }
+            else
+            {
+                var model = _db.Services
+                    .Where(p => p.ServiceID == ServiceID)
+                    .Select(s => new
+                    {
+                        s.ServiceID,
+                        s.EmployerID,
+                        s.ServiceTypeID,
+                        s.ServiceItemID,
+                        s.Note,
+                        s.RecordDate,
+                        s.Recorder,
+                        s.SignatureName,
+                        s.IsMou,
+                        s.QuotationNumber,
+                        s.ExpectedPeople,
+                        s.TotalPrice,
+                        s.Deposit,
+                        s.RemainingPayment,
+                        s.OutstandingAmount,
+                        s.Status,
+                        s.IsSentToAccounting,
+                        s.IsActive,
+                        s.CreatedAt,
+                        s.UpdatedAt
+                    })
+                    .FirstOrDefault();
+
+                if (model == null)
+                {
+                    return Json(new { success = false, message = "Service not found" });
+                }
+                else
+                {
+                    return Json(new { success = true, data = model });
+                }
+            }
+        }
+        #endregion
+        #endregion
 
         #region ServiceType
         public IActionResult ServiceType()

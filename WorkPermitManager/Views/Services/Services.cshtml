@@ -1,0 +1,562 @@
+﻿@{
+    ViewData["Controller"] = "งานบริการ";
+    ViewData["Action"] = "รายการทั้งหมด";
+    ViewData["Icon"] = "paste";
+    int CountRow = 0;
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row" style="display: none" id="showInsert">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right"><i class="fa fa-close"></i> ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> เพิ่มข้อมูล</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูล</h4>
+                </div>
+                <div class="card-body">
+                    <form id="myForm" class="row g-3" method="post">
+                        <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden">
+                        <!-- ข้อมูลลูกค้า -->
+                        <div class="col-12">
+                            <h5><i class="fa fa-user"></i> ข้อมูลลูกค้า</h5>
+                        </div>
+                        <div class="col-xxl-12 col-sm-12">
+                            <select class="form-control select2-In" name="EmployerID" id="txtEmployerID">
+                                <option value="">กรุณาเลือกข้อมูล</option>
+                                @foreach (var employer in (List<Employer>)ViewBag.EmployerList)
+                                {
+                                    <option value="@employer.EmployerID">@employer.NameTh</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                            <h5><i class="fa fa-cogs"></i> ข้อมูลบริการ</h5>
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtServiceTypeID">ประเภทงาน</label>
+                            <select class="form-control select2-In" name="ServiceTypeID" id="txtServiceTypeID">
+                                <option value="">กรุณาเลือกข้อมูล</option>
+                                @foreach (var serviceType in (List<ServiceType>)ViewBag.ServiceTypeList)
+                                {
+                                    <option value="@serviceType.ServiceTypeID">@serviceType.ServiceTypeName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtServiceItemID">รายการที่รับทำ</label>
+                            <select class="form-control select2-In" name="ServiceItemID" id="txtServiceItemID">
+                                <option value="">กรุณาเลือกข้อมูล</option>
+                                @foreach (var serviceItem in (List<ServiceItem>)ViewBag.ServiceItemList)
+                                {
+                                    <option value="@serviceItem.ServiceItemID">@serviceItem.ServiceItemName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtSignatureName">ชื่อนายหน้า</label>
+                            <input class="form-control" name="SignatureName" id="txtSignatureName" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtQuotationNumber">หมายเลขใบเสนอราคา</label>
+                            <input class="form-control" name="QuotationNumber" id="txtQuotationNumber" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-12 col-sm-12">
+                            <label class="col-form-label" for="txtExpectedPeople">จำนวนคนที่คาดว่าจะรับ</label>
+                            <input class="form-control" name="ExpectedPeople" id="txtExpectedPeople" type="number" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                            <h5><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="txtTotalPrice">ราคารวม</label>
+                            <input class="form-control" name="TotalPrice" id="txtTotalPrice" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="txtDeposit">เงินมัดจำ</label>
+                            <input class="form-control" name="Deposit" id="txtDeposit" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="txtRemainingPayment">จ่ายย
+                                ยอดค้างชำระ</label>
+                            <input class="form-control" name="RemainingPayment" id="txtRemainingPayment" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-12 col-sm-12">
+                            <label class="col-form-label" for="txtOutstandingAmount">ยอดค้างชำระทั้งหมด</label>
+                            <input class="form-control" name="OutstandingAmount" id="txtOutstandingAmount" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+
+                        <!-- หมายเหตุ -->
+                        <div class="col-12">
+                            <hr>
+                            <h5><i class="fa fa-sticky-note"></i> หมายเหตุ</h5>
+                        </div>
+                        <div class="col-xxl-12 col-sm-12">
+                            <textarea class="form-control" name="Note" id="txtNote" rows="3" placeholder="กรุณากรอกข้อมูล"></textarea>
+                        </div>
+
+                        <!-- ปุ่มบันทึกและอัพเดท -->
+                        <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
+                            <button class="btn btn-primary" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
+                            <button class="btn btn-primary" id="updateBtn" type="submit" title="btn btn-pill btn-info active" style="display: none;">อัพเดท</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex gap-2 justify-end" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn" href="#">
+                            <i class="fa fa-plus text-white"></i> เพิ่มข้อมูล
+                        </a>
+                        <div class="btn-group">
+                            <button class="btn btn-light btm-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i> ตั้งค่าบริการ</button>
+                            <ul class="dropdown-menu dropdown-block">
+                                <li><a class="dropdown-item" asp-controller="Services" asp-action="ServiceType">ประเภทบริการ</a></li>
+                                <li><a class="dropdown-item" asp-controller="Services" asp-action="ServiceItem">ประเภทรายการที่รับทำ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="fa fa-paste"></i> งานบริการ
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive theme-scrollbar mt-2">
+                        <table class="display table table-bordered" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">#</th>
+                                    <th>วันที่บันทึกข้อมูล</th>
+                                    <th>ชื่อลูกค้า</th>
+                                    <th>รายการที่รับทำ</th>
+                                    <th>รับจริง</th>
+                                    <th>คาดว่า</th>
+                                    <th>ประเภทงาน</th>
+                                    <th class="text-center" width="10%">รายละเอียด</th>
+                                    <th class="text-center" width="10%">สถานะ</th>
+                                    <th class="text-center" width="10%">เลือก</th>
+                                    <th>ดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.ServiceList)
+                                {
+                                    CountRow++;
+                                    <tr>
+                                        <td style="display:none">@CountRow</td>
+                                        <td>@item.RecordDate</td>
+                                        <td>@item.NameTh</td>
+                                        <td>@item.ServiceItemName</td>
+                                        <td>@item.ServiceWorkerCount</td>
+                                        <td>@item.ExpectedPeople</td>
+                                        <td>@item.ServiceTypeName</td>
+                                        <td class="text-center">
+                                            <a href="#" class="detailBtn text-dark" data-ServiceID="@item.ServiceID">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td class="text-center">@item.Status</td>
+                                        <td class="text-center">
+                                            <a class="text-primary" asp-action="ServiceDetail" asp-controller="Services" asp-route-ServiceID="@item.ServiceID">
+                                                <i class="fa fa-folder-open-o"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-ServiceID="@item.ServiceID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-ServiceID="@item.ServiceID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="serviceDetailsModalLabel"><i class="fa fa-list-alt"></i> รายละเอียดบริการ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-light" scope="row">ชื่อลูกค้า</th>
+                            <td><span id="modalEmployerName"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ประเภทงาน</th>
+                            <td><span id="modalServiceTypeName"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">รายการที่รับทำ</th>
+                            <td><span id="modalServiceItemName"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">วันที่บันทึกข้อมูล</th>
+                            <td><span id="modalRecordDate"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ผู้บันทึก</th>
+                            <td><span id="modalRecorder"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ชื่อผู้ลงนาม</th>
+                            <td><span id="modalSignatureName"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">หมายเลขใบเสนอราคา</th>
+                            <td><span id="modalQuotationNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">จำนวนคนที่คาดว่าจะรับ</th>
+                            <td><span id="modalExpectedPeople"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ราคารวม</th>
+                            <td><span id="modalTotalPrice"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">เงินมัดจำ</th>
+                            <td><span id="modalDeposit"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">จ่ายยอดค้างชำระ</th>
+                            <td><span id="modalRemainingPayment"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
+                            <td><span id="modalOutstandingAmount"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">หมายเหตุ</th>
+                            <td><span id="modalNote"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var totalPriceInput = document.getElementById('txtTotalPrice');
+            var depositInput = document.getElementById('txtDeposit');
+            var remainingPaymentInput = document.getElementById('txtRemainingPayment');
+            var outstandingAmountInput = document.getElementById('txtOutstandingAmount');
+
+            function calculateOutstandingAmount() {
+                var totalPrice = parseFloat(totalPriceInput.value) || 0;
+                var deposit = parseFloat(depositInput.value) || 0;
+                var remainingPayment = parseFloat(remainingPaymentInput.value) || 0;
+                var outstandingAmount = totalPrice - deposit - remainingPayment;
+                outstandingAmountInput.value = outstandingAmount.toFixed(2);
+            }
+
+            totalPriceInput.addEventListener('input', calculateOutstandingAmount);
+            depositInput.addEventListener('input', calculateOutstandingAmount);
+            remainingPaymentInput.addEventListener('input', calculateOutstandingAmount);
+
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                $('#myForm')[0].reset();
+                // Hide the ServiceID field and update button
+                $('#txtServiceID').hide();
+                $('#updateBtn').hide();
+                // Show the create button and header
+                $('#createHeader').show();
+                $('#updateHeader').hide();
+                $('#createBtn').show();
+                // Hide the cancel button
+                $('#cancelBtn').hide();
+            });
+
+            document.querySelectorAll('.detailBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceID = this.getAttribute('data-ServiceID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetServiceDetails", "Services")',
+                        type: 'POST',
+                        data: { ServiceID: serviceID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                var data = response.data;
+                                $('#modalEmployerName').text(data.employerName);
+                                $('#modalServiceTypeName').text(data.serviceTypeName);
+                                $('#modalServiceItemName').text(data.serviceItemName);
+                                $('#modalRecordDate').text(data.recordDate);
+                                $('#modalRecorder').text(data.recorder);
+                                $('#modalSignatureName').text(data.signatureName);
+                                $('#modalQuotationNumber').text(data.quotationNumber);
+                                $('#modalExpectedPeople').text(data.expectedPeople);
+                                $('#modalTotalPrice').text(data.totalPrice);
+                                $('#modalDeposit').text(data.deposit);
+                                $('#modalRemainingPayment').text(data.remainingPayment);
+                                $('#modalOutstandingAmount').text(data.outstandingAmount);
+                                $('#modalNote').text(data.note);
+
+                                $('#serviceDetailsModal').modal('show');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('createBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#myForm')[0]);
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745', // Light green
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("CreateService", "Services")',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+
+            // แก้ไขข้อมูลบริการ
+            document.querySelectorAll('.editBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceID = this.getAttribute('data-ServiceID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetServiceDetails", "Services")',
+                        type: 'POST',
+                        data: { ServiceID: serviceID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                $('#showInsert').show();
+                                $('#txtServiceID').val(response.data.serviceID);
+                                $('#txtEmployerID').val(response.data.employerID);
+                                $('#txtServiceTypeID').val(response.data.serviceTypeID);
+                                $('#txtServiceItemID').val(response.data.serviceItemID);
+                                $('#txtRecordDate').val(response.data.recordDate);
+                                $('#txtRecorder').val(response.data.recorder);
+                                $('#txtSignatureName').val(response.data.signatureName);
+                                $('#txtQuotationNumber').val(response.data.quotationNumber);
+                                $('#txtExpectedPeople').val(response.data.expectedPeople);
+                                $('#txtTotalPrice').val(response.data.totalPrice);
+                                $('#txtDeposit').val(response.data.deposit);
+                                $('#txtRemainingPayment').val(response.data.remainingPayment);
+                                $('#txtOutstandingAmount').val(response.data.outstandingAmount);
+                                $('#txtNote').val(response.data.note);
+                                $('#createHeader').hide();
+                                $('#updateHeader').show();
+                                $('#createBtn').hide();
+                                $('#updateBtn').show();
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            // ลบข้อมูลบริการ
+            document.querySelectorAll('.deleteBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceID = this.getAttribute('data-ServiceID');
+
+                    Swal.fire({
+                        title: 'คุณแน่ใจหรือไม่?',
+                        text: "คุณจะไม่สามารถย้อนกลับได้!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#d3d3d3',
+                        confirmButtonText: 'ใช่, ลบ!',
+                        cancelButtonText: 'ยกเลิก'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '@Url.Action("DeleteService", "Services")',
+                                type: 'POST',
+                                data: { ServiceID: serviceID },
+                                success: function (response) {
+                                    if (response.success) {
+                                        Swal.fire(
+                                            'ลบแล้ว!',
+                                            response.message,
+                                            'success'
+                                        ).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire('ผิดพลาด', response.message, 'error');
+                                    }
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.error('Error:', xhr.status, textStatus, errorThrown);
+                                    handleAjaxError(xhr);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('updateBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#myForm')[0]);
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#007bff', // Light blue
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("UpdateService", "Services")',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+
+            function handleAjaxError(xhr) {
+                console.log('Error:', xhr.status, xhr.statusText);
+
+                switch (xhr.status) {
+                    case 400:
+                        window.open('@Url.Action("Error400", "Error")', '_blank');
+                        break;
+                    case 401:
+                        window.open('@Url.Action("Error401", "Error")', '_blank');
+                        break;
+                    case 403:
+                        window.open('@Url.Action("Error403", "Error")', '_blank');
+                        break;
+                    case 404:
+                        window.open('@Url.Action("Error404", "Error")', '_blank');
+                        break;
+                    case 500:
+                        window.open('@Url.Action("Error500", "Error")', '_blank');
+                        break;
+                    case 503:
+                        window.open('@Url.Action("Error503", "Error")', '_blank');
+                        break;
+                    default:
+                        console.log('An unexpected error occurred: ', xhr.status);
+                }
+            }
+        });
+    </script>
+}

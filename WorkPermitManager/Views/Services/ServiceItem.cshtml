@@ -48,7 +48,7 @@
                         <a class="btn btn-primary btn-sm" id="createOn" href="#">
                             <i class="fa fa-plus text-white"></i> เพิ่มรายการบริการ
                         </a>
-                        <a class="btn btn-light btn-sm" asp-action="ServicePage" asp-controller="Services">
+                        <a class="btn btn-light btn-sm" asp-action="Services" asp-controller="Services">
                             <i class="fa fa-caret-left text-dark"></i> ย้อนกลับ
                         </a>
                     </div>
@@ -70,7 +70,7 @@
                                     <tr>
                                         <td>@item.ServiceItemName</td>
                                         <td>@item.Descriptions</td>
-                                        <td>@item.Note</td>
+                                        <td style="white-space: pre-line;">@item.Note</td>
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">
