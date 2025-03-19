@@ -544,8 +544,8 @@
     <property name="RecordDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="f59b5d87-0af7-48df-9785-e4c5f6d4fb49">
       <column name="RecordDate" not-null="True" sql-type="date" p1:unicode="False" />
     </property>
-    <property name="Recorder" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="17ce632f-9da8-4325-b6e7-948a12bd887f">
-      <column name="Recorder" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    <property name="Recorder" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="17ce632f-9da8-4325-b6e7-948a12bd887f">
+      <column name="Recorder" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="SignatureName" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="ffa53f06-8aff-4ae4-ac0b-707e1634c2b0">
       <column name="SignatureName" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
@@ -841,7 +841,7 @@
       </end2>
     </association>
     <association name="User_Employer" cardinality="OneToMany" p1:Guid="72e1c6c3-3ba1-4b79-a8d6-845e8a92fc76">
-      <end1 multiplicity="One" name="User" class="Employer" relation-class="User" constrained="True" lazy="False" p1:Guid="4f9cc6ae-c783-4897-8bf8-433c5b28c5db">
+      <end1 multiplicity="One" name="UserManage" class="Employer" relation-class="User" constrained="True" lazy="False" p1:Guid="4f9cc6ae-c783-4897-8bf8-433c5b28c5db">
         <property name="UserID" />
       </end1>
       <end2 multiplicity="Many" name="Employers" class="User" relation-class="Employer" lazy="False" p1:Guid="d3ee891b-0137-4569-a974-dfad709a9a2c">
@@ -920,30 +920,6 @@
         <property name="AuthorizedWitness2ID" />
       </end2>
     </association>
-    <association name="Employer_Service" cardinality="OneToMany" p1:Guid="88365792-90d8-495a-91fd-be82152f460b">
-      <end1 multiplicity="One" name="Employer" class="Service" relation-class="Employer" constrained="True" lazy="False" p1:Guid="7d0a363b-5d3c-4907-807b-0845abbc99e4">
-        <property name="EmployerID" />
-      </end1>
-      <end2 multiplicity="Many" name="Services" class="Employer" relation-class="Service" lazy="False" p1:Guid="26316e2a-7a5c-4d14-890d-1a135fda6775">
-        <property name="EmployerID" />
-      </end2>
-    </association>
-    <association name="ServiceType_Service" cardinality="OneToMany" p1:Guid="319f8b7d-876f-4c4b-892a-8483c1d5fa17">
-      <end1 multiplicity="One" name="ServiceType" class="Service" relation-class="ServiceType" constrained="True" lazy="False" p1:Guid="7ae9b5ae-da64-4678-a330-d5c536448d5c">
-        <property name="ServiceTypeID" />
-      </end1>
-      <end2 multiplicity="Many" name="Services" class="ServiceType" relation-class="Service" lazy="False" p1:Guid="1925d4c4-f7ce-466c-997a-dd971dc7c1a2">
-        <property name="ServiceTypeID" />
-      </end2>
-    </association>
-    <association name="ServiceItem_Service" cardinality="OneToMany" p1:Guid="7b50552f-67da-4876-bafb-0f0a43392fd1">
-      <end1 multiplicity="One" name="ServiceItem" class="Service" relation-class="ServiceItem" constrained="True" lazy="False" p1:Guid="afaadd25-5e99-434f-b125-5083f66ca521">
-        <property name="ServiceItemID" />
-      </end1>
-      <end2 multiplicity="Many" name="Services" class="ServiceItem" relation-class="Service" lazy="False" p1:Guid="2392bb6b-f138-432a-9718-243487379441">
-        <property name="ServiceItemID" />
-      </end2>
-    </association>
     <association name="Service_ServiceWorker" cardinality="OneToMany" p1:Guid="64d99b45-8f49-480c-9384-d11684c1b4ce">
       <end1 multiplicity="One" name="Service" class="ServiceWorker" relation-class="Service" constrained="True" lazy="False" p1:Guid="a7607057-1c1d-4702-816a-f2a1d2c9b334">
         <property name="ServiceID" />
@@ -958,6 +934,62 @@
       </end1>
       <end2 multiplicity="Many" name="ServiceWorkers" class="ServiceItem" relation-class="ServiceWorker" lazy="False" p1:Guid="42dedf63-65b4-4923-a029-f52e5201a69f">
         <property name="ServiceItemID" />
+      </end2>
+    </association>
+    <association name="User_Service" cardinality="OneToMany" p1:Guid="6956522e-ec96-48e4-9871-b5df884e52c8">
+      <end1 multiplicity="ZeroOrOne" name="UserManage" class="Service" relation-class="User" constrained="True" lazy="False" p1:Guid="3434434e-78b6-4acc-b3d2-d5c26c738ca9">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="User" relation-class="Service" lazy="False" p1:Guid="b3ce365c-a58a-4ba4-b331-05c5c0b8f617">
+        <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="User_ServiceItem" cardinality="OneToMany" p1:Guid="3405b344-0ebc-47bd-be18-16932f306572">
+      <end1 multiplicity="ZeroOrOne" name="UserManage" class="ServiceItem" relation-class="User" constrained="True" lazy="False" p1:Guid="c0837d1f-be41-4617-ae95-7d6fa47961fe">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceItems" class="User" relation-class="ServiceItem" lazy="False" p1:Guid="28c48e9a-395d-471b-94bf-c85e5452aeed">
+        <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="User_ServiceType" cardinality="OneToMany" p1:Guid="e5a11d94-e0f8-4212-8ef8-c472cb9c17e7">
+      <end1 multiplicity="One" name="UserManage" class="ServiceType" relation-class="User" constrained="True" lazy="False" p1:Guid="55894ee4-7a43-4989-919c-76332c2f0c89">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceTypes" class="User" relation-class="ServiceType" lazy="False" p1:Guid="428d833b-7b63-4858-80c9-5fbe1704661f">
+        <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="Employer_Service" cardinality="OneToMany" p1:Guid="242ba9b1-bf94-4fa8-ab0f-aa421547117c">
+      <end1 multiplicity="One" name="Employer" class="Service" relation-class="Employer" constrained="True" lazy="False" p1:Guid="da030b31-9271-4a0e-8ff8-2d7367f9749a">
+        <property name="EmployerID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="Employer" relation-class="Service" lazy="False" p1:Guid="db20a81c-9b29-4050-847f-da26d15192ea">
+        <property name="EmployerID" />
+      </end2>
+    </association>
+    <association name="ServiceType_Service" cardinality="OneToMany" p1:Guid="97f95927-8e74-4fcc-b552-40afbdfec5fd">
+      <end1 multiplicity="One" name="ServiceType" class="Service" relation-class="ServiceType" constrained="True" lazy="False" p1:Guid="61d29d0f-1b10-409a-98ca-14399233e80c">
+        <property name="ServiceTypeID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="ServiceType" relation-class="Service" lazy="False" p1:Guid="20cadf91-183e-4845-9635-89803fca87c1">
+        <property name="ServiceTypeID" />
+      </end2>
+    </association>
+    <association name="ServiceItem_Service" cardinality="OneToMany" p1:Guid="8736349e-97d4-429e-b39f-d14293e6674d">
+      <end1 multiplicity="One" name="ServiceItem" class="Service" relation-class="ServiceItem" constrained="True" lazy="False" p1:Guid="b55cd041-1e4d-4431-bb9f-caf3876e7e18">
+        <property name="ServiceItemID" />
+      </end1>
+      <end2 multiplicity="Many" name="Services" class="ServiceItem" relation-class="Service" lazy="False" p1:Guid="5b454099-6039-4446-bc87-70f22ece255d">
+        <property name="ServiceItemID" />
+      </end2>
+    </association>
+    <association name="User_ServiceWorker" cardinality="OneToMany" p1:Guid="c213239c-f758-49f2-98a0-d0d18dcc749e">
+      <end1 multiplicity="ZeroOrOne" name="User" class="ServiceWorker" relation-class="User" constrained="True" lazy="False" p1:Guid="012534e9-a3a5-4f19-bb1a-215dd6a3ea6f">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceWorkers" class="User" relation-class="ServiceWorker" lazy="False" p1:Guid="fc3a23bc-11cf-4091-a6ee-2f3129ed7680">
+        <property name="UserManageID" />
       </end2>
     </association>
   </associations>

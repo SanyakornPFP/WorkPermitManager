@@ -18,9 +18,10 @@ namespace WorkPermitManager.Controllers
         }
 
         #region Service
-        public IActionResult Services()
+        public IActionResult ServicesPage()
         {
             ViewBag.ServiceList = _db.Services
+               .Where(s => s.IsActive)
                .Select(s => new
                {
                    s.ServiceID,
@@ -56,6 +57,8 @@ namespace WorkPermitManager.Controllers
             else
             {
                 model.CreatedAt = DateTime.Now;
+                model.RecordDate = DateTime.Now.Date;
+                model.Status = "รอดำเนินการ";
                 model.IsActive = true;
                 model.UserManageID = int.Parse(User.GetLoggedInUserID());
 
@@ -161,7 +164,6 @@ namespace WorkPermitManager.Controllers
                         data.ServiceTypeID,
                         data.ServiceItemID,
                         data.Note,
-                        data.RecordDate,
                         data.Recorder,
                         data.SignatureName,
                         data.IsMou,
@@ -171,25 +173,23 @@ namespace WorkPermitManager.Controllers
                         data.Deposit,
                         data.RemainingPayment,
                         data.OutstandingAmount,
-                        data.Status,
                         data.IsSentToAccounting
                     };
 
+                    // อัปเดตค่าจาก model
                     data.ServiceTypeID = model.ServiceTypeID;
                     data.ServiceItemID = model.ServiceItemID;
                     data.Note = model.Note;
-                    data.RecordDate = model.RecordDate;
                     data.Recorder = model.Recorder;
                     data.SignatureName = model.SignatureName;
-                    data.IsMou = model.IsMou;
+                    data.IsMou = model.IsMou ?? false; // ตรวจสอบค่า null
                     data.QuotationNumber = model.QuotationNumber;
                     data.ExpectedPeople = model.ExpectedPeople;
                     data.TotalPrice = model.TotalPrice;
                     data.Deposit = model.Deposit;
                     data.RemainingPayment = model.RemainingPayment;
                     data.OutstandingAmount = model.OutstandingAmount;
-                    data.Status = model.Status;
-                    data.IsSentToAccounting = model.IsSentToAccounting;
+                    data.IsSentToAccounting = model.IsSentToAccounting ?? false; // ตรวจสอบค่า null
                     data.UpdatedAt = DateTime.Now;
                     data.UserManageID = int.Parse(User.GetLoggedInUserID());
 
@@ -204,7 +204,7 @@ namespace WorkPermitManager.Controllers
                         UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        OldValue = $"ServiceTypeID: {oldValues.ServiceTypeID}, ServiceItemID: {oldValues.ServiceItemID}, Note: {oldValues.Note}, RecordDate: {oldValues.RecordDate}, Recorder: {oldValues.Recorder}, SignatureName: {oldValues.SignatureName}, IsMou: {oldValues.IsMou}, QuotationNumber: {oldValues.QuotationNumber}, ExpectedPeople: {oldValues.ExpectedPeople}, TotalPrice: {oldValues.TotalPrice}, Deposit: {oldValues.Deposit}, RemainingPayment: {oldValues.RemainingPayment}, OutstandingAmount: {oldValues.OutstandingAmount}, Status: {oldValues.Status}, IsSentToAccounting: {oldValues.IsSentToAccounting}",
+                        OldValue = $"ServiceTypeID: {oldValues.ServiceTypeID}, ServiceItemID: {oldValues.ServiceItemID}, Note: {oldValues.Note}, Recorder: {oldValues.Recorder}, SignatureName: {oldValues.SignatureName}, IsMou: {oldValues.IsMou}, QuotationNumber: {oldValues.QuotationNumber}, ExpectedPeople: {oldValues.ExpectedPeople}, TotalPrice: {oldValues.TotalPrice}, Deposit: {oldValues.Deposit}, RemainingPayment: {oldValues.RemainingPayment}, OutstandingAmount: {oldValues.OutstandingAmount}, IsSentToAccounting: {oldValues.IsSentToAccounting}",
                         NewValue = $"ServiceTypeID: {data.ServiceTypeID}, ServiceItemID: {data.ServiceItemID}, Note: {data.Note}, RecordDate: {data.RecordDate}, Recorder: {data.Recorder}, SignatureName: {data.SignatureName}, IsMou: {data.IsMou}, QuotationNumber: {data.QuotationNumber}, ExpectedPeople: {data.ExpectedPeople}, TotalPrice: {data.TotalPrice}, Deposit: {data.Deposit}, RemainingPayment: {data.RemainingPayment}, OutstandingAmount: {data.OutstandingAmount}, Status: {data.Status}, IsSentToAccounting: {data.IsSentToAccounting}",
                         Description = $"Updated service with ID: {model.ServiceID}"
                     };
@@ -241,6 +241,9 @@ namespace WorkPermitManager.Controllers
                         s.EmployerID,
                         s.ServiceTypeID,
                         s.ServiceItemID,
+                        EmployerName = _db.Employers.Where(e => e.EmployerID == s.EmployerID).Select(e => e.NameTh).FirstOrDefault(),
+                        ServiceTypeName = _db.ServiceTypes.Where(st => st.ServiceTypeID == s.ServiceTypeID).Select(st => st.ServiceTypeName).FirstOrDefault(),
+                        ServiceItemName = _db.ServiceItems.Where(si => si.ServiceItemID == s.ServiceItemID).Select(si => si.ServiceItemName).FirstOrDefault(),
                         s.Note,
                         s.RecordDate,
                         s.Recorder,
@@ -252,11 +255,9 @@ namespace WorkPermitManager.Controllers
                         s.Deposit,
                         s.RemainingPayment,
                         s.OutstandingAmount,
-                        s.Status,
                         s.IsSentToAccounting,
-                        s.IsActive,
-                        s.CreatedAt,
-                        s.UpdatedAt
+                        UserCreate = s.UserManage.FullName,
+
                     })
                     .FirstOrDefault();
 

@@ -55,6 +55,7 @@
                                 }
                             </select>
                         </div>
+
                         <div class="col-xxl-6 col-sm-6">
                             <label class="col-form-label" for="txtSignatureName">ชื่อนายหน้า</label>
                             <input class="form-control" name="SignatureName" id="txtSignatureName" type="text" placeholder="กรุณากรอกข้อมูล">
@@ -80,15 +81,33 @@
                             <input class="form-control" name="Deposit" id="txtDeposit" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
                         </div>
                         <div class="col-xxl-4 col-sm-4">
-                            <label class="col-form-label" for="txtRemainingPayment">จ่ายย
-                                ยอดค้างชำระ</label>
+                            <label class="col-form-label" for="txtRemainingPayment">
+                                จ่ายยอดค้างชำระ
+                            </label>
                             <input class="form-control" name="RemainingPayment" id="txtRemainingPayment" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
                         </div>
                         <div class="col-xxl-12 col-sm-12">
                             <label class="col-form-label" for="txtOutstandingAmount">ยอดค้างชำระทั้งหมด</label>
                             <input class="form-control" name="OutstandingAmount" id="txtOutstandingAmount" type="number" step="0.01" placeholder="กรุณากรอกข้อมูล">
                         </div>
-
+                        <!-- หมายเหตุ -->
+                        <div class="col-12">
+                            <hr>
+                            <h5><i class="fa fa-check-square"></i> สถานะ</h5>
+                        </div>
+                        <!-- Add checkboxes for IsMou and IsSentToAccounting -->
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="form-check-label" for="isMou">
+                                <input class="form-check-input" type="checkbox" id="isMou" name="IsMou" value="true">
+                                ต่างด้าวเป็น MOU
+                            </label>
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="form-check-label" for="isSentToAccounting">
+                                <input class="form-check-input" type="checkbox" id="isSentToAccounting" name="IsSentToAccounting" value="true">
+                                ส่งงานบัญชีแล้ว
+                            </label>
+                        </div>
                         <!-- หมายเหตุ -->
                         <div class="col-12">
                             <hr>
@@ -152,7 +171,7 @@
                                     CountRow++;
                                     <tr>
                                         <td style="display:none">@CountRow</td>
-                                        <td>@item.RecordDate</td>
+                                        <td>@item.RecordDate.ToString("dd/MM/yyyy")</td>
                                         <td>@item.NameTh</td>
                                         <td>@item.ServiceItemName</td>
                                         <td>@item.ServiceWorkerCount</td>
@@ -163,7 +182,21 @@
                                                 <i class="fa fa-list-alt"></i>
                                             </a>
                                         </td>
-                                        <td class="text-center">@item.Status</td>
+                                        <td class="text-center">
+                                            @if (item.Status == "รอดำเนินการ")
+                                            {
+                                                <span class="badge badge-warning" style="font-size:0.8rem">@item.Status</span>
+                                            }
+                                            else if (item.Status == "กำลังดำเนินการ")
+                                            {
+                                                <span class="badge badge-primary" style="font-size:0.8rem">@item.Status</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-success" style="font-size:0.8rem">@item.Status</span>
+                                            }
+                                        </td>
+
                                         <td class="text-center">
                                             <a class="text-primary" asp-action="ServiceDetail" asp-controller="Services" asp-route-ServiceID="@item.ServiceID">
                                                 <i class="fa fa-folder-open-o"></i>
@@ -221,11 +254,7 @@
                             <td><span id="modalRecordDate"></span></td>
                         </tr>
                         <tr>
-                            <th class="bg-light">ผู้บันทึก</th>
-                            <td><span id="modalRecorder"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ชื่อผู้ลงนาม</th>
+                            <th class="bg-light">ชื่อนายหน้า</th>
                             <td><span id="modalSignatureName"></span></td>
                         </tr>
                         <tr>
@@ -253,8 +282,20 @@
                             <td><span id="modalOutstandingAmount"></span></td>
                         </tr>
                         <tr>
+                            <th class="bg-light">ต่างด้าวเป็น MOU</th>
+                            <td><span id="modalIsMou"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ส่งงานบัญชีแล้ว</th>
+                            <td><span id="modalIsSentToAccounting"></span></td>
+                        </tr>
+                        <tr>
                             <th class="bg-light">หมายเหตุ</th>
                             <td><span id="modalNote"></span></td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">ผู้บันทึก</th>
+                            <td><span id="modalRecorder"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -267,7 +308,7 @@
 </div>
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+               document.addEventListener('DOMContentLoaded', function () {
             var totalPriceInput = document.getElementById('txtTotalPrice');
             var depositInput = document.getElementById('txtDeposit');
             var remainingPaymentInput = document.getElementById('txtRemainingPayment');
@@ -312,7 +353,7 @@
                 $('#cancelBtn').hide();
             });
 
-            document.querySelectorAll('.detailBtn').forEach(function (button) {
+             document.querySelectorAll('.detailBtn').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
                     var serviceID = this.getAttribute('data-ServiceID');
@@ -322,30 +363,37 @@
                         type: 'POST',
                         data: { ServiceID: serviceID },
                         success: function (response) {
-                            if (response.success == false) {
+                            if (response.success === false) {
                                 Swal.fire('ผิดพลาด', response.message, 'error');
                             } else {
                                 var data = response.data;
-                                $('#modalEmployerName').text(data.employerName);
-                                $('#modalServiceTypeName').text(data.serviceTypeName);
-                                $('#modalServiceItemName').text(data.serviceItemName);
-                                $('#modalRecordDate').text(data.recordDate);
-                                $('#modalRecorder').text(data.recorder);
-                                $('#modalSignatureName').text(data.signatureName);
-                                $('#modalQuotationNumber').text(data.quotationNumber);
-                                $('#modalExpectedPeople').text(data.expectedPeople);
-                                $('#modalTotalPrice').text(data.totalPrice);
-                                $('#modalDeposit').text(data.deposit);
-                                $('#modalRemainingPayment').text(data.remainingPayment);
-                                $('#modalOutstandingAmount').text(data.outstandingAmount);
-                                $('#modalNote').text(data.note);
 
+                                // แสดงข้อมูลใน modal
+                                $('#modalEmployerName').text(data.employerName || '-');
+                                $('#modalServiceTypeName').text(data.serviceTypeName || '-');
+                                $('#modalServiceItemName').text(data.serviceItemName || '-');
+                                $('#modalRecordDate').text(data.recordDate ? new Date(data.recordDate).toLocaleDateString() : '-');
+                                $('#modalRecorder').text(data.userCreate || '-');
+                                $('#modalSignatureName').text(data.signatureName || '-');
+                                $('#modalQuotationNumber').text(data.quotationNumber || '-');
+                                $('#modalExpectedPeople').text(data.expectedPeople || '-');
+                                $('#modalTotalPrice').text(data.totalPrice ? data.totalPrice : '-');
+                                $('#modalDeposit').text(data.deposit ? data.deposit : '-');
+                                $('#modalRemainingPayment').text(data.remainingPayment ? data.remainingPayment : '-');
+                                $('#modalOutstandingAmount').text(data.outstandingAmount ? data.outstandingAmount : '-');
+                                $('#modalNote').text(data.note || '-');
+
+                                // แสดงสถานะของ checkbox
+                                $('#modalIsMou').text(data.IsMou ? 'ใช่' : 'ไม่ใช่');
+                                $('#modalIsSentToAccounting').text(data.IsSentToAccounting ? 'ส่งแล้ว' : 'ยังไม่ส่ง');
+
+                                // เปิด modal
                                 $('#serviceDetailsModal').modal('show');
                             }
                         },
                         error: function (xhr, textStatus, errorThrown) {
                             console.error('Error:', xhr.status, textStatus, errorThrown);
-                            handleAjaxError(xhr);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถดึงข้อมูลได้', 'error');
                         }
                     });
                 });
@@ -354,7 +402,12 @@
             document.getElementById('createBtn').addEventListener('click', function (e) {
                 e.preventDefault();
 
+                // สร้าง FormData จากฟอร์ม
                 var formData = new FormData($('#myForm')[0]);
+
+                 // เพิ่มค่าของ checkbox ลงใน FormData
+                formData.append('IsMou', $('#isMou').is(':checked') ? true : null);
+                formData.append('IsSentToAccounting', $('#isSentToAccounting').is(':checked') ? true : null);
 
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
@@ -374,7 +427,7 @@
                             processData: false,
                             contentType: false,
                             success: function (response) {
-                                if (response.success == true) {
+                                if (response.success === true) {
                                     Swal.fire(
                                         'บันทึกแล้ว!',
                                         'ข้อมูลของคุณถูกบันทึกแล้ว.',
@@ -385,12 +438,12 @@
                                         }
                                     });
                                 } else {
-                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                    Swal.fire('ผิดพลาด', response.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล', 'error');
                                 }
                             },
                             error: function (xhr, textStatus, errorThrown) {
                                 console.error('Error:', xhr.status, textStatus, errorThrown);
-                                handleAjaxError(xhr);
+                                Swal.fire('ผิดพลาด', 'ไม่สามารถบันทึกข้อมูลได้', 'error');
                             }
                         });
                     }
@@ -413,9 +466,9 @@
                             } else {
                                 $('#showInsert').show();
                                 $('#txtServiceID').val(response.data.serviceID);
-                                $('#txtEmployerID').val(response.data.employerID);
-                                $('#txtServiceTypeID').val(response.data.serviceTypeID);
-                                $('#txtServiceItemID').val(response.data.serviceItemID);
+                                $('#txtEmployerID').val(response.data.employerID).trigger('change');
+                                $('#txtServiceTypeID').val(response.data.serviceTypeID).trigger('change');
+                                $('#txtServiceItemID').val(response.data.serviceItemID).trigger('change');
                                 $('#txtRecordDate').val(response.data.recordDate);
                                 $('#txtRecorder').val(response.data.recorder);
                                 $('#txtSignatureName').val(response.data.signatureName);
@@ -425,6 +478,8 @@
                                 $('#txtDeposit').val(response.data.deposit);
                                 $('#txtRemainingPayment').val(response.data.remainingPayment);
                                 $('#txtOutstandingAmount').val(response.data.outstandingAmount);
+                                $('#isMou').prop('checked', response.data.isMou);
+                                $('#isSentToAccounting').prop('checked', response.data.isSentToAccounting);
                                 $('#txtNote').val(response.data.note);
                                 $('#createHeader').hide();
                                 $('#updateHeader').show();
@@ -489,7 +544,12 @@
             document.getElementById('updateBtn').addEventListener('click', function (e) {
                 e.preventDefault();
 
+                // สร้าง FormData จากฟอร์ม
                 var formData = new FormData($('#myForm')[0]);
+
+                 // เพิ่มค่าของ checkbox ลงใน FormData
+                formData.append('IsMou', $('#isMou').is(':checked') ? true : null);
+                formData.append('IsSentToAccounting', $('#isSentToAccounting').is(':checked') ? true : null);
 
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
@@ -518,7 +578,7 @@
                                         if (result.isConfirmed) {
                                             window.location.reload();
                                         }
-                                    })
+                                    });
                                 } else {
                                     Swal.fire('ผิดพลาด', response.message, 'error');
                                 }
