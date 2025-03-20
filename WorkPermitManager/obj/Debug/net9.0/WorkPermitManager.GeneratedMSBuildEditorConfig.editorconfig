@@ -124,6 +124,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcU2VydmljZVR5cGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Services/ServiceWorkerManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcU2VydmljZVdvcmtlck1hbmFnZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/Project/2024/WorkPermitManager/WorkPermitManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

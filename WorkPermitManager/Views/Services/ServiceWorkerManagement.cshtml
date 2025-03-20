@@ -1,0 +1,472 @@
+﻿@{
+    ViewData["Controller"] = "งานบริการ";
+    ViewData["Action"] = "ข้อมูลแรงงาน";
+    ViewData["Icon"] = "paste";
+}
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row gap-2">
+                        <div class="col-12">
+                            <h5 class="f-w-600"><i class="fa fa-briefcase"></i> ข้อมูลบริการ</h5>
+                            <table class="table table-bordered mt-2">
+                                <tbody>
+                                    <tr>
+                                        <th class="bg-light">ชื่อลูกค้า</th>
+                                        <td>@Model.EmployerName</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">ประเภทงาน</th>
+                                        <td>@Model.ServiceTypeName</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">รายการที่รับทำ</th>
+                                        <td>@Model.ServiceItemName</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">วันที่บันทึกข้อมูล</th>
+                                        <td>@Model.RecordDate</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">ชื่อนายหน้า</th>
+                                        <td>@Model.SignatureName</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">หมายเลขใบเสนอราคา</th>
+                                        <td>@Model.QuotationNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">จำนวนคนที่คาดว่าจะรับ</th>
+                                        <td>@Model.ExpectedPeople</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
+                                <table class="table table-bordered mt-2">
+                                    <tbody>      
+                                        <tr>
+                                            <th class="bg-light">ราคารวม</th>
+                                            <td>@Model.TotalPrice</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">เงินมัดจำ</th>
+                                            <td>@Model.Deposit</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">จ่ายยอดค้างชำระ</th>
+                                            <td>@Model.RemainingPayment</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
+                                            <td>@Model.OutstandingAmount</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <h5 class="f-w-600"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเดิม</h5>
+                                <table class="table table-bordered mt-2">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-light">ต่างด้าวเป็น MOU</th>
+                                            <td>@(Model.IsMou ?? "ใช่")</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">ส่งงานบัญชีแล้ว</th>
+                                            <td>@Model.IsSentToAccounting</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">หมายเหตุ</th>
+                                            <td>@Model.Note</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">ผู้บันทึก</th>
+                                            <td>@Model.Recorder</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: none" id="showInsert">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-light" id="createOff" href="#" style="float:right"><i class="fa fa-close"></i> ยกเลิก</a>
+                    <h4 id="createHeader"><i class="fa fa-plus text-dark"></i> เพิ่มข้อมูล</h4>
+                    <h4 id="updateHeader" style="display:none"><i class="fa fa-edit"></i> แก้ไขข้อมูล</h4>
+                </div>
+                <div class="card-body">
+                    <form id="myForm" class="row g-3" method="post">
+                        <input class="form-control" name="ServiceWorkerID" id="txtServiceWorkerID" type="hidden">
+                        <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden" value="@Model.ServiceID">
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtPassportNumber">Passport Number</label>
+                            <input class="form-control" name="PassportNumber" id="txtPassportNumber" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtNationality">Nationality</label>
+                            <input class="form-control" name="Nationality" id="txtNationality" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtFirstNameEN">First Name (EN)</label>
+                            <input class="form-control" name="FirstNameEN" id="txtFirstNameEN" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtLastNameEN">Last Name (EN)</label>
+                            <input class="form-control" name="LastNameEN" id="txtLastNameEN" type="text" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtServiceFee">Service Fee</label>
+                            <input class="form-control" name="ServiceFee" id="txtServiceFee" type="number" placeholder="กรุณากรอกข้อมูล">
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="txtExpiry90Days">Expiry (90 Days)</label>
+                            <input class="form-control" name="Expiry90Days" id="txtExpiry90Days" type="date">
+                        </div>
+                        <div class="col-xxl-12 col-sm-12">
+                            <label class="col-form-label" for="txtNote">Note</label>
+                            <textarea class="form-control" name="Note" id="txtNote" placeholder="กรุณากรอกข้อมูล"></textarea>
+                        </div>
+                        <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
+                            <button class="btn btn-primary" id="createBtn" type="submit">บันทึก</button>
+                            <button class="btn btn-primary" id="updateBtn" type="submit" style="display: none;">อัพเดท</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="fa fa-group"></i> จัดการข้อมูลแรงงาน
+                    </div>
+                    <div class="d-flex gap-2 justify-end" style="float:right">
+                        <a class="btn btn-primary btn-sm" id="createOn" href="#">
+                            <i class="fa fa-plus text-white"></i> เพิ่มแรงงาน
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive theme-scrollbar mt-2">
+                        <table class="display table table-bordered" id="data-source-1" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Passport Number</th>
+                                    <th>Nationality</th>
+                                    <th>First Name (EN)</th>
+                                    <th>Last Name (EN)</th>
+                                    <th>Service Fee</th>
+                                    <th>ดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in (List<ServiceWorker>)ViewBag.WorkerList)
+                                {
+                                    <tr>
+                                        <td>@item.PassportNumber</td>
+                                        <td>@item.Nationality</td>
+                                        <td>@item.FirstNameEN</td>
+                                        <td>@item.LastNameEN</td>
+                                        <td>@item.ServiceFee</td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#" class="editBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
+                                                        <i class="icon-pencil-alt"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="delete">
+                                                    <a href="#" class="deleteBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
+                                                        <i class="icon-trash"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var showInsert = document.getElementById('showInsert');
+            var createOn = document.getElementById('createOn');
+            var createOff = document.getElementById('createOff');
+
+            // Event listener for "เพิ่ม" button
+            createOn.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'block';  // Show the form
+            });
+
+            // Event listener for "ยกเลิกเพิ่ม" button
+            createOff.addEventListener('click', function (e) {
+                e.preventDefault();
+                showInsert.style.display = 'none';  // Hide the form
+                // Reset the form fields
+                $('#myForm')[0].reset();
+                // Hide the ServiceWorkerID field and update button
+                $('#txtServiceWorkerID').hide();
+                $('#updateBtn').hide();
+                // Show the create button and header
+                $('#createHeader').show();
+                $('#updateHeader').hide();
+                $('#createBtn').show();
+            });
+
+            document.querySelectorAll('.detailBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceWorkerID = this.getAttribute('data-ServiceWorkerID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetServiceWorkerDetails", "Services")',
+                        type: 'POST',
+                        data: { ServiceWorkerID: serviceWorkerID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                var data = response.data;
+                                $('#modalPassportNumber').text(data.passportNumber);
+                                $('#modalNationality').text(data.nationality);
+                                $('#modalFirstNameEN').text(data.firstNameEN);
+                                $('#modalLastNameEN').text(data.lastNameEN);
+                                $('#modalServiceFee').text(data.serviceFee);
+
+                                $('#workerDetailsModal').modal('show');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('createBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#myForm')[0]);
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745', // Light green
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("CreateServiceWorker", "Services")',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.error('Error:', xhr.status, textStatus, errorThrown);
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+
+            // แก้ไขข้อมูลพนักงาน
+            document.querySelectorAll('.editBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceWorkerID = this.getAttribute('data-ServiceWorkerID');
+
+                    $.ajax({
+                        url: '@Url.Action("GetServiceWorkerDetails", "Services")',
+                        type: 'POST',
+                        data: { ServiceWorkerID: serviceWorkerID },
+                        success: function (response) {
+                            if (response.success == false) {
+                                Swal.fire('ผิดพลาด', response.message, 'error');
+                            } else {
+                                $('#showInsert').show();
+                                $('#txtServiceWorkerID').val(response.data.serviceWorkerID);
+                                $('#txtPassportNumber').val(response.data.passportNumber);
+                                $('#txtNationality').val(response.data.nationality);
+                                $('#txtFirstNameEN').val(response.data.firstNameEN);
+                                $('#txtLastNameEN').val(response.data.lastNameEN);
+                                $('#txtServiceFee').val(response.data.serviceFee);
+                                $('#txtExpiry90Days').val(response.data.expiry90Days);
+                                $('#txtNote').val(response.data.note);
+
+                                $('#createHeader').hide();
+                                $('#updateHeader').show();
+                                $('#createBtn').hide();
+                                $('#updateBtn').show();
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            handleAjaxError(xhr);
+                        }
+                    });
+                });
+            });
+
+            // ลบข้อมูลพนักงาน
+            document.querySelectorAll('.deleteBtn').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var serviceWorkerID = this.getAttribute('data-ServiceWorkerID');
+
+                    Swal.fire({
+                        title: 'คุณแน่ใจหรือไม่?',
+                        text: "คุณจะไม่สามารถย้อนกลับได้!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#d3d3d3',
+                        confirmButtonText: 'ใช่, ลบ!',
+                        cancelButtonText: 'ยกเลิก'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '@Url.Action("DeleteServiceWorker", "Services")',
+                                type: 'POST',
+                                data: { ServiceWorkerID: serviceWorkerID },
+                                success: function (response) {
+                                    if (response.success) {
+                                        Swal.fire(
+                                            'ลบแล้ว!',
+                                            response.message,
+                                            'success'
+                                        ).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire('ผิดพลาด', response.message, 'error');
+                                    }
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.error('Error:', xhr.status, textStatus, errorThrown);
+                                    handleAjaxError(xhr);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('updateBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#myForm')[0]);
+
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#007bff', // Light blue
+                    cancelButtonColor: '#d3d3d3', // Light gray
+                    confirmButtonText: 'ใช่, บันทึก!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("UpdateServiceWorker", "Services")',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.success == true) {
+                                    Swal.fire(
+                                        'บันทึกแล้ว!',
+                                        'ข้อมูลของคุณถูกบันทึกแล้ว.',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire('ผิดพลาด', response.message, 'error');
+                                }
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                handleAjaxError(xhr);
+                            }
+                        });
+                    }
+                });
+            });
+
+            function handleAjaxError(xhr) {
+                console.log('Error:', xhr.status, xhr.statusText);
+
+                switch (xhr.status) {
+                    case 400:
+                        window.open('@Url.Action("Error400", "Error")', '_blank');
+                        break;
+                    case 401:
+                        window.open('@Url.Action("Error401", "Error")', '_blank');
+                        break;
+                    case 403:
+                        window.open('@Url.Action("Error403", "Error")', '_blank');
+                        break;
+                    case 404:
+                        window.open('@Url.Action("Error404", "Error")', '_blank');
+                        break;
+                    case 500:
+                        window.open('@Url.Action("Error500", "Error")', '_blank');
+                        break;
+                    case 503:
+                        window.open('@Url.Action("Error503", "Error")', '_blank');
+                        break;
+                    default:
+                        console.log('An unexpected error occurred: ', xhr.status);
+                }
+            }
+        });
+    </script>
+}

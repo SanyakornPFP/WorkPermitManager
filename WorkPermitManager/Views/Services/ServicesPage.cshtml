@@ -198,7 +198,7 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a class="text-primary" asp-action="ServiceDetail" asp-controller="Services" asp-route-ServiceID="@item.ServiceID">
+                                            <a class="text-primary" asp-action="ServiceWorkerManagement" asp-controller="Services" asp-route-ServiceID="@item.ServiceID">
                                                 <i class="fa fa-folder-open-o"></i>
                                             </a>
                                         </td>
@@ -227,81 +227,96 @@
     </div>
 </div>
 
-<div class="modal fade" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade bd-example-modal-xl" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="serviceDetailsModalLabel"><i class="fa fa-list-alt"></i> รายละเอียดบริการ</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <th class="bg-light" scope="row">ชื่อลูกค้า</th>
-                            <td><span id="modalEmployerName"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ประเภทงาน</th>
-                            <td><span id="modalServiceTypeName"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">รายการที่รับทำ</th>
-                            <td><span id="modalServiceItemName"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">วันที่บันทึกข้อมูล</th>
-                            <td><span id="modalRecordDate"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ชื่อนายหน้า</th>
-                            <td><span id="modalSignatureName"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">หมายเลขใบเสนอราคา</th>
-                            <td><span id="modalQuotationNumber"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">จำนวนคนที่คาดว่าจะรับ</th>
-                            <td><span id="modalExpectedPeople"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ราคารวม</th>
-                            <td><span id="modalTotalPrice"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">เงินมัดจำ</th>
-                            <td><span id="modalDeposit"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">จ่ายยอดค้างชำระ</th>
-                            <td><span id="modalRemainingPayment"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
-                            <td><span id="modalOutstandingAmount"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ต่างด้าวเป็น MOU</th>
-                            <td><span id="modalIsMou"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ส่งงานบัญชีแล้ว</th>
-                            <td><span id="modalIsSentToAccounting"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">หมายเหตุ</th>
-                            <td><span id="modalNote"></span></td>
-                        </tr>
-                        <tr>
-                            <th class="bg-light">ผู้บันทึก</th>
-                            <td><span id="modalRecorder"></span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="modal-body dark-modal">
+                <div class="row p-2">
+                    <div class="col-12">
+                        <h5 class="f-w-600"><i class="fa fa-user"></i> ข้อมูลลูกค้า</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">ชื่อลูกค้า</th>
+                                    <td><span id="modalEmployerName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ประเภทงาน</th>
+                                    <td><span id="modalServiceTypeName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">รายการที่รับทำ</th>
+                                    <td><span id="modalServiceItemName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่บันทึกข้อมูล</th>
+                                    <td><span id="modalRecordDate"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ชื่อนายหน้า</th>
+                                    <td><span id="modalSignatureName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">หมายเลขใบเสนอราคา</th>
+                                    <td><span id="modalQuotationNumber"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">จำนวนคนที่คาดว่าจะรับ</th>
+                                    <td><span id="modalExpectedPeople"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ราคารวม</th>
+                                    <td><span id="modalTotalPrice"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">เงินมัดจำ</th>
+                                    <td><span id="modalDeposit"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">จ่ายยอดค้างชำระ</th>
+                                    <td><span id="modalRemainingPayment"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
+                                    <td><span id="modalOutstandingAmount"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="f-w-600"><i class="fa fa-check-square"></i> สถานะ</h5>
+                        <table class="table table-bordered mt-2">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">ต่างด้าวเป็น MOU</th>
+                                    <td><span id="modalIsMou"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ส่งงานบัญชีแล้ว</th>
+                                    <td><span id="modalIsSentToAccounting"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">หมายเหตุ</th>
+                                    <td><span id="modalNote"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ผู้บันทึก</th>
+                                    <td><span id="modalRecorder"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">ปิด</button>
+                <button class="btn btn-light" type="button" data-bs-dismiss="modal">ปิด</button>
             </div>
         </div>
     </div>

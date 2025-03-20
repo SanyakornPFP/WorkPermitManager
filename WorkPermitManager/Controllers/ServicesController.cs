@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WorkPermitManager.Data;
 using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
 
 namespace WorkPermitManager.Controllers
 {
+    [Authorize]
     public class ServicesController : Controller
     {
 
@@ -241,9 +243,9 @@ namespace WorkPermitManager.Controllers
                         s.EmployerID,
                         s.ServiceTypeID,
                         s.ServiceItemID,
-                        EmployerName = _db.Employers.Where(e => e.EmployerID == s.EmployerID).Select(e => e.NameTh).FirstOrDefault(),
-                        ServiceTypeName = _db.ServiceTypes.Where(st => st.ServiceTypeID == s.ServiceTypeID).Select(st => st.ServiceTypeName).FirstOrDefault(),
-                        ServiceItemName = _db.ServiceItems.Where(si => si.ServiceItemID == s.ServiceItemID).Select(si => si.ServiceItemName).FirstOrDefault(),
+                        EmployerName = s.Employer.NameTh,
+                        ServiceTypeName = s.ServiceType.ServiceTypeName,
+                        ServiceItemName = s.ServiceItem.ServiceItemName,
                         s.Note,
                         s.RecordDate,
                         s.Recorder,
@@ -746,6 +748,267 @@ namespace WorkPermitManager.Controllers
                     return Json(new { success = true, data = model });
                 }
             }
+        }
+        #endregion
+        #endregion
+
+        #region ServiceWorkerManagement
+        public IActionResult ServiceWorkerManagement(int ServiceID)
+        {
+            var model = _db.Services
+                     .Where(p => p.ServiceID == ServiceID)
+                     .Select(s => new
+                     {
+                         s.ServiceID,
+                         s.EmployerID,
+                         s.ServiceTypeID,
+                         s.ServiceItemID,
+                         EmployerName = s.Employer.NameTh,
+                         ServiceTypeName = s.ServiceType.ServiceTypeName,
+                         ServiceItemName = s.ServiceItem.ServiceItemName,
+                         s.Note,
+                         s.RecordDate,
+                         s.Recorder,
+                         s.SignatureName,
+                         s.IsMou,
+                         s.QuotationNumber,
+                         s.ExpectedPeople,
+                         s.TotalPrice,
+                         s.Deposit,
+                         s.RemainingPayment,
+                         s.OutstandingAmount,
+                         s.IsSentToAccounting,
+                         UserCreate = s.UserManage.FullName,
+
+                     })
+                     .FirstOrDefault();
+
+            var workers = _db.ServiceWorkers
+                .Where(s => s.ServiceID == ServiceID && s.IsActive)
+                .ToList();
+
+            ViewBag.WorkerList = workers;
+
+            return View(model);
+        }
+
+        #region Create ServiceWorker
+        [HttpPost]
+        public async Task<IActionResult> CreateServiceWorker(RequestServiceWorkerModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServiceWorkers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            ServiceWorker createModel = new ServiceWorker
+            {
+                ServiceID = model.ServiceID,
+                PassportNumber = model.PassportNumber,
+                Nationality = model.Nationality,
+                Title = model.Title,
+                FirstNameEN = model.FirstNameEN,
+                FirstNameTH = model.FirstNameTH,
+                LastNameEN = model.LastNameEN,
+                LastNameTH = model.LastNameTH,
+                ServiceItemID = model.ServiceItemID,
+                ServiceFee = model.ServiceFee,
+                Expiry90Days = model.Expiry90Days,
+                Note = model.Note,
+                DateOfBirth = model.DateOfBirth,
+                PassportIssueDate = model.PassportIssueDate,
+                PassportExpiryDate = model.PassportExpiryDate,
+                WorkPermitNumber = model.WorkPermitNumber,
+                EntryVisaNumber = model.EntryVisaNumber,
+                PlaceOfBirth = model.PlaceOfBirth,
+                PassportIssuedAt = model.PassportIssuedAt,
+                Country = model.Country,
+                CreatedAt = DateTime.Now,
+                IsActive = true,
+                UserManageID = int.Parse(User.GetLoggedInUserID())
+            };
+
+            _db.ServiceWorkers.Add(createModel);
+            await _db.SaveChangesAsync();
+
+            // Log the creation
+            var logEntry = new LogSystemData
+            {
+                TableName = "ServiceWorkers",
+                Action = "Create",
+                RecordID = createModel.ServiceWorkerID,
+                UserManageID = int.Parse(User.GetLoggedInUserID()),
+                ActionTime = DateTime.Now,
+                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                OldValue = null,
+                NewValue = $"ServiceWorkerID: {createModel.ServiceWorkerID}, PassportNumber: {createModel.PassportNumber}",
+                Description = $"Created new service worker with ID: {createModel.ServiceWorkerID}"
+            };
+
+            _db.LogSystemDatas.Add(logEntry);
+            await _db.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+        #endregion
+
+        #region Delete ServiceWorker
+        [HttpPost]
+        public async Task<IActionResult> DeleteServiceWorker(int ServiceWorkerID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServiceWorkers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            var model = _db.ServiceWorkers.FirstOrDefault(p => p.ServiceWorkerID == ServiceWorkerID);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            model.IsActive = false;
+            model.UpdatedAt = DateTime.Now;
+            model.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+            _db.ServiceWorkers.Update(model);
+            await _db.SaveChangesAsync();
+
+            // Log the deletion
+            var logEntry = new LogSystemData
+            {
+                TableName = "ServiceWorkers",
+                Action = "Delete",
+                RecordID = model.ServiceWorkerID,
+                UserManageID = int.Parse(User.GetLoggedInUserID()),
+                ActionTime = DateTime.Now,
+                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                OldValue = $"ServiceWorkerID: {model.ServiceWorkerID}, PassportNumber: {model.PassportNumber}",
+                NewValue = null,
+                Description = $"Deleted service worker with ID: {model.ServiceWorkerID}"
+            };
+
+            _db.LogSystemDatas.Add(logEntry);
+            await _db.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+        #endregion
+
+        #region Update ServiceWorker
+        [HttpPost]
+        public async Task<IActionResult> UpdateServiceWorker(RequestServiceWorkerModel model)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServiceWorkers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            var data = _db.ServiceWorkers.FirstOrDefault(p => p.ServiceWorkerID == model.ServiceWorkerID);
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            var oldValues = new
+            {
+                data.PassportNumber,
+                data.Nationality,
+                data.FirstNameEN,
+                data.LastNameEN,
+                data.ServiceFee
+            };
+
+            data.PassportNumber = model.PassportNumber;
+            data.Nationality = model.Nationality;
+            data.Title = model.Title;
+            data.FirstNameEN = model.FirstNameEN;
+            data.FirstNameTH = model.FirstNameTH;
+            data.LastNameEN = model.LastNameEN;
+            data.LastNameTH = model.LastNameTH;
+            data.ServiceItemID = model.ServiceItemID;
+            data.ServiceFee = model.ServiceFee;
+            data.Expiry90Days = model.Expiry90Days;
+            data.Note = model.Note;
+            data.DateOfBirth = model.DateOfBirth;
+            data.PassportIssueDate = model.PassportIssueDate;
+            data.PassportExpiryDate = model.PassportExpiryDate;
+            data.WorkPermitNumber = model.WorkPermitNumber;
+            data.EntryVisaNumber = model.EntryVisaNumber;
+            data.PlaceOfBirth = model.PlaceOfBirth;
+            data.PassportIssuedAt = model.PassportIssuedAt;
+            data.Country = model.Country;
+            data.UpdatedAt = DateTime.Now;
+            data.UserManageID = int.Parse(User.GetLoggedInUserID());
+
+            _db.ServiceWorkers.Update(data);
+            await _db.SaveChangesAsync();
+
+            // Log the update
+            var logEntry = new LogSystemData
+            {
+                TableName = "ServiceWorkers",
+                Action = "Update",
+                RecordID = data.ServiceWorkerID,
+                UserManageID = int.Parse(User.GetLoggedInUserID()),
+                ActionTime = DateTime.Now,
+                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                OldValue = $"PassportNumber: {oldValues.PassportNumber}, Nationality: {oldValues.Nationality}, FirstNameEN: {oldValues.FirstNameEN}, LastNameEN: {oldValues.LastNameEN}, ServiceFee: {oldValues.ServiceFee}",
+                NewValue = $"PassportNumber: {data.PassportNumber}, Nationality: {data.Nationality}, FirstNameEN: {data.FirstNameEN}, LastNameEN: {data.LastNameEN}, ServiceFee: {data.ServiceFee}",
+                Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
+            };
+
+            _db.LogSystemDatas.Add(logEntry);
+            await _db.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+        #endregion
+
+        #region Get ServiceWorker Details
+        [HttpPost]
+        public JsonResult GetServiceWorkerDetails(int ServiceWorkerID)
+        {
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServiceWorkers"))
+            {
+                return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
+            }
+
+            var model = _db.ServiceWorkers
+                .Where(p => p.ServiceWorkerID == ServiceWorkerID)
+                .Select(s => new
+                {
+                    s.ServiceWorkerID,
+                    s.PassportNumber,
+                    s.Nationality,
+                    s.Title,
+                    s.FirstNameEN,
+                    s.FirstNameTH,
+                    s.LastNameEN,
+                    s.LastNameTH,
+                    s.ServiceFee,
+                    s.Expiry90Days,
+                    s.Note,
+                    s.DateOfBirth,
+                    s.PassportIssueDate,
+                    s.PassportExpiryDate,
+                    s.WorkPermitNumber,
+                    s.EntryVisaNumber,
+                    s.PlaceOfBirth,
+                    s.PassportIssuedAt,
+                    s.Country,
+                    s.CreatedAt,
+                    s.UpdatedAt,
+                    s.IsActive
+                })
+                .FirstOrDefault();
+
+            if (model == null)
+            {
+                return Json(new { success = false, message = "Service worker not found" });
+            }
+
+            return Json(new { success = true, data = model });
         }
         #endregion
         #endregion

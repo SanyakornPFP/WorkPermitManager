@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Reporting.NETCore;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using WorkPermitManager.Models;
 
 namespace WorkPermitManager.Controllers
 {
+    [Authorize]
     public class EmployersController : Controller
     {
         private readonly Db_WorkPermitManagerModel _db;
