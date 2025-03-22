@@ -93,7 +93,7 @@
                         <!-- หมายเหตุ -->
                         <div class="col-12">
                             <hr>
-                            <h5><i class="fa fa-check-square"></i> สถานะ</h5>
+                            <h5><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเติม</h5>
                         </div>
                         <!-- Add checkboxes for IsMou and IsSentToAccounting -->
                         <div class="col-xxl-6 col-sm-6">
@@ -382,7 +382,6 @@
                                 Swal.fire('ผิดพลาด', response.message, 'error');
                             } else {
                                 var data = response.data;
-
                                 // แสดงข้อมูลใน modal
                                 $('#modalEmployerName').text(data.employerName || '-');
                                 $('#modalServiceTypeName').text(data.serviceTypeName || '-');
@@ -399,8 +398,8 @@
                                 $('#modalNote').text(data.note || '-');
 
                                 // แสดงสถานะของ checkbox
-                                $('#modalIsMou').text(data.IsMou ? 'ใช่' : 'ไม่ใช่');
-                                $('#modalIsSentToAccounting').text(data.IsSentToAccounting ? 'ส่งแล้ว' : 'ยังไม่ส่ง');
+                                $('#modalIsMou').html(data.isMou ? '<i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ใช่</i>' : '<i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ไม่ใช่</i>');
+                                $('#modalIsSentToAccounting').html(data.isSentToAccounting ? '<i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ส่งแล้ว</i>' : '<i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ยังไม่ส่ง</i>');
 
                                 // เปิด modal
                                 $('#serviceDetailsModal').modal('show');

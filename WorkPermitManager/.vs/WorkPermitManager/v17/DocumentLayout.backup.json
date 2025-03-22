@@ -7,16 +7,12 @@
       "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\services\\serviceworkermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\services\\servicespage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\services\\servicespage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\employers\\employersdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\employers\\employersdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,52 +50,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EmployersDetail.cshtml",
-              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Employers\\EmployersDetail.cshtml",
-              "RelativeDocumentMoniker": "Views\\Employers\\EmployersDetail.cshtml",
-              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Employers\\EmployersDetail.cshtml",
-              "RelativeToolTip": "Views\\Employers\\EmployersDetail.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-20T09:14:24.185Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ServiceWorkerManagement.cshtml",
               "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServiceWorkerManagement.cshtml",
               "RelativeDocumentMoniker": "Views\\Services\\ServiceWorkerManagement.cshtml",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServiceWorkerManagement.cshtml",
               "RelativeToolTip": "Views\\Services\\ServiceWorkerManagement.cshtml",
-              "ViewState": "AgIAADgAAAAAAAAAAAAowJYAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAADUAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-20T07:56:57.489Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ServicesPage.cshtml",
               "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServicesPage.cshtml",
               "RelativeDocumentMoniker": "Views\\Services\\ServicesPage.cshtml",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServicesPage.cshtml",
               "RelativeToolTip": "Views\\Services\\ServicesPage.cshtml",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAAAOUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHIBAAAAAAAAAAAAAMUBAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-20T07:52:42.174Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ServicesController.cs",
               "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\ServicesController.cs",
               "RelativeDocumentMoniker": "Controllers\\ServicesController.cs",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\ServicesController.cs",
               "RelativeToolTip": "Controllers\\ServicesController.cs",
-              "ViewState": "AgIAAPECAAAAAAAAAAAiwBUDAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUDAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T07:48:47.419Z",
               "EditorCaption": ""

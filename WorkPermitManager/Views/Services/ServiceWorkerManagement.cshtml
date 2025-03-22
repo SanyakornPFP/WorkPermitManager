@@ -2,45 +2,56 @@
     ViewData["Controller"] = "งานบริการ";
     ViewData["Action"] = "ข้อมูลแรงงาน";
     ViewData["Icon"] = "paste";
+    int countRow = 0;
 }
 <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="ribbon ribbon-primary ribbon-clip">
+                        <i class="fa fa-paste"></i> รายละเอียดงานบริการ
+                    </div>
+                    <div class="d-flex gap-2 justify-end" style="float:right">
+                        <a class="btn btn-light btn-sm" asp-action="ServicesPage" asp-controller="Services">
+                            <i class="fa fa-caret-left text-dark"></i> ย้อนกลับ
+                        </a>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="row gap-2">
                         <div class="col-12">
-                            <h5 class="f-w-600"><i class="fa fa-briefcase"></i> ข้อมูลบริการ</h5>
+                            <h5 class="f-w-600"><i class="fa fa-briefcase"></i> ข้อมูลลูกค้า</h5>
                             <table class="table table-bordered mt-2">
                                 <tbody>
                                     <tr>
                                         <th class="bg-light">ชื่อลูกค้า</th>
-                                        <td>@Model.EmployerName</td>
+                                        <td>@(string.IsNullOrEmpty(Model.EmployerName) ? "-" : Model.EmployerName)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">ประเภทงาน</th>
-                                        <td>@Model.ServiceTypeName</td>
+                                        <td>@(string.IsNullOrEmpty(Model.ServiceTypeName) ? "-" : Model.ServiceTypeName)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">รายการที่รับทำ</th>
-                                        <td>@Model.ServiceItemName</td>
+                                        <td>@(string.IsNullOrEmpty(Model.ServiceItemName) ? "-" : Model.ServiceItemName)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">วันที่บันทึกข้อมูล</th>
-                                        <td>@Model.RecordDate</td>
+                                        <td>@(Model.RecordDate == null ? "-" : Model.RecordDate)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">ชื่อนายหน้า</th>
-                                        <td>@Model.SignatureName</td>
+                                        <td>@(string.IsNullOrEmpty(Model.SignatureName) ? "-" : Model.SignatureName)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">หมายเลขใบเสนอราคา</th>
-                                        <td>@Model.QuotationNumber</td>
+                                        <td>@(string.IsNullOrEmpty(Model.QuotationNumber) ? "-" : Model.QuotationNumber)</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-light">จำนวนคนที่คาดว่าจะรับ</th>
-                                        <td>@Model.ExpectedPeople</td>
+                                        <td>@(Model.ExpectedPeople == null ? "-" : Model.ExpectedPeople)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -49,45 +60,63 @@
                             <div class="col-6">
                                 <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
                                 <table class="table table-bordered mt-2">
-                                    <tbody>      
+                                    <tbody>
                                         <tr>
                                             <th class="bg-light">ราคารวม</th>
-                                            <td>@Model.TotalPrice</td>
+                                            <td>@(Model.TotalPrice == null ? "-" : Model.TotalPrice)</td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">เงินมัดจำ</th>
-                                            <td>@Model.Deposit</td>
+                                            <td>@(Model.Deposit == null ? "-" : Model.Deposit)</td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">จ่ายยอดค้างชำระ</th>
-                                            <td>@Model.RemainingPayment</td>
+                                            <td>@(Model.RemainingPayment == null ? "-" : Model.RemainingPayment)</td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
-                                            <td>@Model.OutstandingAmount</td>
+                                            <td>@(Model.OutstandingAmount == null ? "-" : Model.OutstandingAmount)</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="col-6">
-                                <h5 class="f-w-600"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเดิม</h5>
+                                <h5 class="f-w-600"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเติม</h5>
                                 <table class="table table-bordered mt-2">
                                     <tbody>
                                         <tr>
                                             <th class="bg-light">ต่างด้าวเป็น MOU</th>
-                                            <td>@(Model.IsMou ?? "ใช่")</td>
+                                            <td>
+                                                @if (Model.IsMou)
+                                                {
+                                                    <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ใช่</i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ไม่ใช่</i>
+                                                }
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">ส่งงานบัญชีแล้ว</th>
-                                            <td>@Model.IsSentToAccounting</td>
+                                            <td>
+                                                @if (Model.IsSentToAccounting)
+                                                {
+                                                    <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ส่งแล้ว</i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ยังไม่ส่ง</i>
+                                                }
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">หมายเหตุ</th>
-                                            <td>@Model.Note</td>
+                                            <td>@(string.IsNullOrEmpty(Model.Note) ? "-" : Model.Note)</td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">ผู้บันทึก</th>
-                                            <td>@Model.Recorder</td>
+                                            <td>@(string.IsNullOrEmpty(Model.Recorder) ? "-" : Model.Recorder)</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -163,25 +192,38 @@
                 <div class="card-body">
 
                     <div class="table-responsive theme-scrollbar mt-2">
-                        <table class="display table table-bordered" id="data-source-1" style="width:100%">
+                        <table class="display table table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Passport Number</th>
-                                    <th>Nationality</th>
-                                    <th>First Name (EN)</th>
-                                    <th>Last Name (EN)</th>
-                                    <th>Service Fee</th>
-                                    <th>ดำเนินการ</th>
+                                    <th class="text-center align-content-md-center" width="5%" rowspan="2">ลำดับ</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">เลขบัตรประจำตัว</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">ชื่อ-นามสกุลอังกฤษ</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">สัญชาติ</th>
+                                    <th class="text-center" colspan="3">PASSPORT</th>
+                                    <th class="text-center" colspan="2">VISA</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">เลขใบอนุญาต</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">เลขที่บัตรขาเข้า</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">รายละเอียด</th>
+                                    <th class="text-center align-content-md-center" rowspan="2">ดำเนินการ</th>
+                                </tr>
+                                <tr>
+                                    <th>หมายเลข</th>
+                                    <th>วันที่ออก</th>
+                                    <th>วันที่หมดอายุ</th>
+                                    <th>วันที่ออก</th>
+                                    <th>วันที่หมดอายุ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in (List<ServiceWorker>)ViewBag.WorkerList)
                                 {
+                                    countRow++;
                                     <tr>
-                                        <td>@item.PassportNumber</td>
+                                        <td>@countRow</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.FirstNameEN    @item.LastNameEN</td>
                                         <td>@item.Nationality</td>
-                                        <td>@item.FirstNameEN</td>
-                                        <td>@item.LastNameEN</td>
+                                        <td>@item.PassportNumber</td>
                                         <td>@item.ServiceFee</td>
                                         <td>
                                             <ul class="action">
