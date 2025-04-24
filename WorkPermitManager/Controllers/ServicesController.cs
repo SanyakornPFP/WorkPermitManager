@@ -796,7 +796,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateServiceWorker(RequestServiceWorkerModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -808,10 +808,7 @@ namespace WorkPermitManager.Controllers
                 Nationality = model.Nationality,
                 Title = model.Title,
                 FirstNameEN = model.FirstNameEN,
-                FirstNameTH = model.FirstNameTH,
                 LastNameEN = model.LastNameEN,
-                LastNameTH = model.LastNameTH,
-                ServiceItemID = model.ServiceItemID,
                 ServiceFee = model.ServiceFee,
                 Expiry90Days = model.Expiry90Days,
                 Note = model.Note,
@@ -856,7 +853,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteServiceWorker(int ServiceWorkerID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -899,7 +896,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateServiceWorker(RequestServiceWorkerModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -923,10 +920,7 @@ namespace WorkPermitManager.Controllers
             data.Nationality = model.Nationality;
             data.Title = model.Title;
             data.FirstNameEN = model.FirstNameEN;
-            data.FirstNameTH = model.FirstNameTH;
             data.LastNameEN = model.LastNameEN;
-            data.LastNameTH = model.LastNameTH;
-            data.ServiceItemID = model.ServiceItemID;
             data.ServiceFee = model.ServiceFee;
             data.Expiry90Days = model.Expiry90Days;
             data.Note = model.Note;
@@ -969,7 +963,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetServiceWorkerDetails(int ServiceWorkerID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -983,9 +977,7 @@ namespace WorkPermitManager.Controllers
                     s.Nationality,
                     s.Title,
                     s.FirstNameEN,
-                    s.FirstNameTH,
                     s.LastNameEN,
-                    s.LastNameTH,
                     s.ServiceFee,
                     s.Expiry90Days,
                     s.Note,

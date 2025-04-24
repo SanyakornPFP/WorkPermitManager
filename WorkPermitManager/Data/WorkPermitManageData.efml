@@ -661,17 +661,8 @@
     <property name="FirstNameEN" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="bccef476-d65f-49e4-8690-c68b83d4864b">
       <column name="FirstNameEN" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="FirstNameTH" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="056068a0-76dd-4bac-bea2-feb79e72fc41">
-      <column name="FirstNameTH" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
-    </property>
     <property name="LastNameEN" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="d341cc26-f21b-4b70-b93c-4e5210fb5b3e">
       <column name="LastNameEN" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="LastNameTH" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="b12e29e9-6506-4c52-b59f-71c05a009ffd">
-      <column name="LastNameTH" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
-    </property>
-    <property name="ServiceItemID" type="Int32" p1:ValidateRequired="true" p1:Guid="59672e4d-655a-4e10-a383-c49374353d16">
-      <column name="ServiceItemID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="ServiceFee" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="aa949566-b942-43c9-86ac-084ffa666cce">
       <column name="ServiceFee" default="0" not-null="False" precision="18" scale="2" sql-type="decimal" p1:unicode="False" />
@@ -920,22 +911,6 @@
         <property name="AuthorizedWitness2ID" />
       </end2>
     </association>
-    <association name="Service_ServiceWorker" cardinality="OneToMany" p1:Guid="64d99b45-8f49-480c-9384-d11684c1b4ce">
-      <end1 multiplicity="One" name="Service" class="ServiceWorker" relation-class="Service" constrained="True" lazy="False" p1:Guid="a7607057-1c1d-4702-816a-f2a1d2c9b334">
-        <property name="ServiceID" />
-      </end1>
-      <end2 multiplicity="Many" name="ServiceWorkers" class="Service" relation-class="ServiceWorker" lazy="False" p1:Guid="07592791-8ccc-4920-bfce-501cf03a6ac6">
-        <property name="ServiceID" />
-      </end2>
-    </association>
-    <association name="ServiceItem_ServiceWorker" cardinality="OneToMany" p1:Guid="c47790c4-8fb1-4f73-9bca-07d9cf88bb90">
-      <end1 multiplicity="One" name="ServiceItem" class="ServiceWorker" relation-class="ServiceItem" constrained="True" lazy="False" p1:Guid="2eb2a702-888e-4d1e-a379-b8c91e729ab9">
-        <property name="ServiceItemID" />
-      </end1>
-      <end2 multiplicity="Many" name="ServiceWorkers" class="ServiceItem" relation-class="ServiceWorker" lazy="False" p1:Guid="42dedf63-65b4-4923-a029-f52e5201a69f">
-        <property name="ServiceItemID" />
-      </end2>
-    </association>
     <association name="User_Service" cardinality="OneToMany" p1:Guid="6956522e-ec96-48e4-9871-b5df884e52c8">
       <end1 multiplicity="ZeroOrOne" name="UserManage" class="Service" relation-class="User" constrained="True" lazy="False" p1:Guid="3434434e-78b6-4acc-b3d2-d5c26c738ca9">
         <property name="UserID" />
@@ -990,6 +965,14 @@
       </end1>
       <end2 multiplicity="Many" name="ServiceWorkers" class="User" relation-class="ServiceWorker" lazy="False" p1:Guid="fc3a23bc-11cf-4091-a6ee-2f3129ed7680">
         <property name="UserManageID" />
+      </end2>
+    </association>
+    <association name="Service_ServiceWorker" cardinality="OneToMany" p1:Guid="f4d2e216-5af7-4d5c-a0ba-0eaffb7ed498">
+      <end1 multiplicity="One" name="Service" class="ServiceWorker" relation-class="Service" constrained="True" lazy="False" p1:Guid="915256bf-bc92-4a35-a929-4f3fbde79752">
+        <property name="ServiceID" />
+      </end1>
+      <end2 multiplicity="Many" name="ServiceWorkers" class="Service" relation-class="ServiceWorker" lazy="False" p1:Guid="062c1395-20b7-43f5-9fe3-e7bcdd66f33f">
+        <property name="ServiceID" />
       </end2>
     </association>
   </associations>

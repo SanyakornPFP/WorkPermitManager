@@ -21,8 +21,14 @@
                 </div>
                 <div class="card-body">
                     <div class="row gap-2">
+                        <!-- ข้อมูลลูกค้า -->
                         <div class="col-12">
-                            <h5 class="f-w-600"><i class="fa fa-briefcase"></i> ข้อมูลลูกค้า</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="f-w-600 mb-0"><i class="fa fa-briefcase"></i> ข้อมูลลูกค้า</h5>
+                                <button id="toggleDetails" class="btn btn-light btn-sm">
+                                    <i class="fa fa-eye text-dark"></i> แสดงรายละเอียด
+                                </button>
+                            </div>
                             <table class="table table-bordered mt-2">
                                 <tbody>
                                     <tr>
@@ -56,70 +62,77 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
-                                <table class="table table-bordered mt-2">
-                                    <tbody>
-                                        <tr>
-                                            <th class="bg-light">ราคารวม</th>
-                                            <td>@(Model.TotalPrice == null ? "-" : Model.TotalPrice)</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">เงินมัดจำ</th>
-                                            <td>@(Model.Deposit == null ? "-" : Model.Deposit)</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">จ่ายยอดค้างชำระ</th>
-                                            <td>@(Model.RemainingPayment == null ? "-" : Model.RemainingPayment)</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
-                                            <td>@(Model.OutstandingAmount == null ? "-" : Model.OutstandingAmount)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="f-w-600"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเติม</h5>
-                                <table class="table table-bordered mt-2">
-                                    <tbody>
-                                        <tr>
-                                            <th class="bg-light">ต่างด้าวเป็น MOU</th>
-                                            <td>
-                                                @if (Model.IsMou)
-                                                {
-                                                    <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ใช่</i>
-                                                }
-                                                else
-                                                {
-                                                    <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ไม่ใช่</i>
-                                                }
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">ส่งงานบัญชีแล้ว</th>
-                                            <td>
-                                                @if (Model.IsSentToAccounting)
-                                                {
-                                                    <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ส่งแล้ว</i>
-                                                }
-                                                else
-                                                {
-                                                    <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ยังไม่ส่ง</i>
-                                                }
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">หมายเหตุ</th>
-                                            <td>@(string.IsNullOrEmpty(Model.Note) ? "-" : Model.Note)</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-light">ผู้บันทึก</th>
-                                            <td>@(string.IsNullOrEmpty(Model.Recorder) ? "-" : Model.Recorder)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                        <!-- ส่วนรายละเอียดเพิ่มเติม -->
+                        <div id="detailsSection" class="col-12" style="display: none;">
+                            <div class="row">
+                                <!-- ข้อมูลการเงิน -->
+                                <div class="col-6">
+                                    <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
+                                    <table class="table table-bordered mt-2">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light">ราคารวม</th>
+                                                <td>@(Model.TotalPrice == null ? "-" : Model.TotalPrice)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">เงินมัดจำ</th>
+                                                <td>@(Model.Deposit == null ? "-" : Model.Deposit)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">จ่ายยอดค้างชำระ</th>
+                                                <td>@(Model.RemainingPayment == null ? "-" : Model.RemainingPayment)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">ยอดค้างชำระทั้งหมด</th>
+                                                <td>@(Model.OutstandingAmount == null ? "-" : Model.OutstandingAmount)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- รายละเอียดเพิ่มเติม -->
+                                <div class="col-6">
+                                    <h5 class="f-w-600"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเติม</h5>
+                                    <table class="table table-bordered mt-2">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light">ต่างด้าวเป็น MOU</th>
+                                                <td>
+                                                    @if (Model.IsMou)
+                                                    {
+                                                        <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ใช่</i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ไม่ใช่</i>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">ส่งงานบัญชีแล้ว</th>
+                                                <td>
+                                                    @if (Model.IsSentToAccounting)
+                                                    {
+                                                        <i class="fa fa-check-circle text-success" style="font-size: 0.8rem"> ส่งแล้ว</i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-times-circle text-secondary" style="font-size: 0.8rem"> ยังไม่ส่ง</i>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">หมายเหตุ</th>
+                                                <td>@(string.IsNullOrEmpty(Model.Note) ? "-" : Model.Note)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">ผู้บันทึก</th>
+                                                <td>@(string.IsNullOrEmpty(Model.Recorder) ? "-" : Model.Recorder)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,32 +153,74 @@
                         <input class="form-control" name="ServiceWorkerID" id="txtServiceWorkerID" type="hidden">
                         <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden" value="@Model.ServiceID">
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtPassportNumber">Passport Number</label>
-                            <input class="form-control" name="PassportNumber" id="txtPassportNumber" type="text" placeholder="กรุณากรอกข้อมูล">
+                            <label class="col-form-label" for="PassportNumber">หมายเลขหนังสือเดินทาง</label>
+                            <input type="text" name="PassportNumber" id="txtPassportNumber" class="form-control" />
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtNationality">Nationality</label>
-                            <input class="form-control" name="Nationality" id="txtNationality" type="text" placeholder="กรุณากรอกข้อมูล">
+                            <label class="col-form-label" for="Nationality">สัญชาติ</label>
+                            <input type="text" name="Nationality" id="txtNationality" class="form-control" />
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="Title">คำนำหน้า</label>
+                            <select name="Title" id="ddlTitle" class="form-control select2-In">
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Prof">Prof</option>
+                            </select>
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="FirstNameEN">ชื่อ (ภาษาอังกฤษ)</label>
+                            <input type="text" name="FirstNameEN" id="txtFirstNameEN" class="form-control" />
+                        </div>
+                        <div class="col-xxl-4 col-sm-4">
+                            <label class="col-form-label" for="LastNameEN">นามสกุล (ภาษาอังกฤษ)</label>
+                            <input type="text" name="LastNameEN" id="txtLastNameEN" class="form-control" />
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtFirstNameEN">First Name (EN)</label>
-                            <input class="form-control" name="FirstNameEN" id="txtFirstNameEN" type="text" placeholder="กรุณากรอกข้อมูล">
+                            <label class="col-form-label" for="DateOfBirth">วันเกิด</label>
+                            <input type="date" name="DateOfBirth" id="txtDateOfBirth" class="form-control" />
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtLastNameEN">Last Name (EN)</label>
-                            <input class="form-control" name="LastNameEN" id="txtLastNameEN" type="text" placeholder="กรุณากรอกข้อมูล">
+                            <label class="col-form-label" for="PassportIssueDate">วันที่ออกหนังสือเดินทาง</label>
+                            <input type="date" name="PassportIssueDate" id="txtPassportIssueDate" class="form-control" />
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtServiceFee">Service Fee</label>
-                            <input class="form-control" name="ServiceFee" id="txtServiceFee" type="number" placeholder="กรุณากรอกข้อมูล">
+                            <label class="col-form-label" for="PassportExpiryDate">วันหมดอายุหนังสือเดินทาง</label>
+                            <input type="date" name="PassportExpiryDate" id="txtPassportExpiryDate" class="form-control" />
                         </div>
                         <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="txtExpiry90Days">Expiry (90 Days)</label>
-                            <input class="form-control" name="Expiry90Days" id="txtExpiry90Days" type="date">
+                            <label class="col-form-label" for="WorkPermitNumber">หมายเลขใบอนุญาตทำงาน</label>
+                            <input type="text" name="WorkPermitNumber" id="txtWorkPermitNumber" class="form-control" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="EntryVisaNumber">หมายเลขวีซ่าเข้าเมือง</label>
+                            <input type="text" name="EntryVisaNumber" id="txtEntryVisaNumber" class="form-control" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="PlaceOfBirth">สถานที่เกิด</label>
+                            <input type="text" name="PlaceOfBirth" id="txtPlaceOfBirth" class="form-control" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="PassportIssuedAt">สถานที่ออกหนังสือเดินทาง</label>
+                            <input type="text" name="PassportIssuedAt" id="txtPassportIssuedAt" class="form-control" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="Country">ประเทศ</label>
+                            <input type="text" name="Country" id="txtCountry" class="form-control" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="ServiceFee">ค่าบริการ</label>
+                            <input type="number" name="ServiceFee" id="txtServiceFee" class="form-control" step="0.01" />
+                        </div>
+                        <div class="col-xxl-6 col-sm-6">
+                            <label class="col-form-label" for="Expiry90Days">วันหมดอายุ (90 วัน)</label>
+                            <input type="date" name="Expiry90Days" id="txtExpiry90Days" class="form-control" />
                         </div>
                         <div class="col-xxl-12 col-sm-12">
-                            <label class="col-form-label" for="txtNote">Note</label>
-                            <textarea class="form-control" name="Note" id="txtNote" placeholder="กรุณากรอกข้อมูล"></textarea>
+                            <label class="col-form-label" for="Note">บันทึก</label>
+                            <textarea name="Note" id="txtNote" class="form-control"></textarea>
                         </div>
                         <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
                             <button class="btn btn-primary" id="createBtn" type="submit">บันทึก</button>
@@ -221,31 +276,44 @@
                                         <td colspan="13" class="text-center">ไม่มีข้อมูล</td>
                                     </tr>
                                 }
-                                @foreach (var item in (List<ServiceWorker>)ViewBag.WorkerList)
+                                else
                                 {
-                                    countRow++;
-                                    <tr>
-                                        <td>@countRow</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.FirstNameEN    @item.LastNameEN</td>
-                                        <td>@item.Nationality</td>
-                                        <td>@item.PassportNumber</td>
-                                        <td>@item.ServiceFee</td>
-                                        <td>
-                                            <ul class="action">
-                                                <li class="edit">
-                                                    <a href="#" class="editBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
-                                                        <i class="icon-pencil-alt"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="delete">
-                                                    <a href="#" class="deleteBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
-                                                        <i class="icon-trash"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                    foreach (var item in (List<ServiceWorker>)ViewBag.WorkerList)
+                                    {
+                                        countRow++;
+                                        <tr>
+                                            <td class="text-center">@countRow</td>
+                                            <td>@item.PassportNumber</td>
+                                            <td>@item.FirstNameEN @item.LastNameEN</td>
+                                            <td>@item.Nationality</td>
+                                            <td>@item.PassportNumber</td>
+                                            <td>@item.PassportIssueDate?.ToString("yyyy-MM-dd")</td>
+                                            <td>@item.PassportExpiryDate?.ToString("yyyy-MM-dd")</td>
+                                            <td>@item.CreatedAt?.ToString("yyyy-MM-dd")</td>
+                                            <td>@item.Expiry90Days?.ToString("yyyy-MM-dd")</td>
+                                            <td>@item.WorkPermitNumber</td>
+                                            <td>@item.EntryVisaNumber</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-light btn-sm detailBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <ul class="action">
+                                                    <li class="edit">
+                                                        <a href="#" class="editBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
+                                                            <i class="icon-pencil-alt"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="delete">
+                                                        <a href="#" class="deleteBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
+                                                            <i class="icon-trash"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>
@@ -255,6 +323,35 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><strong>หมายเลขหนังสือเดินทาง:</strong> <span id="passportNumber"></span></li>
+                    <li><strong>ชื่อ-นามสกุล:</strong> <span id="fullName"></span></li>
+                    <li><strong>สัญชาติ:</strong> <span id="nationality"></span></li>
+                    <li><strong>ค่าบริการ:</strong> <span id="serviceFee"></span></li>
+                    <li><strong>วันที่หมดอายุ 90 วัน:</strong> <span id="expiry90Days"></span></li>
+                    <li><strong>หมายเหตุ:</strong> <span id="note"></span></li>
+                    <li><strong>สถานที่เกิด:</strong> <span id="placeOfBirth"></span></li>
+                    <li><strong>สถานที่ออกหนังสือเดินทาง:</strong> <span id="passportIssuedAt"></span></li>
+                    <li><strong>ประเทศ:</strong> <span id="country"></span></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -293,18 +390,21 @@
                         type: 'POST',
                         data: { ServiceWorkerID: serviceWorkerID },
                         success: function (response) {
-                            if (response.success == false) {
-                                Swal.fire('ผิดพลาด', response.message, 'error');
-                            } else {
-                                var data = response.data;
-                                $('#modalPassportNumber').text(data.passportNumber);
-                                $('#modalNationality').text(data.nationality);
-                                $('#modalFirstNameEN').text(data.firstNameEN);
-                                $('#modalLastNameEN').text(data.lastNameEN);
-                                $('#modalServiceFee').text(data.serviceFee);
-
-                                $('#workerDetailsModal').modal('show');
-                            }
+                               console.log(response.data);
+                                if (response.success) {
+                                    $('#passportNumber').text(response.data.passportNumber || "-");
+                                    $('#fullName').text(response.data.firstNameEN + " " + response.data.lastNameEN || "-");
+                                    $('#nationality').text(response.data.nationality || "-");
+                                    $('#serviceFee').text(response.data.serviceFee || "-");
+                                    $('#expiry90Days').text(response.data.expiry90Days || "-");
+                                    $('#note').text(response.data.note || "-");
+                                    $('#placeOfBirth').text(response.data.placeOfBirth || "-");
+                                    $('#passportIssuedAt').text(response.data.passportIssuedAt || "-");
+                                    $('#country').text(response.data.country || "-");
+                                    $('#detailsModal').modal('show');
+                                } else {
+                                    alert(response.message);
+                                }
                         },
                         error: function (xhr, textStatus, errorThrown) {
                             console.error('Error:', xhr.status, textStatus, errorThrown);
@@ -487,6 +587,17 @@
                         });
                     }
                 });
+            });
+
+            document.getElementById('toggleDetails').addEventListener('click', function () {
+                var detailsSection = document.getElementById('detailsSection');
+                if (detailsSection.style.display === 'none') {
+                    detailsSection.style.display = 'block';
+                    this.innerHTML = '<i class="fa fa-eye-slash text-dark"></i> ซ่อนรายละเอียด';
+                } else {
+                    detailsSection.style.display = 'none';
+                    this.innerHTML = '<i class="fa fa-eye text-dark"></i> แสดงรายละเอียด';
+                }
             });
 
             function handleAjaxError(xhr) {
