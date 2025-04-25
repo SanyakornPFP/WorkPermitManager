@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WorkPermitManager.Data;
 using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
+using WorkPermitManager.Services;
 
 namespace WorkPermitManager.Controllers
 {
@@ -12,11 +14,13 @@ namespace WorkPermitManager.Controllers
 
         private readonly Db_WorkPermitManagerModel _db;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IPdfService _pdfService; // Add PDF Service for generating reports
 
-        public ServicesController(Db_WorkPermitManagerModel db, IWebHostEnvironment hostEnvironment)
+        public ServicesController(Db_WorkPermitManagerModel db, IWebHostEnvironment hostEnvironment, IPdfService pdfService)
         {
             _db = db;
             _hostingEnvironment = hostEnvironment;
+            _pdfService = pdfService; // Initialize the PDF service
         }
 
         #region Service
@@ -767,7 +771,7 @@ namespace WorkPermitManager.Controllers
                          ServiceTypeName = s.ServiceType.ServiceTypeName,
                          ServiceItemName = s.ServiceItem.ServiceItemName,
                          s.Note,
-                         s.RecordDate,
+                         RecordDate = s.RecordDate.ToString("dd/MM/yyyy"),
                          s.Recorder,
                          s.SignatureName,
                          s.IsMou,
@@ -901,21 +905,34 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            var data = _db.ServiceWorkers.FirstOrDefault(p => p.ServiceWorkerID == model.ServiceWorkerID);
+            var data = await _db.ServiceWorkers.FirstOrDefaultAsync(p => p.ServiceWorkerID == model.ServiceWorkerID);
             if (data == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "ไม่พบข้อมูลของ ServiceWorker ที่ต้องการอัปเดต" });
             }
 
+            // Capture old values for logging
             var oldValues = new
             {
                 data.PassportNumber,
                 data.Nationality,
+                data.Title,
                 data.FirstNameEN,
                 data.LastNameEN,
-                data.ServiceFee
+                data.ServiceFee,
+                data.Expiry90Days,
+                data.Note,
+                data.DateOfBirth,
+                data.PassportIssueDate,
+                data.PassportExpiryDate,
+                data.WorkPermitNumber,
+                data.EntryVisaNumber,
+                data.PlaceOfBirth,
+                data.PassportIssuedAt,
+                data.Country
             };
 
+            // Update the fields
             data.PassportNumber = model.PassportNumber;
             data.Nationality = model.Nationality;
             data.Title = model.Title;
@@ -936,26 +953,52 @@ namespace WorkPermitManager.Controllers
             data.UserManageID = int.Parse(User.GetLoggedInUserID());
 
             _db.ServiceWorkers.Update(data);
-            await _db.SaveChangesAsync();
 
-            // Log the update
-            var logEntry = new LogSystemData
+            try
             {
-                TableName = "ServiceWorkers",
-                Action = "Update",
-                RecordID = data.ServiceWorkerID,
-                UserManageID = int.Parse(User.GetLoggedInUserID()),
-                ActionTime = DateTime.Now,
-                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                OldValue = $"PassportNumber: {oldValues.PassportNumber}, Nationality: {oldValues.Nationality}, FirstNameEN: {oldValues.FirstNameEN}, LastNameEN: {oldValues.LastNameEN}, ServiceFee: {oldValues.ServiceFee}",
-                NewValue = $"PassportNumber: {data.PassportNumber}, Nationality: {data.Nationality}, FirstNameEN: {data.FirstNameEN}, LastNameEN: {data.LastNameEN}, ServiceFee: {data.ServiceFee}",
-                Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
-            };
+                await _db.SaveChangesAsync();
 
-            _db.LogSystemDatas.Add(logEntry);
-            await _db.SaveChangesAsync();
+                // Log the update
+                var logEntry = new LogSystemData
+                {
+                    TableName = "ServiceWorkers",
+                    Action = "Update",
+                    RecordID = data.ServiceWorkerID,
+                    UserManageID = data.UserManageID,
+                    ActionTime = DateTime.Now,
+                    IPAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    OldValue = Newtonsoft.Json.JsonConvert.SerializeObject(oldValues),
+                    NewValue = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                    {
+                        data.PassportNumber,
+                        data.Nationality,
+                        data.Title,
+                        data.FirstNameEN,
+                        data.LastNameEN,
+                        data.ServiceFee,
+                        data.Expiry90Days,
+                        data.Note,
+                        data.DateOfBirth,
+                        data.PassportIssueDate,
+                        data.PassportExpiryDate,
+                        data.WorkPermitNumber,
+                        data.EntryVisaNumber,
+                        data.PlaceOfBirth,
+                        data.PassportIssuedAt,
+                        data.Country
+                    }),
+                    Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
+                };
 
-            return Json(new { success = true });
+                _db.LogSystemDatas.Add(logEntry);
+                await _db.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการบันทึกข้อมูล", error = ex.Message });
+            }
         }
         #endregion
 
@@ -991,6 +1034,7 @@ namespace WorkPermitManager.Controllers
                     s.Country,
                     s.CreatedAt,
                     s.UpdatedAt,
+                    UserCreate = s.User.FullName,
                     s.IsActive
                 })
                 .FirstOrDefault();
@@ -1003,6 +1047,45 @@ namespace WorkPermitManager.Controllers
             return Json(new { success = true, data = model });
         }
         #endregion
+        #endregion
+
+        #region Export PDF
+        [HttpPost]
+        public async Task<IActionResult> ExportPDF(string reportType, List<int> serviceWorkerIDs)
+        {
+            if (serviceWorkerIDs == null || !serviceWorkerIDs.Any())
+            {
+                return Json(new { success = false, message = "กรุณาเลือกข้อมูลอย่างน้อยหนึ่งรายการ" });
+            }
+
+            // Fetch the selected ServiceWorker data from the database
+            var selectedWorkers = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .ToList();
+
+            if (!selectedWorkers.Any())
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            // Generate the PDF based on the report type and selected workers
+            var pdfStream = new MemoryStream();
+            bool isGenerated = await _pdfService.GenerateReportAsync(reportType, selectedWorkers, pdfStream);
+
+            if (!isGenerated)
+            {
+                return Json(new { success = false, message = "ไม่สามารถสร้างไฟล์ PDF ได้" });
+            }
+
+            // Reset the stream position to the beginning
+            pdfStream.Position = 0;
+
+            // Create a downloadable file name
+            string fileName = $"Report_{reportType}_{System.DateTime.Now:yyyyMMddHHmmss}.pdf";
+
+            // Return the PDF file to the user
+            return File(pdfStream, "application/pdf", fileName);
+        }
         #endregion
 
         private List<string> GetUserPermissions(int userId)
