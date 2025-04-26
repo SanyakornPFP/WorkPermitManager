@@ -286,7 +286,6 @@
                                         countRow++;
                                         <tr>
                                             <td class="text-center">
-
                                                 <input type="checkbox" class="selectRow" data-ServiceWorkerID="@item.ServiceWorkerID" />
                                             </td>
                                             <td class="text-center">@countRow</td>
@@ -470,22 +469,6 @@
                 });
             });
 
-
-            document.getElementById('selectAll').addEventListener('change', function () {
-            const isChecked = this.checked;
-                document.querySelectorAll('.selectRow').forEach(function (checkbox) {
-                    checkbox.checked = isChecked;
-                });
-            });
-
-            // Handle individual row selection
-            document.querySelectorAll('.selectRow').forEach(function (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    const allChecked = document.querySelectorAll('.selectRow:checked').length === document.querySelectorAll('.selectRow').length;
-                    document.getElementById('selectAll').checked = allChecked;
-                });
-            });
-
             document.getElementById('createBtn').addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -555,13 +538,28 @@
                 return dateString; // หากไม่ตรงกับรูปแบบที่กำหนด ให้คืนค่าตามเดิม
             }
 
+            document.getElementById('selectAll').addEventListener('change', function () {
+            const isChecked = this.checked;
+                document.querySelectorAll('.selectRow').forEach(function (checkbox) {
+                    checkbox.checked = isChecked;
+                });
+            });
+
+            // Handle individual row selection
+            document.querySelectorAll('.selectRow').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    const allChecked = document.querySelectorAll('.selectRow:checked').length === document.querySelectorAll('.selectRow').length;
+                    document.getElementById('selectAll').checked = allChecked;
+                });
+            });
+
             document.querySelectorAll('.exportPDF').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
 
                     // Get the selected ServiceWorker IDs
                     const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
-                        return checkbox.getAttribute('data-ServiceWorkerID');
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
                     });
 
                     if (selectedIDs.length === 0) {
@@ -569,23 +567,23 @@
                         return;
                     }
 
-                    const reportType = this.getAttribute('data-report');
+                   console.log(selectedIDs);
 
-                    // Send selected IDs to the server
+                    // Send selected IDs to the server using Ajax
                     $.ajax({
-                        url: '@Url.Action("ExportPDF", "Services")',
-                        type: 'POST',
-                        data: {
-                            reportType: reportType,
-                            serviceWorkerIDs: selectedIDs
+                        url: '@Url.Action("UpdateExistingPdf", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
                         },
-                        success: function (response) {
-                            if (response.success) {
-                                Swal.fire('สำเร็จ', 'ไฟล์ PDF ถูกสร้างสำเร็จ', 'success');
-                                window.open(response.pdfUrl, '_blank');
-                            } else {
-                                Swal.fire('ผิดพลาด', response.message, 'error');
-                            }
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                        success: function (response, status, xhr) {
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
                         },
                         error: function (xhr, textStatus, errorThrown) {
                             console.error('Error:', xhr.status, textStatus, errorThrown);

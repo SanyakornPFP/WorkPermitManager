@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkPermitManager.Data;
 using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
-using WorkPermitManager.Services;
 
 namespace WorkPermitManager.Controllers
 {
@@ -14,13 +16,11 @@ namespace WorkPermitManager.Controllers
 
         private readonly Db_WorkPermitManagerModel _db;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        private readonly IPdfService _pdfService; // Add PDF Service for generating reports
 
-        public ServicesController(Db_WorkPermitManagerModel db, IWebHostEnvironment hostEnvironment, IPdfService pdfService)
+        public ServicesController(Db_WorkPermitManagerModel db, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
             _hostingEnvironment = hostEnvironment;
-            _pdfService = pdfService; // Initialize the PDF service
         }
 
         #region Service
@@ -1051,40 +1051,85 @@ namespace WorkPermitManager.Controllers
 
         #region Export PDF
         [HttpPost]
-        public async Task<IActionResult> ExportPDF(string reportType, List<int> serviceWorkerIDs)
+        public IActionResult UpdateExistingPdf(List<int> serviceWorkerIDs)
         {
-            if (serviceWorkerIDs == null || !serviceWorkerIDs.Any())
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.25.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
             {
-                return Json(new { success = false, message = "กรุณาเลือกข้อมูลอย่างน้อยหนึ่งรายการ" });
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
             }
 
-            // Fetch the selected ServiceWorker data from the database
-            var selectedWorkers = _db.ServiceWorkers
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
                 .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
-                .ToList();
+                .FirstOrDefault();
 
-            if (!selectedWorkers.Any())
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
             {
                 return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
             }
 
-            // Generate the PDF based on the report type and selected workers
-            var pdfStream = new MemoryStream();
-            bool isGenerated = await _pdfService.GenerateReportAsync(reportType, selectedWorkers, pdfStream);
-
-            if (!isGenerated)
+            try
             {
-                return Json(new { success = false, message = "ไม่สามารถสร้างไฟล์ PDF ได้" });
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        var page = pdfDocument.GetFirstPage();
+
+                        // ใช้ PdfCanvas เพื่อเขียนข้อมูลลงในไฟล์ PDF
+                        var pdfCanvas = new PdfCanvas(page);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA), 12)
+                            .MoveText(100, 700) // กำหนดตำแหน่งข้อความแรก
+                            .ShowText($"Name: {worker.Title} {worker.FirstNameEN} {worker.LastNameEN}") // แสดงชื่อพนักงาน
+                            .MoveText(0, -20) // เลื่อนลงสำหรับข้อความถัดไป
+                            .ShowText($"Passport No: {worker.PassportNumber ?? "N/A"}") // แสดงหมายเลข Passport หรือ N/A
+                            .MoveText(0, -20) // เลื่อนลงอีก
+                            .ShowText($"Nationality: {worker.Nationality ?? "N/A"}") // แสดงสัญชาติหรือ N/A
+                            .EndText();
+
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
             }
-
-            // Reset the stream position to the beginning
-            pdfStream.Position = 0;
-
-            // Create a downloadable file name
-            string fileName = $"Report_{reportType}_{System.DateTime.Now:yyyyMMddHHmmss}.pdf";
-
-            // Return the PDF file to the user
-            return File(pdfStream, "application/pdf", fileName);
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
         }
         #endregion
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M5+hAuX2GlfPzn7zuQjPruZcrJagGuKeSsP4WN9AsjQ=",
+  "Hash": "PZ+pTJong+K2qMLqn6OXo1SkM9MC2Ge3xbeC+UtS/t4=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -81999,6 +81999,237 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/s#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wnsk9zw6ua",
+      "Integrity": "5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\s.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.25#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gw0sllzfj6",
+      "Integrity": "cHNiMJvEHMOvI8bR2K5rEN2K4M42HfVV6PbzgW8Okpo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.25.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.30.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.30#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gdosiautng",
+      "Integrity": "ZES0944JwQ5ZNdOrLzzMZPHcxfxwSYZHhjriggR5e50=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.30.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.33.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.33#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "g8evo2a2uo",
+      "Integrity": "MCasklgq6KbrqkbAFWsp5wMdTkUdI8NNmtF/1do8n08=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.33.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.46.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.46#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ht44k303p2",
+      "Integrity": "m84A1T7xzGDNmTMWt8xARzUeDAoR+mQ5Ffd/qwbSSVs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.46.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.47.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.47#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w04ql4kwa1",
+      "Integrity": "IGRVbO3OS5W3tkzLruhJIImnAPdSgwn7P6Y3cgMclRw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.47.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.48.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.48#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2tfhp784ud",
+      "Integrity": "Rh9bjLLc0DY2ufvvtgfX+H09Nk47UFEGe0pYRGC5Jj4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.48.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.50.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.50#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "063gng6ys7",
+      "Integrity": "CAvqk1sOKyYpIG3FeukKhD2CruD0XpV0U+g/OFeD2w4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.50.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.52.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.52#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e3utbicrlp",
+      "Integrity": "Zs8CZ1rvhxPdOWtl3zB6B9jUbMr1ro4q4upuZ2pY+jI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.52.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.53.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.53#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ja9v3hbuum",
+      "Integrity": "yzdvaXwZlNRfRlmRrq14+FYlJ+R94dP9zqGZ2iyl6Lg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.53.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.55.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/บต.55#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nvfbc3js6e",
+      "Integrity": "I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\บต.55.pdf"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\favicon.ico",
@@ -615665,6 +615896,908 @@
         {
           "Name": "integrity",
           "Value": "sha256-kaKh4p2nWzm7Wq+cxjp3pwo/zq+KYaOscSpE6m/AE7g="
+        }
+      ]
+    },
+    {
+      "Route": "document/s.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13275"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Apr 2025 07:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c="
+        }
+      ]
+    },
+    {
+      "Route": "document/s.wnsk9zw6ua.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13275"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Apr 2025 07:12:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wnsk9zw6ua"
+        },
+        {
+          "Name": "label",
+          "Value": "document/s.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.25.gw0sllzfj6.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "432818"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cHNiMJvEHMOvI8bR2K5rEN2K4M42HfVV6PbzgW8Okpo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gw0sllzfj6"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.25.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cHNiMJvEHMOvI8bR2K5rEN2K4M42HfVV6PbzgW8Okpo="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.25.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "432818"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cHNiMJvEHMOvI8bR2K5rEN2K4M42HfVV6PbzgW8Okpo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cHNiMJvEHMOvI8bR2K5rEN2K4M42HfVV6PbzgW8Okpo="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.30.gdosiautng.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.30.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "305260"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZES0944JwQ5ZNdOrLzzMZPHcxfxwSYZHhjriggR5e50=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:20:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gdosiautng"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.30.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZES0944JwQ5ZNdOrLzzMZPHcxfxwSYZHhjriggR5e50="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.30.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.30.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "305260"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZES0944JwQ5ZNdOrLzzMZPHcxfxwSYZHhjriggR5e50=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:20:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZES0944JwQ5ZNdOrLzzMZPHcxfxwSYZHhjriggR5e50="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.33.g8evo2a2uo.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.33.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "298058"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MCasklgq6KbrqkbAFWsp5wMdTkUdI8NNmtF/1do8n08=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "g8evo2a2uo"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.33.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MCasklgq6KbrqkbAFWsp5wMdTkUdI8NNmtF/1do8n08="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.33.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.33.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "298058"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MCasklgq6KbrqkbAFWsp5wMdTkUdI8NNmtF/1do8n08=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MCasklgq6KbrqkbAFWsp5wMdTkUdI8NNmtF/1do8n08="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.46.ht44k303p2.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.46.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "229681"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m84A1T7xzGDNmTMWt8xARzUeDAoR+mQ5Ffd/qwbSSVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:20:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ht44k303p2"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.46.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-m84A1T7xzGDNmTMWt8xARzUeDAoR+mQ5Ffd/qwbSSVs="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.46.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.46.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "229681"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m84A1T7xzGDNmTMWt8xARzUeDAoR+mQ5Ffd/qwbSSVs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:20:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-m84A1T7xzGDNmTMWt8xARzUeDAoR+mQ5Ffd/qwbSSVs="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.47.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.47.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "275595"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRVbO3OS5W3tkzLruhJIImnAPdSgwn7P6Y3cgMclRw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:22:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRVbO3OS5W3tkzLruhJIImnAPdSgwn7P6Y3cgMclRw="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.47.w04ql4kwa1.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.47.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "275595"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRVbO3OS5W3tkzLruhJIImnAPdSgwn7P6Y3cgMclRw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:22:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w04ql4kwa1"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.47.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRVbO3OS5W3tkzLruhJIImnAPdSgwn7P6Y3cgMclRw="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.48.2tfhp784ud.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.48.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2567427"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rh9bjLLc0DY2ufvvtgfX+H09Nk47UFEGe0pYRGC5Jj4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:22:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2tfhp784ud"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.48.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rh9bjLLc0DY2ufvvtgfX+H09Nk47UFEGe0pYRGC5Jj4="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.48.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.48.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2567427"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rh9bjLLc0DY2ufvvtgfX+H09Nk47UFEGe0pYRGC5Jj4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:22:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rh9bjLLc0DY2ufvvtgfX+H09Nk47UFEGe0pYRGC5Jj4="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.50.063gng6ys7.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.50.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1223732"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CAvqk1sOKyYpIG3FeukKhD2CruD0XpV0U+g/OFeD2w4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:23:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "063gng6ys7"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.50.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-CAvqk1sOKyYpIG3FeukKhD2CruD0XpV0U+g/OFeD2w4="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.50.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.50.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1223732"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CAvqk1sOKyYpIG3FeukKhD2CruD0XpV0U+g/OFeD2w4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:23:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-CAvqk1sOKyYpIG3FeukKhD2CruD0XpV0U+g/OFeD2w4="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.52.e3utbicrlp.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.52.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2145428"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zs8CZ1rvhxPdOWtl3zB6B9jUbMr1ro4q4upuZ2pY+jI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:24:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e3utbicrlp"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.52.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zs8CZ1rvhxPdOWtl3zB6B9jUbMr1ro4q4upuZ2pY+jI="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.52.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.52.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2145428"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zs8CZ1rvhxPdOWtl3zB6B9jUbMr1ro4q4upuZ2pY+jI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:24:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zs8CZ1rvhxPdOWtl3zB6B9jUbMr1ro4q4upuZ2pY+jI="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.53.ja9v3hbuum.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.53.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2129284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzdvaXwZlNRfRlmRrq14+FYlJ+R94dP9zqGZ2iyl6Lg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ja9v3hbuum"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.53.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzdvaXwZlNRfRlmRrq14+FYlJ+R94dP9zqGZ2iyl6Lg="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.53.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.53.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2129284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzdvaXwZlNRfRlmRrq14+FYlJ+R94dP9zqGZ2iyl6Lg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzdvaXwZlNRfRlmRrq14+FYlJ+R94dP9zqGZ2iyl6Lg="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.55.nvfbc3js6e.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.55.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2094347"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nvfbc3js6e"
+        },
+        {
+          "Name": "label",
+          "Value": "document/บต.55.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw="
+        }
+      ]
+    },
+    {
+      "Route": "document/บต.55.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.55.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2094347"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 03:25:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw="
         }
       ]
     },
