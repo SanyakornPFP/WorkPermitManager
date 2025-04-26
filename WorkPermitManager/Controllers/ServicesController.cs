@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WorkPermitManager.Data;
 using WorkPermitManager.Helpers;
 using WorkPermitManager.Models;
@@ -767,7 +771,7 @@ namespace WorkPermitManager.Controllers
                          ServiceTypeName = s.ServiceType.ServiceTypeName,
                          ServiceItemName = s.ServiceItem.ServiceItemName,
                          s.Note,
-                         s.RecordDate,
+                         RecordDate = s.RecordDate.ToString("dd/MM/yyyy"),
                          s.Recorder,
                          s.SignatureName,
                          s.IsMou,
@@ -796,7 +800,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateServiceWorker(RequestServiceWorkerModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -808,10 +812,7 @@ namespace WorkPermitManager.Controllers
                 Nationality = model.Nationality,
                 Title = model.Title,
                 FirstNameEN = model.FirstNameEN,
-                FirstNameTH = model.FirstNameTH,
                 LastNameEN = model.LastNameEN,
-                LastNameTH = model.LastNameTH,
-                ServiceItemID = model.ServiceItemID,
                 ServiceFee = model.ServiceFee,
                 Expiry90Days = model.Expiry90Days,
                 Note = model.Note,
@@ -856,7 +857,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteServiceWorker(int ServiceWorkerID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("DeleteServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -899,34 +900,44 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateServiceWorker(RequestServiceWorkerModel model)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            var data = _db.ServiceWorkers.FirstOrDefault(p => p.ServiceWorkerID == model.ServiceWorkerID);
+            var data = await _db.ServiceWorkers.FirstOrDefaultAsync(p => p.ServiceWorkerID == model.ServiceWorkerID);
             if (data == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "ไม่พบข้อมูลของ ServiceWorker ที่ต้องการอัปเดต" });
             }
 
+            // Capture old values for logging
             var oldValues = new
             {
                 data.PassportNumber,
                 data.Nationality,
+                data.Title,
                 data.FirstNameEN,
                 data.LastNameEN,
-                data.ServiceFee
+                data.ServiceFee,
+                data.Expiry90Days,
+                data.Note,
+                data.DateOfBirth,
+                data.PassportIssueDate,
+                data.PassportExpiryDate,
+                data.WorkPermitNumber,
+                data.EntryVisaNumber,
+                data.PlaceOfBirth,
+                data.PassportIssuedAt,
+                data.Country
             };
 
+            // Update the fields
             data.PassportNumber = model.PassportNumber;
             data.Nationality = model.Nationality;
             data.Title = model.Title;
             data.FirstNameEN = model.FirstNameEN;
-            data.FirstNameTH = model.FirstNameTH;
             data.LastNameEN = model.LastNameEN;
-            data.LastNameTH = model.LastNameTH;
-            data.ServiceItemID = model.ServiceItemID;
             data.ServiceFee = model.ServiceFee;
             data.Expiry90Days = model.Expiry90Days;
             data.Note = model.Note;
@@ -942,26 +953,52 @@ namespace WorkPermitManager.Controllers
             data.UserManageID = int.Parse(User.GetLoggedInUserID());
 
             _db.ServiceWorkers.Update(data);
-            await _db.SaveChangesAsync();
 
-            // Log the update
-            var logEntry = new LogSystemData
+            try
             {
-                TableName = "ServiceWorkers",
-                Action = "Update",
-                RecordID = data.ServiceWorkerID,
-                UserManageID = int.Parse(User.GetLoggedInUserID()),
-                ActionTime = DateTime.Now,
-                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
-                OldValue = $"PassportNumber: {oldValues.PassportNumber}, Nationality: {oldValues.Nationality}, FirstNameEN: {oldValues.FirstNameEN}, LastNameEN: {oldValues.LastNameEN}, ServiceFee: {oldValues.ServiceFee}",
-                NewValue = $"PassportNumber: {data.PassportNumber}, Nationality: {data.Nationality}, FirstNameEN: {data.FirstNameEN}, LastNameEN: {data.LastNameEN}, ServiceFee: {data.ServiceFee}",
-                Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
-            };
+                await _db.SaveChangesAsync();
 
-            _db.LogSystemDatas.Add(logEntry);
-            await _db.SaveChangesAsync();
+                // Log the update
+                var logEntry = new LogSystemData
+                {
+                    TableName = "ServiceWorkers",
+                    Action = "Update",
+                    RecordID = data.ServiceWorkerID,
+                    UserManageID = data.UserManageID,
+                    ActionTime = DateTime.Now,
+                    IPAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    OldValue = Newtonsoft.Json.JsonConvert.SerializeObject(oldValues),
+                    NewValue = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                    {
+                        data.PassportNumber,
+                        data.Nationality,
+                        data.Title,
+                        data.FirstNameEN,
+                        data.LastNameEN,
+                        data.ServiceFee,
+                        data.Expiry90Days,
+                        data.Note,
+                        data.DateOfBirth,
+                        data.PassportIssueDate,
+                        data.PassportExpiryDate,
+                        data.WorkPermitNumber,
+                        data.EntryVisaNumber,
+                        data.PlaceOfBirth,
+                        data.PassportIssuedAt,
+                        data.Country
+                    }),
+                    Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
+                };
 
-            return Json(new { success = true });
+                _db.LogSystemDatas.Add(logEntry);
+                await _db.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการบันทึกข้อมูล", error = ex.Message });
+            }
         }
         #endregion
 
@@ -969,7 +1006,7 @@ namespace WorkPermitManager.Controllers
         [HttpPost]
         public JsonResult GetServiceWorkerDetails(int ServiceWorkerID)
         {
-            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServiceWorkers"))
+            if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadServices"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
@@ -983,9 +1020,7 @@ namespace WorkPermitManager.Controllers
                     s.Nationality,
                     s.Title,
                     s.FirstNameEN,
-                    s.FirstNameTH,
                     s.LastNameEN,
-                    s.LastNameTH,
                     s.ServiceFee,
                     s.Expiry90Days,
                     s.Note,
@@ -999,6 +1034,7 @@ namespace WorkPermitManager.Controllers
                     s.Country,
                     s.CreatedAt,
                     s.UpdatedAt,
+                    UserCreate = s.User.FullName,
                     s.IsActive
                 })
                 .FirstOrDefault();
@@ -1011,6 +1047,90 @@ namespace WorkPermitManager.Controllers
             return Json(new { success = true, data = model });
         }
         #endregion
+        #endregion
+
+        #region Export PDF
+        [HttpPost]
+        public IActionResult UpdateExistingPdf(List<int> serviceWorkerIDs)
+        {
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.25.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .FirstOrDefault();
+
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            try
+            {
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        var page = pdfDocument.GetFirstPage();
+
+                        // ใช้ PdfCanvas เพื่อเขียนข้อมูลลงในไฟล์ PDF
+                        var pdfCanvas = new PdfCanvas(page);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA), 12)
+                            .MoveText(100, 700) // กำหนดตำแหน่งข้อความแรก
+                            .ShowText($"Name: {worker.Title} {worker.FirstNameEN} {worker.LastNameEN}") // แสดงชื่อพนักงาน
+                            .MoveText(0, -20) // เลื่อนลงสำหรับข้อความถัดไป
+                            .ShowText($"Passport No: {worker.PassportNumber ?? "N/A"}") // แสดงหมายเลข Passport หรือ N/A
+                            .MoveText(0, -20) // เลื่อนลงอีก
+                            .ShowText($"Nationality: {worker.Nationality ?? "N/A"}") // แสดงสัญชาติหรือ N/A
+                            .EndText();
+
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+        }
         #endregion
 
         private List<string> GetUserPermissions(int userId)
