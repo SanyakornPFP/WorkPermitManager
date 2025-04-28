@@ -94,6 +94,8 @@ namespace WorkPermitManager.Controllers
                     DistrictEng = model.DistrictEng,
                     ProvinceEng = model.ProvinceEng,
                     Phone = model.Phone,
+                    Fax = model.Fax,
+                    Email = model.Email,
                     CreatedAt = DateTime.Now,
                     IsActive = true,
                     UserManageID = int.Parse(User.GetLoggedInUserID())
@@ -189,7 +191,7 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (model.EmployerID == 0 || string.IsNullOrEmpty(model.NameTh) || string.IsNullOrEmpty(model.NameEng) || string.IsNullOrEmpty(model.BusinessTypeName) || string.IsNullOrEmpty(model.RegistrationNumber) || model.RegisteredCapital <= 0)
+            if (model.EmployerID == 0 || string.IsNullOrEmpty(model.BusinessTypeName))
             {
                 return NotFound();
             }
@@ -231,7 +233,9 @@ namespace WorkPermitManager.Controllers
                         data.SubdistrictEng,
                         data.DistrictEng,
                         data.ProvinceEng,
-                        data.Phone
+                        data.Phone,
+                        data.Fax,
+                        data.Email
                     };
 
                     data.NameTh = model.NameTh;
@@ -263,6 +267,8 @@ namespace WorkPermitManager.Controllers
                     data.DistrictEng = model.DistrictEng;
                     data.ProvinceEng = model.ProvinceEng;
                     data.Phone = model.Phone;
+                    data.Fax = model.Fax;
+                    data.Email = model.Email;
                     data.UpdatedAt = DateTime.Now;
                     data.UserManageID = int.Parse(User.GetLoggedInUserID());
 
@@ -342,8 +348,9 @@ namespace WorkPermitManager.Controllers
                         s.SubdistrictEng,
                         s.DistrictEng,
                         s.ProvinceEng,
-                        s.Phone
-
+                        s.Phone,
+                        s.Fax,
+                        s.Email,
                     })
                     .FirstOrDefault();
                 if (model == null)
@@ -421,9 +428,11 @@ namespace WorkPermitManager.Controllers
                 worksheet.Cells[1, 28].Value = "อำเภอ (อังกฤษ)";
                 worksheet.Cells[1, 29].Value = "จังหวัด (อังกฤษ)";
                 worksheet.Cells[1, 30].Value = "เบอร์โทรศัพท์";
+                worksheet.Cells[1, 31].Value = "แฟกซ์";
+                worksheet.Cells[1, 32].Value = "อีเมล";
 
                 // Format header
-                using (var range = worksheet.Cells[1, 1, 1, 30])
+                using (var range = worksheet.Cells[1, 1, 1, 32])
                 {
                     range.Style.Font.Bold = true;
                     range.Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -507,6 +516,8 @@ namespace WorkPermitManager.Controllers
                                     existingEmployer.DistrictEng = worksheet.Cells[row, 28].Text;
                                     existingEmployer.ProvinceEng = worksheet.Cells[row, 29].Text;
                                     existingEmployer.Phone = worksheet.Cells[row, 30].Text;
+                                    existingEmployer.Fax = worksheet.Cells[row, 31].Text;
+                                    existingEmployer.Email = worksheet.Cells[row, 32].Text;
                                     existingEmployer.CreatedAt = DateTime.Now;
                                     existingEmployer.IsActive = true;
                                     existingEmployer.UserManageID = int.Parse(User.GetLoggedInUserID());
@@ -549,6 +560,8 @@ namespace WorkPermitManager.Controllers
                                     DistrictEng = worksheet.Cells[row, 28].Text,
                                     ProvinceEng = worksheet.Cells[row, 29].Text,
                                     Phone = worksheet.Cells[row, 30].Text,
+                                    Fax = worksheet.Cells[row, 31].Text,
+                                    Email = worksheet.Cells[row, 32].Text,
                                     CreatedAt = DateTime.Now,
                                     IsActive = true,
                                     UserManageID = int.Parse(User.GetLoggedInUserID())

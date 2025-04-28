@@ -190,6 +190,14 @@
                                                 <label class="col-form-label" for="txtPhone">เบอร์โทรศัพท์</label>
                                                 <input class="form-control" name="Phone" id="txtPhone" type="text" placeholder="กรุณากรอกข้อมูล">
                                             </div>
+                                            <div class="col-xxl-6 col-sm-6">
+                                                <label class="col-form-label" for="txtFax">Fax</label>
+                                                <input class="form-control" name="Fax" id="txtFax" type="text" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
+                                            <div class="col-xxl-12 col-sm-12">
+                                                <label class="col-form-label" for="txtEmail">Email</label>
+                                                <input class="form-control" name="Email" id="txtEmail" type="email" placeholder="กรุณากรอกข้อมูล">
+                                            </div>
                                             <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
                                                 <button class="btn btn-light" type="button" id="prevStep3"><i class="fa fa-angle-left"></i> ย้อนกลับ</button>
                                                 <button class="btn btn-primary" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
@@ -416,6 +424,14 @@
                                     <th class="bg-light">เบอร์โทรศัพท์</th>
                                     <td><span id="modalPhone"></span></td>
                                 </tr>
+                                <tr>
+                                    <th class="bg-light">Fax</th>
+                                    <td><span id="modalFax"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Email</th>
+                                    <td><span id="modalEmail"></span></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -605,6 +621,8 @@
                                     'รหัสไปรษณีย์ ' + (data.postcode || '-') // Postal code
                                 );
                                 $('#modalPhone').text(data.phone);
+                                $('#modelFax').text(data.fax);
+                                $('#modalEmail').text(data.email);
 
                                 $('#exampleModalfullscreen-lg').modal('show');
                             }
@@ -651,6 +669,8 @@
                 var districtEng = $('#txtDistrictEng').val();
                 var provinceEng = $('#txtProvinceEng').val();
                 var phone = $('#txtPhone').val();
+                var fax = $('#txtFax').val();
+                var email = $('#txtEmail').val();
 
                 if (!nameTh || !nameEng || !businessTypeName || !registrationNumber || !registrationDate || !registeredCapital) {
                     Swal.fire({
@@ -709,6 +729,8 @@
                                             DistrictEng: districtEng,
                                             ProvinceEng: provinceEng,
                                             Phone: phone,
+                                            Fax: fax,
+                                            Email: email,
                                             OfficerNameOne: officeNameOne,
                                             OfficerPhoneOne: officePhoneOne,
                                             OfficerNameTwo: officeNameTwo,
@@ -787,6 +809,8 @@
                                 $('#txtDistrictEng').val(data.districtEng);
                                 $('#txtProvinceEng').val(data.provinceEng);
                                 $('#txtPhone').val(data.phone);
+                                $('#txtFax').val(data.fax);
+                                $('#txtEmail').val(data.email);
                                 $('#createHeader').hide();
                                 $('#updateHeader').show();
                                 $('#createBtn').hide();
@@ -880,6 +904,8 @@
                 var districtEng = $('#txtDistrictEng').val();
                 var provinceEng = $('#txtProvinceEng').val();
                 var phone = $('#txtPhone').val();
+                var fax = $('#txtFax').val();
+                var email = $('#txtEmail').val();
 
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
@@ -923,6 +949,8 @@
                                 DistrictEng: districtEng,
                                 ProvinceEng: provinceEng,
                                 Phone: phone,
+                                Fax: fax,
+                                Email: email,
                                 OfficerNameOne: officerNameOne,
                                 OfficerPhoneOne: officerPhoneOne,
                                 OfficerNameTwo: officerNameTwo,

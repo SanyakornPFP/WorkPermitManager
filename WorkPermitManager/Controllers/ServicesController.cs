@@ -1,4 +1,5 @@
-﻿using iText.Kernel.Font;
+﻿using iText.IO.Font;
+using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using Microsoft.AspNetCore.Authorization;
@@ -830,6 +831,19 @@ namespace WorkPermitManager.Controllers
             };
 
             _db.ServiceWorkers.Add(createModel);
+
+            //Result Total Sum Fee
+            var service = await _db.Services.FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
+            if (service != null)
+            {
+                foreach (var worker in service.ServiceWorkers)
+                {
+                    service.TotalPrice += worker.ServiceFee ?? 0;
+                }
+
+                _db.Services.Update(service);
+            }
+
             await _db.SaveChangesAsync();
 
             // Log the creation
@@ -954,6 +968,18 @@ namespace WorkPermitManager.Controllers
 
             _db.ServiceWorkers.Update(data);
 
+            //Result Total Sum Fee
+            var service = await _db.Services.FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
+            if (service != null)
+            {
+                foreach (var worker in service.ServiceWorkers)
+                {
+                    service.TotalPrice += worker.ServiceFee ?? 0;
+                }
+
+                _db.Services.Update(service);
+            }
+
             try
             {
                 await _db.SaveChangesAsync();
@@ -1049,9 +1075,9 @@ namespace WorkPermitManager.Controllers
         #endregion
         #endregion
 
-        #region Export PDF
+        #region Document PDF
         [HttpPost]
-        public IActionResult UpdateExistingPdf(List<int> serviceWorkerIDs)
+        public IActionResult BT25(List<int> serviceWorkerIDs)
         {
             // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
             string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.25.pdf");
@@ -1065,6 +1091,33 @@ namespace WorkPermitManager.Controllers
             // ดึงข้อมูลพนักงานตาม ID ที่เลือก
             var worker = _db.ServiceWorkers
                 .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .Select(s => new
+                {
+                    s.Title,
+                    s.FirstNameEN,
+                    s.LastNameEN,
+                    s.PassportNumber,
+                    s.PlaceOfBirth,
+                    s.PassportIssueDate,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.Country,
+                    s.WorkPermitNumber,
+                    s.Nationality,
+                    s.DateOfBirth,
+                    HouseNo = s.Service.Employer.HouseNo,
+                    VillageNo = s.Service.Employer.VillageNo,
+                    Soi = s.Service.Employer.Soi,
+                    Road = s.Service.Employer.Road,
+                    Subdistrict = s.Service.Employer.SubdistrictTh,
+                    District = s.Service.Employer.DistrictTh,
+                    Province = s.Service.Employer.ProvinceTh,
+                    Postcode = s.Service.Employer.Postcode,
+                    Phone = s.Service.Employer.Phone,
+                    Fax = s.Service.Employer.Fax,
+                    Email = s.Service.Employer.Email
+
+                })
                 .FirstOrDefault();
 
             // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
@@ -1092,13 +1145,47 @@ namespace WorkPermitManager.Controllers
                         // ใช้ PdfCanvas เพื่อเขียนข้อมูลลงในไฟล์ PDF
                         var pdfCanvas = new PdfCanvas(page);
                         pdfCanvas.BeginText()
-                            .SetFontAndSize(PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA), 12)
-                            .MoveText(100, 700) // กำหนดตำแหน่งข้อความแรก
-                            .ShowText($"Name: {worker.Title} {worker.FirstNameEN} {worker.LastNameEN}") // แสดงชื่อพนักงาน
-                            .MoveText(0, -20) // เลื่อนลงสำหรับข้อความถัดไป
-                            .ShowText($"Passport No: {worker.PassportNumber ?? "N/A"}") // แสดงหมายเลข Passport หรือ N/A
-                            .MoveText(0, -20) // เลื่อนลงอีก
-                            .ShowText($"Nationality: {worker.Nationality ?? "N/A"}") // แสดงสัญชาติหรือ N/A
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(250, 453)
+                            .ShowText($"{worker.Title} {worker.FirstNameEN} {worker.LastNameEN}")
+                            .MoveText(-125, -32)
+                            .ShowText($"{worker.Nationality}")
+                            .MoveText(215, 0)
+                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy")}")
+                            .MoveText(150, 0)
+                            .ShowText($"{(DateTime.Now.Year - worker.DateOfBirth.Value.Year)}")
+                            .MoveText(-325, -38)
+                            .ShowText($"{worker.HouseNo ?? ""}")
+                            .MoveText(120, 0)
+                            .ShowText($"{worker.VillageNo ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Soi ?? ""}")
+                            .MoveText(-340, -32)
+                            .ShowText($"{worker.Road ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.Subdistrict ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.District ?? ""}")
+                            .MoveText(-340, -32)
+                            .ShowText($"{worker.Province ?? ""}")
+                            .MoveText(175, 0)
+                            .ShowText($"{worker.Postcode ?? ""}")
+                            .MoveText(130, 0)
+                            .ShowText($"{worker.Phone ?? ""}")
+                            .MoveText(-300, -32)
+                            .ShowText($"{worker.Fax ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.Email ?? ""}")
+                            .MoveText(-250, -108)
+                            .ShowText($"{worker.PassportNumber ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.PassportIssuedAt ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Country ?? ""}")
+                            .MoveText(-290, -32)
+                            .ShowText($"{worker.PassportIssueDate?.ToString("dd/MM/yyyy")}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.PassportExpiryDate?.ToString("dd/MM/yyyy")}")
                             .EndText();
 
                         pdfDocument.Close(); // ปิด PdfDocument

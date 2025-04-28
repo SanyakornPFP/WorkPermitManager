@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PZ+pTJong+K2qMLqn6OXo1SkM9MC2Ge3xbeC+UtS/t4=",
+  "Hash": "QFzOkhLM08xYPVKTt3oVNbNss9o/iBvVYbtwlpv81c0=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -82001,27 +82001,6 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
-      "SourceId": "WorkPermitManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
-      "BasePath": "_content/WorkPermitManager",
-      "RelativePath": "document/s#[.{fingerprint}]?.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "wnsk9zw6ua",
-      "Integrity": "5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\document\\s.pdf"
-    },
-    {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "SourceId": "WorkPermitManager",
       "SourceType": "Discovered",
@@ -82251,6 +82230,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew Bold.ttf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "fonts/THSarabunNew Bold#[.{fingerprint}]?.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "b5nikenzuo",
+      "Integrity": "Uf4hKvAU7maooQ0WjFQ5U3QxJb7MYb9kmZPm3xu8ieY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\fonts\\THSarabunNew Bold.ttf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew.ttf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "fonts/THSarabunNew#[.{fingerprint}]?.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rtv5d56xy9",
+      "Integrity": "XzE99DfHuA4ajvKvrYISecIQENSacan6Vx0XHeU3aFg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\fonts\\THSarabunNew.ttf"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\js\\site.js",
@@ -615900,88 +615921,6 @@
       ]
     },
     {
-      "Route": "document/s.pdf",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "13275"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/pdf"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 07:12:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c="
-        }
-      ]
-    },
-    {
-      "Route": "document/s.wnsk9zw6ua.pdf",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "13275"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/pdf"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 07:12:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wnsk9zw6ua"
-        },
-        {
-          "Name": "label",
-          "Value": "document/s.pdf"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-5Jz4a1j6g/W4v9Nka2wbFt7jXdZSGL9VCuiwFseWe1c="
-        }
-      ]
-    },
-    {
       "Route": "document/บต.25.gw0sllzfj6.pdf",
       "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "Selectors": [],
@@ -617096,6 +617035,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-jcY0RXFOlcp4VNTCcYQtWVZZBlr+ZY+AOv6/0S5dnF8="
+        }
+      ]
+    },
+    {
+      "Route": "fonts/THSarabunNew Bold.b5nikenzuo.ttf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew Bold.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "366464"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Uf4hKvAU7maooQ0WjFQ5U3QxJb7MYb9kmZPm3xu8ieY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 24 Jun 2011 17:43:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "b5nikenzuo"
+        },
+        {
+          "Name": "label",
+          "Value": "fonts/THSarabunNew Bold.ttf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Uf4hKvAU7maooQ0WjFQ5U3QxJb7MYb9kmZPm3xu8ieY="
+        }
+      ]
+    },
+    {
+      "Route": "fonts/THSarabunNew Bold.ttf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew Bold.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "366464"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Uf4hKvAU7maooQ0WjFQ5U3QxJb7MYb9kmZPm3xu8ieY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 24 Jun 2011 17:43:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Uf4hKvAU7maooQ0WjFQ5U3QxJb7MYb9kmZPm3xu8ieY="
+        }
+      ]
+    },
+    {
+      "Route": "fonts/THSarabunNew.rtv5d56xy9.ttf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "479628"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XzE99DfHuA4ajvKvrYISecIQENSacan6Vx0XHeU3aFg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 24 Jun 2011 17:45:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rtv5d56xy9"
+        },
+        {
+          "Name": "label",
+          "Value": "fonts/THSarabunNew.ttf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XzE99DfHuA4ajvKvrYISecIQENSacan6Vx0XHeU3aFg="
+        }
+      ]
+    },
+    {
+      "Route": "fonts/THSarabunNew.ttf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "479628"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XzE99DfHuA4ajvKvrYISecIQENSacan6Vx0XHeU3aFg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 24 Jun 2011 17:45:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XzE99DfHuA4ajvKvrYISecIQENSacan6Vx0XHeU3aFg="
         }
       ]
     },

@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,10 +41,6 @@
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ServicesController.cs",
@@ -52,7 +48,7 @@
               "RelativeDocumentMoniker": "Controllers\\ServicesController.cs",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\ServicesController.cs",
               "RelativeToolTip": "Controllers\\ServicesController.cs",
-              "ViewState": "AgIAAFAEAAAAAAAAAAAkwG0EAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAF8EAAAAAAAAAAAkwDcEAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-25T10:35:14.551Z",
               "EditorCaption": ""
@@ -65,7 +61,7 @@
               "RelativeDocumentMoniker": "Views\\Services\\ServiceWorkerManagement.cshtml",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServiceWorkerManagement.cshtml",
               "RelativeToolTip": "Views\\Services\\ServiceWorkerManagement.cshtml",
-              "ViewState": "AgIAAE0CAAAAAAAAAAAgwH8CAABUAAAAAAAAAA==",
+              "ViewState": "AgIAACwCAAAAAAAAAAAAAD0CAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-20T07:56:57.489Z",
               "EditorCaption": ""

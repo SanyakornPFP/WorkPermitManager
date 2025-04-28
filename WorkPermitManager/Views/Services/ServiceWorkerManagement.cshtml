@@ -245,7 +245,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-light exportPDF"><i class="fa fa-print"> บต.25</i></a>
+                    <a class="btn btn-light bt25"><i class="fa fa-print"> บต.25</i></a>
                     <div class="table-responsive theme-scrollbar mt-2">
                         <table class="display table table-bordered" style="width:100%">
                             <thead>
@@ -553,7 +553,7 @@
                 });
             });
 
-            document.querySelectorAll('.exportPDF').forEach(function (button) {
+            document.querySelectorAll('.bt25').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
 
@@ -571,7 +571,7 @@
 
                     // Send selected IDs to the server using Ajax
                     $.ajax({
-                        url: '@Url.Action("UpdateExistingPdf", "Services")',
+                        url: '@Url.Action("BT25", "Services")',
                         type: 'POST', // Method POST
                         data:  {
                             serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก

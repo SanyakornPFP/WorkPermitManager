@@ -8877,10 +8877,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\s.pdf",
-      "PackagePath": "staticwebassets\\document\\s.pdf"
-    },
-    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "PackagePath": "staticwebassets\\document\\บต.25.pdf"
     },
@@ -8923,6 +8919,14 @@
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\THSarabunNew Bold.ttf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew.ttf",
+      "PackagePath": "staticwebassets\\fonts\\THSarabunNew.ttf"
     },
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\js\\site.js",

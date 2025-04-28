@@ -325,11 +325,11 @@
     <id name="EmployerID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="64a41035-e746-47c7-a8ce-c47ed02f4ed2">
       <column name="EmployerID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
-    <property name="NameTh" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="4fa51bff-da59-4c42-b3c5-2f1a03b4ce90">
-      <column name="NameTh" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="NameTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4fa51bff-da59-4c42-b3c5-2f1a03b4ce90">
+      <column name="NameTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="NameEng" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="fc92ae06-b388-498e-a5f0-2833dc1a3388">
-      <column name="NameEng" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    <property name="NameEng" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fc92ae06-b388-498e-a5f0-2833dc1a3388">
+      <column name="NameEng" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="BusinessTypeName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="85cc2f36-4241-4e26-9839-7e34bf255de2">
       <column name="BusinessTypeName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
@@ -340,11 +340,11 @@
     <property name="RegistrationNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="89c98db8-943a-4a5e-b898-81d2a7596237">
       <column name="RegistrationNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="RegistrationDate" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="1b5d5734-b135-435a-9ace-40f58eb07677">
-      <column name="RegistrationDate" not-null="True" length="50" sql-type="nvarchar" p1:unicode="True" />
+    <property name="RegistrationDate" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="1b5d5734-b135-435a-9ace-40f58eb07677">
+      <column name="RegistrationDate" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="RegisteredCapital" type="Decimal" p1:ValidateRequired="true" p1:Guid="4c784b1e-8e25-4372-8538-521a033f490d">
-      <column name="RegisteredCapital" not-null="True" precision="15" scale="2" sql-type="decimal" p1:unicode="False" />
+    <property name="RegisteredCapital" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4c784b1e-8e25-4372-8538-521a033f490d">
+      <column name="RegisteredCapital" not-null="False" precision="15" scale="2" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="DirectorNameTh" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ffd87918-11ac-4cc4-8ab9-4a5ce9cfff05">
       <column name="DirectorNameTh" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
@@ -414,6 +414,12 @@
     </property>
     <property name="Phone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7120ec7e-227a-4018-9e4b-1c77fd132076">
       <column name="Phone" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Fax" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5e08b922-9892-4284-afde-038d290aba2d">
+      <column name="Fax" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="afc2d09a-972f-4da4-b64f-f7a481acaf65">
+      <column name="Email" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="1a89dfc2-690b-4bfb-a7a3-b33d08c4a2fb">
       <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
@@ -682,8 +688,17 @@
     <property name="PassportExpiryDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f2d72ba9-3916-4edb-9a9b-b9141479dea2">
       <column name="PassportExpiryDate" not-null="False" sql-type="date" p1:unicode="False" />
     </property>
+    <property name="TypeVisa" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="82230c88-c3a2-44f3-b6e5-83ab9ccfc46f">
+      <column name="TypeVisa" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="WorkPermitNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="8d46b2ff-12c0-479d-8d2e-652ba9d8c382">
       <column name="WorkPermitNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="VisaIssueDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="65f5514a-2e4e-4948-b81d-8eeed82e0ce3">
+      <column name="VisaIssueDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="VisaExpiryDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1045e12b-c985-47fb-8fb0-87a98c0eb59c">
+      <column name="VisaExpiryDate" not-null="False" sql-type="date" p1:unicode="False" />
     </property>
     <property name="EntryVisaNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b1d8a1c6-9cab-4471-9eef-10decedd48d7">
       <column name="EntryVisaNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
