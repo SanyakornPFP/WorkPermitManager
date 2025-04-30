@@ -806,25 +806,46 @@ namespace WorkPermitManager.Controllers
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
+            // สร้าง ServiceWorker ใหม่ตามข้อมูลในโมเดล
             ServiceWorker createModel = new ServiceWorker
             {
                 ServiceID = model.ServiceID,
-                PassportNumber = model.PassportNumber,
-                Nationality = model.Nationality,
                 Title = model.Title,
                 FirstNameEN = model.FirstNameEN,
                 LastNameEN = model.LastNameEN,
-                ServiceFee = model.ServiceFee,
-                Expiry90Days = model.Expiry90Days,
-                Note = model.Note,
+                Nationality = model.Nationality,
+                Country = model.Country,
                 DateOfBirth = model.DateOfBirth,
+                PlaceOfBirth = model.PlaceOfBirth,
+                PassportNumber = model.PassportNumber,
                 PassportIssueDate = model.PassportIssueDate,
                 PassportExpiryDate = model.PassportExpiryDate,
-                WorkPermitNumber = model.WorkPermitNumber,
-                EntryVisaNumber = model.EntryVisaNumber,
-                PlaceOfBirth = model.PlaceOfBirth,
                 PassportIssuedAt = model.PassportIssuedAt,
-                Country = model.Country,
+                VisaNumber = model.VisaNumber,
+                VisaIssueDate = model.VisaIssueDate,
+                VisaExpiryDate = model.VisaExpiryDate,
+                VisaIssuedAt = model.VisaIssuedAt,
+                Expiry90Days = model.Expiry90Days,
+                Note = model.Note,
+                ServiceFee = model.ServiceFee,
+                DateOfArrival = model.DateOfArrival,
+                ImmigrationCheckpoint = model.ImmigrationCheckpoint,
+                PermittedUntil = model.PermittedUntil,
+                ResidenceNo = model.ResidenceNo,
+                ResidenceIssuedAt = model.ResidenceIssuedAt,
+                ResidenceProvince = model.ResidenceProvince,
+                ResidenceDateOfIssue = model.ResidenceDateOfIssue,
+                ResidenceValidUntil = model.ResidenceValidUntil,
+                AlienNo = model.AlienNo,
+                AlienIssuedAt = model.AlienIssuedAt,
+                AlienProvince = model.AlienProvince,
+                AlienDateOfIssue = model.AlienDateOfIssue,
+                AlienValidUntil = model.AlienValidUntil,
+                WorkPermitNumber = model.WorkPermitNumber,
+                WorkPermitIssueDate = model.WorkPermitIssueDate,
+                WorkPermitExpiryDate = model.WorkPermitExpiryDate,
+                WorkPermitIssuedAtProvince = model.WorkPermitIssuedAtProvince,
+                WorkPermitActionType = model.WorkPermitActionType,
                 CreatedAt = DateTime.Now,
                 IsActive = true,
                 UserManageID = int.Parse(User.GetLoggedInUserID())
@@ -832,21 +853,17 @@ namespace WorkPermitManager.Controllers
 
             _db.ServiceWorkers.Add(createModel);
 
-            //Result Total Sum Fee
+            // คำนวณค่าบริการทั้งหมด
             var service = await _db.Services.FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
             if (service != null)
             {
-                foreach (var worker in service.ServiceWorkers)
-                {
-                    service.TotalPrice += worker.ServiceFee ?? 0;
-                }
-
+                service.TotalPrice += createModel.ServiceFee ?? 0;
                 _db.Services.Update(service);
             }
 
             await _db.SaveChangesAsync();
 
-            // Log the creation
+            // บันทึก Log การสร้าง
             var logEntry = new LogSystemData
             {
                 TableName = "ServiceWorkers",
@@ -854,7 +871,7 @@ namespace WorkPermitManager.Controllers
                 RecordID = createModel.ServiceWorkerID,
                 UserManageID = int.Parse(User.GetLoggedInUserID()),
                 ActionTime = DateTime.Now,
-                IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
+                IPAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
                 OldValue = null,
                 NewValue = $"ServiceWorkerID: {createModel.ServiceWorkerID}, PassportNumber: {createModel.PassportNumber}",
                 Description = $"Created new service worker with ID: {createModel.ServiceWorkerID}"
@@ -939,11 +956,28 @@ namespace WorkPermitManager.Controllers
                 data.DateOfBirth,
                 data.PassportIssueDate,
                 data.PassportExpiryDate,
-                data.WorkPermitNumber,
-                data.EntryVisaNumber,
+                data.VisaNumber,
                 data.PlaceOfBirth,
                 data.PassportIssuedAt,
-                data.Country
+                data.Country,
+                data.DateOfArrival,
+                data.ImmigrationCheckpoint,
+                data.PermittedUntil,
+                data.ResidenceNo,
+                data.ResidenceIssuedAt,
+                data.ResidenceProvince,
+                data.ResidenceDateOfIssue,
+                data.ResidenceValidUntil,
+                data.AlienNo,
+                data.AlienIssuedAt,
+                data.AlienProvince,
+                data.AlienDateOfIssue,
+                data.AlienValidUntil,
+                data.WorkPermitNumber,
+                data.WorkPermitIssueDate,
+                data.WorkPermitExpiryDate,
+                data.WorkPermitIssuedAtProvince,
+                data.WorkPermitActionType
             };
 
             // Update the fields
@@ -958,25 +992,38 @@ namespace WorkPermitManager.Controllers
             data.DateOfBirth = model.DateOfBirth;
             data.PassportIssueDate = model.PassportIssueDate;
             data.PassportExpiryDate = model.PassportExpiryDate;
-            data.WorkPermitNumber = model.WorkPermitNumber;
-            data.EntryVisaNumber = model.EntryVisaNumber;
+            data.VisaNumber = model.VisaNumber;
             data.PlaceOfBirth = model.PlaceOfBirth;
             data.PassportIssuedAt = model.PassportIssuedAt;
             data.Country = model.Country;
+            data.DateOfArrival = model.DateOfArrival;
+            data.ImmigrationCheckpoint = model.ImmigrationCheckpoint;
+            data.PermittedUntil = model.PermittedUntil;
+            data.ResidenceNo = model.ResidenceNo;
+            data.ResidenceIssuedAt = model.ResidenceIssuedAt;
+            data.ResidenceProvince = model.ResidenceProvince;
+            data.ResidenceDateOfIssue = model.ResidenceDateOfIssue;
+            data.ResidenceValidUntil = model.ResidenceValidUntil;
+            data.AlienNo = model.AlienNo;
+            data.AlienIssuedAt = model.AlienIssuedAt;
+            data.AlienProvince = model.AlienProvince;
+            data.AlienDateOfIssue = model.AlienDateOfIssue;
+            data.AlienValidUntil = model.AlienValidUntil;
+            data.WorkPermitNumber = model.WorkPermitNumber;
+            data.WorkPermitIssueDate = model.WorkPermitIssueDate;
+            data.WorkPermitExpiryDate = model.WorkPermitExpiryDate;
+            data.WorkPermitIssuedAtProvince = model.WorkPermitIssuedAtProvince;
+            data.WorkPermitActionType = model.WorkPermitActionType;
             data.UpdatedAt = DateTime.Now;
             data.UserManageID = int.Parse(User.GetLoggedInUserID());
 
             _db.ServiceWorkers.Update(data);
 
-            //Result Total Sum Fee
+            // Update Total Sum Fee
             var service = await _db.Services.FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
             if (service != null)
             {
-                foreach (var worker in service.ServiceWorkers)
-                {
-                    service.TotalPrice += worker.ServiceFee ?? 0;
-                }
-
+                service.TotalPrice = service.ServiceWorkers.Sum(worker => worker.ServiceFee ?? 0);
                 _db.Services.Update(service);
             }
 
@@ -1008,10 +1055,23 @@ namespace WorkPermitManager.Controllers
                         data.PassportIssueDate,
                         data.PassportExpiryDate,
                         data.WorkPermitNumber,
-                        data.EntryVisaNumber,
+                        data.VisaNumber,
                         data.PlaceOfBirth,
                         data.PassportIssuedAt,
-                        data.Country
+                        data.Country,
+                        data.DateOfArrival,
+                        data.ImmigrationCheckpoint,
+                        data.PermittedUntil,
+                        data.ResidenceNo,
+                        data.ResidenceIssuedAt,
+                        data.ResidenceProvince,
+                        data.ResidenceDateOfIssue,
+                        data.ResidenceValidUntil,
+                        data.AlienNo,
+                        data.AlienIssuedAt,
+                        data.AlienProvince,
+                        data.AlienDateOfIssue,
+                        data.AlienValidUntil
                     }),
                     Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
                 };
@@ -1042,6 +1102,7 @@ namespace WorkPermitManager.Controllers
                 .Select(s => new
                 {
                     s.ServiceWorkerID,
+                    s.ServiceID,
                     s.PassportNumber,
                     s.Nationality,
                     s.Title,
@@ -1054,10 +1115,26 @@ namespace WorkPermitManager.Controllers
                     s.PassportIssueDate,
                     s.PassportExpiryDate,
                     s.WorkPermitNumber,
-                    s.EntryVisaNumber,
+                    s.VisaNumber,
+                    s.VisaIssueDate,
+                    s.VisaExpiryDate,
+                    s.VisaIssuedAt,
                     s.PlaceOfBirth,
                     s.PassportIssuedAt,
                     s.Country,
+                    s.DateOfArrival,
+                    s.ImmigrationCheckpoint,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceValidUntil,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienValidUntil,
                     s.CreatedAt,
                     s.UpdatedAt,
                     UserCreate = s.User.FullName,
@@ -1145,7 +1222,7 @@ namespace WorkPermitManager.Controllers
                         // ใช้ PdfCanvas เพื่อเขียนข้อมูลลงในไฟล์ PDF
                         var pdfCanvas = new PdfCanvas(page);
                         pdfCanvas.BeginText()
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
                             .MoveText(250, 453)
                             .ShowText($"{worker.Title} {worker.FirstNameEN} {worker.LastNameEN}")
                             .MoveText(-125, -32)

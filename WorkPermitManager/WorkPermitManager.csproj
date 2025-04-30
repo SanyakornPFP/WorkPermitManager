@@ -6,6 +6,9 @@
 		<AspNetCoreStdoutLogEnabled>True</AspNetCoreStdoutLogEnabled>
 		<EnableMSDeployAppOffline>true</EnableMSDeployAppOffline>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Controllers\ServicesController.cs~RF22ca7f99.TMP" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="BouncyCastle.NetCore" Version="2.2.1" />

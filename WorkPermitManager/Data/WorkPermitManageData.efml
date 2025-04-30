@@ -700,17 +700,71 @@
     <property name="VisaExpiryDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1045e12b-c985-47fb-8fb0-87a98c0eb59c">
       <column name="VisaExpiryDate" not-null="False" sql-type="date" p1:unicode="False" />
     </property>
-    <property name="EntryVisaNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b1d8a1c6-9cab-4471-9eef-10decedd48d7">
-      <column name="EntryVisaNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    <property name="VisaNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="191e39ce-3bde-40a1-ad73-2260102a295a">
+      <column name="VisaNumber" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="PlaceOfBirth" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="6c9d27ff-f30c-4b93-9f6d-cd916045dcd9">
       <column name="PlaceOfBirth" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="VisaIssuedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="db327005-2c0c-4471-8e4e-c8f231247106">
+      <column name="VisaIssuedAt" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DateOfArrival" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a3b885b5-47df-4781-a7e1-1f248d81ae43">
+      <column name="DateOfArrival" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ImmigrationCheckpoint" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="635365d2-f79f-4df0-9d95-8315fd6243d8">
+      <column name="ImmigrationCheckpoint" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PermittedUntil" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fd15399a-e89a-4067-a0d4-790165cf8e15">
+      <column name="PermittedUntil" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ResidenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="1687adc5-4513-4d89-8f20-a7f5e3350a84">
+      <column name="ResidenceNo" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ResidenceIssuedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="90ce3513-002d-4203-ae9a-f93ae281c464">
+      <column name="ResidenceIssuedAt" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ResidenceProvince" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="32dbc403-aa79-423f-a8ff-4cd385c90a16">
+      <column name="ResidenceProvince" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ResidenceDateOfIssue" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b62cf7ba-dfda-4f2a-bf6d-6187999b2eb5">
+      <column name="ResidenceDateOfIssue" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ResidenceValidUntil" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b468b231-9968-4e10-9860-d65db5ea42c7">
+      <column name="ResidenceValidUntil" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="AlienNo" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="f0967cf9-f24b-412b-93b7-502ac438b8a5">
+      <column name="AlienNo" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AlienIssuedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="619f9f08-35d4-4e42-aed0-909c0d53c9b9">
+      <column name="AlienIssuedAt" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AlienProvince" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="151c004e-6929-4dc3-9c93-c70f719342fe">
+      <column name="AlienProvince" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AlienDateOfIssue" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="abb9875b-bd36-4c9e-a888-834fde5ec46f">
+      <column name="AlienDateOfIssue" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="AlienValidUntil" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3cf6fa87-7504-4ed3-8606-1c5d98d7b051">
+      <column name="AlienValidUntil" not-null="False" sql-type="date" p1:unicode="False" />
     </property>
     <property name="PassportIssuedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="753ac717-0f5b-46c5-a1a7-6273c83c13cb">
       <column name="PassportIssuedAt" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="Country" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b181bc8a-a022-4ff8-94ed-c5595802ccfe">
       <column name="Country" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="WorkPermitIssueDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1a477f31-51c4-4b80-af30-b29008126d2c">
+      <column name="WorkPermitIssueDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="WorkPermitExpiryDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9f9e1d40-6380-470e-a5ad-fb93d0778fc3">
+      <column name="WorkPermitExpiryDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="WorkPermitIssuedAtProvince" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="7145fe67-3d06-499a-ab6d-3c5360d90e89">
+      <column name="WorkPermitIssuedAtProvince" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="WorkPermitActionType" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="13d87d32-016c-41a9-8182-d069ec877daf">
+      <column name="WorkPermitActionType" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedAt" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ed7b9a9b-ca9d-4f75-bb81-117095919180">
       <column name="CreatedAt" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />

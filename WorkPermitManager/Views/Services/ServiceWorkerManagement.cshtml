@@ -150,78 +150,448 @@
                 </div>
                 <div class="card-body">
                     <form id="myForm" class="row g-3" method="post">
-                        <input class="form-control" name="ServiceWorkerID" id="txtServiceWorkerID" type="hidden">
-                        <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden" value="@Model.ServiceID">
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="PassportNumber">หมายเลขหนังสือเดินทาง</label>
-                            <input type="text" name="PassportNumber" id="txtPassportNumber" class="form-control" />
+                        <div class="border p-3 mb-1 bg-light text-dark">
+                            <h5>ข้อมูลแรงงานและบริการ (Basic Information)</h5>
+                            <div class="row">
+                                <input class="form-control" name="ServiceWorkerID" id="txtServiceWorkerID" type="hidden">
+                                <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden" value="@Model.ServiceID">
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="Title">คำนำหน้า</label>
+                                    <select name="Title" id="ddlTitle" class="form-control select2-In">
+                                        <option value="Mr.">Mr</option>
+                                        <option value="Ms.">Ms</option>
+                                        <option value="Mrs.">Mrs</option>
+                                        <option value="Miss.">Miss</option>
+                                        <option value="Dr.">Dr</option>
+                                        <option value="Prof.">Prof</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="FirstNameEN">ชื่อ (ภาษาอังกฤษ)</label>
+                                    <input type="text" name="FirstNameEN" id="txtFirstNameEN" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="LastNameEN">นามสกุล (ภาษาอังกฤษ)</label>
+                                    <input type="text" name="LastNameEN" id="txtLastNameEN" class="form-control" />
+                                </div>
+
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="DateOfBirth">วันเกิด</label>
+                                    <input type="date" name="DateOfBirth" id="txtDateOfBirth" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="PlaceOfBirth">สถานที่เกิด</label>
+                                    <input type="text" name="PlaceOfBirth" id="txtPlaceOfBirth" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="Nationality">สัญชาติ</label>
+                                    <input type="text" name="Nationality" id="txtNationality" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="Country">ประเทศ</label>
+                                    <input type="text" name="Country" id="txtCountry" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="ServiceFee">ค่าบริการ</label>
+                                    <input type="number" name="ServiceFee" id="txtServiceFee" class="form-control" step="0.01" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="Expiry90Days">วันหมดอายุ (90 วัน)</label>
+                                    <input type="date" name="Expiry90Days" id="txtExpiry90Days" class="form-control" />
+                                </div>
+                                <div class="col-xxl-12 col-sm-12">
+                                    <label class="col-form-label" for="Note">บันทึก</label>
+                                    <textarea name="Note" id="txtNote" class="form-control"></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="Nationality">สัญชาติ</label>
-                            <input type="text" name="Nationality" id="txtNationality" class="form-control" />
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลพาสปอร์ต (Passport Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="PassportNumber">หมายเลขหนังสือเดินทาง</label>
+                                    <input type="text" name="PassportNumber" id="txtPassportNumber" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="PassportIssuedAt">สถานที่ออกหนังสือเดินทาง</label>
+                                    <input type="text" name="PassportIssuedAt" id="txtPassportIssuedAt" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="PassportIssueDate">วันที่ออกหนังสือเดินทาง</label>
+                                    <input type="date" name="PassportIssueDate" id="txtPassportIssueDate" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="PassportExpiryDate">วันหมดอายุหนังสือเดินทาง</label>
+                                    <input type="date" name="PassportExpiryDate" id="txtPassportExpiryDate" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-4 col-sm-4">
-                            <label class="col-form-label" for="Title">คำนำหน้า</label>
-                            <select name="Title" id="ddlTitle" class="form-control select2-In">
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
-                                <option value="Miss">Miss</option>
-                                <option value="Dr">Dr</option>
-                                <option value="Prof">Prof</option>
-                            </select>
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลวีซ่า (Visa Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="TypeVisa">ประเภทวีซ่า</label>
+                                    <select name="TypeVisa" id="ddlTypeVisa" class="form-control select2-In">
+                                        <option value="Non-LA/แรงงาน" selected>Non-LA/แรงงาน</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="VisaNumber">หมายเลขวีซ่า</label>
+                                    <input type="text" name="VisaNumber" id="txtVisaNumber" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-6">
+                                    <label class="col-form-label" for="VisaIssueDate">วันที่ออกวีซ่า</label>
+                                    <input type="date" name="VisaIssueDate" id="txtVisaIssueDate" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-6">
+                                    <label class="col-form-label" for="VisaExpiryDate">วันหมดอายุวีซ่า</label>
+                                    <input type="date" name="VisaExpiryDate" id="txtVisaExpiryDate" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-6">
+                                    <label class="col-form-label" for="VisaIssuedAt">สถานที่ออกวีซ่า</label>
+                                    <input type="text" name="VisaIssuedAt" id="txtVisaIssuedAt" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-4 col-sm-4">
-                            <label class="col-form-label" for="FirstNameEN">ชื่อ (ภาษาอังกฤษ)</label>
-                            <input type="text" name="FirstNameEN" id="txtFirstNameEN" class="form-control" />
+
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลการเดินทางเข้าเมือง (Immigration Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="DateOfArrival">วันที่เดินทางถึง</label>
+                                    <input type="date" name="DateOfArrival" id="txtDateOfArrival" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="ImmigrationCheckpoint">ด่านตรวจคนเข้าเมือง</label>
+                                    <input type="text" name="ImmigrationCheckpoint" id="txtImmigrationCheckpoint" class="form-control" />
+                                </div>
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="PermittedUntil">วันที่อนุญาตให้อยู่ถึง</label>
+                                    <input type="date" name="PermittedUntil" id="txtPermittedUntil" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-4 col-sm-4">
-                            <label class="col-form-label" for="LastNameEN">นามสกุล (ภาษาอังกฤษ)</label>
-                            <input type="text" name="LastNameEN" id="txtLastNameEN" class="form-control" />
+
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลใบสำคัญถิ่นที่อยู่ (Residence Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-12 col-sm-12">
+                                    <label class="col-form-label" for="ResidenceNo">เลขที่ใบสำคัญถิ่นที่อยู่</label>
+                                    <input type="text" name="ResidenceNo" id="txtResidenceNo" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="ResidenceIssuedAt">สถานที่ออกใบสำคัญถิ่นที่อยู่</label>
+                                    <input type="text" name="ResidenceIssuedAt" id="txtResidenceIssuedAt" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="ResidenceProvince">จังหวัดที่ออกใบสำคัญถิ่นที่อยู่</label>
+                                    <select name="ResidenceProvince" id="ddlResidenceProvince" class="form-control select2-In">
+                                        <option value="" selected>เลือก</option>
+                                        <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                        <option value="กระบี่">กระบี่</option>
+                                        <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                        <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                        <option value="กำแพงเพชร">กำแพงเพชร</option>
+                                        <option value="ขอนแก่น">ขอนแก่น</option>
+                                        <option value="จันทบุรี">จันทบุรี</option>
+                                        <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                                        <option value="ชลบุรี">ชลบุรี</option>
+                                        <option value="ชัยนาท">ชัยนาท</option>
+                                        <option value="ชัยภูมิ">ชัยภูมิ</option>
+                                        <option value="ชุมพร">ชุมพร</option>
+                                        <option value="เชียงราย">เชียงราย</option>
+                                        <option value="เชียงใหม่">เชียงใหม่</option>
+                                        <option value="ตรัง">ตรัง</option>
+                                        <option value="ตราด">ตราด</option>
+                                        <option value="ตาก">ตาก</option>
+                                        <option value="นครนายก">นครนายก</option>
+                                        <option value="นครปฐม">นครปฐม</option>
+                                        <option value="นครพนม">นครพนม</option>
+                                        <option value="นครราชสีมา">นครราชสีมา</option>
+                                        <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                                        <option value="นครสวรรค์">นครสวรรค์</option>
+                                        <option value="นนทบุรี">นนทบุรี</option>
+                                        <option value="นราธิวาส">นราธิวาส</option>
+                                        <option value="น่าน">น่าน</option>
+                                        <option value="บึงกาฬ">บึงกาฬ</option>
+                                        <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                        <option value="ปทุมธานี">ปทุมธานี</option>
+                                        <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                                        <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                                        <option value="ปัตตานี">ปัตตานี</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                                        <option value="พังงา">พังงา</option>
+                                        <option value="พัทลุง">พัทลุง</option>
+                                        <option value="พิจิตร">พิจิตร</option>
+                                        <option value="พิษณุโลก">พิษณุโลก</option>
+                                        <option value="เพชรบุรี">เพชรบุรี</option>
+                                        <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                                        <option value="แพร่">แพร่</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="ภูเก็ต">ภูเก็ต</option>
+                                        <option value="มหาสารคาม">มหาสารคาม</option>
+                                        <option value="มุกดาหาร">มุกดาหาร</option>
+                                        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                                        <option value="ยโสธร">ยโสธร</option>
+                                        <option value="ยะลา">ยะลา</option>
+                                        <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                                        <option value="ระนอง">ระนอง</option>
+                                        <option value="ระยอง">ระยอง</option>
+                                        <option value="ราชบุรี">ราชบุรี</option>
+                                        <option value="ลพบุรี">ลพบุรี</option>
+                                        <option value="ลำปาง">ลำปาง</option>
+                                        <option value="ลำพูน">ลำพูน</option>
+                                        <option value="เลย">เลย</option>
+                                        <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                        <option value="สกลนคร">สกลนคร</option>
+                                        <option value="สงขลา">สงขลา</option>
+                                        <option value="สตูล">สตูล</option>
+                                        <option value="สมุทรปราการ">สมุทรปราการ</option>
+                                        <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                                        <option value="สมุทรสาคร">สมุทรสาคร</option>
+                                        <option value="สระแก้ว">สระแก้ว</option>
+                                        <option value="สระบุรี">สระบุรี</option>
+                                        <option value="สิงห์บุรี">สิงห์บุรี</option>
+                                        <option value="สุโขทัย">สุโขทัย</option>
+                                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                                        <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                                        <option value="สุรินทร์">สุรินทร์</option>
+                                        <option value="หนองคาย">หนองคาย</option>
+                                        <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                                        <option value="อ่างทอง">อ่างทอง</option>
+                                        <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                                        <option value="อุดรธานี">อุดรธานี</option>
+                                        <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                                        <option value="อุทัยธานี">อุทัยธานี</option>
+                                        <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="ResidenceDateOfIssue">วันที่ออกใบสำคัญถิ่นที่อยู่</label>
+                                    <input type="date" name="ResidenceDateOfIssue" id="txtResidenceDateOfIssue" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="ResidenceValidUntil">วันหมดอายุใบสำคัญถิ่นที่อยู่</label>
+                                    <input type="date" name="ResidenceValidUntil" id="txtResidenceValidUntil" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="DateOfBirth">วันเกิด</label>
-                            <input type="date" name="DateOfBirth" id="txtDateOfBirth" class="form-control" />
+
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลใบสำคัญประจำตัวคนต่างด้าว (Alien Registration Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-12 col-sm-12">
+                                    <label class="col-form-label" for="AlienNo">เลขที่ใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <input type="text" name="AlienNo" id="txtAlienNo" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="AlienIssuedAt">สถานที่ออกใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <input type="text" name="AlienIssuedAt" id="txtAlienIssuedAt" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="AlienProvince">จังหวัดที่ออกใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <select name="AlienProvince" id="ddlAlienProvince" class="form-control select2-In">
+                                        <option value="" selected>เลือก</option>
+                                        <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                        <option value="กระบี่">กระบี่</option>
+                                        <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                        <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                        <option value="กำแพงเพชร">กำแพงเพชร</option>
+                                        <option value="ขอนแก่น">ขอนแก่น</option>
+                                        <option value="จันทบุรี">จันทบุรี</option>
+                                        <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                                        <option value="ชลบุรี">ชลบุรี</option>
+                                        <option value="ชัยนาท">ชัยนาท</option>
+                                        <option value="ชัยภูมิ">ชัยภูมิ</option>
+                                        <option value="ชุมพร">ชุมพร</option>
+                                        <option value="เชียงราย">เชียงราย</option>
+                                        <option value="เชียงใหม่">เชียงใหม่</option>
+                                        <option value="ตรัง">ตรัง</option>
+                                        <option value="ตราด">ตราด</option>
+                                        <option value="ตาก">ตาก</option>
+                                        <option value="นครนายก">นครนายก</option>
+                                        <option value="นครปฐม">นครปฐม</option>
+                                        <option value="นครพนม">นครพนม</option>
+                                        <option value="นครราชสีมา">นครราชสีมา</option>
+                                        <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                                        <option value="นครสวรรค์">นครสวรรค์</option>
+                                        <option value="นนทบุรี">นนทบุรี</option>
+                                        <option value="นราธิวาส">นราธิวาส</option>
+                                        <option value="น่าน">น่าน</option>
+                                        <option value="บึงกาฬ">บึงกาฬ</option>
+                                        <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                        <option value="ปทุมธานี">ปทุมธานี</option>
+                                        <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                                        <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                                        <option value="ปัตตานี">ปัตตานี</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                                        <option value="พังงา">พังงา</option>
+                                        <option value="พัทลุง">พัทลุง</option>
+                                        <option value="พิจิตร">พิจิตร</option>
+                                        <option value="พิษณุโลก">พิษณุโลก</option>
+                                        <option value="เพชรบุรี">เพชรบุรี</option>
+                                        <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                                        <option value="แพร่">แพร่</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="ภูเก็ต">ภูเก็ต</option>
+                                        <option value="มหาสารคาม">มหาสารคาม</option>
+                                        <option value="มุกดาหาร">มุกดาหาร</option>
+                                        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                                        <option value="ยโสธร">ยโสธร</option>
+                                        <option value="ยะลา">ยะลา</option>
+                                        <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                                        <option value="ระนอง">ระนอง</option>
+                                        <option value="ระยอง">ระยอง</option>
+                                        <option value="ราชบุรี">ราชบุรี</option>
+                                        <option value="ลพบุรี">ลพบุรี</option>
+                                        <option value="ลำปาง">ลำปาง</option>
+                                        <option value="ลำพูน">ลำพูน</option>
+                                        <option value="เลย">เลย</option>
+                                        <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                        <option value="สกลนคร">สกลนคร</option>
+                                        <option value="สงขลา">สงขลา</option>
+                                        <option value="สตูล">สตูล</option>
+                                        <option value="สมุทรปราการ">สมุทรปราการ</option>
+                                        <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                                        <option value="สมุทรสาคร">สมุทรสาคร</option>
+                                        <option value="สระแก้ว">สระแก้ว</option>
+                                        <option value="สระบุรี">สระบุรี</option>
+                                        <option value="สิงห์บุรี">สิงห์บุรี</option>
+                                        <option value="สุโขทัย">สุโขทัย</option>
+                                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                                        <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                                        <option value="สุรินทร์">สุรินทร์</option>
+                                        <option value="หนองคาย">หนองคาย</option>
+                                        <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                                        <option value="อ่างทอง">อ่างทอง</option>
+                                        <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                                        <option value="อุดรธานี">อุดรธานี</option>
+                                        <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                                        <option value="อุทัยธานี">อุทัยธานี</option>
+                                        <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="AlienDateOfIssue">วันที่ออกใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <input type="date" name="AlienDateOfIssue" id="txtAlienDateOfIssue" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="AlienValidUntil">วันหมดอายุใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <input type="date" name="AlienValidUntil" id="txtAlienValidUntil" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="PassportIssueDate">วันที่ออกหนังสือเดินทาง</label>
-                            <input type="date" name="PassportIssueDate" id="txtPassportIssueDate" class="form-control" />
+                        <div class="border p-3 mb-1">
+                            <h5>ข้อมูลการทำงาน (WorkPermit Information)</h5>
+                            <div class="row">
+                                <div class="col-xxl-12 col-sm-12">
+                                    <label class="col-form-label" for="WorkPermitActionType">ประเภทการดำเนินการเกี่ยวกับใบอนุญาตทำงาน</label>
+                                    <select name="WorkPermitActionType" id="ddlWorkPermitActionType" class="form-control select2-In">
+                                        <option value="ขออนุญาตทำงาน" selected>ขออนุญาตทำงาน</option>
+                                        <option value="ขอต่ออายุใบอนุญาติทำงาน">ขอต่ออายุใบอนุญาติทำงาน</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="WorkPermitNumber">หมายเลขใบอนุญาตทำงาน</label>
+                                    <input type="text" name="WorkPermitNumber" id="txtWorkPermitNumber" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="WorkPermitIssuedAtProvince">จังหวัดที่ออกใบอนุญาตทำงาน</label>
+                                    <select name="WorkPermitIssuedAtProvince" id="ddlWorkPermitIssuedAtProvince" class="form-control select2-In">
+                                        <option value="" selected>เลือก</option>
+                                        <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                        <option value="กระบี่">กระบี่</option>
+                                        <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                        <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                        <option value="กำแพงเพชร">กำแพงเพชร</option>
+                                        <option value="ขอนแก่น">ขอนแก่น</option>
+                                        <option value="จันทบุรี">จันทบุรี</option>
+                                        <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                                        <option value="ชลบุรี">ชลบุรี</option>
+                                        <option value="ชัยนาท">ชัยนาท</option>
+                                        <option value="ชัยภูมิ">ชัยภูมิ</option>
+                                        <option value="ชุมพร">ชุมพร</option>
+                                        <option value="เชียงราย">เชียงราย</option>
+                                        <option value="เชียงใหม่">เชียงใหม่</option>
+                                        <option value="ตรัง">ตรัง</option>
+                                        <option value="ตราด">ตราด</option>
+                                        <option value="ตาก">ตาก</option>
+                                        <option value="นครนายก">นครนายก</option>
+                                        <option value="นครปฐม">นครปฐม</option>
+                                        <option value="นครพนม">นครพนม</option>
+                                        <option value="นครราชสีมา">นครราชสีมา</option>
+                                        <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                                        <option value="นครสวรรค์">นครสวรรค์</option>
+                                        <option value="นนทบุรี">นนทบุรี</option>
+                                        <option value="นราธิวาส">นราธิวาส</option>
+                                        <option value="น่าน">น่าน</option>
+                                        <option value="บึงกาฬ">บึงกาฬ</option>
+                                        <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                        <option value="ปทุมธานี">ปทุมธานี</option>
+                                        <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                                        <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                                        <option value="ปัตตานี">ปัตตานี</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                                        <option value="พังงา">พังงา</option>
+                                        <option value="พัทลุง">พัทลุง</option>
+                                        <option value="พิจิตร">พิจิตร</option>
+                                        <option value="พิษณุโลก">พิษณุโลก</option>
+                                        <option value="เพชรบุรี">เพชรบุรี</option>
+                                        <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                                        <option value="แพร่">แพร่</option>
+                                        <option value="พะเยา">พะเยา</option>
+                                        <option value="ภูเก็ต">ภูเก็ต</option>
+                                        <option value="มหาสารคาม">มหาสารคาม</option>
+                                        <option value="มุกดาหาร">มุกดาหาร</option>
+                                        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                                        <option value="ยโสธร">ยโสธร</option>
+                                        <option value="ยะลา">ยะลา</option>
+                                        <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                                        <option value="ระนอง">ระนอง</option>
+                                        <option value="ระยอง">ระยอง</option>
+                                        <option value="ราชบุรี">ราชบุรี</option>
+                                        <option value="ลพบุรี">ลพบุรี</option>
+                                        <option value="ลำปาง">ลำปาง</option>
+                                        <option value="ลำพูน">ลำพูน</option>
+                                        <option value="เลย">เลย</option>
+                                        <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                        <option value="สกลนคร">สกลนคร</option>
+                                        <option value="สงขลา">สงขลา</option>
+                                        <option value="สตูล">สตูล</option>
+                                        <option value="สมุทรปราการ">สมุทรปราการ</option>
+                                        <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                                        <option value="สมุทรสาคร">สมุทรสาคร</option>
+                                        <option value="สระแก้ว">สระแก้ว</option>
+                                        <option value="สระบุรี">สระบุรี</option>
+                                        <option value="สิงห์บุรี">สิงห์บุรี</option>
+                                        <option value="สุโขทัย">สุโขทัย</option>
+                                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                                        <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                                        <option value="สุรินทร์">สุรินทร์</option>
+                                        <option value="หนองคาย">หนองคาย</option>
+                                        <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                                        <option value="อ่างทอง">อ่างทอง</option>
+                                        <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                                        <option value="อุดรธานี">อุดรธานี</option>
+                                        <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                                        <option value="อุทัยธานี">อุทัยธานี</option>
+                                        <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="WorkPermitIssueDate">วันที่ออกใบอนุญาตทำงาน</label>
+                                    <input type="date" name="WorkPermitIssueDate" id="txtWorkPermitIssueDate" class="form-control" />
+                                </div>
+                                <div class="col-xxl-6 col-sm-6">
+                                    <label class="col-form-label" for="WorkPermitValidUntil">วันหมดอายุใบอนุญาตทำงาน</label>
+                                    <input type="date" name="WorkPermitValidUntil" id="txtWorkPermitValidUntil" class="form-control" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="PassportExpiryDate">วันหมดอายุหนังสือเดินทาง</label>
-                            <input type="date" name="PassportExpiryDate" id="txtPassportExpiryDate" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="WorkPermitNumber">หมายเลขใบอนุญาตทำงาน</label>
-                            <input type="text" name="WorkPermitNumber" id="txtWorkPermitNumber" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="EntryVisaNumber">หมายเลขวีซ่าเข้าเมือง</label>
-                            <input type="text" name="EntryVisaNumber" id="txtEntryVisaNumber" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="PlaceOfBirth">สถานที่เกิด</label>
-                            <input type="text" name="PlaceOfBirth" id="txtPlaceOfBirth" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="PassportIssuedAt">สถานที่ออกหนังสือเดินทาง</label>
-                            <input type="text" name="PassportIssuedAt" id="txtPassportIssuedAt" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="Country">ประเทศ</label>
-                            <input type="text" name="Country" id="txtCountry" class="form-control" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="ServiceFee">ค่าบริการ</label>
-                            <input type="number" name="ServiceFee" id="txtServiceFee" class="form-control" step="0.01" />
-                        </div>
-                        <div class="col-xxl-6 col-sm-6">
-                            <label class="col-form-label" for="Expiry90Days">วันหมดอายุ (90 วัน)</label>
-                            <input type="date" name="Expiry90Days" id="txtExpiry90Days" class="form-control" />
-                        </div>
-                        <div class="col-xxl-12 col-sm-12">
-                            <label class="col-form-label" for="Note">บันทึก</label>
-                            <textarea name="Note" id="txtNote" class="form-control"></textarea>
-                        </div>
+                        <!-- Submit Buttons -->
                         <div class="col-sm-12 col-xxl-12 col-12 justify-content-between d-flex">
                             <button class="btn btn-primary" id="createBtn" type="submit">บันทึก</button>
                             <button class="btn btn-primary" id="updateBtn" type="submit" style="display: none;">อัพเดท</button>
@@ -290,14 +660,14 @@
                                             </td>
                                             <td class="text-center">@countRow</td>
                                             <td>@item.PassportNumber</td>
-                                            <td>@item.Title.@item.FirstNameEN @item.LastNameEN</td>
+                                            <td>@item.Title@item.FirstNameEN @item.LastNameEN</td>
                                             <td>@item.Nationality</td>
                                             <td>@(item.PassportIssueDate?.ToString("dd/MM/yyyy"))</td>
                                             <td>@(item.PassportExpiryDate?.ToString("dd/MM/yyyy"))</td>
                                             <td>@(item.CreatedAt?.ToString("dd/MM/yyyy"))</td>
                                             <td>@(item.Expiry90Days?.ToString("dd/MM/yyyy"))</td>
                                             <td>@item.WorkPermitNumber</td>
-                                            <td>@item.EntryVisaNumber</td>
+                                            <td>@item.VisaNumber</td>
                                             <td class="text-center">
                                                 <button class="btn detailBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
                                                     <i class="fa fa-list-alt"></i>
@@ -593,7 +963,6 @@
                 });
             });
 
-            // แก้ไขข้อมูลพนักงาน
             document.querySelectorAll('.editBtn').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -605,12 +974,12 @@
                         type: 'POST',
                         data: { ServiceWorkerID: serviceWorkerID },
                         success: function (response) {
-                            if (response.success == false) {
+                            if (response.success === false) {
                                 Swal.fire('ผิดพลาด', response.message, 'error');
                             } else {
+                                console.log(response.data);
                                 // Show the form for editing
                                 $('#showInsert').show();
-
                                 // Populate form fields with fetched data
                                 $('#txtServiceWorkerID').val(response.data.serviceWorkerID);
                                 $('#txtPassportNumber').val(response.data.passportNumber);
@@ -620,13 +989,29 @@
                                 $('#txtLastNameEN').val(response.data.lastNameEN);
                                 $('#txtDateOfBirth').val(formatDateToInput(response.data.dateOfBirth));
                                 $('#txtWorkPermitNumber').val(response.data.workPermitNumber);
-                                $('#txtEntryVisaNumber').val(response.data.entryVisaNumber);
+                                $('#txtVisaNumber').val(response.data.visaNumber);
+                                $('#txtVisaIssueDate').val(formatDateToInput(response.data.visaIssueDate));
+                                $('#txtVisaExpiryDate').val(formatDateToInput(response.data.visaExpiryDate));
+                                $('#txtVisaIssuedAt').val(response.data.visaIssuedAt);
                                 $('#txtPassportExpiryDate').val(formatDateToInput(response.data.passportExpiryDate));
                                 $('#txtPassportIssueDate').val(formatDateToInput(response.data.passportIssueDate));
                                 $('#txtExpiry90Days').val(formatDateToInput(response.data.expiry90Days));
                                 $('#txtPlaceOfBirth').val(response.data.placeOfBirth);
                                 $('#txtPassportIssuedAt').val(response.data.passportIssuedAt);
                                 $('#txtCountry').val(response.data.country);
+                                $('#txtDateOfArrival').val(formatDateToInput(response.data.dateOfArrival));
+                                $('#txtImmigrationCheckpoint').val(response.data.immigrationCheckpoint);
+                                $('#txtPermittedUntil').val(formatDateToInput(response.data.permittedUntil));
+                                $('#txtResidenceNo').val(response.data.residenceNo);
+                                $('#txtResidenceIssuedAt').val(response.data.residenceIssuedAt);
+                                $('#txtResidenceProvince').val(response.data.residenceProvince);
+                                $('#txtResidenceDateOfIssue').val(formatDateToInput(response.data.residenceDateOfIssue));
+                                $('#txtResidenceValidUntil').val(formatDateToInput(response.data.residenceValidUntil));
+                                $('#txtAlienNo').val(response.data.alienNo);
+                                $('#txtAlienIssuedAt').val(response.data.alienIssuedAt);
+                                $('#txtAlienProvince').val(response.data.alienProvince);
+                                $('#txtAlienDateOfIssue').val(formatDateToInput(response.data.alienDateOfIssue));
+                                $('#txtAlienValidUntil').val(formatDateToInput(response.data.alienValidUntil));
                                 $('#txtServiceFee').val(response.data.serviceFee);
                                 $('#txtNote').val(response.data.note);
 
