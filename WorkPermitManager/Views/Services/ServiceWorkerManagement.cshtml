@@ -217,8 +217,8 @@
                                     <input type="text" name="PassportIssuedAt" id="txtPassportIssuedAt" class="form-control" />
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
-                                    <label class="col-form-label" for="PassportIssueDate">วันที่ออกหนังสือเดินทาง</label>
-                                    <input type="date" name="PassportIssueDate" id="txtPassportIssueDate" class="form-control" />
+                                    <label class="col-form-label" for="PassportDateOfIssue">วันที่ออกหนังสือเดินทาง</label>
+                                    <input type="date" name="PassportDateOfIssue" id="txtPassportDateOfIssue" class="form-control" />
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
                                     <label class="col-form-label" for="PassportExpiryDate">วันหมดอายุหนังสือเดินทาง</label>
@@ -232,7 +232,7 @@
                                 <div class="col-xxl-6 col-sm-6">
                                     <label class="col-form-label" for="TypeVisa">ประเภทวีซ่า</label>
                                     <select name="TypeVisa" id="ddlTypeVisa" class="form-control select2-In">
-                                        <option value="Non-LA/แรงงาน" selected>Non-LA/แรงงาน</option>
+                                        <option value="Non-LA" selected>Non-LA/แรงงาน</option>
                                     </select>
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
@@ -240,8 +240,8 @@
                                     <input type="text" name="VisaNumber" id="txtVisaNumber" class="form-control" />
                                 </div>
                                 <div class="col-xxl-4 col-sm-6">
-                                    <label class="col-form-label" for="VisaIssueDate">วันที่ออกวีซ่า</label>
-                                    <input type="date" name="VisaIssueDate" id="txtVisaIssueDate" class="form-control" />
+                                    <label class="col-form-label" for="VisaDateOfIssue">วันที่ออกวีซ่า</label>
+                                    <input type="date" name="VisaDateOfIssue" id="txtVisaDateOfIssue" class="form-control" />
                                 </div>
                                 <div class="col-xxl-4 col-sm-6">
                                     <label class="col-form-label" for="VisaExpiryDate">วันหมดอายุวีซ่า</label>
@@ -372,8 +372,8 @@
                                     <input type="date" name="ResidenceDateOfIssue" id="txtResidenceDateOfIssue" class="form-control" />
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
-                                    <label class="col-form-label" for="ResidenceValidUntil">วันหมดอายุใบสำคัญถิ่นที่อยู่</label>
-                                    <input type="date" name="ResidenceValidUntil" id="txtResidenceValidUntil" class="form-control" />
+                                    <label class="col-form-label" for="ResidenceExpiryDate">วันหมดอายุใบสำคัญถิ่นที่อยู่</label>
+                                    <input type="date" name="ResidenceExpiryDate" id="txtResidenceExpiryDate" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -478,8 +478,8 @@
                                     <input type="date" name="AlienDateOfIssue" id="txtAlienDateOfIssue" class="form-control" />
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
-                                    <label class="col-form-label" for="AlienValidUntil">วันหมดอายุใบสำคัญประจำตัวคนต่างด้าว</label>
-                                    <input type="date" name="AlienValidUntil" id="txtAlienValidUntil" class="form-control" />
+                                    <label class="col-form-label" for="AlienExpiryDate">วันหมดอายุใบสำคัญประจำตัวคนต่างด้าว</label>
+                                    <input type="date" name="AlienExpiryDate" id="txtAlienExpiryDate" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -582,12 +582,12 @@
                                     </select>
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
-                                    <label class="col-form-label" for="WorkPermitIssueDate">วันที่ออกใบอนุญาตทำงาน</label>
-                                    <input type="date" name="WorkPermitIssueDate" id="txtWorkPermitIssueDate" class="form-control" />
+                                    <label class="col-form-label" for="WorkPermitDateOfIssue">วันที่ออกใบอนุญาตทำงาน</label>
+                                    <input type="date" name="WorkPermitDateOfIssue" id="txtWorkPermitDateOfIssue" class="form-control" />
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
-                                    <label class="col-form-label" for="WorkPermitValidUntil">วันหมดอายุใบอนุญาตทำงาน</label>
-                                    <input type="date" name="WorkPermitValidUntil" id="txtWorkPermitValidUntil" class="form-control" />
+                                    <label class="col-form-label" for="WorkPermitExpiryDate">วันหมดอายุใบอนุญาตทำงาน</label>
+                                    <input type="date" name="WorkPermitExpiryDate" id="txtWorkPermitExpiryDate" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -615,7 +615,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-light bt25"><i class="fa fa-print"> บต.25</i></a>
+                    <div class="btn-group justify-content-end">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสาร </button>
+                        <ul class="dropdown-menu dropdown-block">
+                            <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.25</a></li>
+                            <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.30 </a></li>
+                        </ul>
+                    </div>
                     <div class="table-responsive theme-scrollbar mt-2">
                         <table class="display table table-bordered" style="width:100%">
                             <thead>
@@ -628,16 +634,16 @@
                                     <th class="text-center align-content-md-center bg-light" rowspan="2">เลขบัตรประจำตัว</th>
                                     <th class="text-center align-content-md-center bg-light" rowspan="2">ชื่อ-นามสกุล</th>
                                     <th class="text-center align-content-md-center bg-light" rowspan="2">สัญชาติ</th>
-                                    <th class="text-center bg-light" colspan="2">PASSPORT</th>
-                                    <th class="text-center bg-light" colspan="2">VISA</th>
-                                    <th class="text-center align-content-md-center bg-light" rowspan="2">เลขใบอนุญาต</th>
-                                    <th class="text-center align-content-md-center bg-light" rowspan="2">เลขที่บัตรขาเข้า</th>
+                                    <th class="text-center bg-light" colspan="3">PASSPORT</th>
+                                    <th class="text-center bg-light" colspan="3">VISA</th>
                                     <th class="text-center align-content-md-center bg-light" rowspan="2">รายละเอียด</th>
                                     <th class="text-center align-content-md-center bg-light" rowspan="2">ดำเนินการ</th>
                                 </tr>
                                 <tr>
+                                    <th class="bg-light text-center">เลขใบอนุญาต</th>
                                     <th class="bg-light text-center">วันที่ออก</th>
                                     <th class="bg-light text-center">วันที่หมดอายุ</th>
+                                    <th class="bg-light text-center">เลขใบอนุญาต</th>
                                     <th class="bg-light text-center">วันที่ออก</th>
                                     <th class="bg-light text-center">วันที่หมดอายุ</th>
                                 </tr>
@@ -662,12 +668,12 @@
                                             <td>@item.PassportNumber</td>
                                             <td>@item.Title@item.FirstNameEN @item.LastNameEN</td>
                                             <td>@item.Nationality</td>
-                                            <td>@(item.PassportIssueDate?.ToString("dd/MM/yyyy"))</td>
-                                            <td>@(item.PassportExpiryDate?.ToString("dd/MM/yyyy"))</td>
-                                            <td>@(item.CreatedAt?.ToString("dd/MM/yyyy"))</td>
-                                            <td>@(item.Expiry90Days?.ToString("dd/MM/yyyy"))</td>
-                                            <td>@item.WorkPermitNumber</td>
-                                            <td>@item.VisaNumber</td>
+                                            <td class="text-center">@item.PassportNumber</td>
+                                            <td class="text-center">@(item.PassportDateOfIssue?.ToString("dd/MM/yyyy"))</td>
+                                            <td class="text-center">@(item.PassportExpiryDate?.ToString("dd/MM/yyyy"))</td>
+                                            <td class="text-center">@item.VisaNumber</td>
+                                            <td class="text-center">@(item.CreatedAt?.ToString("dd/MM/yyyy"))</td>
+                                            <td class="text-center">@(item.Expiry90Days?.ToString("dd/MM/yyyy"))</td>
                                             <td class="text-center">
                                                 <button class="btn detailBtn" data-ServiceWorkerID="@item.ServiceWorkerID">
                                                     <i class="fa fa-list-alt"></i>
@@ -701,17 +707,56 @@
 
 <!-- Modal -->
 <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
+        <!-- Changed modal-lg to modal-xl for wider modal -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <h5 class="modal-title" id="detailsModalLabel"><i class="fa fa-list-alt"></i> รายละเอียดเพิ่มเติม</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body dark-modal">
                 <div class="row p-2">
-                    <!-- ข้อมูลส่วนตัว -->
-                    <div class="col-12">
-                        <h5 class="f-w-600"><i class="fa fa-user"></i> ข้อมูลแรงงาน</h5>
+
+                    <!-- ข้อมูลแรงงาน -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลแรงงาน</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">คำนำหน้า</th>
+                                    <td><span id="title"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ชื่อ-นามสกุล</th>
+                                    <td><span id="fullName"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันเกิด</th>
+                                    <td><span id="dateOfBirth"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">สถานที่เกิด</th>
+                                    <td><span id="placeOfBirth"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">สัญชาติ</th>
+                                    <td><span id="nationality"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ประเทศ</th>
+                                    <td><span id="country"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">หมายเหตุ</th>
+                                    <td><span id="note"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลพาสปอร์ต -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลพาสปอร์ต</h5>
                         <table class="table table-bordered mt-2 mb-4">
                             <tbody>
                                 <tr>
@@ -719,32 +764,161 @@
                                     <td><span id="passportNumber"></span></td>
                                 </tr>
                                 <tr>
-                                    <th class="bg-light">ชื่อ-นามสกุล</th>
-                                    <td><span id="fullName"></span></td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-light">สัญชาติ</th>
-                                    <td><span id="nationality"></span></td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-light">สถานที่เกิด</th>
-                                    <td><span id="placeOfBirth"></span></td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-light">สถานที่ออกหนังสือเดินทาง</th>
+                                    <th class="bg-light">สถานที่ออก</th>
                                     <td><span id="passportIssuedAt"></span></td>
                                 </tr>
                                 <tr>
-                                    <th class="bg-light">ประเทศ</th>
-                                    <td><span id="country"></span></td>
+                                    <th class="bg-light">วันที่ออก</th>
+                                    <td><span id="passportDateOfIssue"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันหมดอายุ</th>
+                                    <td><span id="passportExpiryDate"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลวีซ่า -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลวีซ่า</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">ประเภทวีซ่า</th>
+                                    <td><span id="typeVisa"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">หมายเลขวีซ่า</th>
+                                    <td><span id="visaNumber"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่ออก</th>
+                                    <td><span id="visaDateOfIssue"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันหมดอายุ</th>
+                                    <td><span id="visaExpiryDate"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">สถานที่ออก</th>
+                                    <td><span id="visaIssuedAt"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลการเดินทางเข้าเมือง -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลการเดินทางเข้าเมือง</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">วันที่เดินทางถึง</th>
+                                    <td><span id="dateOfArrival"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">ด่านตรวจคนเข้าเมือง</th>
+                                    <td><span id="immigrationCheckpoint"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่อนุญาตให้อยู่ถึง</th>
+                                    <td><span id="permittedUntil"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลใบสำคัญถิ่นที่อยู่ -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลใบสำคัญถิ่นที่อยู่</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">เลขที่</th>
+                                    <td><span id="residenceNo"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">สถานที่ออก</th>
+                                    <td><span id="residenceIssuedAt"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">จังหวัดที่ออก</th>
+                                    <td><span id="residenceProvince"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่ออก</th>
+                                    <td><span id="residenceDateOfIssue"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันหมดอายุ</th>
+                                    <td><span id="residenceExpiryDate"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลใบสำคัญประจำตัวคนต่างด้าว -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลใบสำคัญประจำตัวคนต่างด้าว</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">เลขที่</th>
+                                    <td><span id="alienNo"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">สถานที่ออก</th>
+                                    <td><span id="alienIssuedAt"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">จังหวัดที่ออก</th>
+                                    <td><span id="alienProvince"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่ออก</th>
+                                    <td><span id="alienDateOfIssue"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันหมดอายุ</th>
+                                    <td><span id="alienExpiryDate"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ข้อมูลการทำงาน -->
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลการทำงาน</h5>
+                        <table class="table table-bordered mt-2 mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light">ประเภทการดำเนินการ</th>
+                                    <td><span id="workPermitActionType"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">หมายเลขใบอนุญาตทำงาน</th>
+                                    <td><span id="workPermitNumber"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">จังหวัดที่ออก</th>
+                                    <td><span id="workPermitIssuedAtProvince"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันที่ออก</th>
+                                    <td><span id="workPermitDateOfIssue"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">วันหมดอายุ</th>
+                                    <td><span id="workPermitExpiryDate"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <!-- ข้อมูลการเงิน -->
-                    <div class="col-12">
-                        <h5 class="f-w-600"><i class="fa fa-money"></i> ข้อมูลการเงิน</h5>
+                    <div class="col-6">
+                        <h5 class="f-w-600"> ข้อมูลการบริการ</h5>
                         <table class="table table-bordered mt-2 mb-4">
                             <tbody>
                                 <tr>
@@ -766,6 +940,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -774,7 +949,6 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -813,23 +987,67 @@
                         type: 'POST',
                         data: { ServiceWorkerID: serviceWorkerID },
                         success: function (response) {
-                               console.log(response.data);
-                                if (response.success) {
-                                    $('#passportNumber').text(response.data.passportNumber || "-");
-                                    $('#fullName').text(response.data.firstNameEN + " " + response.data.lastNameEN || "-");
-                                    $('#nationality').text(response.data.nationality || "-");
-                                    $('#serviceFee').text(response.data.serviceFee || "-");
-                                    $('#expiry90Days').text(formatDate(response.data.expiry90Days, "dd/MM/yyyy") || "-");
-                                    $('#createdAt').text(formatDate(response.data.createdAt, "dd/MM/yyyy hh:mm:ss") || "-");
-                                    $('#placeOfBirth').text(response.data.placeOfBirth || "-");
-                                    $('#note').text(response.data.note || "-");
-                                    $('#passportIssuedAt').text(response.data.passportIssuedAt || "-");
-                                    $('#country').text(response.data.country || "-");
-                                    $('#userCreate').text(response.data.userCreate || "-");
-                                    $('#detailsModal').modal('show');
-                                } else {
-                                    alert(response.message);
-                                }
+                            console.log(response.data);
+                            if (response.success) {
+                                // ข้อมูลแรงงาน
+                                $('#title').text(response.data.title || "-");
+                                $('#fullName').text((response.data.firstNameEN + " " + response.data.lastNameEN) || "-");
+                                $('#dateOfBirth').text(formatDate(response.data.dateOfBirth, "dd/MM/yyyy") || "-");
+                                $('#placeOfBirth').text(response.data.placeOfBirth || "-");
+                                $('#nationality').text(response.data.nationality || "-");
+                                $('#country').text(response.data.country || "-");
+                                $('#note').text(response.data.note || "-");
+
+                                // ข้อมูลพาสปอร์ต
+                                $('#passportNumber').text(response.data.passportNumber || "-");
+                                $('#passportIssuedAt').text(response.data.passportIssuedAt || "-");
+                                $('#passportDateOfIssue').text(formatDate(response.data.passportDateOfIssue, "dd/MM/yyyy") || "-");
+                                $('#passportExpiryDate').text(formatDate(response.data.passportExpiryDate, "dd/MM/yyyy") || "-");
+
+                                // ข้อมูลวีซ่า
+                                $('#typeVisa').text(response.data.typeVisa || "-");
+                                $('#visaNumber').text(response.data.visaNumber || "-");
+                                $('#visaDateOfIssue').text(formatDate(response.data.visaDateOfIssue, "dd/MM/yyyy") || "-");
+                                $('#visaExpiryDate').text(formatDate(response.data.visaExpiryDate, "dd/MM/yyyy") || "-");
+                                $('#visaIssuedAt').text(response.data.visaIssuedAt || "-");
+
+                                // ข้อมูลการเดินทางเข้าเมือง
+                                $('#dateOfArrival').text(formatDate(response.data.dateOfArrival, "dd/MM/yyyy") || "-");
+                                $('#immigrationCheckpoint').text(response.data.immigrationCheckpoint || "-");
+                                $('#permittedUntil').text(formatDate(response.data.permittedUntil, "dd/MM/yyyy") || "-");
+
+                                // ข้อมูลใบสำคัญถิ่นที่อยู่
+                                $('#residenceNo').text(response.data.residenceNo || "-");
+                                $('#residenceIssuedAt').text(response.data.residenceIssuedAt || "-");
+                                $('#residenceProvince').text(response.data.residenceProvince || "-");
+                                $('#residenceDateOfIssue').text(formatDate(response.data.residenceDateOfIssue, "dd/MM/yyyy") || "-");
+                                $('#residenceExpiryDate').text(formatDate(response.data.residenceExpiryDate, "dd/MM/yyyy") || "-");
+
+                                // ข้อมูลใบสำคัญประจำตัวคนต่างด้าว
+                                $('#alienNo').text(response.data.alienNo || "-");
+                                $('#alienIssuedAt').text(response.data.alienIssuedAt || "-");
+                                $('#alienProvince').text(response.data.alienProvince || "-");
+                                $('#alienDateOfIssue').text(formatDate(response.data.alienDateOfIssue, "dd/MM/yyyy") || "-");
+                                $('#alienExpiryDate').text(formatDate(response.data.alienExpiryDate, "dd/MM/yyyy") || "-");
+
+                                // ข้อมูลการทำงาน
+                                $('#workPermitActionType').text(response.data.workPermitActionType || "-");
+                                $('#workPermitNumber').text(response.data.workPermitNumber || "-");
+                                $('#workPermitIssuedAtProvince').text(response.data.workPermitIssuedAtProvince || "-");
+                                $('#workPermitDateOfIssue').text(formatDate(response.data.workPermitDateOfIssue, "dd/MM/yyyy") || "-");
+                                $('#workPermitExpiryDate').text(formatDate(response.data.workPermitExpiryDate, "dd/MM/yyyy") || "-");
+
+                                // ข้อมูลการเงิน
+                                $('#serviceFee').text(response.data.serviceFee || "-");
+                                $('#expiry90Days').text(formatDate(response.data.expiry90Days, "dd/MM/yyyy") || "-");
+                                $('#createdAt').text(formatDate(response.data.createdAt, "dd/MM/yyyy hh:mm:ss") || "-");
+                                $('#userCreate').text(response.data.userCreate || "-");
+
+                                // แสดง Modal
+                                $('#detailsModal').modal('show');
+                            } else {
+                                alert(response.message);
+                            }
                         },
                         error: function (xhr, textStatus, errorThrown) {
                             console.error('Error:', xhr.status, textStatus, errorThrown);
@@ -937,6 +1155,11 @@
                         return;
                     }
 
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.25', 'warning');
+                        return;
+                    }
+
                    console.log(selectedIDs);
 
                     // Send selected IDs to the server using Ajax
@@ -949,10 +1172,12 @@
                         xhrFields: {
                             responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
                         },
-                        success: function (response, status, xhr) {
-                            // เปิดไฟล์ PDF ในแท็บใหม่
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
                             const blob = new Blob([response], { type: 'application/pdf' });
                             const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
                             window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
                         },
                         error: function (xhr, textStatus, errorThrown) {
@@ -982,39 +1207,43 @@
                                 $('#showInsert').show();
                                 // Populate form fields with fetched data
                                 $('#txtServiceWorkerID').val(response.data.serviceWorkerID);
-                                $('#txtPassportNumber').val(response.data.passportNumber);
                                 $('#txtNationality').val(response.data.nationality);
                                 $('#ddlTitle').val(response.data.title).trigger('change'); // Select2 needs trigger('change')
                                 $('#txtFirstNameEN').val(response.data.firstNameEN);
                                 $('#txtLastNameEN').val(response.data.lastNameEN);
                                 $('#txtDateOfBirth').val(formatDateToInput(response.data.dateOfBirth));
-                                $('#txtWorkPermitNumber').val(response.data.workPermitNumber);
+                                $('#ddlTypeVisa').val(response.data.typeVisa).trigger('change');
                                 $('#txtVisaNumber').val(response.data.visaNumber);
-                                $('#txtVisaIssueDate').val(formatDateToInput(response.data.visaIssueDate));
+                                $('#txtVisaDateOfIssue').val(formatDateToInput(response.data.visaDateOfIssue));
                                 $('#txtVisaExpiryDate').val(formatDateToInput(response.data.visaExpiryDate));
                                 $('#txtVisaIssuedAt').val(response.data.visaIssuedAt);
+                                $('#txtPassportNumber').val(response.data.passportNumber);
+                                $('#txtPassportDateOfIssue').val(formatDateToInput(response.data.passportDateOfIssue));
                                 $('#txtPassportExpiryDate').val(formatDateToInput(response.data.passportExpiryDate));
-                                $('#txtPassportIssueDate').val(formatDateToInput(response.data.passportIssueDate));
+                                $('#txtPassportIssuedAt').val(response.data.passportIssuedAt);
                                 $('#txtExpiry90Days').val(formatDateToInput(response.data.expiry90Days));
                                 $('#txtPlaceOfBirth').val(response.data.placeOfBirth);
-                                $('#txtPassportIssuedAt').val(response.data.passportIssuedAt);
                                 $('#txtCountry').val(response.data.country);
                                 $('#txtDateOfArrival').val(formatDateToInput(response.data.dateOfArrival));
                                 $('#txtImmigrationCheckpoint').val(response.data.immigrationCheckpoint);
                                 $('#txtPermittedUntil').val(formatDateToInput(response.data.permittedUntil));
                                 $('#txtResidenceNo').val(response.data.residenceNo);
                                 $('#txtResidenceIssuedAt').val(response.data.residenceIssuedAt);
-                                $('#txtResidenceProvince').val(response.data.residenceProvince);
+                                $('#ddlResidenceProvince').val(response.data.residenceProvince).trigger('change');
                                 $('#txtResidenceDateOfIssue').val(formatDateToInput(response.data.residenceDateOfIssue));
-                                $('#txtResidenceValidUntil').val(formatDateToInput(response.data.residenceValidUntil));
+                                $('#txtResidenceExpiryDate').val(formatDateToInput(response.data.residenceExpiryDate));
                                 $('#txtAlienNo').val(response.data.alienNo);
                                 $('#txtAlienIssuedAt').val(response.data.alienIssuedAt);
-                                $('#txtAlienProvince').val(response.data.alienProvince);
+                                $('#ddlAlienProvince').val(response.data.alienProvince).trigger('change');
                                 $('#txtAlienDateOfIssue').val(formatDateToInput(response.data.alienDateOfIssue));
-                                $('#txtAlienValidUntil').val(formatDateToInput(response.data.alienValidUntil));
+                                $('#txtAlienExpiryDate').val(formatDateToInput(response.data.alienExpiryDate));
+                                $('#txtWorkPermitNumber').val(response.data.workPermitNumber);
+                                $('#ddlWorkPermitActionType').val(response.data.workPermitActionType).trigger('change');
+                                $('#ddlWorkPermitIssuedAtProvince').val(response.data.workPermitIssuedAtProvince).trigger('change');
+                                $('#txtWorkPermitDateOfIssue').val(formatDateToInput(response.data.workPermitDateOfIssue));
+                                $('#txtWorkPermitExpiryDate').val(formatDateToInput(response.data.workPermitExpiryDate));
                                 $('#txtServiceFee').val(response.data.serviceFee);
                                 $('#txtNote').val(response.data.note);
-
                                 // Toggle headers and buttons
                                 $('#createHeader').hide();
                                 $('#updateHeader').show();

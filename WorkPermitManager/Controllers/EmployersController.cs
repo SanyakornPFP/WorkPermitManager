@@ -33,7 +33,7 @@ namespace WorkPermitManager.Controllers
 
                 if (!string.IsNullOrEmpty(SearchData))
                 {
-                    employers = employers.Where(s => s.NameTh.Contains(SearchData) || s.NameEng.Contains(SearchData)).ToList();
+                    employers = employers.Where(s => ((s.NameTh != null || s.NameTh == "") && s.NameTh.Contains(SearchData)) || ((s.NameEng != null || s.NameEng == "") && s.NameEng.Contains(SearchData))).ToList();
                 }
 
                 ViewBag.SearchData = SearchData;

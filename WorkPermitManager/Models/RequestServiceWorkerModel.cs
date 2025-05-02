@@ -17,11 +17,11 @@
         public decimal? ServiceFee { get; set; }
         public string Note { get; set; }
         public string PassportNumber { get; set; }
-        public DateTime? PassportIssueDate { get; set; }
+        public DateTime? PassportDateOfIssue { get; set; }
         public DateTime? PassportExpiryDate { get; set; }
         public string VisaNumber { get; set; }
         public string TypeVisa { get; set; }
-        public DateTime? VisaIssueDate { get; set; }
+        public DateTime? VisaDateOfIssue { get; set; }
         public DateTime? VisaExpiryDate { get; set; }
         public string VisaIssuedAt { get; set; }
         public string PlaceOfBirth { get; set; }
@@ -33,15 +33,15 @@
         public string ResidenceIssuedAt { get; set; }
         public string ResidenceProvince { get; set; }
         public DateTime? ResidenceDateOfIssue { get; set; }
-        public DateTime? ResidenceValidUntil { get; set; }
+        public DateTime? ResidenceExpiryDate { get; set; }
         public string AlienNo { get; set; }
         public string AlienIssuedAt { get; set; }
         public string AlienProvince { get; set; }
         public DateTime? AlienDateOfIssue { get; set; }
-        public DateTime? AlienValidUntil { get; set; }
+        public DateTime? AlienExpiryDate { get; set; }
         public string WorkPermitNumber { get; set; }
         public string WorkPermitIssuedAt { get; set; }
-        public DateTime? WorkPermitIssueDate { get; set; }
+        public DateTime? WorkPermitDateOfIssue { get; set; }
         public DateTime? WorkPermitExpiryDate { get; set; }
         public string WorkPermitIssuedAtProvince { get; set; }
         public string WorkPermitActionType { get; set; }

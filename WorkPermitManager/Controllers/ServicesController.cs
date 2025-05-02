@@ -818,11 +818,12 @@ namespace WorkPermitManager.Controllers
                 DateOfBirth = model.DateOfBirth,
                 PlaceOfBirth = model.PlaceOfBirth,
                 PassportNumber = model.PassportNumber,
-                PassportIssueDate = model.PassportIssueDate,
+                PassportDateOfIssue = model.PassportDateOfIssue,
                 PassportExpiryDate = model.PassportExpiryDate,
                 PassportIssuedAt = model.PassportIssuedAt,
+                TypeVisa = model.TypeVisa,
                 VisaNumber = model.VisaNumber,
-                VisaIssueDate = model.VisaIssueDate,
+                VisaDateOfIssue = model.VisaDateOfIssue,
                 VisaExpiryDate = model.VisaExpiryDate,
                 VisaIssuedAt = model.VisaIssuedAt,
                 Expiry90Days = model.Expiry90Days,
@@ -835,14 +836,14 @@ namespace WorkPermitManager.Controllers
                 ResidenceIssuedAt = model.ResidenceIssuedAt,
                 ResidenceProvince = model.ResidenceProvince,
                 ResidenceDateOfIssue = model.ResidenceDateOfIssue,
-                ResidenceValidUntil = model.ResidenceValidUntil,
+                ResidenceExpiryDate = model.ResidenceExpiryDate,
                 AlienNo = model.AlienNo,
                 AlienIssuedAt = model.AlienIssuedAt,
                 AlienProvince = model.AlienProvince,
                 AlienDateOfIssue = model.AlienDateOfIssue,
-                AlienValidUntil = model.AlienValidUntil,
+                AlienExpiryDate = model.AlienExpiryDate,
                 WorkPermitNumber = model.WorkPermitNumber,
-                WorkPermitIssueDate = model.WorkPermitIssueDate,
+                WorkPermitDateOfIssue = model.WorkPermitDateOfIssue,
                 WorkPermitExpiryDate = model.WorkPermitExpiryDate,
                 WorkPermitIssuedAtProvince = model.WorkPermitIssuedAtProvince,
                 WorkPermitActionType = model.WorkPermitActionType,
@@ -954,9 +955,13 @@ namespace WorkPermitManager.Controllers
                 data.Expiry90Days,
                 data.Note,
                 data.DateOfBirth,
-                data.PassportIssueDate,
+                data.PassportDateOfIssue,
                 data.PassportExpiryDate,
+                data.TypeVisa,
                 data.VisaNumber,
+                data.VisaDateOfIssue,
+                data.VisaExpiryDate,
+                data.VisaIssuedAt,
                 data.PlaceOfBirth,
                 data.PassportIssuedAt,
                 data.Country,
@@ -967,21 +972,20 @@ namespace WorkPermitManager.Controllers
                 data.ResidenceIssuedAt,
                 data.ResidenceProvince,
                 data.ResidenceDateOfIssue,
-                data.ResidenceValidUntil,
+                data.ResidenceExpiryDate,
                 data.AlienNo,
                 data.AlienIssuedAt,
                 data.AlienProvince,
                 data.AlienDateOfIssue,
-                data.AlienValidUntil,
+                data.AlienExpiryDate,
                 data.WorkPermitNumber,
-                data.WorkPermitIssueDate,
+                data.WorkPermitDateOfIssue,
                 data.WorkPermitExpiryDate,
                 data.WorkPermitIssuedAtProvince,
                 data.WorkPermitActionType
             };
 
             // Update the fields
-            data.PassportNumber = model.PassportNumber;
             data.Nationality = model.Nationality;
             data.Title = model.Title;
             data.FirstNameEN = model.FirstNameEN;
@@ -990,11 +994,16 @@ namespace WorkPermitManager.Controllers
             data.Expiry90Days = model.Expiry90Days;
             data.Note = model.Note;
             data.DateOfBirth = model.DateOfBirth;
-            data.PassportIssueDate = model.PassportIssueDate;
+            data.PassportNumber = model.PassportNumber;
+            data.PassportDateOfIssue = model.PassportDateOfIssue;
             data.PassportExpiryDate = model.PassportExpiryDate;
-            data.VisaNumber = model.VisaNumber;
-            data.PlaceOfBirth = model.PlaceOfBirth;
             data.PassportIssuedAt = model.PassportIssuedAt;
+            data.TypeVisa = model.TypeVisa;
+            data.VisaNumber = model.VisaNumber;
+            data.VisaExpiryDate = model.VisaExpiryDate;
+            data.VisaDateOfIssue = model.VisaDateOfIssue;
+            data.VisaIssuedAt = model.VisaIssuedAt;
+            data.PlaceOfBirth = model.PlaceOfBirth;
             data.Country = model.Country;
             data.DateOfArrival = model.DateOfArrival;
             data.ImmigrationCheckpoint = model.ImmigrationCheckpoint;
@@ -1003,14 +1012,14 @@ namespace WorkPermitManager.Controllers
             data.ResidenceIssuedAt = model.ResidenceIssuedAt;
             data.ResidenceProvince = model.ResidenceProvince;
             data.ResidenceDateOfIssue = model.ResidenceDateOfIssue;
-            data.ResidenceValidUntil = model.ResidenceValidUntil;
+            data.ResidenceExpiryDate = model.ResidenceExpiryDate;
             data.AlienNo = model.AlienNo;
             data.AlienIssuedAt = model.AlienIssuedAt;
             data.AlienProvince = model.AlienProvince;
             data.AlienDateOfIssue = model.AlienDateOfIssue;
-            data.AlienValidUntil = model.AlienValidUntil;
+            data.AlienExpiryDate = model.AlienExpiryDate;
             data.WorkPermitNumber = model.WorkPermitNumber;
-            data.WorkPermitIssueDate = model.WorkPermitIssueDate;
+            data.WorkPermitDateOfIssue = model.WorkPermitDateOfIssue;
             data.WorkPermitExpiryDate = model.WorkPermitExpiryDate;
             data.WorkPermitIssuedAtProvince = model.WorkPermitIssuedAtProvince;
             data.WorkPermitActionType = model.WorkPermitActionType;
@@ -1020,10 +1029,16 @@ namespace WorkPermitManager.Controllers
             _db.ServiceWorkers.Update(data);
 
             // Update Total Sum Fee
-            var service = await _db.Services.FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
-            if (service != null)
+            var service = await _db.Services
+                .Include(s => s.ServiceWorkers) // Ensure ServiceWorkers are included in the query
+                .FirstOrDefaultAsync(s => s.ServiceID == model.ServiceID);
+
+            if (service != null && service.ServiceWorkers != null)
             {
-                service.TotalPrice = service.ServiceWorkers.Sum(worker => worker.ServiceFee ?? 0);
+                // Calculate the total sum of ServiceFee for all related ServiceWorkers
+                service.TotalPrice = service.ServiceWorkers.Where(s => s.IsActive).Sum(worker => worker.ServiceFee ?? 0);
+
+                // Update the service
                 _db.Services.Update(service);
             }
 
@@ -1043,7 +1058,6 @@ namespace WorkPermitManager.Controllers
                     OldValue = Newtonsoft.Json.JsonConvert.SerializeObject(oldValues),
                     NewValue = Newtonsoft.Json.JsonConvert.SerializeObject(new
                     {
-                        data.PassportNumber,
                         data.Nationality,
                         data.Title,
                         data.FirstNameEN,
@@ -1052,12 +1066,16 @@ namespace WorkPermitManager.Controllers
                         data.Expiry90Days,
                         data.Note,
                         data.DateOfBirth,
-                        data.PassportIssueDate,
+                        data.PassportNumber,
+                        data.PassportDateOfIssue,
                         data.PassportExpiryDate,
-                        data.WorkPermitNumber,
-                        data.VisaNumber,
-                        data.PlaceOfBirth,
                         data.PassportIssuedAt,
+                        data.TypeVisa,
+                        data.VisaNumber,
+                        data.VisaDateOfIssue,
+                        data.VisaExpiryDate,
+                        data.VisaIssuedAt,
+                        data.PlaceOfBirth,
                         data.Country,
                         data.DateOfArrival,
                         data.ImmigrationCheckpoint,
@@ -1066,12 +1084,17 @@ namespace WorkPermitManager.Controllers
                         data.ResidenceIssuedAt,
                         data.ResidenceProvince,
                         data.ResidenceDateOfIssue,
-                        data.ResidenceValidUntil,
+                        data.ResidenceExpiryDate,
                         data.AlienNo,
                         data.AlienIssuedAt,
                         data.AlienProvince,
                         data.AlienDateOfIssue,
-                        data.AlienValidUntil
+                        data.AlienExpiryDate,
+                        data.WorkPermitNumber,
+                        data.WorkPermitDateOfIssue,
+                        data.WorkPermitExpiryDate,
+                        data.WorkPermitIssuedAtProvince,
+                        data.WorkPermitActionType
                     }),
                     Description = $"Updated service worker with ID: {model.ServiceWorkerID}"
                 };
@@ -1103,7 +1126,6 @@ namespace WorkPermitManager.Controllers
                 {
                     s.ServiceWorkerID,
                     s.ServiceID,
-                    s.PassportNumber,
                     s.Nationality,
                     s.Title,
                     s.FirstNameEN,
@@ -1112,11 +1134,17 @@ namespace WorkPermitManager.Controllers
                     s.Expiry90Days,
                     s.Note,
                     s.DateOfBirth,
-                    s.PassportIssueDate,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
                     s.PassportExpiryDate,
                     s.WorkPermitNumber,
+                    s.WorkPermitActionType,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitIssuedAtProvince,
                     s.VisaNumber,
-                    s.VisaIssueDate,
+                    s.TypeVisa,
+                    s.VisaDateOfIssue,
                     s.VisaExpiryDate,
                     s.VisaIssuedAt,
                     s.PlaceOfBirth,
@@ -1129,12 +1157,12 @@ namespace WorkPermitManager.Controllers
                     s.ResidenceIssuedAt,
                     s.ResidenceProvince,
                     s.ResidenceDateOfIssue,
-                    s.ResidenceValidUntil,
+                    s.ResidenceExpiryDate,
                     s.AlienNo,
                     s.AlienIssuedAt,
                     s.AlienProvince,
                     s.AlienDateOfIssue,
-                    s.AlienValidUntil,
+                    s.AlienExpiryDate,
                     s.CreatedAt,
                     s.UpdatedAt,
                     UserCreate = s.User.FullName,
@@ -1173,15 +1201,13 @@ namespace WorkPermitManager.Controllers
                     s.Title,
                     s.FirstNameEN,
                     s.LastNameEN,
-                    s.PassportNumber,
                     s.PlaceOfBirth,
-                    s.PassportIssueDate,
-                    s.PassportExpiryDate,
-                    s.PassportIssuedAt,
                     s.Country,
-                    s.WorkPermitNumber,
                     s.Nationality,
                     s.DateOfBirth,
+                    EmployerName = s.Service.Employer.NameTh,
+                    BusinessTypeName = s.Service.Employer.BusinessTypeName,
+                    JobTypeName = s.Service.Employer.JobTypeName,
                     HouseNo = s.Service.Employer.HouseNo,
                     VillageNo = s.Service.Employer.VillageNo,
                     Soi = s.Service.Employer.Soi,
@@ -1192,7 +1218,34 @@ namespace WorkPermitManager.Controllers
                     Postcode = s.Service.Employer.Postcode,
                     Phone = s.Service.Employer.Phone,
                     Fax = s.Service.Employer.Fax,
-                    Email = s.Service.Employer.Email
+                    Email = s.Service.Employer.Email,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.TypeVisa,
+                    s.VisaNumber,
+                    s.VisaExpiryDate,
+                    s.VisaDateOfIssue,
+                    s.VisaIssuedAt,
+                    s.ImmigrationCheckpoint,
+                    s.DateOfArrival,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceExpiryDate,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienExpiryDate,
+                    s.WorkPermitActionType,
+                    s.WorkPermitNumber,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitIssuedAtProvince
 
                 })
                 .FirstOrDefault();
@@ -1217,18 +1270,17 @@ namespace WorkPermitManager.Controllers
                         var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
 
                         // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
-                        var page = pdfDocument.GetFirstPage();
-
-                        // ใช้ PdfCanvas เพื่อเขียนข้อมูลลงในไฟล์ PDF
-                        var pdfCanvas = new PdfCanvas(page);
+                        #region Page One
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
                         pdfCanvas.BeginText()
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
                             .MoveText(250, 453)
-                            .ShowText($"{worker.Title} {worker.FirstNameEN} {worker.LastNameEN}")
+                            .ShowText($"{worker.Title ?? ""} {worker.FirstNameEN ?? ""} {worker.LastNameEN ?? ""}")
                             .MoveText(-125, -32)
-                            .ShowText($"{worker.Nationality}")
+                            .ShowText($"{worker.Nationality ?? ""}")
                             .MoveText(215, 0)
-                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy")}")
+                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy") ?? ""}")
                             .MoveText(150, 0)
                             .ShowText($"{(DateTime.Now.Year - worker.DateOfBirth.Value.Year)}")
                             .MoveText(-325, -38)
@@ -1260,11 +1312,121 @@ namespace WorkPermitManager.Controllers
                             .MoveText(150, 0)
                             .ShowText($"{worker.Country ?? ""}")
                             .MoveText(-290, -32)
-                            .ShowText($"{worker.PassportIssueDate?.ToString("dd/MM/yyyy")}")
+                            .ShowText($"{worker.PassportDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
                             .MoveText(240, 0)
-                            .ShowText($"{worker.PassportExpiryDate?.ToString("dd/MM/yyyy")}")
+                            .ShowText($"{worker.PassportExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(-210, -32)
+                            .ShowText($"{worker.TypeVisa ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.VisaNumber ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.VisaIssuedAt ?? ""}")
+                            .MoveText(-320, -32)
+                            .ShowText($"{worker.VisaDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.VisaExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
                             .EndText();
-
+                        #endregion Page One
+                        #region Page Two
+                        var pageTwo = pdfDocument.GetPage(2); // ดึงหน้าที่สอง
+                        if (pageTwo != null)
+                        {
+                            var pdfCanvasPageTwo = new PdfCanvas(pageTwo);
+                            pdfCanvasPageTwo.BeginText()
+                                .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16)
+                                .MoveText(210, 770) // วางตำแหน่งข้อความในหน้าที่สอง
+                                .ShowText($"{worker.ImmigrationCheckpoint ?? ""}")
+                                .MoveText(180, -30)
+                                .ShowText($"{worker.DateOfArrival?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText(-190, -30)
+                                .ShowText($"{worker.DateOfArrival?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText(-100, -65)
+                                .ShowText($"{worker.ResidenceNo ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.ResidenceIssuedAt ?? ""}")
+                                .MoveText(130, 0)
+                                .ShowText($"{worker.ResidenceProvince ?? ""}")
+                                .MoveText(-260, -29)
+                                .ShowText($"{worker.ResidenceDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText(230, 0)
+                                .ShowText($"{worker.ResidenceExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText(-260, -64)
+                                .ShowText($"{worker.AlienNo ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.AlienIssuedAt ?? ""}")
+                                .MoveText(140, 0)
+                                .ShowText($"{worker.AlienProvince ?? ""}")
+                                .MoveText(-270, -29)
+                                .ShowText($"{worker.AlienDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText(230, 0)
+                                .ShowText($"{worker.AlienExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                                .MoveText((worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? 50 : -160), (worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? -112 : -170))
+                                .ShowText($"{worker.WorkPermitNumber ?? ""}")
+                                .MoveText(180, 0)
+                                .ShowText($"{(worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? "" : worker.WorkPermitDateOfIssue?.ToString("dd/MM/yyyy"))}")
+                                .MoveText(-210, -30)
+                                .ShowText($"{(worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? "" : worker.WorkPermitIssuedAtProvince)}")
+                                .MoveText(210, 0)
+                                .ShowText($"{(worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? "" : worker.WorkPermitExpiryDate?.ToString("dd/MM/yyyy"))}")
+                                .MoveText(-200, -102)
+                                .ShowText($"{worker.BusinessTypeName ?? ""}")
+                                .MoveText(-20, -31)
+                                .ShowText($"{worker.JobTypeName ?? ""}")
+                                .EndText();
+                        }
+                        #endregion Page Two
+                        #region Page Three
+                        var pageThree = pdfDocument.GetPage(3); // ดึงหน้าที่สอง
+                        if (pageThree != null)
+                        {
+                            var pdfCanvasPageThree = new PdfCanvas(pageThree);
+                            pdfCanvasPageThree.BeginText()
+                                .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16)
+                                .MoveText(140, 770) // วางตำแหน่งข้อความในหน้าที่สอง
+                                .ShowText($"{worker.EmployerName ?? ""}")
+                                .MoveText(-30, -30)
+                                .ShowText($"{worker.HouseNo ?? ""}")
+                                .MoveText(130, 0)
+                                .ShowText($"{worker.VillageNo ?? ""}")
+                                .MoveText(150, 0)
+                                .ShowText($"{worker.Soi ?? ""}")
+                                .MoveText(-300, -30)
+                                .ShowText($"{worker.Road ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.Subdistrict ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.District ?? ""}")
+                                .MoveText(-320, -30)
+                                .ShowText($"{worker.Province ?? ""}")
+                                .MoveText(145, 0)
+                                .ShowText($"{worker.Postcode ?? ""}")
+                                .MoveText(80, 0)
+                                .ShowText($"{worker.Phone ?? ""}")
+                                .MoveText(130, 0)
+                                .ShowText($"{worker.Fax ?? ""}")
+                                .MoveText(-255, -36)
+                                .ShowText($"{worker.HouseNo ?? ""}")
+                                .MoveText(120, 0)
+                                .ShowText($"{worker.VillageNo ?? ""}")
+                                .MoveText(120, 0)
+                                .ShowText($"{worker.Soi ?? ""}")
+                                .MoveText(-350, -30)
+                                .ShowText($"{worker.Road ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.Subdistrict ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.District ?? ""}")
+                                .MoveText(-320, -30)
+                                .ShowText($"{worker.Province ?? ""}")
+                                .MoveText(145, 0)
+                                .ShowText($"{worker.Postcode ?? ""}")
+                                .MoveText(90, 0)
+                                .ShowText($"{worker.Phone ?? ""}")
+                                .MoveText(140, 0)
+                                .ShowText($"{worker.Fax ?? ""}")
+                                .EndText();
+                        }
+                        #endregion Page Three
                         pdfDocument.Close(); // ปิด PdfDocument
                     }
 
