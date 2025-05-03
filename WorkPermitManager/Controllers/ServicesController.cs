@@ -817,6 +817,7 @@ namespace WorkPermitManager.Controllers
                 Country = model.Country,
                 DateOfBirth = model.DateOfBirth,
                 PlaceOfBirth = model.PlaceOfBirth,
+                BloodType = model.BloodType,
                 PassportNumber = model.PassportNumber,
                 PassportDateOfIssue = model.PassportDateOfIssue,
                 PassportExpiryDate = model.PassportExpiryDate,
@@ -955,6 +956,7 @@ namespace WorkPermitManager.Controllers
                 data.Expiry90Days,
                 data.Note,
                 data.DateOfBirth,
+                data.BloodType,
                 data.PassportDateOfIssue,
                 data.PassportExpiryDate,
                 data.TypeVisa,
@@ -991,6 +993,7 @@ namespace WorkPermitManager.Controllers
             data.FirstNameEN = model.FirstNameEN;
             data.LastNameEN = model.LastNameEN;
             data.ServiceFee = model.ServiceFee;
+            data.BloodType = model.BloodType;
             data.Expiry90Days = model.Expiry90Days;
             data.Note = model.Note;
             data.DateOfBirth = model.DateOfBirth;
@@ -1066,6 +1069,7 @@ namespace WorkPermitManager.Controllers
                         data.Expiry90Days,
                         data.Note,
                         data.DateOfBirth,
+                        data.BloodType,
                         data.PassportNumber,
                         data.PassportDateOfIssue,
                         data.PassportExpiryDate,
@@ -1127,6 +1131,7 @@ namespace WorkPermitManager.Controllers
                     s.ServiceWorkerID,
                     s.ServiceID,
                     s.Nationality,
+                    s.BloodType,
                     s.Title,
                     s.FirstNameEN,
                     s.LastNameEN,
@@ -1208,6 +1213,7 @@ namespace WorkPermitManager.Controllers
                     EmployerName = s.Service.Employer.NameTh,
                     BusinessTypeName = s.Service.Employer.BusinessTypeName,
                     JobTypeName = s.Service.Employer.JobTypeName,
+                    JobDiscription = s.Service.Employer.JobDiscription,
                     HouseNo = s.Service.Employer.HouseNo,
                     VillageNo = s.Service.Employer.VillageNo,
                     Soi = s.Service.Employer.Soi,
@@ -1369,9 +1375,9 @@ namespace WorkPermitManager.Controllers
                                 .MoveText(210, 0)
                                 .ShowText($"{(worker.WorkPermitActionType == "ขออนุญาตทำงาน" ? "" : worker.WorkPermitExpiryDate?.ToString("dd/MM/yyyy"))}")
                                 .MoveText(-200, -102)
-                                .ShowText($"{worker.BusinessTypeName ?? ""}")
-                                .MoveText(-20, -31)
                                 .ShowText($"{worker.JobTypeName ?? ""}")
+                                .MoveText(-20, -31)
+                                .ShowText($"{worker.JobDiscription ?? ""}")
                                 .EndText();
                         }
                         #endregion Page Two
@@ -1427,6 +1433,797 @@ namespace WorkPermitManager.Controllers
                                 .EndText();
                         }
                         #endregion Page Three
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult BT30(List<int> serviceWorkerIDs)
+        {
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.30.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .Select(s => new
+                {
+                    s.Title,
+                    s.FirstNameEN,
+                    s.LastNameEN,
+                    s.PlaceOfBirth,
+                    s.Country,
+                    s.Nationality,
+                    s.DateOfBirth,
+                    EmployerName = s.Service.Employer.NameTh,
+                    BusinessTypeName = s.Service.Employer.BusinessTypeName,
+                    JobTypeName = s.Service.Employer.JobTypeName,
+                    JobDiscription = s.Service.Employer.JobDiscription,
+                    HouseNo = s.Service.Employer.HouseNo,
+                    VillageNo = s.Service.Employer.VillageNo,
+                    Soi = s.Service.Employer.Soi,
+                    Road = s.Service.Employer.Road,
+                    Subdistrict = s.Service.Employer.SubdistrictTh,
+                    District = s.Service.Employer.DistrictTh,
+                    Province = s.Service.Employer.ProvinceTh,
+                    Postcode = s.Service.Employer.Postcode,
+                    Phone = s.Service.Employer.Phone,
+                    Fax = s.Service.Employer.Fax,
+                    Email = s.Service.Employer.Email,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.TypeVisa,
+                    s.VisaNumber,
+                    s.VisaExpiryDate,
+                    s.VisaDateOfIssue,
+                    s.VisaIssuedAt,
+                    s.ImmigrationCheckpoint,
+                    s.DateOfArrival,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceExpiryDate,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienExpiryDate,
+                    s.WorkPermitActionType,
+                    s.WorkPermitNumber,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitIssuedAtProvince
+
+                })
+                .FirstOrDefault();
+
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            try
+            {
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        #region Page One
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(250, 533)
+                            .ShowText($"{worker.Title ?? ""} {worker.FirstNameEN ?? ""} {worker.LastNameEN ?? ""}")
+                            .MoveText(-125, -30)
+                            .ShowText($"{worker.Nationality ?? ""}")
+                            .MoveText(215, 0)
+                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{(DateTime.Now.Year - worker.DateOfBirth.Value.Year)}")
+                            .MoveText(-325, -36)
+                            .ShowText($"{worker.HouseNo ?? ""}")
+                            .MoveText(120, 0)
+                            .ShowText($"{worker.VillageNo ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Soi ?? ""}")
+                            .MoveText(-340, -30)
+                            .ShowText($"{worker.Road ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.Subdistrict ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.District ?? ""}")
+                            .MoveText(-340, -30)
+                            .ShowText($"{worker.Province ?? ""}")
+                            .MoveText(175, 0)
+                            .ShowText($"{worker.Postcode ?? ""}")
+                            .MoveText(130, 0)
+                            .ShowText($"{worker.Phone ?? ""}")
+                            .MoveText(-300, -30)
+                            .ShowText($"{worker.Fax ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.Email ?? ""}")
+                            .MoveText(-250, -102)
+                            .ShowText($"{worker.PassportNumber ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.PassportIssuedAt ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Country ?? ""}")
+                            .MoveText(-290, -30)
+                            .ShowText($"{worker.PassportDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.PassportExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(-210, -30)
+                            .ShowText($"{worker.TypeVisa ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.VisaNumber ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.VisaIssuedAt ?? ""}")
+                            .MoveText(-320, -30)
+                            .ShowText($"{worker.VisaDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.VisaExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(-150, -30)
+                            .ShowText($"{worker.ImmigrationCheckpoint ?? ""}")
+                            .MoveText(180, -30)
+                            .ShowText($"{worker.DateOfArrival?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(-190, -30)
+                            .ShowText($"{worker.DateOfArrival?.ToString("dd/MM/yyyy") ?? ""}")
+                            .EndText();
+                        #endregion Page One
+                        #region Page Two
+                        var pageTwo = pdfDocument.GetPage(2); // ดึงหน้าที่สอง
+                        if (pageTwo != null)
+                        {
+                            var pdfCanvasPageTwo = new PdfCanvas(pageTwo);
+                            pdfCanvasPageTwo.BeginText()
+                                .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16)
+                                .MoveText(350, 902)
+                                .MoveText(-160, -170)
+                                .ShowText($"{worker.WorkPermitNumber ?? ""}")
+                                .MoveText(180, 0)
+                                .ShowText($"{worker.WorkPermitDateOfIssue?.ToString("dd/MM/yyyy")}")
+                                .MoveText(-210, -32)
+                                .ShowText($"{worker.WorkPermitIssuedAtProvince}")
+                                .MoveText(210, 0)
+                                .ShowText($"{worker.WorkPermitExpiryDate?.ToString("dd/MM/yyyy")}")
+                                .MoveText(-200, -85)
+                                .ShowText($"{worker.JobTypeName ?? ""}")
+                                .MoveText(-20, -30)
+                                .ShowText($"{worker.JobDiscription ?? ""}")
+                                .MoveText(-20, -32)
+                                .ShowText($"{worker.EmployerName ?? ""}")
+                                .MoveText(-30, -32)
+                                .ShowText($"{worker.HouseNo ?? ""}")
+                                .MoveText(130, 0)
+                                .ShowText($"{worker.VillageNo ?? ""}")
+                                .MoveText(150, 0)
+                                .ShowText($"{worker.Soi ?? ""}")
+                                .MoveText(-300, -32)
+                                .ShowText($"{worker.Road ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.Subdistrict ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.District ?? ""}")
+                                .MoveText(-320, -32)
+                                .ShowText($"{worker.Province ?? ""}")
+                                .MoveText(145, 0)
+                                .ShowText($"{worker.Postcode ?? ""}")
+                                .MoveText(80, 0)
+                                .ShowText($"{worker.Phone ?? ""}")
+                                .MoveText(130, 0)
+                                .ShowText($"{worker.Fax ?? ""}")
+                                .MoveText(-255, -38)
+                                .ShowText($"{worker.HouseNo ?? ""}")
+                                .MoveText(120, 0)
+                                .ShowText($"{worker.VillageNo ?? ""}")
+                                .MoveText(120, 0)
+                                .ShowText($"{worker.Soi ?? ""}")
+                                .MoveText(-350, -32)
+                                .ShowText($"{worker.Road ?? ""}")
+                                .MoveText(160, 0)
+                                .ShowText($"{worker.Subdistrict ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.District ?? ""}")
+                                .MoveText(-320, -32)
+                                .ShowText($"{worker.Province ?? ""}")
+                                .MoveText(145, 0)
+                                .ShowText($"{worker.Postcode ?? ""}")
+                                .MoveText(90, 0)
+                                .ShowText($"{worker.Phone ?? ""}")
+                                .MoveText(140, 0)
+                                .ShowText($"{worker.Fax ?? ""}")
+                                .EndText();
+                        }
+                        #endregion Page Two
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult BT33(List<int> serviceWorkerIDs)
+        {
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.33.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .Select(s => new
+                {
+                    s.Title,
+                    s.FirstNameEN,
+                    s.LastNameEN,
+                    s.PlaceOfBirth,
+                    s.Country,
+                    s.Nationality,
+                    s.DateOfBirth,
+                    EmployerName = s.Service.Employer.NameTh,
+                    BusinessTypeName = s.Service.Employer.BusinessTypeName,
+                    JobTypeName = s.Service.Employer.JobTypeName,
+                    JobDiscription = s.Service.Employer.JobDiscription,
+                    HouseNo = s.Service.Employer.HouseNo,
+                    VillageNo = s.Service.Employer.VillageNo,
+                    Soi = s.Service.Employer.Soi,
+                    Road = s.Service.Employer.Road,
+                    Subdistrict = s.Service.Employer.SubdistrictTh,
+                    District = s.Service.Employer.DistrictTh,
+                    Province = s.Service.Employer.ProvinceTh,
+                    Postcode = s.Service.Employer.Postcode,
+                    Phone = s.Service.Employer.Phone,
+                    Fax = s.Service.Employer.Fax,
+                    Email = s.Service.Employer.Email,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.TypeVisa,
+                    s.VisaNumber,
+                    s.VisaExpiryDate,
+                    s.VisaDateOfIssue,
+                    s.VisaIssuedAt,
+                    s.ImmigrationCheckpoint,
+                    s.DateOfArrival,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceExpiryDate,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienExpiryDate,
+                    s.WorkPermitActionType,
+                    s.WorkPermitNumber,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitIssuedAtProvince
+
+                })
+                .FirstOrDefault();
+
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            try
+            {
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        #region Page One
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(140, 527)
+                            .ShowText($"{worker.EmployerName ?? ""}")
+                            .MoveText(-30, -30)
+                            .ShowText($"{worker.HouseNo ?? ""}")
+                            .MoveText(130, 0)
+                            .ShowText($"{worker.VillageNo ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Soi ?? ""}")
+                            .MoveText(-300, -29)
+                            .ShowText($"{worker.Road ?? ""}")
+                            .MoveText(160, 0)
+                            .ShowText($"{worker.Subdistrict ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.District ?? ""}")
+                            .MoveText(-320, -30)
+                            .ShowText($"{worker.Province ?? ""}")
+                            .MoveText(145, 0)
+                            .ShowText($"{worker.Postcode ?? ""}")
+                            .MoveText(80, 0)
+                            .ShowText($"{worker.Phone ?? ""}")
+                            .MoveText(130, 0)
+                            .ShowText($"{worker.Fax ?? ""}")
+                            .MoveText(-200, -82)
+                            .ShowText($"{worker.Title ?? ""} {worker.FirstNameEN ?? ""} {worker.LastNameEN ?? ""}")
+                            .MoveText(-125, -30)
+                            .ShowText($"{worker.Nationality ?? ""}")
+                            .MoveText(215, 0)
+                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{(DateTime.Now.Year - worker.DateOfBirth.Value.Year)}")
+                            .MoveText(-380, -65)
+                            .ShowText($"{worker.PassportNumber ?? ""}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.PassportIssuedAt ?? ""}")
+                            .MoveText(150, 0)
+                            .ShowText($"{worker.Country ?? ""}")
+                            .MoveText(-290, -29)
+                            .ShowText($"{worker.PassportDateOfIssue?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.PassportExpiryDate?.ToString("dd/MM/yyyy") ?? ""}")
+                            .MoveText(-200, -84)
+                            .ShowText($"{worker.JobTypeName ?? ""}")
+                            .MoveText(-20, -29)
+                            .ShowText($"{worker.JobDiscription ?? ""}")
+                            .EndText();
+                        #endregion Page One
+                        #region Page Two
+                        var pageTwo = pdfDocument.GetPage(2); // ดึงหน้าที่สอง
+                        if (pageTwo != null)
+                        {
+                            var pdfCanvasPageTwo = new PdfCanvas(pageTwo);
+                            pdfCanvasPageTwo.BeginText()
+                                .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16)
+                                .MoveText(195, 762)
+                                .ShowText($"{worker.HouseNo ?? ""}")
+                                .MoveText(110, 0)
+                                .ShowText($"{worker.VillageNo ?? ""}")
+                                .MoveText(120, 0)
+                                .ShowText($"{worker.Soi ?? ""}")
+                                .MoveText(-340, -32)
+                                .ShowText($"{worker.Road ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.Subdistrict ?? ""}")
+                                .MoveText(170, 0)
+                                .ShowText($"{worker.District ?? ""}")
+                                .MoveText(-330, -32)
+                                .ShowText($"{worker.Province ?? ""}")
+                                .MoveText(150, 0)
+                                .ShowText($"{worker.Postcode ?? ""}")
+                                .MoveText(80, 0)
+                                .ShowText($"{worker.Phone ?? ""}")
+                                .MoveText(145, 0)
+                                .ShowText($"{worker.Fax ?? ""}")
+                                .EndText();
+                        }
+                        #endregion Page Two
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult BT46(List<int> serviceWorkerIDs)
+        {
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.46.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .Select(s => new
+                {
+                    s.Title,
+                    s.FirstNameEN,
+                    s.LastNameEN,
+                    s.PlaceOfBirth,
+                    s.Country,
+                    s.Nationality,
+                    s.DateOfBirth,
+                    s.BloodType,
+                    EmployerCard = s.Service.Employer.CardID,
+                    RegistrationNumber = s.Service.Employer.RegistrationNumber,
+                    RegistrationDate = s.Service.Employer.RegistrationDate,
+                    RegisteredCapital = s.Service.Employer.RegisteredCapital,
+                    EmployerName = s.Service.Employer.NameTh,
+                    BusinessTypeName = s.Service.Employer.BusinessTypeName,
+                    JobTypeName = s.Service.Employer.JobTypeName,
+                    JobDiscription = s.Service.Employer.JobDiscription,
+                    HouseNo = s.Service.Employer.HouseNo,
+                    VillageNo = s.Service.Employer.VillageNo,
+                    Soi = s.Service.Employer.Soi,
+                    Road = s.Service.Employer.Road,
+                    Subdistrict = s.Service.Employer.SubdistrictTh,
+                    District = s.Service.Employer.DistrictTh,
+                    Province = s.Service.Employer.ProvinceTh,
+                    Postcode = s.Service.Employer.Postcode,
+                    Phone = s.Service.Employer.Phone,
+                    Fax = s.Service.Employer.Fax,
+                    Email = s.Service.Employer.Email,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.TypeVisa,
+                    s.VisaNumber,
+                    s.VisaExpiryDate,
+                    s.VisaDateOfIssue,
+                    s.VisaIssuedAt,
+                    s.ImmigrationCheckpoint,
+                    s.DateOfArrival,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceExpiryDate,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienExpiryDate,
+                    s.WorkPermitActionType,
+                    s.WorkPermitNumber,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitIssuedAtProvince
+
+                })
+                .FirstOrDefault();
+
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            try
+            {
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        #region Page One
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(210, 749)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationDate)}")
+                            .MoveText(100, 10)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationNumber)}")
+                            .MoveText(160, -10)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : ((int)worker.RegisteredCapital).ToString("#,##0"))}")
+                            .MoveText(-200, -55)
+                            .ShowText($"{(worker.RegistrationNumber == null ? worker.EmployerCard : "")}")
+                            .MoveText(0, -28)
+                            .ShowText($"{worker.EmployerName ?? ""}")
+                            .MoveText(-80, -15)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + "     ซอย " + (worker.Soi == "" ? "-" : worker.Soi) + "      ถนน " + (worker.Road == "" ? "-" : worker.Road)}")
+                            .MoveText(-120, -13)
+                            .ShowText($"{"ตำบล" + worker.Subdistrict + "    อำเภอ" + worker.District + "    จังหวัด" + worker.Province + "    รหัสไปรษณีย์ " + worker.Postcode}")
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(120, -15)
+                            .ShowText($"{worker.BusinessTypeName ?? ""}")
+                            .MoveText(150, -208)
+                            .ShowText($"{(worker.Title ?? "") + (worker.FirstNameEN ?? "") + " " + (worker.LastNameEN ?? "")}")
+                            .MoveText(-180, -16)
+                            .ShowText($"{worker.Nationality ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.BloodType ?? ""}")
+                            .MoveText(-190, -16)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
+                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province + " รหัสไปรษณีย์ " + worker.Postcode}")
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(-30, -15)
+                            .ShowText($"{worker.JobTypeName ?? ""}")
+                            .MoveText(0, -15)
+                            .ShowText($"{worker.JobDiscription ?? ""}")
+                            .MoveText(110, -29)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
+                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province}")
+                            .EndText();
+                        #endregion Page One
+                        pdfDocument.Close(); // ปิด PdfDocument
+                    }
+
+                    // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                // ส่งไฟล์ PDF ที่แก้ไขแล้วกลับไปยังผู้ใช้เพื่อดาวน์โหลด
+                string fileName = "UpdatedDocument.pdf";
+                return File(pdfBytes, "application/pdf", fileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดเมื่อไม่พบไฟล์
+                Console.WriteLine($"File Not Found Exception: {ex.Message}");
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+            catch (iText.Kernel.Exceptions.PdfException ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดที่เกี่ยวข้องกับ PDF
+                Console.WriteLine($"PDF Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดในการจัดการ PDF", error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // บันทึกข้อความข้อผิดพลาดทั่วไป
+                Console.WriteLine($"General Exception: {ex.Message}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult BT47(List<int> serviceWorkerIDs)
+        {
+            // ระบุเส้นทางไฟล์ PDF ที่ต้องการแก้ไข
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "บต.47.pdf");
+
+            // ตรวจสอบว่ามีไฟล์อยู่หรือไม่
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
+            // ดึงข้อมูลพนักงานตาม ID ที่เลือก
+            var worker = _db.ServiceWorkers
+                .Where(sw => serviceWorkerIDs.Contains(sw.ServiceWorkerID))
+                .Select(s => new
+                {
+                    s.Title,
+                    s.FirstNameEN,
+                    s.LastNameEN,
+                    s.PlaceOfBirth,
+                    s.Country,
+                    s.Nationality,
+                    s.DateOfBirth,
+                    s.BloodType,
+                    EmployerCard = s.Service.Employer.CardID,
+                    RegistrationNumber = s.Service.Employer.RegistrationNumber,
+                    RegistrationDate = s.Service.Employer.RegistrationDate,
+                    RegisteredCapital = s.Service.Employer.RegisteredCapital,
+                    EmployerName = s.Service.Employer.NameTh,
+                    BusinessTypeName = s.Service.Employer.BusinessTypeName,
+                    JobTypeName = s.Service.Employer.JobTypeName,
+                    JobDiscription = s.Service.Employer.JobDiscription,
+                    HouseNo = s.Service.Employer.HouseNo,
+                    VillageNo = s.Service.Employer.VillageNo,
+                    Soi = s.Service.Employer.Soi,
+                    Road = s.Service.Employer.Road,
+                    Subdistrict = s.Service.Employer.SubdistrictTh,
+                    District = s.Service.Employer.DistrictTh,
+                    Province = s.Service.Employer.ProvinceTh,
+                    Postcode = s.Service.Employer.Postcode,
+                    Phone = s.Service.Employer.Phone,
+                    Fax = s.Service.Employer.Fax,
+                    Email = s.Service.Employer.Email,
+                    s.PassportNumber,
+                    s.PassportDateOfIssue,
+                    s.PassportExpiryDate,
+                    s.PassportIssuedAt,
+                    s.TypeVisa,
+                    s.VisaNumber,
+                    s.VisaExpiryDate,
+                    s.VisaDateOfIssue,
+                    s.VisaIssuedAt,
+                    s.ImmigrationCheckpoint,
+                    s.DateOfArrival,
+                    s.PermittedUntil,
+                    s.ResidenceNo,
+                    s.ResidenceIssuedAt,
+                    s.ResidenceProvince,
+                    s.ResidenceDateOfIssue,
+                    s.ResidenceExpiryDate,
+                    s.AlienNo,
+                    s.AlienIssuedAt,
+                    s.AlienProvince,
+                    s.AlienDateOfIssue,
+                    s.AlienExpiryDate,
+                    s.WorkPermitActionType,
+                    s.WorkPermitNumber,
+                    s.WorkPermitDateOfIssue,
+                    s.WorkPermitExpiryDate,
+                    s.WorkPermitIssuedAtProvince
+
+                })
+                .FirstOrDefault();
+
+            // ตรวจสอบว่ามีพนักงานที่ตรงกับ ID ที่เลือกหรือไม่
+            if (worker == null)
+            {
+                return Json(new { success = false, message = "ไม่พบข้อมูล ServiceWorkers ที่เลือก" });
+            }
+
+            try
+            {
+                // ขั้นตอนการสร้าง MemoryStream สำหรับผลลัพธ์
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    // เปิดไฟล์ PDF ที่มีอยู่ด้วย PdfReader และสร้าง PdfWriter สำหรับ MemoryStream
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
+                        #region Page One
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(210, 749)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationDate)}")
+                            .MoveText(100, 10)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationNumber)}")
+                            .MoveText(160, -10)
+                            .ShowText($"{(worker.RegistrationNumber == null ? "" : ((int)worker.RegisteredCapital).ToString("#,##0"))}")
+                            .MoveText(-200, -55)
+                            .ShowText($"{(worker.RegistrationNumber == null ? worker.EmployerCard : "")}")
+                            .MoveText(0, -28)
+                            .ShowText($"{worker.EmployerName ?? ""}")
+                            .MoveText(-80, -15)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + "     ซอย " + (worker.Soi == "" ? "-" : worker.Soi) + "      ถนน " + (worker.Road == "" ? "-" : worker.Road)}")
+                            .MoveText(-120, -13)
+                            .ShowText($"{"ตำบล" + worker.Subdistrict + "    อำเภอ" + worker.District + "    จังหวัด" + worker.Province + "    รหัสไปรษณีย์ " + worker.Postcode}")
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(120, -15)
+                            .ShowText($"{worker.BusinessTypeName ?? ""}")
+                            .MoveText(150, -208)
+                            .ShowText($"{(worker.Title ?? "") + (worker.FirstNameEN ?? "") + " " + (worker.LastNameEN ?? "")}")
+                            .MoveText(-180, -16)
+                            .ShowText($"{worker.Nationality ?? ""}")
+                            .MoveText(240, 0)
+                            .ShowText($"{worker.BloodType ?? ""}")
+                            .MoveText(-190, -16)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
+                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province + " รหัสไปรษณีย์ " + worker.Postcode}")
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
+                            .MoveText(-30, -15)
+                            .ShowText($"{worker.JobTypeName ?? ""}")
+                            .MoveText(0, -15)
+                            .ShowText($"{worker.JobDiscription ?? ""}")
+                            .MoveText(110, -29)
+                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
+                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
+                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province}")
+                            .EndText();
+                        #endregion Page One
                         pdfDocument.Close(); // ปิด PdfDocument
                     }
 

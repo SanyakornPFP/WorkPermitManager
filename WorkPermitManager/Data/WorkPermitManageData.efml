@@ -679,6 +679,9 @@
     <property name="Note" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="78f51549-a287-43ae-8322-557129febac3">
       <column name="Note" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="BloodType" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="7a6ce162-1ab2-4f94-ab80-3c2029c9e78d">
+      <column name="BloodType" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="DateOfBirth" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6b32dfeb-27eb-4e70-9ed2-977b68eaa0c4">
       <column name="DateOfBirth" not-null="False" sql-type="date" p1:unicode="False" />
     </property>

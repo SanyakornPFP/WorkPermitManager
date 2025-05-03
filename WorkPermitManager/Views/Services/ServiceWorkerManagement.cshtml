@@ -157,7 +157,7 @@
                                 <input class="form-control" name="ServiceID" id="txtServiceID" type="hidden" value="@Model.ServiceID">
                                 <div class="col-xxl-4 col-sm-4">
                                     <label class="col-form-label" for="Title">คำนำหน้า</label>
-                                    <select name="Title" id="ddlTitle" class="form-control select2-In">
+                                    <select name="Title" id="ddlTitle" class="form-control ">
                                         <option value="Mr.">Mr</option>
                                         <option value="Ms.">Ms</option>
                                         <option value="Mrs.">Mrs</option>
@@ -174,12 +174,22 @@
                                     <label class="col-form-label" for="LastNameEN">นามสกุล (ภาษาอังกฤษ)</label>
                                     <input type="text" name="LastNameEN" id="txtLastNameEN" class="form-control" />
                                 </div>
-
-                                <div class="col-xxl-6 col-sm-6">
+                                <div class="col-xxl-4 col-sm-4">
+                                    <label class="col-form-label" for="BloodType">กรุ๊ปเลือด</label>
+                                    <select name="BloodType" id="ddlBloodType" class="form-control select2-In">
+                                        <option value="">เลือกกรุ๊ปเลือด</option>
+                                        <option value="None">ไม่ระบุ</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="AB">AB</option>
+                                        <option value="O">O</option>
+                                    </select>
+                                </div>
+                                <div class="col-xxl-4 col-sm-4">
                                     <label class="col-form-label" for="DateOfBirth">วันเกิด</label>
                                     <input type="date" name="DateOfBirth" id="txtDateOfBirth" class="form-control" />
                                 </div>
-                                <div class="col-xxl-6 col-sm-6">
+                                <div class="col-xxl-4 col-sm-4">
                                     <label class="col-form-label" for="PlaceOfBirth">สถานที่เกิด</label>
                                     <input type="text" name="PlaceOfBirth" id="txtPlaceOfBirth" class="form-control" />
                                 </div>
@@ -616,10 +626,13 @@
                 </div>
                 <div class="card-body">
                     <div class="btn-group justify-content-end">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสาร </button>
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสารทำงาน </button>
                         <ul class="dropdown-menu dropdown-block">
                             <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.25</a></li>
-                            <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.30 </a></li>
+                            <li><a class="dropdown-item bt30" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.30 </a></li>
+                            <li><a class="dropdown-item bt33" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.33 </a></li>
+                            <li><a class="dropdown-item bt46" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.46 </a></li>
+                            <li><a class="dropdown-item bt47" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.47 </a></li>
                         </ul>
                     </div>
                     <div class="table-responsive theme-scrollbar mt-2">
@@ -737,6 +750,10 @@
                                 <tr>
                                     <th class="bg-light">สถานที่เกิด</th>
                                     <td><span id="placeOfBirth"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">กรุ๊ปเลือด</th>
+                                    <td><span id="bloodType"></span></td>
                                 </tr>
                                 <tr>
                                     <th class="bg-light">สัญชาติ</th>
@@ -956,13 +973,11 @@
             var createOn = document.getElementById('createOn');
             var createOff = document.getElementById('createOff');
 
-            // Event listener for "เพิ่ม" button
             createOn.addEventListener('click', function (e) {
                 e.preventDefault();
                 showInsert.style.display = 'block';  // Show the form
             });
 
-            // Event listener for "ยกเลิกเพิ่ม" button
             createOff.addEventListener('click', function (e) {
                 e.preventDefault();
                 showInsert.style.display = 'none';  // Hide the form
@@ -993,6 +1008,7 @@
                                 $('#title').text(response.data.title || "-");
                                 $('#fullName').text((response.data.firstNameEN + " " + response.data.lastNameEN) || "-");
                                 $('#dateOfBirth').text(formatDate(response.data.dateOfBirth, "dd/MM/yyyy") || "-");
+                                $('#bloodType').text(response.data.bloodType || "-");
                                 $('#placeOfBirth').text(response.data.placeOfBirth || "-");
                                 $('#nationality').text(response.data.nationality || "-");
                                 $('#country').text(response.data.country || "-");
@@ -1103,91 +1119,6 @@
                 });
             });
 
-                    // ฟังก์ชันสำหรับแปลงวันที่
-            function formatDate(dateString, format) {
-                if (!dateString) return "-"; // หากไม่มีข้อมูล ให้แสดง "-"
-
-                const date = new Date(dateString);
-                if (isNaN(date.getTime())) return "-"; // ตรวจสอบว่าเป็นวันที่ที่ถูกต้องหรือไม่
-
-                const day = ("0" + date.getDate()).slice(-2); // เพิ่มเลข 0 ข้างหน้า หากเป็นเลขหลักเดียว
-                const month = ("0" + (date.getMonth() + 1)).slice(-2); // เดือนเริ่มจาก 0 จึงต้อง +1
-                const year = date.getFullYear();
-                const hours = ("0" + date.getHours()).slice(-2);
-                const minutes = ("0" + date.getMinutes()).slice(-2);
-                const seconds = ("0" + date.getSeconds()).slice(-2);
-
-                if (format === "dd/MM/yyyy") {
-                    return `${day}/${month}/${year}`;
-                } else if (format === "dd/MM/yyyy hh:mm:ss") {
-                    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-                }
-
-                return dateString; // หากไม่ตรงกับรูปแบบที่กำหนด ให้คืนค่าตามเดิม
-            }
-
-            document.getElementById('selectAll').addEventListener('change', function () {
-            const isChecked = this.checked;
-                document.querySelectorAll('.selectRow').forEach(function (checkbox) {
-                    checkbox.checked = isChecked;
-                });
-            });
-
-            // Handle individual row selection
-            document.querySelectorAll('.selectRow').forEach(function (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    const allChecked = document.querySelectorAll('.selectRow:checked').length === document.querySelectorAll('.selectRow').length;
-                    document.getElementById('selectAll').checked = allChecked;
-                });
-            });
-
-            document.querySelectorAll('.bt25').forEach(function (button) {
-                button.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    // Get the selected ServiceWorker IDs
-                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
-                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
-                    });
-
-                    if (selectedIDs.length === 0) {
-                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
-                        return;
-                    }
-
-                    if (selectedIDs.length > 1) {
-                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.25', 'warning');
-                        return;
-                    }
-
-                   console.log(selectedIDs);
-
-                    // Send selected IDs to the server using Ajax
-                    $.ajax({
-                        url: '@Url.Action("BT25", "Services")',
-                        type: 'POST', // Method POST
-                        data:  {
-                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
-                        },
-                        xhrFields: {
-                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
-                        },
-                       success: function (response, status, xhr) {
-                            // สร้าง Blob สำหรับไฟล์ PDF
-                            const blob = new Blob([response], { type: 'application/pdf' });
-                            const fileURL = window.URL.createObjectURL(blob);
-
-                            // เปิดไฟล์ PDF ในแท็บใหม่
-                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            console.error('Error:', xhr.status, textStatus, errorThrown);
-                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
-                        }
-                    });
-                });
-            });
-
             document.querySelectorAll('.editBtn').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1212,6 +1143,7 @@
                                 $('#txtFirstNameEN').val(response.data.firstNameEN);
                                 $('#txtLastNameEN').val(response.data.lastNameEN);
                                 $('#txtDateOfBirth').val(formatDateToInput(response.data.dateOfBirth));
+                                $('#ddlBloodType').val(response.data.bloodType).trigger('change');
                                 $('#ddlTypeVisa').val(response.data.typeVisa).trigger('change');
                                 $('#txtVisaNumber').val(response.data.visaNumber);
                                 $('#txtVisaDateOfIssue').val(formatDateToInput(response.data.visaDateOfIssue));
@@ -1259,17 +1191,6 @@
                 });
             });
 
-            function formatDateToInput(dateString) {
-                if (!dateString) return ""; // หากไม่มีข้อมูล ให้คืนค่าว่าง
-                const date = new Date(dateString);
-                if (isNaN(date.getTime())) return ""; // ตรวจสอบว่าค่าเป็นวันที่ที่ถูกต้องหรือไม่
-                const year = date.getFullYear();
-                const month = ("0" + (date.getMonth() + 1)).slice(-2); // เพิ่มเลข 0 ข้างหน้า ถ้าเป็นเลขหลักเดียว
-                const day = ("0" + date.getDate()).slice(-2);
-                return `${year}-${month}-${day}`; // รูปแบบ YYYY-MM-DD
-            }
-
-            // ลบข้อมูลพนักงาน
             document.querySelectorAll('.deleteBtn').forEach(function (button) {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1360,6 +1281,52 @@
                 });
             });
 
+            function formatDateToInput(dateString) {
+                if (!dateString) return ""; // หากไม่มีข้อมูล ให้คืนค่าว่าง
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return ""; // ตรวจสอบว่าค่าเป็นวันที่ที่ถูกต้องหรือไม่
+                const year = date.getFullYear();
+                const month = ("0" + (date.getMonth() + 1)).slice(-2); // เพิ่มเลข 0 ข้างหน้า ถ้าเป็นเลขหลักเดียว
+                const day = ("0" + date.getDate()).slice(-2);
+                return `${year}-${month}-${day}`; // รูปแบบ YYYY-MM-DD
+            }
+
+            function formatDate(dateString, format) {
+                if (!dateString) return "-"; // หากไม่มีข้อมูล ให้แสดง "-"
+
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return "-"; // ตรวจสอบว่าเป็นวันที่ที่ถูกต้องหรือไม่
+
+                const day = ("0" + date.getDate()).slice(-2); // เพิ่มเลข 0 ข้างหน้า หากเป็นเลขหลักเดียว
+                const month = ("0" + (date.getMonth() + 1)).slice(-2); // เดือนเริ่มจาก 0 จึงต้อง +1
+                const year = date.getFullYear();
+                const hours = ("0" + date.getHours()).slice(-2);
+                const minutes = ("0" + date.getMinutes()).slice(-2);
+                const seconds = ("0" + date.getSeconds()).slice(-2);
+
+                if (format === "dd/MM/yyyy") {
+                    return `${day}/${month}/${year}`;
+                } else if (format === "dd/MM/yyyy hh:mm:ss") {
+                    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+                }
+
+                return dateString; // หากไม่ตรงกับรูปแบบที่กำหนด ให้คืนค่าตามเดิม
+            }
+
+            document.getElementById('selectAll').addEventListener('change', function () {
+            const isChecked = this.checked;
+                document.querySelectorAll('.selectRow').forEach(function (checkbox) {
+                    checkbox.checked = isChecked;
+                });
+            });
+
+            document.querySelectorAll('.selectRow').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    const allChecked = document.querySelectorAll('.selectRow:checked').length === document.querySelectorAll('.selectRow').length;
+                    document.getElementById('selectAll').checked = allChecked;
+                });
+            });
+
             document.getElementById('toggleDetails').addEventListener('click', function () {
                 var detailsSection = document.getElementById('detailsSection');
                 if (detailsSection.style.display === 'none') {
@@ -1397,6 +1364,241 @@
                         console.log('An unexpected error occurred: ', xhr.status);
                 }
             }
+
+            document.querySelectorAll('.bt25').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.25', 'warning');
+                        return;
+                    }
+
+                   console.log(selectedIDs);
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT25", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt30').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.30', 'warning');
+                        return;
+                    }
+
+                   console.log(selectedIDs);
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT30", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt33').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.33', 'warning');
+                        return;
+                    }
+
+                   console.log(selectedIDs);
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT33", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt46').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.46', 'warning');
+                        return;
+                    }
+
+                   console.log(selectedIDs);
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT46", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt47').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.46', 'warning');
+                        return;
+                    }
+
+                   console.log(selectedIDs);
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT47", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
         });
     </script>
 }

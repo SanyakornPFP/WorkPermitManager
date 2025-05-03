@@ -13,6 +13,7 @@
         public string Country { get; set; }
         public string Nationality { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        public string BloodType { get; set; }
         public DateTime? Expiry90Days { get; set; }
         public decimal? ServiceFee { get; set; }
         public string Note { get; set; }
