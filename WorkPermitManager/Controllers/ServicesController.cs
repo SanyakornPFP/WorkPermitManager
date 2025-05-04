@@ -2178,53 +2178,25 @@ namespace WorkPermitManager.Controllers
                     using (var pdfWriter = new PdfWriter(memoryStream))
                     {
                         var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
-
                         // เข้าถึงหน้าที่หนึ่งของไฟล์ PDF
                         #region Page One
                         var page_one = pdfDocument.GetFirstPage();
                         var pdfCanvas = new PdfCanvas(page_one);
                         pdfCanvas.BeginText()
                             .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
-                            .MoveText(210, 749)
-                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationDate)}")
-                            .MoveText(100, 10)
-                            .ShowText($"{(worker.RegistrationNumber == null ? "" : worker.RegistrationNumber)}")
-                            .MoveText(160, -10)
-                            .ShowText($"{(worker.RegistrationNumber == null ? "" : ((int)worker.RegisteredCapital).ToString("#,##0"))}")
-                            .MoveText(-200, -55)
-                            .ShowText($"{(worker.RegistrationNumber == null ? worker.EmployerCard : "")}")
-                            .MoveText(0, -28)
-                            .ShowText($"{worker.EmployerName ?? ""}")
-                            .MoveText(-80, -15)
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
-                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + "     ซอย " + (worker.Soi == "" ? "-" : worker.Soi) + "      ถนน " + (worker.Road == "" ? "-" : worker.Road)}")
-                            .MoveText(-120, -13)
-                            .ShowText($"{"ตำบล" + worker.Subdistrict + "    อำเภอ" + worker.District + "    จังหวัด" + worker.Province + "    รหัสไปรษณีย์ " + worker.Postcode}")
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
-                            .MoveText(120, -15)
-                            .ShowText($"{worker.BusinessTypeName ?? ""}")
-                            .MoveText(150, -208)
-                            .ShowText($"{(worker.Title ?? "") + (worker.FirstNameEN ?? "") + " " + (worker.LastNameEN ?? "")}")
-                            .MoveText(-180, -16)
-                            .ShowText($"{worker.Nationality ?? ""}")
-                            .MoveText(240, 0)
-                            .ShowText($"{worker.BloodType ?? ""}")
-                            .MoveText(-190, -16)
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
-                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
-                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province + " รหัสไปรษณีย์ " + worker.Postcode}")
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 16) // ระบุฟอนต์ "Thai Sarabun"
-                            .MoveText(-30, -15)
-                            .ShowText($"{worker.JobTypeName ?? ""}")
-                            .MoveText(0, -15)
-                            .ShowText($"{worker.JobDiscription ?? ""}")
-                            .MoveText(110, -29)
-                            .SetFontAndSize(PdfFontFactory.CreateFont(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"), PdfEncodings.IDENTITY_H), 14) // ระบุฟอนต์ "Thai Sarabun"
-                            .ShowText($"{"บ้านเลขที่ " + worker.HouseNo + " หมู่ที่ " + worker.VillageNo + (worker.Soi == "" ? "" : " ซอย " + worker.Soi) + (worker.Road == "" ? "" : " ถนน " + worker.Road)}")
-                            .ShowText($"{" ตำบล" + worker.Subdistrict + " อำเภอ" + worker.District + " จังหวัด" + worker.Province}")
+                            .MoveText(190, 638)
+                            .ShowText($"{(worker.Title ?? "") + worker.FirstNameEN}")
+                            .MoveText(170, 0)
+                            .ShowText($"{worker.LastNameEN}")
+                            .MoveText(-220, -27)
+                            .ShowText($"{worker.Nationality}")
+                            .MoveText(110, 0)
+                            .ShowText($"{(int)DateTime.Now.Year - worker.DateOfBirth.Value.Year}")
+                            .MoveText(130, 0)
+                            .ShowText($"{worker.DateOfBirth?.ToString("dd/MM/yyyy")}")
                             .EndText();
                         #endregion Page One
-                        pdfDocument.Close(); // ปิด PdfDocument
+                        pdfDocument.Close();
                     }
 
                     // คัดลอกข้อมูลใน MemoryStream ไปยัง byte array
