@@ -195,7 +195,15 @@
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
                                     <label class="col-form-label" for="Nationality">สัญชาติ</label>
-                                    <input type="text" name="Nationality" id="txtNationality" class="form-control" />
+                                    <select name="Nationality" id="ddlNationality" class="form-control select2-In">
+                                        <option value="">เลือกสัญชาติ</option>
+                                        <option value="ไทย">ไทย</option>
+                                        <option value="เมียนมา">เมียนมา</option>
+                                        <option value="กัมพูชา">กัมพูชา</option>
+                                        <option value="ลาว">ลาว</option>
+                                        <option value="เวียดนาม">เวียดนาม</option>
+                                        <!-- เพิ่มตัวเลือกอื่น ๆ ตามต้องการ -->
+                                    </select>
                                 </div>
                                 <div class="col-xxl-6 col-sm-6">
                                     <label class="col-form-label" for="Country">ประเทศ</label>
@@ -626,13 +634,23 @@
                 </div>
                 <div class="card-body">
                     <div class="btn-group justify-content-end">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสารทำงาน </button>
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสารขอทำงาน </button>
                         <ul class="dropdown-menu dropdown-block">
                             <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.25</a></li>
                             <li><a class="dropdown-item bt30" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.30 </a></li>
                             <li><a class="dropdown-item bt33" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.33 </a></li>
                             <li><a class="dropdown-item bt46" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.46 </a></li>
                             <li><a class="dropdown-item bt47" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.47 </a></li>
+                            <li><a class="dropdown-item bt50" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.50 </a></li>
+                            <li><a class="dropdown-item bt52" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.52 </a></li>
+                            <li><a class="dropdown-item bt53" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.53 </a></li>
+                            <li><a class="dropdown-item bt55" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.55 </a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group justify-content-end">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-print"></i> พิมพ์เอกสารมอบอำนาจ </button>
+                        <ul class="dropdown-menu dropdown-block">
+                            <li><a class="dropdown-item bt25" href="#" style="font-size: 0.9rem"><i class="fa fa-file-text"></i> บต.25</a></li>
                         </ul>
                     </div>
                     <div class="table-responsive theme-scrollbar mt-2">
@@ -1138,7 +1156,7 @@
                                 $('#showInsert').show();
                                 // Populate form fields with fetched data
                                 $('#txtServiceWorkerID').val(response.data.serviceWorkerID);
-                                $('#txtNationality').val(response.data.nationality);
+                                $('#ddlNationality').val(response.data.nationality).trigger('change');
                                 $('#ddlTitle').val(response.data.title).trigger('change'); // Select2 needs trigger('change')
                                 $('#txtFirstNameEN').val(response.data.firstNameEN);
                                 $('#txtLastNameEN').val(response.data.lastNameEN);
@@ -1575,6 +1593,181 @@
                     // Send selected IDs to the server using Ajax
                     $.ajax({
                         url: '@Url.Action("BT47", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt50').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.50', 'warning');
+                        return;
+                    }
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT50", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt52').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT52", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt53').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 4) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่า 4 รายการก่อนพิมพ์ บต.53', 'warning');
+                        return;
+                    }
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT53", "Services")',
+                        type: 'POST', // Method POST
+                        data:  {
+                            serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก
+                        },
+                        xhrFields: {
+                            responseType: 'blob' // ตั้งค่า response เป็นชนิด blob เพื่อรองรับไฟล์ PDF
+                        },
+                       success: function (response, status, xhr) {
+                            // สร้าง Blob สำหรับไฟล์ PDF
+                            const blob = new Blob([response], { type: 'application/pdf' });
+                            const fileURL = window.URL.createObjectURL(blob);
+
+                            // เปิดไฟล์ PDF ในแท็บใหม่
+                            window.open(fileURL, '_blank'); // เปิดในแท็บใหม่
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.bt55').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the selected ServiceWorker IDs
+                    const selectedIDs = Array.from(document.querySelectorAll('.selectRow:checked')).map(function (checkbox) {
+                        return parseInt(checkbox.getAttribute('data-ServiceWorkerID')); // Ensure it's an integer
+                    });
+
+                    if (selectedIDs.length === 0) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างน้อยหนึ่งรายการก่อนพิมพ์', 'warning');
+                        return;
+                    }
+
+                    if (selectedIDs.length > 1) {
+                        Swal.fire('กรุณาเลือกข้อมูล', 'กรุณาเลือกอย่างไม่มากกว่าหนึ่งรายการก่อนพิมพ์ บต.55', 'warning');
+                        return;
+                    }
+
+                    // Send selected IDs to the server using Ajax
+                    $.ajax({
+                        url: '@Url.Action("BT55", "Services")',
                         type: 'POST', // Method POST
                         data:  {
                             serviceWorkerIDs: selectedIDs // รายการ ID ที่เลือก

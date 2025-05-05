@@ -1,20 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\workpermitmanager\\workpermitmanager\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\workpermitmanager\\workpermitmanager\\views\\services\\serviceworkermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\services\\serviceworkermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\workpermitmanager\\workpermitmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,15 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -38,46 +21,15 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAADVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-03T15:22:08.999Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ServiceWorkerManagement.cshtml",
-              "DocumentMoniker": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServiceWorkerManagement.cshtml",
-              "RelativeDocumentMoniker": "Views\\Services\\ServiceWorkerManagement.cshtml",
-              "ToolTip": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\Views\\Services\\ServiceWorkerManagement.cshtml",
-              "RelativeToolTip": "Views\\Services\\ServiceWorkerManagement.cshtml",
-              "ViewState": "AgIAAA4GAAAAAAAAAAAAACIGAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-03T08:37:33.942Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ServicesController.cs",
-              "DocumentMoniker": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\Controllers\\ServicesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ServicesController.cs",
-              "ToolTip": "D:\\Project\\WorkPermitManager\\WorkPermitManager\\Controllers\\ServicesController.cs",
-              "RelativeToolTip": "Controllers\\ServicesController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAYwJMIAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T03:21:22.625Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
