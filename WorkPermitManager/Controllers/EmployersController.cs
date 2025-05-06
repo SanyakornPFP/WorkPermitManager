@@ -1399,20 +1399,18 @@ namespace WorkPermitManager.Controllers
                 new ReportParameter("AttorneyCardID", Model.AttorneyCardID),
                 new ReportParameter("AttorneyLocation", Model.AttorneyLocation),
                 new ReportParameter("Witness1Name", Model.Witness1Name),
-                new ReportParameter("Witness2Name", Model.Witness2Name),
+                new ReportParameter("Witness2Name", Model.Witness2Name)
             };
 
             report.SetParameters(parameters);
 
             var pdf = report.Render(format: renderFormat);
 
-            var contentDisposition = new System.Net.Mime.ContentDisposition
-            {
-                FileName = "EM00" + EmployerID + ".pdf",
-                Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
-            };
+            // แปลงไฟล์ PDF เป็น Base64
+            var base64Pdf = Convert.ToBase64String(pdf);
 
-            return new FileContentResult(pdf, mimetype);
+            return Json(new { success = true, file = base64Pdf });
+
         }
 
         private List<string> GetUserPermissions(int userId)

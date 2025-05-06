@@ -149,8 +149,15 @@
                     data: { EmployerID: employerID },
                     success: function(response) {
                         if (response.success) {
-                            var blob = new Blob([response], { type: 'application/pdf' });
-                            var url = window.URL.createObjectURL(blob);
+                           // แปลง Base64 เป็น Blob และเปิดในแท็บใหม่
+                            var byteCharacters = atob(response.file);
+                            var byteNumbers = new Array(byteCharacters.length);
+                            for (var i = 0; i < byteCharacters.length; i++) {
+                                byteNumbers[i] = byteCharacters.charCodeAt(i);
+                            }
+                            var byteArray = new Uint8Array(byteNumbers);
+                            var blob = new Blob([byteArray], { type: 'application/pdf' });
+                            var url = URL.createObjectURL(blob);
                             window.open(url, '_blank');
                         } else {
                             Swal.fire({

@@ -25,9 +25,14 @@
                         <div class="col-12">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="f-w-600 mb-0"><i class="fa fa-briefcase"></i> ข้อมูลลูกค้า</h5>
-                                <button id="toggleDetails" class="btn btn-light btn-sm">
-                                    <i class="fa fa-eye text-dark"></i> แสดงรายละเอียด
-                                </button>
+                                <div>
+                                    <a class="btn btn-success btn-sm reportPowerOfAttorney" data-employerid="@Model.EmployerID" href="#">
+                                        <i class="fa fa-file-pdf-o text-white"></i> พิมพ์ใบมอบอำนาจนายจ้าง
+                                    </a>
+                                    <button id="toggleDetails" class="btn btn-light btn-sm">
+                                        <i class="fa fa-eye text-dark"></i> แสดงรายละเอียด
+                                    </button>
+                                </div>
                             </div>
                             <table class="table table-bordered mt-2">
                                 <tbody>
@@ -1786,6 +1791,48 @@
                         error: function (xhr, textStatus, errorThrown) {
                             console.error('Error:', xhr.status, textStatus, errorThrown);
                             Swal.fire('ผิดพลาด', 'ไม่สามารถพิมพ์เอกสารได้', 'error');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.reportPowerOfAttorney').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    var employerID = $(this).data('employerid');
+
+                    $.ajax({
+                        url: '@Url.Action("ReportPowerOfAttorney", "Employers")',
+                        type: 'GET',
+                        data: { EmployerID: employerID },
+                        success: function(response) {
+                            if (response.success) {
+                               // แปลง Base64 เป็น Blob และเปิดในแท็บใหม่
+                                var byteCharacters = atob(response.file);
+                                var byteNumbers = new Array(byteCharacters.length);
+                                for (var i = 0; i < byteCharacters.length; i++) {
+                                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                }
+                                var byteArray = new Uint8Array(byteNumbers);
+                                var blob = new Blob([byteArray], { type: 'application/pdf' });
+                                var url = URL.createObjectURL(blob);
+                                window.open(url, '_blank');
+                            } else {
+                                Swal.fire({
+                                    title: 'ผิดพลาด',
+                                    text: response.message,
+                                    icon: 'error'
+                                }).then((result) => {
+                                    if (result.isConfirmed && response.redirectUrl) {
+                                        window.location.href = response.redirectUrl;
+                                    }
+                                });
+                            }
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            console.error('Error:', xhr.status, textStatus, errorThrown);
+                            Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการสร้างรายงาน', 'error');
                         }
                     });
                 });
