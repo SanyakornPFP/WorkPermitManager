@@ -8877,8 +8877,56 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.25.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.30.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.30.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.33.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.33.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.46.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.46.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.47.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.47.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.48.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.48.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.50.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.50.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.52.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.52.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.53.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.53.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.55.pdf",
+      "PackagePath": "staticwebassets\\document\\บต.55.pdf"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\THSarabunNew Bold.ttf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\fonts\\THSarabunNew.ttf",
+      "PackagePath": "staticwebassets\\fonts\\THSarabunNew.ttf"
     },
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\js\\site.js",

@@ -27480,17 +27480,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kR0ThRjy07\u002Bhq4p08nfdkjN\u002BpI94Gj2rK5lyE0buITU="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1097"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022kR0ThRjy07\u002Bhq4p08nfdkjN\u002BpI94Gj2rK5lyE0buITU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 11 Jan 2025 02:34:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/qr-code.8wjo11p0ew.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qr-code.png'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8wjo11p0ew"},{"Name":"integrity","Value":"sha256-uE/8baKjQ2EXZZAVQjzbVPf6w7Zi\u002BDtIfCBYvIbM2xA="},{"Name":"label","Value":"_content/WorkPermitManager/qr-code.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022uE/8baKjQ2EXZZAVQjzbVPf6w7Zi\u002BDtIfCBYvIbM2xA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 09 Apr 2025 01:20:13 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/qr-code.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qr-code.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-uE/8baKjQ2EXZZAVQjzbVPf6w7Zi\u002BDtIfCBYvIbM2xA="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1162"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022uE/8baKjQ2EXZZAVQjzbVPf6w7Zi\u002BDtIfCBYvIbM2xA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 09 Apr 2025 01:20:13 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ZCl81IRdbKtH0oxNkU8A6QR5/z7LFUEKxEDcS7yyWus="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1172"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022ZCl81IRdbKtH0oxNkU8A6QR5/z7LFUEKxEDcS7yyWus=\u0022"},{"Name":"Last-Modified","Value":"Sat, 17 May 2025 08:15:46 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/qr-code.wtbixf0z76.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qr-code.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wtbixf0z76"},{"Name":"integrity","Value":"sha256-ZCl81IRdbKtH0oxNkU8A6QR5/z7LFUEKxEDcS7yyWus="},{"Name":"label","Value":"_content/WorkPermitManager/qr-code.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1172"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022ZCl81IRdbKtH0oxNkU8A6QR5/z7LFUEKxEDcS7yyWus=\u0022"},{"Name":"Last-Modified","Value":"Sat, 17 May 2025 08:15:46 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/Report/Employers/EM-001.6ml8gpypxs.rdlc">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\Employers\EM-001.rdlc'))</AssetFile>
@@ -27504,17 +27504,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"372476"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 08 Mar 2025 04:30:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/Report/PowerOfAttorney/PA-001.67s8m0ofv2.rdlc">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"67s8m0ofv2"},{"Name":"integrity","Value":"sha256-PqlfyulrNGHxPakyOwAwrhiaOrDB\u002BftsV1IeKsVg\u002ByE="},{"Name":"label","Value":"_content/WorkPermitManager/Report/PowerOfAttorney/PA-001.rdlc"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"377760"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022PqlfyulrNGHxPakyOwAwrhiaOrDB\u002BftsV1IeKsVg\u002ByE=\u0022"},{"Name":"Last-Modified","Value":"Fri, 31 Jan 2025 06:49:34 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/Report/PowerOfAttorney/PA-001.rdlc">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-PqlfyulrNGHxPakyOwAwrhiaOrDB\u002BftsV1IeKsVg\u002ByE="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"377760"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022PqlfyulrNGHxPakyOwAwrhiaOrDB\u002BftsV1IeKsVg\u002ByE=\u0022"},{"Name":"Last-Modified","Value":"Fri, 31 Jan 2025 06:49:34 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"374250"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 17 May 2025 08:34:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/Report/PowerOfAttorney/PA-001.z11oiaxaj3.rdlc">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"z11oiaxaj3"},{"Name":"integrity","Value":"sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="},{"Name":"label","Value":"_content/WorkPermitManager/Report/PowerOfAttorney/PA-001.rdlc"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"374250"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 17 May 2025 08:34:58 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/uploads/EmployersDocument/asdasd/D0020250306092237.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\EmployersDocument\asdasd\D0020250306092237.pdf'))</AssetFile>

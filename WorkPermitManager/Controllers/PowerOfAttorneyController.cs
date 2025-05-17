@@ -398,7 +398,8 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
-        #region Report V.1
+
+        #region Report V.2
         [HttpGet]
         public IActionResult ReportForm(string CodeForm)
         {
@@ -469,10 +470,6 @@ namespace WorkPermitManager.Controllers
                 new ReportParameter("AttorneyDateApprove", ModelPA.AttorneyDateApprove),
                 new ReportParameter("WitnessDateApprove1", ModelPA.WitnessDateApprove1),
                 new ReportParameter("WitnessDateApprove2", ModelPA.WitnessDateApprove2),
-                new ReportParameter("GrantorSignature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.GrantorCardID + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.GrantorCardID + ".jpg")),
-                new ReportParameter("AttorneySignature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.AttorneyCardID + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.AttorneyCardID + ".jpg")),
-                new ReportParameter("Witness1Signature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness1Signature + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness1Signature + ".jpg")),
-                new ReportParameter("Witness2Signature", System.IO.File.Exists($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness2Signature + ".jpg") == false ? "" : getImageFromPath($"{this._webHostEnvironment.WebRootPath}\\assets\\SystemImages\\Signature\\" + ModelPA.Witness2Signature + ".jpg")),
                 new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
             };
 
@@ -489,8 +486,6 @@ namespace WorkPermitManager.Controllers
             return new FileContentResult(pdf, mimetype);
         }
         #endregion
-
-
 
         #region ApprovePowerOfAttorney
         [HttpPost]

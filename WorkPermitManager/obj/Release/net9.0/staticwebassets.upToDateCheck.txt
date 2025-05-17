@@ -3898,7 +3898,19 @@ wwwroot\assets\SystemImages\Signature\2931000003432.jpg
 wwwroot\assets\SystemImages\Signature\dontImage.png
 wwwroot\assets\video\auth-bg.mp4
 wwwroot\css\site.css
+wwwroot\document\บต.25.pdf
+wwwroot\document\บต.30.pdf
+wwwroot\document\บต.33.pdf
+wwwroot\document\บต.46.pdf
+wwwroot\document\บต.47.pdf
+wwwroot\document\บต.48.pdf
+wwwroot\document\บต.50.pdf
+wwwroot\document\บต.52.pdf
+wwwroot\document\บต.53.pdf
+wwwroot\document\บต.55.pdf
 wwwroot\favicon.ico
+wwwroot\fonts\THSarabunNew Bold.ttf
+wwwroot\fonts\THSarabunNew.ttf
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

@@ -41232,8 +41232,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8wjo11p0ew</Fingerprint>
-      <Integrity>uE/8baKjQ2EXZZAVQjzbVPf6w7Zi+DtIfCBYvIbM2xA=</Integrity>
+      <Fingerprint>wtbixf0z76</Fingerprint>
+      <Integrity>ZCl81IRdbKtH0oxNkU8A6QR5/z7LFUEKxEDcS7yyWus=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qr-code.png'))</OriginalItemSpec>
@@ -41268,8 +41268,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>67s8m0ofv2</Fingerprint>
-      <Integrity>PqlfyulrNGHxPakyOwAwrhiaOrDB+ftsV1IeKsVg+yE=</Integrity>
+      <Fingerprint>z11oiaxaj3</Fingerprint>
+      <Integrity>V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</OriginalItemSpec>
