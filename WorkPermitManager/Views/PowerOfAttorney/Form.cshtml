@@ -212,7 +212,7 @@
                                             <span class="badge @(item.Status == "รอการอนุมัติ" ? "badge-warning" : item.Status == "ไม่อนุมัติ" ? "badge-danger" : item.Status == "อนุมัติเรียบร้อย" ? "badge-success" : "badge-light")" style="font-size: 0.8rem">@item.Status</span>
                                         </td>
                                         <td class="text-center">
-                                            <a target="_blank" class="text-primary" asp-controller="PowerOfAttorney" asp-action="ReportForm" asp-route-CodeForm="@item.CodeForm">
+                                            <a class="text-primary reportForm btn btn-light btn-sm" data-codeForm="@item.CodeForm">
                                                 <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>
                                             </a>
                                         </td>
@@ -279,7 +279,7 @@
                                         <td class="bg-light"><i class="icofont icofont-check-circled"></i> สถานะการอนุมัติ</td>
                                         <td id="GrantorStatus"></td>
                                     </tr>
-                                  @*   <tr>
+                                    <tr>
                                         <td class="bg-light"><i class="icofont icofont-calendar"></i> วันที่อนุมัติ</td>
                                         <td id="GrantorDateApprove"></td>
                                     </tr>
@@ -322,7 +322,7 @@
                                     <tr>
                                         <td class="bg-light"><i class="icofont icofont-file-document"></i> สถานะเอกสาร</td>
                                         <td id="Status"></td>
-                                    </tr> *@
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -358,16 +358,16 @@
                             $('#GrantorName').text(data.grantorName);
                             $('#GrantorStatus').text(data.grantorStatus);
                             $('#GrantorDateApprove').text(data.grantorDateApprove ?? 'ไม่พบข้อมูล');
-                            // $('#AttorneyName').text(data.attorneyName);
-                            // $('#AttorneyStatus').text(data.attorneyStatus);
-                            // $('#AttorneyDateApprove').text(data.attorneyDateApprove ?? 'ไม่พบข้อมูล');
-                            // $('#Witness1Name').text(data.witness1Name);
-                            // $('#Witness1Status').text(data.witness1Status);
-                            // $('#WitnessDateApprove1').text(data.witnessDateApprove1 ?? 'ไม่พบข้อมูล');
-                            // $('#Witness2Name').text(data.witness2Name);
-                            // $('#Witness2Status').text(data.witness2Status);
-                            // $('#WitnessDateApprove2').text(data.witnessDateApprove2 ?? 'ไม่พบข้อมูล');
-                            // $('#Status').text(data.status);
+                            $('#AttorneyName').text(data.attorneyName);
+                            $('#AttorneyStatus').text(data.attorneyStatus);
+                            $('#AttorneyDateApprove').text(data.attorneyDateApprove ?? 'ไม่พบข้อมูล');
+                            $('#Witness1Name').text(data.witness1Name);
+                            $('#Witness1Status').text(data.witness1Status);
+                            $('#WitnessDateApprove1').text(data.witnessDateApprove1 ?? 'ไม่พบข้อมูล');
+                            $('#Witness2Name').text(data.witness2Name);
+                            $('#Witness2Status').text(data.witness2Status);
+                            $('#WitnessDateApprove2').text(data.witnessDateApprove2 ?? 'ไม่พบข้อมูล');
+                            $('#Status').text(data.status);
                         }
                     },
                     error: function (xhr, status, error) { // เมื่อ AJAX ล้มเหลว
@@ -442,8 +442,6 @@
                 });
                 return;
             }
-
-
                         Swal.fire({
                             title: 'คุณแน่ใจหรือไม่?',
                             text: "คุณจะไม่สามารถย้อนกลับได้!",
@@ -624,6 +622,35 @@
                         }
                     });
                 }
+            });
+        });
+
+        document.querySelectorAll('.reportForm').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const codeForm = this.getAttribute('data-codeForm');
+
+                if (!codeForm) {
+                    Swal.fire('Error', 'Invalid CodeForm value.', 'error');
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("ReportForm", "PowerOfAttorney")',
+                    type: 'GET',
+                    data: { CodeForm: codeForm },
+                    xhrFields: { responseType: 'blob' },
+                    success: function (response) {
+                        const blob = new Blob([response], { type: 'application/pdf' });
+                        const fileURL = window.URL.createObjectURL(blob);
+                        window.open(fileURL, '_blank');
+                    },
+                    error: function (xhr) {
+                        const errorMessage = xhr.responseJSON?.message || 'Cannot generate the document.';
+                        Swal.fire('Error', errorMessage, 'error');
+                    }
+                });
             });
         });
 

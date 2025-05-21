@@ -40068,6 +40068,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\บต.55.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\หนังสือมอบอำนาจ.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WorkPermitManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WorkPermitManager</BasePath>
+      <RelativePath>document/หนังสือมอบอำนาจ.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>sl8d9yl70w</Fingerprint>
+      <Integrity>MBI2f4zwsyOGw5MDt8AWCZPIO5mvghDtfaTHmy7hGjg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\หนังสือมอบอำนาจ.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))">
       <SourceType>Package</SourceType>
       <SourceId>WorkPermitManager</SourceId>
@@ -41256,6 +41274,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\Employers\EM-001.rdlc'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001 - Copy.rdlc'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WorkPermitManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WorkPermitManager</BasePath>
+      <RelativePath>Report/PowerOfAttorney/PA-001 - Copy.rdlc</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>jkkjdextpw</Fingerprint>
+      <Integrity>HZzYbo6Cl3CFDVAISPOhQx3MVi7mpESK6euSiWcPVK0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001 - Copy.rdlc'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))">
       <SourceType>Package</SourceType>
       <SourceId>WorkPermitManager</SourceId>
@@ -41268,8 +41304,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>41t8uqnwzz</Fingerprint>
-      <Integrity>+DotQulfyQVSubgFL2Y+VZGNkVLe4HfD7Nv4Su/ld4Y=</Integrity>
+      <Fingerprint>rg3ax8rh0o</Fingerprint>
+      <Integrity>CwHD6NaOx6w3siHZqZNl2WXNZALt1jdOyoQcC9Wo4iQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Report\PowerOfAttorney\PA-001.rdlc'))</OriginalItemSpec>

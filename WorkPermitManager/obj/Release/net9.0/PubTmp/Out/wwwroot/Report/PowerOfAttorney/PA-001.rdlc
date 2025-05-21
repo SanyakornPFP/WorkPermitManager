@@ -12,7 +12,69 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>      ข้าพเจ้า ....................................................................................................................................................................................................................</Value>
+                    <Value xml:space="preserve">                                                          </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>                                                         หนังสือมอบอำนาจ</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>                                                                                                     ทำที่...........................................................................
+                                                                                                     Written at................................................................
+                                                                                                     วันที่......... เดือน ....................... พ.ศ........................
+                                                                                                      Date........ Month .................... B.E........................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>     ข้าพเจ้า ............................................................................................................................................................................................................................</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -26,7 +88,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>      Mr./Mrs./Miss/We ..................................................................................................................................................................................................</Value>
+                    <Value>     Mr./Mrs./Miss/We .........................................................................................................................................................................................................</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -40,7 +102,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>เลขที่บัตรประจำตัวประชาชน/เลขที่ทะเบียนนิติบุคคล/เลขที่หนังสือเดินทาง ..........................................................................................................................</Value>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>เลขที่บัตรประจำตัวประชาชน/เลขที่ทะเบียนนิติบุคคล/เลขที่หนังสือเดินทาง .................................................................................................................</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -54,90 +123,27 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Holding identification card no./Company registration no./Passport no. ...........................................................................................................................
-อยู่บ้านเลขที่/สำนักงานตั้งอยู่ที่ ........................................................................................................................................................................................</Value>
+                    <Value xml:space="preserve">     </Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11.5pt</FontSize>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>Located no ....................................................................................................................................................................................................................</Value>
+                    <Value>Holding identification card no./Company registration no./Passport no. .........................................................................................................
+</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
-                    <Value>      ขอมอบอำนาจให้ .......................................................................................................................................................................................................</Value>
+                    <Value xml:space="preserve">     </Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11.5pt</FontSize>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Do hereby authorize ....................................................................................................................................................................................................</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>เลขที่บัตรประจำตัวประชาชน/เลขที่ทะเบียนนิติบุคคล/เลขที่หนังสือเดินทาง ..........................................................................................................................</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Holding identification card no./Company registration no./Passport no. .................................................................................................................</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value>อยู่บ้านเลขที่/สำนักงานตั้งอยู่ที่ ........................................................................................................................................................................................</Value>
                     <Style>
@@ -153,7 +159,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Located no ....................................................................................................................................................................................................................</Value>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>Located no .....................................................................................................................................................................................................................</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -167,7 +180,457 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>เป็นผู้มีอำนาจกระทำแทนข้าพเจ้า เพื่อดำเนินการต่อไปนี้</Value>
+                    <Value>     ขอมอบอำนาจให้ ..............................................................................................................................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>Do hereby authorize ....................................................................................................................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>เลขที่บัตรประจำตัวประชาชน/เลขที่ทะเบียนนิติบุคคล/เลขที่หนังสือเดินทาง .................................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>Holding identification card no./Company registration no./Passport no. .........................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>อยู่บ้านเลขที่/สำนักงานตั้งอยู่ที่ .........................................................................................................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve">     </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>Located no .....................................................................................................................................................................................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>     เป็นผู้มีอำนาจกระทำแทนข้าพเจ้า เพื่อดำเนินการต่อไปนี้</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ๑. ยื่นคำขอ หรือคำร้อง และเอกสารหลักฐาน เพื่อดำเนินการตามพระราชกำหนดการบริการการทำงานของคนต่างด้าวต้อง พ.ศ. ๒๕๖๐ 
+     และที่แก้ไขเพิ่มเติม (ฉบับที่ ๒) พ.ศ. ๒๕๖๑</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           Request or complaint and evidence or documents. To perform Decree. Remove the alien to work in 2560 
+     And amended (No.2) 2562</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ๒. ลงนามในบันทึกข้อตกลง หรือหนังสือเอกสารที่เกี่ยวข้อง</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           The signing of the memorandum. Or place</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ๓. แก้ไขเพิ่มเติมข้อความเล็กน้อยในแบบคำขอ หรือคำร้อง และเอกสารหลักฐาน เพื่อดำเนินการตามพระราชกำหนดการบริหารจัดการการทำงานของ
+     คนต่างต้าว พ.ศ. ๒๕๖๐ และที่แก้ไขเพิ่มเติม (ฉบับที่ ๒) พ.ศ. ๒๕๖๑ อันมิได้ทำให้สาระสำคัญดังกล่าวเปลี่ยนแปลงไปได้</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           Amendment of the request or pertition Documents without set company to perform Decree. Remove the alien to work in 2560 
+      And amended (No.2) 2561</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ๔. ให้ถ้อยคำ หรือนำส่งคำขอ หรือคำร้อง และเอกสารหลักฐานอื่นใดที่เกี่ยวข้องอันเป็นประโยชน์ต่อการพิจารณาดังกล่าวต่อพนักงานเจ้าหน้าที่</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           To testify or to submit a request or complaint and any documents or other evidence related to the officer.</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ๕. มอบอำนาจช่วงให้บุคคลอื่นใด เพื่อดำเนินการตามหนังสือมอบอำนาจฉบับนี้อีกช่วงหนึ่ง</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           Delegate to any other person. To carry out this mandate by another session.
+           ๖. ดำเนินการในเรื่องงานเอกสารการนำเข้าแรงงานต่างด้าว MOU</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           Implementation of docments for importing foreign workers mou.</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           ทั้งนี้การกระทำใด ๆ ที่ผู้รับมอบอำนาจได้กระทำไปตามที่ได้รับมอบหมายนั้น ข้าพเจ้ารับผิดชอบโดยสิ้นเชิง เสมือนหนึ่งว่า ข้าพเจ้าได้กระทำการนั้นๆ ด้วย
+      ตัวข้าพเจ้าเอง และเพื่อเป็นหลักฐานในการนี้ ข้าพเจ้าจึงลงลายมือไว้เป็นสำคัญ</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>           What has been done by Attorney as per the authority granted, we hereby assume all responsibilities as if was have personally 
+      undertaken all these actions. In witness whereof, we therefore sign this power of attorney in the presence of witness.</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          ลงชื่อ......................................................ผู้มอบอำนาจ                                    ลงชื่อ......................................................ผู้รับมอบอำนาจ</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          Sign..............................................................Grantor                                    Sign..................................................................Grantee
+                (................................................................)                                                (................................................................)</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          ตำแหน่ง..............................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          Position..............................................................</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          ลงชื่อ.................................................................พยาน                                   ลงชื่อ.................................................................พยาน</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          Sign..............................................................Witness                                   Sign..............................................................Witness</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>                (................................................................)                                                (................................................................)
+</Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">      </Value>
+                    <Style>
+                      <FontFamily>th SarabunPSK</FontFamily>
+                      <FontSize>11.5pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>หมายเหตุ หากผู้มอบอำนาจประสงค์จะจำกัดขอบเขตการมอบอำนาจเป็นอย่างอื่น ย่อมกระทำได้โดยไม่ใช้หรือแก้ไขเพิ่มเติมข้อความข้างต้น</Value>
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -181,185 +644,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>      ๑. ยื่นคำขอ หรือคำร้อง และเอกสารหลักฐาน เพื่อดำเนินการตามพระราชกำหนดการบริการการทำงานของคนต่างด้าวต้อง พ.ศ. ๒๕๖๐ 
-และที่แก้ไขเพิ่มเติม (ฉบับที่ ๒) พ.ศ. ๒๕๖๑</Value>
+                    <Value />
                     <Style>
                       <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      Request or complaint and evidence or documents. To perform Decree. Remove the alien to work in 2560 
-And amended (No.2) 2562</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      ๒. ลงนามในบันทึกข้อตกลง หรือหนังสือเอกสารที่เกี่ยวข้อง</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      The signing of the memorandum. Or place</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      ๓. แก้ไขเพิ่มเติมข้อความเล็กน้อยในแบบคำขอ หรือคำร้อง และเอกสารหลักฐาน เพื่อดำเนินการตามพระราชกำหนดการบริหารจัดการการทำงานของ
-คนต่างต้าว พ.ศ. ๒๕๖๐ และที่แก้ไขเพิ่มเติม (ฉบับที่ ๒) พ.ศ. ๒๕๖๑ อันมิได้ทำให้สาระสำคัญดังกล่าวเปลี่ยนแปลงไปได้</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      Amendment of the request or pertition Documents without set company to perform Decree. Remove the alien to work in 2560 
-And amended (No.2) 2561</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      ๔. ให้ถ้อยคำ หรือนำส่งคำขอ หรือคำร้อง และเอกสารหลักฐานอื่นใดที่เกี่ยวข้องอันเป็นประโยชน์ต่อการพิจารณาดังกล่าวต่อพนักงานเจ้าหน้าที่</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      To testify or to submit a request or complaint and any documents or other evidence related to the officer.</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      ๕. มอบอำนาจช่วงให้บุคคลอื่นใด เพื่อดำเนินการตามหนังสือมอบอำนาจฉบับนี้อีกช่วงหนึ่ง</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      Delegate to any other person. To carry out this mandate by another session.
-      ๖. ดำเนินการในเรื่องงานเอกสารการนำเข้าแรงงานต่างด้าว MOU</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      Implementation of docments for importing foreign workers mou.</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      ทั้งนี้การกระทำใด ๆ ที่ผู้รับมอบอำนาจได้กระทำไปตามที่ได้รับมอบหมายนั้น ข้าพเจ้ารับผิดชอบโดยสิ้นเชิง เสมือนหนึ่งว่า ข้าพเจ้าได้กระทำการนั้นๆ ด้วย
-ตัวข้าพเจ้าเอง และเพื่อเป็นหลักฐานในการนี้ ข้าพเจ้าจึงลงลายมือไว้เป็นสำคัญ</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>      What has been done by Attorney as per the authority granted, we hereby assume all responsibilities as if was have personally 
-undertaken all these actions. In witness whereof, we therefore sign this power of attorney in the presence of witness.</Value>
-                    <Style>
-                      <FontFamily>th SarabunPSK</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>11.5pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -369,469 +657,280 @@ undertaken all these actions. In witness whereof, we therefore sign this power o
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Height>11.4803cm</Height>
-            <Width>18.31609cm</Width>
+            <Height>28.81015cm</Height>
+            <Width>18.02638cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>1pt</PaddingLeft>
-              <PaddingRight>1pt</PaddingRight>
-              <PaddingTop>1pt</PaddingTop>
-              <PaddingBottom>1pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="Image1">
+            <Source>External</Source>
+            <Value>=Parameters!QRCode.Value</Value>
+            <Sizing>Fit</Sizing>
+            <Top>27.24394cm</Top>
+            <Left>15.44117cm</Left>
+            <Height>1.56621cm</Height>
+            <Width>1.61676cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Textbox Name="GrantorCardID3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!GrantorName.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>4.11009cm</Top>
+            <Left>1.71189cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.32554cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="GrantorCardID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!GrantorCardID.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>5.12111cm</Top>
+            <Left>9.09849cm</Left>
+            <Height>0.6cm</Height>
+            <Width>5.75438cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="GrantorCardID2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!GrantorCardID.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>5.67877cm</Top>
+            <Left>9.38424cm</Left>
+            <Height>0.6cm</Height>
+            <Width>5.75438cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="GrantorCardID4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!GrantorLocation.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>6.13061cm</Top>
+            <Left>4.28945cm</Left>
+            <Height>0.6cm</Height>
+            <Width>13.05422cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="GrantorCardID5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!AttorneyName.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>7.16409cm</Top>
+            <Left>2.84459cm</Left>
+            <Height>0.6cm</Height>
+            <Width>13.05422cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>แสตมป์อากร</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Left>13.30886cm</Left>
+            <Height>1.74314cm</Height>
+            <Width>2.36771cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+            </Style>
+          </Textbox>
+          <Textbox Name="GrantorCardID6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!AttorneyCardID.Value</Value>
+                    <Style>
+                      <FontFamily>TH SarabunPSK</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>GrantorCardID</rd:DefaultName>
+            <Top>10.02492cm</Top>
+            <Left>8.78134cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.35728cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>11.4803cm</Height>
+        <Height>28.81544cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>18.58067cm</Width>
+      <Width>18.02638cm</Width>
       <Page>
-        <PageHeader>
-          <Height>4.44534cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>หนังสือมอบอำนาจ</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>16pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.61197cm</Top>
-              <Left>7.92301cm</Left>
-              <Height>0.89551cm</Height>
-              <Width>3.37313cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox4">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ทำที่........................................................................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>11.5pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Written at.............................................................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>11.5pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>วันที่......... เดือน ....................... พ.ศ.....................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>11.5pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Date........ Month .................... B.E.....................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>11.5pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.33306cm</Top>
-              <Left>12.31972cm</Left>
-              <Height>2.11228cm</Height>
-              <Width>5.99637cm</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox12">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>อากรแสตมป์</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>14pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.30691cm</Top>
-              <Left>15.5719cm</Left>
-              <Height>1.95559cm</Height>
-              <Width>2cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-                <VerticalAlign>Middle</VerticalAlign>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
-        <PageFooter>
-          <Height>7.12433cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox9">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>หมายเหตุ หากผู้มอบอำนาจประสงค์จะจำกัดขอบเขตการมอบอำนาจเป็นอย่างอื่น ย่อมกระทำได้โดยไม่ใช้หรือแก้ไขเพิ่มเติมข้อความข้างต้น</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>4.71676cm</Top>
-              <Left>0.26066cm</Left>
-              <Height>0.78814cm</Height>
-              <Width>17.76439cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox5">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ลงชื่อ..................................................ผู้มอบอำนาจ</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Sign..........................................................Grantor
-(............................................................)</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ตำแหน่ง.................................................................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Position................................................................</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0cm</Top>
-              <Left>0.25147cm</Left>
-              <Height>2.76754cm</Height>
-              <Width>8.18158cm</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox6">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ลงชื่อ..................................................ผู้รับมอบอำนาจ</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Sign...............................................................Grantee
-(............................................................)</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0cm</Top>
-              <Left>10.24591cm</Left>
-              <Height>1.95522cm</Height>
-              <Width>7.77914cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox7">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ลงชื่อ.............................................................พยาน
-Sign..........................................................Witness
-(............................................................)</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>2.804cm</Top>
-              <Left>0.25147cm</Left>
-              <Height>2.01649cm</Height>
-              <Width>8.18158cm</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox8">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>ลงชื่อ.............................................................พยาน</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Sign..........................................................Witness
-(............................................................)</Value>
-                      <Style>
-                        <FontFamily>th SarabunPSK</FontFamily>
-                        <FontSize>13pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>2.83882cm</Top>
-              <Left>10.21242cm</Left>
-              <Height>2.01649cm</Height>
-              <Width>7.81263cm</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=Parameters!QRCode.Value</Value>
-              <Sizing>Fit</Sizing>
-              <Top>4.71676cm</Top>
-              <Left>16.47588cm</Left>
-              <Height>1.96308cm</Height>
-              <Width>2.10479cm</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
-        <LeftMargin>1.5cm</LeftMargin>
-        <RightMargin>0.5cm</RightMargin>
-        <TopMargin>0cm</TopMargin>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>0.4cm</RightMargin>
+        <TopMargin>0.3cm</TopMargin>
         <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />

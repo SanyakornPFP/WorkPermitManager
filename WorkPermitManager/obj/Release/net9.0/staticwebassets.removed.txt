@@ -1,0 +1,2 @@
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\wwwroot\Report\PowerOfAttorney\PA-001 - Copy.rdlc
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\wwwroot\Report\PowerOfAttorney\PA-001.rdlc

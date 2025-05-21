@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Reporting.NETCore;
 using QRCoder;
 using System.Data;
 using System.Drawing;
@@ -399,10 +402,107 @@ namespace WorkPermitManager.Controllers
         #endregion
 
 
-        #region Report V.2
+        //#region Report V.2
+        //[HttpGet]
+        //public IActionResult ReportForm(string CodeForm)
+        //{
+        //    var ModelPA = _db.PowerOfAttorneys.Where(s => s.CodeForm == CodeForm)
+        //        .Select(s => new
+        //        {
+        //            s.PowerOfAttorneyID,
+        //            s.CodeForm,
+        //            CreationDate = s.CreationDate,
+        //            Location = s.User_GrantorID.Company.CompanyAddress,
+        //            GrantorName = s.User_GrantorID.FullName,
+        //            GrantorCardID = s.User_GrantorID.CardID,
+        //            AttorneyName = s.User_AttorneyID.FullName,
+        //            AttorneyCardID = s.User_AttorneyID.CardID,
+        //            AttorneyLocation = s.User_AttorneyID.Company.CompanyAddress,
+        //            s.GrantorApprovalStatus,
+        //            s.AttorneyApprovalStatus,
+        //            Witness1Name = s.User_WitnessApprovalBy1.FullName,
+        //            Witness1Signature = s.User_WitnessApprovalBy1.CardID,
+        //            s.WitnessApprovalStatus1,
+        //            Witness2Name = s.User_WitnessApprovalBy2.FullName,
+        //            Witness2Signature = s.User_WitnessApprovalBy2.CardID,
+        //            s.WitnessApprovalStatus2,
+        //            GrantorDateApprove = s.GrantorDateApprove.HasValue ? s.GrantorDateApprove.Value.ToString("ddMMyyyy") : null,
+        //            AttorneyDateApprove = s.AttorneyDateApprove.HasValue ? s.AttorneyDateApprove.Value.ToString("ddMMyyyy") : null,
+        //            WitnessDateApprove1 = s.WitnessDateApprove1.HasValue ? s.WitnessDateApprove1.Value.ToString("ddMMyyyy") : null,
+        //            WitnessDateApprove2 = s.WitnessDateApprove2.HasValue ? s.WitnessDateApprove2.Value.ToString("ddMMyyyy") : null,
+        //            s.Status
+        //        })
+        //        .FirstOrDefault();
+
+        //    // Generate QR Code
+        //    string hostname = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+        //    string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
+        //    QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        //    QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
+
+        //    // ใช้ PngByteQRCode แทน QRCode
+        //    PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
+        //    byte[] qrCodeImage = pngByteQRCode.GetGraphic(20);
+
+        //    // แปลงเป็น Base64
+        //    string base64Image = Convert.ToBase64String(qrCodeImage);
+
+        //    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "qr-code.png");
+        //    System.IO.File.WriteAllBytes(filePath, qrCodeImage);
+
+        //    string renderFormat = "PDF";
+        //    string mimetype = "application/pdf";
+        //    using var report = new LocalReport();
+        //    report.ReportPath = $"{this._webHostEnvironment.WebRootPath}\\Report\\PowerOfAttorney\\PA-001.rdlc";
+        //    report.EnableExternalImages = true;
+
+        //    ReportParameter[] parameters = new ReportParameter[]
+        //    {
+        //        new ReportParameter("CodeForm", CodeForm),
+        //        new ReportParameter("CreationDate", ModelPA.CreationDate.ToThaiDate()),
+        //        new ReportParameter("Location", ModelPA.Location),
+        //        new ReportParameter("GrantorName", ModelPA.GrantorName),
+        //        new ReportParameter("GrantorCardID", ModelPA.GrantorCardID),
+        //        new ReportParameter("GrantorLocation", ModelPA.Location),
+        //        new ReportParameter("AttorneyName", ModelPA.AttorneyName),
+        //        new ReportParameter("AttorneyCardID", ModelPA.AttorneyCardID),
+        //        new ReportParameter("AttorneyLocation", ModelPA.AttorneyLocation),
+        //        new ReportParameter("Witness1Name", ModelPA.Witness1Name),
+        //        new ReportParameter("Witness2Name", ModelPA.Witness2Name),
+        //        new ReportParameter("GrantorDateApprove", ModelPA.GrantorDateApprove),
+        //        new ReportParameter("AttorneyDateApprove", ModelPA.AttorneyDateApprove),
+        //        new ReportParameter("WitnessDateApprove1", ModelPA.WitnessDateApprove1),
+        //        new ReportParameter("WitnessDateApprove2", ModelPA.WitnessDateApprove2),
+        //        new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
+        //    };
+
+        //    report.SetParameters(parameters);
+
+        //    var pdf = report.Render(format: renderFormat);
+
+        //    var contentDisposition = new System.Net.Mime.ContentDisposition
+        //    {
+        //        FileName = CodeForm + ".pdf",
+        //        Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
+        //    };
+
+        //    return new FileContentResult(pdf, mimetype);
+        //}
+        //#endregion
+
         [HttpGet]
         public IActionResult ReportForm(string CodeForm)
         {
+            string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "หนังสือมอบอำนาจ.pdf");
+
+            // Debug the file path
+            Console.WriteLine($"Absolute Path: {absolutePath}");
+
+            if (!System.IO.File.Exists(absolutePath))
+            {
+                return Json(new { success = false, message = "ไม่พบไฟล์ PDF ที่ระบุ" });
+            }
+
             var ModelPA = _db.PowerOfAttorneys.Where(s => s.CodeForm == CodeForm)
                 .Select(s => new
                 {
@@ -431,61 +531,66 @@ namespace WorkPermitManager.Controllers
                 })
                 .FirstOrDefault();
 
-            // Generate QR Code
-            string hostname = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
-            string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
-
-            // ใช้ PngByteQRCode แทน QRCode
-            PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
-            byte[] qrCodeImage = pngByteQRCode.GetGraphic(20);
-
-            // แปลงเป็น Base64
-            string base64Image = Convert.ToBase64String(qrCodeImage);
-
-            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "qr-code.png");
-            System.IO.File.WriteAllBytes(filePath, qrCodeImage);
-
-            string renderFormat = "PDF";
-            string mimetype = "application/pdf";
-            using var report = new LocalReport();
-            report.ReportPath = $"{this._webHostEnvironment.WebRootPath}\\Report\\PowerOfAttorney\\PA-001.rdlc";
-            report.EnableExternalImages = true;
-
-            ReportParameter[] parameters = new ReportParameter[]
+            if (ModelPA == null)
             {
-                new ReportParameter("CodeForm", CodeForm),
-                new ReportParameter("CreationDate", ModelPA.CreationDate.ToThaiDate()),
-                new ReportParameter("Location", ModelPA.Location),
-                new ReportParameter("GrantorName", ModelPA.GrantorName),
-                new ReportParameter("GrantorCardID", ModelPA.GrantorCardID),
-                new ReportParameter("GrantorLocation", ModelPA.Location),
-                new ReportParameter("AttorneyName", ModelPA.AttorneyName),
-                new ReportParameter("AttorneyCardID", ModelPA.AttorneyCardID),
-                new ReportParameter("AttorneyLocation", ModelPA.AttorneyLocation),
-                new ReportParameter("Witness1Name", ModelPA.Witness1Name),
-                new ReportParameter("Witness2Name", ModelPA.Witness2Name),
-                new ReportParameter("GrantorDateApprove", ModelPA.GrantorDateApprove),
-                new ReportParameter("AttorneyDateApprove", ModelPA.AttorneyDateApprove),
-                new ReportParameter("WitnessDateApprove1", ModelPA.WitnessDateApprove1),
-                new ReportParameter("WitnessDateApprove2", ModelPA.WitnessDateApprove2),
-                new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
-            };
+                return Json(new { success = false, message = "ไม่พบข้อมูลที่เลือก" });
+            }
 
-            report.SetParameters(parameters);
-
-            var pdf = report.Render(format: renderFormat);
-
-            var contentDisposition = new System.Net.Mime.ContentDisposition
+            try
             {
-                FileName = CodeForm + ".pdf",
-                Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
-            };
+                string hostname = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+                string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
 
-            return new FileContentResult(pdf, mimetype);
+                Console.WriteLine($"QR Code URL: {qrCodeUrl}");
+
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
+
+                PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
+                byte[] qrCodeImage = pngByteQRCode.GetGraphic(20);
+
+                byte[] pdfBytes;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var pdfReader = new PdfReader(absolutePath))
+                    using (var pdfWriter = new PdfWriter(memoryStream))
+                    {
+                        var pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+
+                        var page_one = pdfDocument.GetFirstPage();
+                        var pdfCanvas = new PdfCanvas(page_one);
+
+                        pdfCanvas.BeginText()
+                            .SetFontAndSize(PdfFontFactory.CreateFont(
+                                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"),
+                                PdfEncodings.IDENTITY_H), 16)
+                            .MoveText(250, 533)
+                            .ShowText($"{ModelPA.GrantorName ?? ""}")
+                            .EndText();
+
+                        iText.Layout.Element.Image qrCodePdfImage = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(qrCodeImage))
+                            .SetFixedPosition(535, 5)
+                            .ScaleToFit(65, 65);
+                        var document = new iText.Layout.Document(pdfDocument);
+                        document.Add(qrCodePdfImage);
+
+                        pdfDocument.Close();
+                    }
+
+                    pdfBytes = memoryStream.ToArray();
+                }
+
+                return File(pdfBytes, "application/pdf", "UpdatedDocument.pdf");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Exception: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                return Json(new { success = false, message = "เกิดข้อผิดพลาดทั่วไป", error = ex.Message });
+            }
+
         }
-        #endregion
 
         #region ApprovePowerOfAttorney
         [HttpPost]
