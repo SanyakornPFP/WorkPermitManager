@@ -145,7 +145,9 @@ namespace WorkPermitManager.Controllers
                         s.Company.CompanyName,
                         s.ProfilePicture,
                         s.Signature,
-                        s.AdministratorActive
+                        s.AdministratorActive,
+                        s.CompanyID,
+                        s.Company.OwnerSystem
                     })
                     .FirstOrDefault(s => s.UserID == int.Parse(User.GetLoggedInUserID()));
 
@@ -159,13 +161,16 @@ namespace WorkPermitManager.Controllers
                 new Claim("Position", dataUser.PositionName),
                 new Claim("Department", dataUser.DepartmentName),
                 new Claim("Company", dataUser.CompanyName),
+                 new Claim("CompanyID", dataUser.CompanyID.ToString()),
                 new Claim("ProfileImage", dataUser.ProfilePicture  == null ? "NULL" :dataUser.ProfilePicture),
                 new Claim("SignatureImage", dataUser.Signature  == null ? "NULL" :dataUser.Signature),
                 new Claim("ViewEmployers", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Employers")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewServices", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Services")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
-                new Claim("AdministratorIsActive", user.AdministratorActive == true ? "True" : "False"),
+                new Claim("AdministratorIsActive", dataUser.AdministratorActive == true ? "True" : "False"),
+                new Claim("OwnerSystemIsActive", dataUser.OwnerSystem == true ? "True" : "False")
+
             };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.NameIdentifier, ClaimsIdentity.DefaultRoleClaimType);

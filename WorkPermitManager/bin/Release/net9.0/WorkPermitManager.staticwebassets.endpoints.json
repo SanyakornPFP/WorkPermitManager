@@ -85,170 +85,6 @@
       ]
     },
     {
-      "Route": "Report/PowerOfAttorney/PA-001 - Copy.jkkjdextpw.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001 - Copy.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "370003"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HZzYbo6Cl3CFDVAISPOhQx3MVi7mpESK6euSiWcPVK0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 06:17:36 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "jkkjdextpw"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-HZzYbo6Cl3CFDVAISPOhQx3MVi7mpESK6euSiWcPVK0="
-        },
-        {
-          "Name": "label",
-          "Value": "Report/PowerOfAttorney/PA-001 - Copy.rdlc"
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001 - Copy.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001 - Copy.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "370003"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HZzYbo6Cl3CFDVAISPOhQx3MVi7mpESK6euSiWcPVK0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 06:17:36 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-HZzYbo6Cl3CFDVAISPOhQx3MVi7mpESK6euSiWcPVK0="
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "377470"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"CwHD6NaOx6w3siHZqZNl2WXNZALt1jdOyoQcC9Wo4iQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 07:18:00 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CwHD6NaOx6w3siHZqZNl2WXNZALt1jdOyoQcC9Wo4iQ="
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001.rg3ax8rh0o.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "377470"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"CwHD6NaOx6w3siHZqZNl2WXNZALt1jdOyoQcC9Wo4iQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 07:18:00 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "rg3ax8rh0o"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-CwHD6NaOx6w3siHZqZNl2WXNZALt1jdOyoQcC9Wo4iQ="
-        },
-        {
-          "Name": "label",
-          "Value": "Report/PowerOfAttorney/PA-001.rdlc"
-        }
-      ]
-    },
-    {
       "Route": "WorkPermitManager.niunzl2gmw.styles.css",
       "AssetFile": "WorkPermitManager.styles.css.gz",
       "Selectors": [
@@ -533647,6 +533483,88 @@
       ]
     },
     {
+      "Route": "document/หนังสือมอบอำนาจ.docx",
+      "AssetFile": "document/หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.k6whm2qe74.docx",
+      "AssetFile": "document/หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6whm2qe74"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        },
+        {
+          "Name": "label",
+          "Value": "document/หนังสือมอบอำนาจ.docx"
+        }
+      ]
+    },
+    {
       "Route": "document/หนังสือมอบอำนาจ.pdf",
       "AssetFile": "document/หนังสือมอบอำนาจ.pdf",
       "Selectors": [],
@@ -533661,7 +533579,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "60770"
+          "Value": "60039"
         },
         {
           "Name": "Content-Type",
@@ -533669,22 +533587,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"MBI2f4zwsyOGw5MDt8AWCZPIO5mvghDtfaTHmy7hGjg=\""
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 08:23:52 GMT"
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-MBI2f4zwsyOGw5MDt8AWCZPIO5mvghDtfaTHmy7hGjg="
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
         }
       ]
     },
     {
-      "Route": "document/หนังสือมอบอำนาจ.sl8d9yl70w.pdf",
+      "Route": "document/หนังสือมอบอำนาจ.xqdverd2wr.pdf",
       "AssetFile": "document/หนังสือมอบอำนาจ.pdf",
       "Selectors": [],
       "ResponseHeaders": [
@@ -533698,7 +533616,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "60770"
+          "Value": "60039"
         },
         {
           "Name": "Content-Type",
@@ -533706,21 +533624,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"MBI2f4zwsyOGw5MDt8AWCZPIO5mvghDtfaTHmy7hGjg=\""
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 08:23:52 GMT"
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "sl8d9yl70w"
+          "Value": "xqdverd2wr"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-MBI2f4zwsyOGw5MDt8AWCZPIO5mvghDtfaTHmy7hGjg="
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
         },
         {
           "Name": "label",

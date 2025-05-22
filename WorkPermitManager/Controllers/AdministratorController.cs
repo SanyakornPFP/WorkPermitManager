@@ -38,7 +38,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create User
         [HttpPost]
-        public async Task<IActionResult> CreateUser(string UserName, string FullName, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
+        public async Task<IActionResult> CreateUser(string UserName, string FullName, string FullNameEg, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
@@ -55,6 +55,7 @@ namespace WorkPermitManager.Controllers
                 {
                     Username = UserName,
                     FullName = FullName,
+                    FullNameEg = FullNameEg,
                     Email = UserEmail,
                     CardID = CardID,
                     Passwordhash = ComputeSha256Hash(CardID),
@@ -184,7 +185,7 @@ namespace WorkPermitManager.Controllers
 
         #region Update User
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
+        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string FullName, string FullNameEg, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
@@ -211,6 +212,8 @@ namespace WorkPermitManager.Controllers
                     var oldCompany = model.CompanyID;
                     model.Username = UserName;
                     model.Email = UserEmail;
+                    model.FullName = FullName;
+                    model.FullNameEg = FullNameEg;
                     model.CardID = CardID;
                     model.PositionID = PositionID;
                     model.DepartmentID = DepartmentID;
@@ -441,6 +444,7 @@ namespace WorkPermitManager.Controllers
                     {
                         s.Username,
                         s.FullName,
+                        s.FullNameEg,
                         s.CardID,
                         s.Email,
                         s.Position.PositionName,
@@ -461,6 +465,7 @@ namespace WorkPermitManager.Controllers
                     {
                         Username = model.Username,
                         FullName = model.FullName,
+                        FullNameEg = model.FullNameEg,
                         CardID = model.CardID ?? "ไม่พบข้อมูล",
                         Email = model.Email ?? "ไม่พบข้อมูล",
                         Position = model.PositionName, // Corrected to assign the Position object
@@ -989,7 +994,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create Company
         [HttpPost]
-        public async Task<IActionResult> CreateCompany(string CompanyName, string CompanyAddress)
+        public async Task<IActionResult> CreateCompany(string CompanyName, string CompanyNameEg, string CompanyAddress, string CompanyAddressEg)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
@@ -1005,7 +1010,9 @@ namespace WorkPermitManager.Controllers
                 Company Createmodel = new Company
                 {
                     CompanyName = CompanyName,
+                    CompanyNameEg = CompanyNameEg,
                     CompanyAddress = CompanyAddress,
+                    CompanyAddressEg = CompanyAddressEg,
                     CreatedDate = DateTime.Now,
                     //UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
@@ -1085,14 +1092,14 @@ namespace WorkPermitManager.Controllers
 
         #region Update Company
         [HttpPost]
-        public async Task<IActionResult> UpdateCompany(int CompanyID, string CompanyName, string CompanyAddress)
+        public async Task<IActionResult> UpdateCompany(int CompanyID, string CompanyName, string CompanyNameEg, string CompanyAddress, string CompanyAddressEg)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (CompanyID == 0 || CompanyName == null)
+            if (CompanyID == 0 || CompanyName == null || CompanyNameEg == null)
             {
                 return NotFound();
             }
@@ -1106,9 +1113,12 @@ namespace WorkPermitManager.Controllers
                 else
                 {
                     var oldName = model.CompanyName;
+                    var oldNameEg = model.CompanyNameEg;
                     var oldAddress = model.CompanyAddress;
                     model.CompanyName = CompanyName;
+                    model.CompanyNameEg = CompanyNameEg;
                     model.CompanyAddress = CompanyAddress;
+                    model.CompanyAddressEg = CompanyAddressEg;
                     model.UpdatedDate = DateTime.Now;
                     //model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the Company update
@@ -1125,7 +1135,7 @@ namespace WorkPermitManager.Controllers
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {oldName}",
                         NewValue = $"Name: {model.CompanyName}",
-                        Description = $"Updated company with Name: {oldName} to {model.CompanyName} Address: {oldAddress} to {model.CompanyAddress}"
+                        Description = $"Updated company with Name: {oldName} And {oldNameEg} to {model.CompanyName} Address: {oldAddress} to {model.CompanyAddress}"
                     };
                     // Save the log entry
                     _db.LogSystemDatas.Add(logEntry);
@@ -1138,7 +1148,7 @@ namespace WorkPermitManager.Controllers
 
         #region Check Company Name
         [HttpPost]
-        public JsonResult CheckCompanyName(string CompanyName)
+        public JsonResult CheckCompanyName(string CompanyName, string CompanyNameEg)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("ReadAdministrator"))
             {
@@ -1151,7 +1161,7 @@ namespace WorkPermitManager.Controllers
             }
             else
             {
-                var model = _db.Companies.FirstOrDefault(c => c.CompanyName == CompanyName);
+                var model = _db.Companies.FirstOrDefault(c => c.CompanyName == CompanyName || c.CompanyNameEg == CompanyNameEg);
                 if (model != null)
                 {
                     return Json("Company name already exists");

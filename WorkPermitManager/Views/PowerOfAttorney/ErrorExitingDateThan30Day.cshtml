@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Controller"] = "หนังสือมอบอำนาจ";
+    ViewData["Action"] = "รายการยื่นคำขอ";
+    ViewData["Icon"] = "file-archive-o";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        Swal.fire({
+            icon: 'warning',
+            title: 'หมดอายุเอกสาร',
+            text: 'เอกสารนี้เกิน 30 วันแล้ว ไม่สามารถใช้งานได้',
+            confirmButtonText: 'ตกลง'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Form", "PowerOfAttorney")';
+            }
+        });
+    });
+</script>

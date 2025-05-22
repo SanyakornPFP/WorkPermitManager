@@ -59,6 +59,8 @@ namespace WorkPermitManager.Controllers
                         s.Position.PositionName,
                         s.Department.DepartmentName,
                         s.Company.CompanyName,
+                        s.Company.OwnerSystem,
+                        s.CompanyID,
                         s.ProfilePicture,
                         s.Signature,
                         s.AdministratorActive
@@ -92,6 +94,7 @@ namespace WorkPermitManager.Controllers
                 new Claim("Position", user.PositionName),
                 new Claim("Department", user.DepartmentName),
                 new Claim("Company", user.CompanyName),
+                new Claim("CompanyID", user.CompanyID.ToString()),
                 new Claim("ProfileImage", user.ProfilePicture  == null ? "NULL" :user.ProfilePicture),
                 new Claim("SignatureImage", user.Signature  == null ? "NULL" :user.Signature),
                 new Claim("ViewEmployers", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Employers")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
@@ -99,6 +102,8 @@ namespace WorkPermitManager.Controllers
                 new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("AdministratorIsActive", user.AdministratorActive == true ? "True" : "False"),
+                new Claim("OwnerSystemIsActive", user.OwnerSystem == true ? "True" : "False")
+
             };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.NameIdentifier, ClaimsIdentity.DefaultRoleClaimType);

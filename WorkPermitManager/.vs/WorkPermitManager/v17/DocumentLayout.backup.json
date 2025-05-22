@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\powerofattorney\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\powerofattorney\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\powerofattorneycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\powerofattorneycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:controllers\\administratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\administrator\\managecompany.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\administrator\\managecompany.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\powerofattorney\\approve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\powerofattorney\\approve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|d:\\project\\project\\2024\\workpermitmanager\\workpermitmanager\\views\\powerofattorney\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{443115BC-C5DA-4E50-A059-990F6508F287}|WorkPermitManager.csproj|solutionrelative:views\\powerofattorney\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,26 +54,65 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "AdministratorController.cs",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdministratorController.cs",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\AdministratorController.cs",
+              "RelativeToolTip": "Controllers\\AdministratorController.cs",
+              "ViewState": "AgIAAN4BAAAAAAAAAAAWwKcDAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T07:22:05.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManageCompany.cshtml",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Administrator\\ManageCompany.cshtml",
+              "RelativeDocumentMoniker": "Views\\Administrator\\ManageCompany.cshtml",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\Administrator\\ManageCompany.cshtml",
+              "RelativeToolTip": "Views\\Administrator\\ManageCompany.cshtml",
+              "ViewState": "AgIAABEBAAAAAAAAAAAAACABAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-22T08:48:01.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Approve.cshtml",
+              "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\PowerOfAttorney\\Approve.cshtml",
+              "RelativeDocumentMoniker": "Views\\PowerOfAttorney\\Approve.cshtml",
+              "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\PowerOfAttorney\\Approve.cshtml",
+              "RelativeToolTip": "Views\\PowerOfAttorney\\Approve.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAswGIAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-22T07:45:17.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Form.cshtml",
               "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\PowerOfAttorney\\Form.cshtml",
               "RelativeDocumentMoniker": "Views\\PowerOfAttorney\\Form.cshtml",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Views\\PowerOfAttorney\\Form.cshtml",
               "RelativeToolTip": "Views\\PowerOfAttorney\\Form.cshtml",
-              "ViewState": "AgIAAHICAAAAAAAAAAAywH8CAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAKwAAAAAAAAAAIAwwM0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-21T08:38:19.947Z",
+              "WhenOpened": "2025-05-22T07:44:26.129Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PowerOfAttorneyController.cs",
               "DocumentMoniker": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\PowerOfAttorneyController.cs",
               "RelativeDocumentMoniker": "Controllers\\PowerOfAttorneyController.cs",
               "ToolTip": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\Controllers\\PowerOfAttorneyController.cs",
               "RelativeToolTip": "Controllers\\PowerOfAttorneyController.cs",
-              "ViewState": "AgIAAOMBAAAAAAAAAAAuwOwBAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAALkBAAAAAAAAAAAuwMcBAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T03:20:23.673Z",
               "EditorCaption": ""

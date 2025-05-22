@@ -20,14 +20,22 @@
                         <div class="col-12">
                             <div class="card-wrapper border rounded-3 light-card checkbox-checked">
                                 <form id="myFormInsert" method="post" class="row g-3" action="">
-                                    <div class="col-xxl-12 col-sm-12">
+                                    <div class="col-xxl-6 col-sm-6">
                                         <input name="CompanyID" id="txtCompanyID" type="hidden">
                                         <label class="col-form-label" for="txtCompanyName">ชื่อบริษัท</label>
                                         <input class="form-control" name="txtCompanyName" id="txtCompanyName" type="text" placeholder="กรุณากรอกข้อมูล">
                                     </div>
-                                    <div class="col-xxl-12 col-sm-12">
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="txtCompanyNameEg">ชื่อบริษัทอังกฤษ</label>
+                                        <input class="form-control" name="txtCompanyNameEg" id="txtCompanyNameEg" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
                                         <label class="col-form-label" for="txtAddress">ที่อยู่บริษัท</label>
                                         <textarea class="form-control" name="Address" id="txtAddress" rows="2" placeholder="กรุณากรอกข้อมูล"></textarea>
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="txtAddressEg">ที่อยู่บริษัทอังกฤษ</label>
+                                        <textarea class="form-control" name="AddressEg" id="txtAddressEg" rows="2" placeholder="กรุณากรอกข้อมูล"></textarea>
                                     </div>
                                     <div class="col-xxl-12 col-sm-12">
                                         <button class="btn btn-pill btn-primary active" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
@@ -97,6 +105,9 @@
                             <thead>
                                 <tr>
                                     <th>ชื่อบริษัท</th>
+                                    <th>ชื่อบริษัทอังกฤษ</th>
+                                    <th>ที่อยู่</th>
+                                    <th>ที่อยู่อังกฤษ</th>
                                     <th>สถานะเจ้าของระบบ</th>
                                     <th>ดำเนินการ</th>
                                 </tr>
@@ -106,6 +117,9 @@
                                 {
                                     <tr>
                                         <td>@item.CompanyName</td>
+                                        <td>@item.CompanyNameEg</td>
+                                        <td>@item.CompanyAddress</td>
+                                        <td>@item.CompanyAddressEg</td>
                                         <td class="gab-2">
                                             @Html.Raw(item.OwnerSystem == true ? "<i class='icofont icofont-check-circled text-success'></i> ใช่" : "<i class='icofont icofont-close-circled text-danger'></i> ไม่ใช่")
                                         </td>
@@ -202,7 +216,9 @@
                 e.preventDefault();
 
                 var companyName = $('#txtCompanyName').val();
+                var companyNameEg = $('#txtCompanyNameEg').val();
                 var companyAddress = $('#txtAddress').val();
+                var companyAddressEg = $('#txtAddressEg').val();
 
                 if (!companyName) {
                     Swal.fire({
@@ -216,7 +232,7 @@
                 $.ajax({
                     url: '@Url.Action("CheckCompanyName", "Administrator")',
                     type: 'POST',
-                    data: { CompanyName: companyName, CompanyAddress: companyAddress },
+                    data: { CompanyName: companyName, CompanyNameEg: companyNameEg, CompanyAddress: companyAddress, CompanyAddressEg: companyAddressEg },
                     success: function (response) {
                         if (response.success == false) {
                             Swal.fire('ผิดพลาด', response.message, 'error');
@@ -235,7 +251,7 @@
                                     $.ajax({
                                         url: '@Url.Action("CreateCompany", "Administrator")',
                                         type: 'POST',
-                                        data: { CompanyName: companyName, CompanyAddress: companyAddress },
+                                        data: { CompanyName: companyName, CompanyNameEg: companyNameEg, CompanyAddress: companyAddress, CompanyAddressEg: companyAddressEg },
                                         success: function (response) {
                                             if (response.success == true) {
                                                 Swal.fire(
@@ -281,7 +297,9 @@
                                 $('#changeSystem').hide();
                                 $('#txtCompanyID').val(response.companyID);
                                 $('#txtCompanyName').val(response.companyName);
+                                $('#txtCompanyNameEg').val(response.companyNameEg);
                                 $('#txtAddress').val(response.companyAddress);
+                                $('#txtAddressEg').val(response.companyAddressEg);
 
                                 $('#createHeader').hide();
                                 $('#updateHeader').show();
@@ -349,7 +367,9 @@
 
                 var companyID = $('#txtCompanyID').val();
                 var companyName = $('#txtCompanyName').val();
+                var companyNameEg = $('#txtCompanyNameEg').val();
                 var companyAddress = $('#txtAddress').val();
+                var companyAddressEg = $('#txtAddressEg').val();
 
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
@@ -366,7 +386,7 @@
                         $.ajax({
                             url: '@Url.Action("UpdateCompany", "Administrator")', // manually specify the URL
                             type: 'POST',
-                            data: { CompanyID: companyID, CompanyName: companyName, CompanyAddress: companyAddress },
+                            data: { CompanyID: companyID, CompanyName: companyName, CompanyNameEg: companyNameEg, CompanyAddress: companyAddress, CompanyAddressEg: companyAddressEg },
                             success: function (response) {
                                 if (response.success == true) {
                                     Swal.fire(

@@ -85,6 +85,14 @@ namespace WorkPermitManager.Helpers
             return principal.FindFirst("Company").Value.ToString();
         }
 
+        public static string GetLoggedInCompanyID(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("CompanyID").Value.ToString();
+        }
+
         public static string GetLoggedInImgProfile(this ClaimsPrincipal principal)
         {
             if (principal == null)
@@ -139,6 +147,14 @@ namespace WorkPermitManager.Helpers
                 throw new ArgumentNullException(nameof(principal));
 
             return principal.FindFirst("AdministratorIsActive").Value.ToString();
+        }
+
+        public static string GetRole_OwnerSystemIsActive(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst("OwnerSystemIsActive").Value.ToString();
         }
 
     }

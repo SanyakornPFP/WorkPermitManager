@@ -4,11 +4,17 @@
     <id name="CompanyID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="49cc3fea-88d5-491e-a78f-39c929ce685d">
       <column name="CompanyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
-    <property name="CompanyName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="7639d919-b781-49c1-9255-dadd492cbb28">
-      <column name="CompanyName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    <property name="CompanyName" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="7639d919-b781-49c1-9255-dadd492cbb28">
+      <column name="CompanyName" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CompanyNameEg" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="02b636aa-1f6a-46db-80b7-6f003d1e1030">
+      <column name="CompanyNameEg" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CompanyAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="02ccf480-dc69-4284-a07a-988920262191">
       <column name="CompanyAddress" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CompanyAddressEg" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5d98803d-ff94-44c4-a2e1-613006a1d43c">
+      <column name="CompanyAddressEg" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="OwnerSystem" type="Boolean" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="4112a343-c7ed-4db7-b9d3-4acf96b8c2a1">
       <column name="OwnerSystem" default="0" not-null="False" sql-type="bit" p1:unicode="False" />
@@ -82,8 +88,8 @@
     <property name="GrantorID" type="Int32" p1:ValidateRequired="true" p1:Guid="cbecf773-376a-484d-9142-0ec4557cbd38">
       <column name="GrantorID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="AttorneyID" type="Int32" p1:ValidateRequired="true" p1:Guid="628a4db5-b30c-4373-b784-078a3e44591f">
-      <column name="AttorneyID" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    <property name="AttorneyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="628a4db5-b30c-4373-b784-078a3e44591f">
+      <column name="AttorneyID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="GrantorApprovalStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="260215dd-a52f-4a84-a6a4-4b24cdc2a5c1">
       <column name="GrantorApprovalStatus" default="N'รอการอนุมัติ'" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
@@ -123,6 +129,12 @@
     </property>
     <property name="Status" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="efb2b522-7d89-40d6-9c2f-28377c15f1f0">
       <column name="Status" default="N'รอการอนุมัติ'" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TotalPeople" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3156e179-3f67-4466-bc6b-398876f75097">
+      <column name="TotalPeople" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Remark" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2247648d-351c-4ff3-b23f-c15abeaf34d0">
+      <column name="Remark" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="CreatedAt" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e059814e-8567-49b4-9183-42ca71c2e690">
       <column name="CreatedAt" not-null="False" sql-type="datetime" p1:unicode="False" />
@@ -185,8 +197,11 @@
     <property name="Passwordhash" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="63ab1038-46ba-4bd5-8da6-6f0144a3172b">
       <column name="Passwordhash" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="FullName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="71845f40-3daa-44db-b028-3a827f3c0cdd">
-      <column name="FullName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
+    <property name="FullName" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="71845f40-3daa-44db-b028-3a827f3c0cdd">
+      <column name="FullName" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FullNameEg" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c9413575-3e80-4383-822f-8364ac8b1f20">
+      <column name="FullNameEg" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="PositionID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9b0f32d3-932c-4c86-ae59-c5e04ddd5c06">
       <column name="PositionID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
@@ -832,7 +847,7 @@
       </end2>
     </association>
     <association name="User_PowerOfAttorney1" cardinality="OneToMany" p1:Guid="e794f7bd-1463-47de-a990-2ecd298972a9">
-      <end1 multiplicity="One" name="User_AttorneyID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="fe8267a3-8c22-463a-974e-a679b26a4c89">
+      <end1 multiplicity="ZeroOrOne" name="User_AttorneyID" class="PowerOfAttorney" relation-class="User" constrained="True" lazy="False" p1:Guid="fe8267a3-8c22-463a-974e-a679b26a4c89">
         <property name="UserID" />
       </end1>
       <end2 multiplicity="Many" name="PowerOfAttorneys_AttorneyID" class="User" relation-class="PowerOfAttorney" lazy="False" p1:Guid="47531a2b-8a42-4000-92a3-05135e98c889">

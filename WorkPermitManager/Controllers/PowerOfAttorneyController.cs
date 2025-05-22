@@ -40,14 +40,50 @@ namespace WorkPermitManager.Controllers
             {
                 s.PowerOfAttorneyID,
                 s.CodeForm,
+                s.CompanyID,
                 GrantorName = s.User_GrantorID.FullName,
                 AttorneyName = s.User_AttorneyID.FullName,
                 CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                TotalDate = (DateTime.Now.Date - s.CreationDate.Date).Days,
                 s.GrantorDateApprove,
                 s.Status,
                 s.IsActive
             })
             .ToList();
+
+
+            var Companies = _db.Companies
+             .Select(c => new
+             {
+                 c.CompanyID,
+                 c.CompanyName,
+                 c.OwnerSystem
+             })
+             .ToList();
+
+            var Users = _db.Users
+                .Select(u => new
+                {
+                    u.UserID,
+                    u.CompanyID,
+                    u.Company.OwnerSystem,
+                    u.FullName
+                })
+                .ToList();
+
+            if (User.GetRole_AdministratorIsActive() != "True" && User.GetRole_OwnerSystemIsActive() != "True")
+            {
+                PowerOfAttorneyModel = PowerOfAttorneyModel
+                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID())
+                    .ToList();
+                Companies = Companies
+                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID() || s.OwnerSystem == true)
+                    .ToList();
+                Users = Users
+                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID() || s.OwnerSystem == true)
+                    .ToList();
+
+            }
 
             if (type != "ยกเลิก")
             {
@@ -58,39 +94,14 @@ namespace WorkPermitManager.Controllers
                 PowerOfAttorneyModel = PowerOfAttorneyModel.Where(s => s.IsActive == false).ToList();
             }
 
-            if (User.GetRole_AdministratorIsActive() == "True")
-            {
-                ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel;
-            }
-            else
-            {
-                ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel
-                    .Where(s => s.AttorneyName == User.GetLoggedInUserID())
-                    .ToList();
-            }
-
-            // Fetching the list of Companies
-            ViewBag.CompanyList = _db.Companies
-                .Select(c => new
-                {
-                    c.CompanyID,
-                    c.CompanyName
-                })
-                .ToList();
-
-            // Fetching the list of Users
-            ViewBag.UserList = _db.Users
-                .Select(u => new
-                {
-                    u.UserID,
-                    u.FullName
-                })
-                .ToList();
+            ViewBag.UserList = Users.ToList();
+            ViewBag.CompanyList = Companies.ToList();
+            ViewBag.PowerOfAttorneysList = PowerOfAttorneyModel.OrderByDescending(s => s.CodeForm).ToList();
 
             return View();
         }
 
-        #region ListApprovalForm
+        #region Approve
         public IActionResult Approve(string type)
         {
             if (type == null)
@@ -98,6 +109,7 @@ namespace WorkPermitManager.Controllers
                 type = "รอการอนุมัติ";
             }
             ViewBag.TypeForm = type;
+
             var PowerOfAttorneyModel = _db.PowerOfAttorneys.Where(s => s.IsActive && s.Status == type)
                 .Select(s => new
                 {
@@ -108,12 +120,14 @@ namespace WorkPermitManager.Controllers
                     s.AttorneyID,
                     AttorneyName = s.User_AttorneyID.FullName,
                     CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                    TotalDate = (DateTime.Now.Date - s.CreationDate.Date).Days,
                     s.GrantorDateApprove,
                     s.Status
                 })
+                .OrderByDescending(s => s.CodeForm)
                 .ToList();
 
-            if (User.GetRole_AdministratorIsActive() != "True")
+            if (User.GetRole_AdministratorIsActive() != "True" && User.GetRole_OwnerSystemIsActive() != "True")
             {
                 PowerOfAttorneyModel = PowerOfAttorneyModel
                     .Where(s => s.GrantorID == int.Parse(User.GetLoggedInUserID()))
@@ -128,7 +142,7 @@ namespace WorkPermitManager.Controllers
 
         #region CreatePowerOfAttorney 
         [HttpPost]
-        public async Task<IActionResult> CreatePowerOfAttorney(string CreationDate, int CompanyID, int GrantorID, int WitnessApprovalBy1, int WitnessApprovalBy2)
+        public async Task<IActionResult> CreatePowerOfAttorney(string CreationDate, int CompanyID, int TotalPeople, int GrantorID, int WitnessApprovalBy1, int WitnessApprovalBy2, string Remark)
         {
 
             if (string.IsNullOrEmpty(CreationDate) || GrantorID == 0 || WitnessApprovalBy1 == 0 || WitnessApprovalBy2 == 0)
@@ -146,6 +160,7 @@ namespace WorkPermitManager.Controllers
                     CreationDate = Convert.ToDateTime(CreationDate),
                     CodeForm = "PA00" + DateTime.Now.ToString("yyyyMMdd") + formNumber,
                     CompanyID = CompanyID,
+                    TotalPeople = TotalPeople,
                     GrantorID = GrantorID,
                     AttorneyID = int.Parse(User.GetLoggedInUserID()),
                     GrantorApprovalBy = GrantorID,
@@ -156,6 +171,7 @@ namespace WorkPermitManager.Controllers
                     WitnessApprovalBy2 = WitnessApprovalBy2,
                     WitnessApprovalStatus2 = "อนุมัติเรียบร้อย",
                     WitnessDateApprove2 = DateTime.Now,
+                    Remark = Remark,
                     CreatedAt = DateTime.Now,
                     UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
@@ -202,11 +218,13 @@ namespace WorkPermitManager.Controllers
                     {
                         s.PowerOfAttorneyID,
                         s.CodeForm,
+                        s.TotalPeople,
                         CreationDate = s.CreationDate.ToString("yyyy-MM-dd"),
                         s.CompanyID,
                         s.GrantorID,
                         s.WitnessApprovalBy1,
-                        s.WitnessApprovalBy2
+                        s.WitnessApprovalBy2,
+                        s.Remark
                     })
                     .FirstOrDefault();
                 return Json(new
@@ -220,7 +238,7 @@ namespace WorkPermitManager.Controllers
 
         #region UpdatePowerOfAttorney
         [HttpPost]
-        public async Task<IActionResult> UpdatePowerOfAttorney(int PowerOfAttorneyID, string CreationDate, int CompanyID, int GrantorID, int WitnessApprovalBy1, int WitnessApprovalBy2)
+        public async Task<IActionResult> UpdatePowerOfAttorney(int PowerOfAttorneyID, int TotalPeople, string CreationDate, int CompanyID, int GrantorID, int WitnessApprovalBy1, int WitnessApprovalBy2, string Remark)
         {
             if (PowerOfAttorneyID == 0)
             {
@@ -237,10 +255,12 @@ namespace WorkPermitManager.Controllers
                 {
                     PowerOfAttorney.CreationDate = Convert.ToDateTime(CreationDate);
                     PowerOfAttorney.CompanyID = CompanyID;
+                    PowerOfAttorney.TotalPeople = TotalPeople;
                     PowerOfAttorney.GrantorID = GrantorID;
                     PowerOfAttorney.GrantorApprovalBy = GrantorID;
                     PowerOfAttorney.WitnessApprovalBy1 = WitnessApprovalBy1;
                     PowerOfAttorney.WitnessApprovalBy2 = WitnessApprovalBy2;
+                    PowerOfAttorney.Remark = Remark;
                     PowerOfAttorney.UpdatedAt = DateTime.Now;
                     PowerOfAttorney.UserManageID = int.Parse(User.GetLoggedInUserID());
                     await _db.SaveChangesAsync();
@@ -374,6 +394,7 @@ namespace WorkPermitManager.Controllers
                     {
                         s.CodeForm,
                         CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
+                        s.TotalPeople,
                         GrantorName = s.User_GrantorID.FullName,
                         GrantorStatus = s.GrantorApprovalStatus,
                         GrantorDateApprove = s.GrantorDateApprove.HasValue ? s.GrantorDateApprove.Value.ToString("dd/MM/yyyy") : null,
@@ -386,7 +407,8 @@ namespace WorkPermitManager.Controllers
                         Witness2Name = s.User_WitnessApprovalBy2.FullName,
                         Witness2Status = s.WitnessApprovalStatus2,
                         WitnessDateApprove2 = s.WitnessDateApprove2,
-                        s.Status
+                        s.Status,
+                        s.Remark
                     })
                     .FirstOrDefault();
 
@@ -401,98 +423,19 @@ namespace WorkPermitManager.Controllers
         }
         #endregion
 
-
-        //#region Report V.2
-        //[HttpGet]
-        //public IActionResult ReportForm(string CodeForm)
-        //{
-        //    var ModelPA = _db.PowerOfAttorneys.Where(s => s.CodeForm == CodeForm)
-        //        .Select(s => new
-        //        {
-        //            s.PowerOfAttorneyID,
-        //            s.CodeForm,
-        //            CreationDate = s.CreationDate,
-        //            Location = s.User_GrantorID.Company.CompanyAddress,
-        //            GrantorName = s.User_GrantorID.FullName,
-        //            GrantorCardID = s.User_GrantorID.CardID,
-        //            AttorneyName = s.User_AttorneyID.FullName,
-        //            AttorneyCardID = s.User_AttorneyID.CardID,
-        //            AttorneyLocation = s.User_AttorneyID.Company.CompanyAddress,
-        //            s.GrantorApprovalStatus,
-        //            s.AttorneyApprovalStatus,
-        //            Witness1Name = s.User_WitnessApprovalBy1.FullName,
-        //            Witness1Signature = s.User_WitnessApprovalBy1.CardID,
-        //            s.WitnessApprovalStatus1,
-        //            Witness2Name = s.User_WitnessApprovalBy2.FullName,
-        //            Witness2Signature = s.User_WitnessApprovalBy2.CardID,
-        //            s.WitnessApprovalStatus2,
-        //            GrantorDateApprove = s.GrantorDateApprove.HasValue ? s.GrantorDateApprove.Value.ToString("ddMMyyyy") : null,
-        //            AttorneyDateApprove = s.AttorneyDateApprove.HasValue ? s.AttorneyDateApprove.Value.ToString("ddMMyyyy") : null,
-        //            WitnessDateApprove1 = s.WitnessDateApprove1.HasValue ? s.WitnessDateApprove1.Value.ToString("ddMMyyyy") : null,
-        //            WitnessDateApprove2 = s.WitnessDateApprove2.HasValue ? s.WitnessDateApprove2.Value.ToString("ddMMyyyy") : null,
-        //            s.Status
-        //        })
-        //        .FirstOrDefault();
-
-        //    // Generate QR Code
-        //    string hostname = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
-        //    string qrCodeUrl = $"{hostname}/PowerOfAttorney/ReportForm?CodeForm={CodeForm}";
-        //    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        //    QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
-
-        //    // ใช้ PngByteQRCode แทน QRCode
-        //    PngByteQRCode pngByteQRCode = new PngByteQRCode(qrCodeData);
-        //    byte[] qrCodeImage = pngByteQRCode.GetGraphic(20);
-
-        //    // แปลงเป็น Base64
-        //    string base64Image = Convert.ToBase64String(qrCodeImage);
-
-        //    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "qr-code.png");
-        //    System.IO.File.WriteAllBytes(filePath, qrCodeImage);
-
-        //    string renderFormat = "PDF";
-        //    string mimetype = "application/pdf";
-        //    using var report = new LocalReport();
-        //    report.ReportPath = $"{this._webHostEnvironment.WebRootPath}\\Report\\PowerOfAttorney\\PA-001.rdlc";
-        //    report.EnableExternalImages = true;
-
-        //    ReportParameter[] parameters = new ReportParameter[]
-        //    {
-        //        new ReportParameter("CodeForm", CodeForm),
-        //        new ReportParameter("CreationDate", ModelPA.CreationDate.ToThaiDate()),
-        //        new ReportParameter("Location", ModelPA.Location),
-        //        new ReportParameter("GrantorName", ModelPA.GrantorName),
-        //        new ReportParameter("GrantorCardID", ModelPA.GrantorCardID),
-        //        new ReportParameter("GrantorLocation", ModelPA.Location),
-        //        new ReportParameter("AttorneyName", ModelPA.AttorneyName),
-        //        new ReportParameter("AttorneyCardID", ModelPA.AttorneyCardID),
-        //        new ReportParameter("AttorneyLocation", ModelPA.AttorneyLocation),
-        //        new ReportParameter("Witness1Name", ModelPA.Witness1Name),
-        //        new ReportParameter("Witness2Name", ModelPA.Witness2Name),
-        //        new ReportParameter("GrantorDateApprove", ModelPA.GrantorDateApprove),
-        //        new ReportParameter("AttorneyDateApprove", ModelPA.AttorneyDateApprove),
-        //        new ReportParameter("WitnessDateApprove1", ModelPA.WitnessDateApprove1),
-        //        new ReportParameter("WitnessDateApprove2", ModelPA.WitnessDateApprove2),
-        //        new ReportParameter("QRCode", new Uri(filePath).AbsoluteUri)
-        //    };
-
-        //    report.SetParameters(parameters);
-
-        //    var pdf = report.Render(format: renderFormat);
-
-        //    var contentDisposition = new System.Net.Mime.ContentDisposition
-        //    {
-        //        FileName = CodeForm + ".pdf",
-        //        Inline = true // false = prompt the user for downloading; true = browser to try to show the content inline
-        //    };
-
-        //    return new FileContentResult(pdf, mimetype);
-        //}
-        //#endregion
+        public IActionResult ErrorExitingDateThan30Day()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult ReportForm(string CodeForm)
         {
+            if (User.GetRole_AdministratorIsActive() != "True" && User.GetRole_OwnerSystemIsActive() != "Ture")
+            {
+                return RedirectToAction("ErrorExitingDateThan30Day");
+            }
+
             string absolutePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "document", "หนังสือมอบอำนาจ.pdf");
 
             // Debug the file path
@@ -508,13 +451,20 @@ namespace WorkPermitManager.Controllers
                 {
                     s.PowerOfAttorneyID,
                     s.CodeForm,
-                    CreationDate = s.CreationDate,
-                    Location = s.User_GrantorID.Company.CompanyAddress,
+                    WriteAt = s.User_AttorneyID.Company.CompanyName,
+                    WriteAtEg = s.User_AttorneyID.Company.CompanyNameEg,
+                    CreationDateEg = s.CreationDate.ToString("d                 MMM                 yyyy", new System.Globalization.CultureInfo("en-US")),
+                    CreationDate = s.CreationDate.ToString("d                MMM", new System.Globalization.CultureInfo("th-TH")) + "                 " + (s.CreationDate.Year + 543),
+                    GrantorLocation = s.User_GrantorID.Company.CompanyAddress,
+                    GrantorLocationEg = s.User_GrantorID.Company.CompanyAddressEg,
                     GrantorName = s.User_GrantorID.FullName,
+                    GrantorNameEg = s.User_GrantorID.FullNameEg,
                     GrantorCardID = s.User_GrantorID.CardID,
                     AttorneyName = s.User_AttorneyID.FullName,
+                    AttorneyNameEg = s.User_AttorneyID.FullNameEg,
                     AttorneyCardID = s.User_AttorneyID.CardID,
                     AttorneyLocation = s.User_AttorneyID.Company.CompanyAddress,
+                    AttorneyLocationEg = s.User_AttorneyID.Company.CompanyAddressEg,
                     s.GrantorApprovalStatus,
                     s.AttorneyApprovalStatus,
                     Witness1Name = s.User_WitnessApprovalBy1.FullName,
@@ -564,9 +514,18 @@ namespace WorkPermitManager.Controllers
                         pdfCanvas.BeginText()
                             .SetFontAndSize(PdfFontFactory.CreateFont(
                                 Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"),
-                                PdfEncodings.IDENTITY_H), 16)
-                            .MoveText(250, 533)
-                            .ShowText($"{ModelPA.GrantorName ?? ""}")
+                                PdfEncodings.IDENTITY_H), 10)
+                            .MoveText(380, 712)
+                            .ShowText($"{ModelPA.WriteAt ?? ""}")
+                            .MoveText(-15, -11)
+                            .ShowText($"{ModelPA.WriteAtEg ?? ""}")
+                            .SetFontAndSize(PdfFontFactory.CreateFont(
+                                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts", "THSarabunNew Bold.ttf"),
+                                PdfEncodings.IDENTITY_H), 14)
+                            .MoveText(15, -21)
+                            .ShowText($"{ModelPA.CreationDate ?? ""}")
+                            .MoveText(0, -16)
+                            .ShowText($"{ModelPA.CreationDateEg ?? ""}")
                             .EndText();
 
                         iText.Layout.Element.Image qrCodePdfImage = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(qrCodeImage))

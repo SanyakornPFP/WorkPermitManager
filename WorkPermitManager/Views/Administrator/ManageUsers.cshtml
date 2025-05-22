@@ -71,6 +71,10 @@
                                         <input class="form-control" name="FullName" id="txtFullName" type="text" placeholder="กรุณากรอกข้อมูล">
                                     </div>
                                     <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="txtFullNameEg">ชื่อ-นามสกุลอังกฤษ</label>
+                                        <input class="form-control" name="FullNameEg" id="txtFullNameEg" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
                                         <label class="col-form-label" for="txtUserEmail">อีเมล</label>
                                         <input class="form-control" name="UserEmail" id="txtUserEmail" type="email" placeholder="กรุณากรอกข้อมูล">
                                     </div>
@@ -288,7 +292,7 @@
                             // ตั้งค่า src
                             $('#UserImage').attr('src', relativePath);
                             $('#Username').text(response.data.username);
-                            $('#FullName').text(response.data.fullName);
+                            $('#FullName').text(response.data.fullName + ' (' + response.data.fullNameEg + ')');
                             $('#Position').text(response.data.position);
                             $('#Department').text(response.data.department);
                             $('#Company').text(response.data.company);
@@ -394,6 +398,7 @@
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
             var fullname = $('#txtFullName').val();
+            var fullnameEg = $('#txtFullNameEg').val();
             var administrator = $('#selectAdministratorIsActive').val();
 
             if (!userName || !fullname || !userEmail || !cardID || !positionID || !departmentID || !companyID || !administrator) {
@@ -431,6 +436,7 @@
                                         UserName: userName,
                                         UserEmail: userEmail,
                                         FullName: fullname,
+                                        FullNameEg: fullnameEg,
                                         CardID: cardID,
                                         PositionID: positionID,
                                         DepartmentID: departmentID,
@@ -482,6 +488,7 @@
                             $('#txtUserID').val(response.userID);
                             $('#txtUserName').val(response.username);
                             $('#txtFullName').val(response.fullName);
+                            $('#txtFullNameEg').val(response.fullNameEg);
                             $('#txtUserEmail').val(response.email);
                             $('#txtCardID').val(response.cardID);
                             $('#selectPositionID').val(response.positionID).trigger('change');
@@ -580,6 +587,7 @@
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
             var fullname = $('#txtFullName').val();
+            var fullnameEg = $('#txtFullNameEg').val();
             var administrator = $('#selectAdministratorIsActive').val();
 
             Swal.fire({
@@ -605,6 +613,7 @@
                             DepartmentID: departmentID,
                             CompanyID: companyID,
                             FullName: fullname,
+                            FullNameEg: fullnameEg,
                             AdministratorIsActive: administrator
                         },
                         success: function (response) {
