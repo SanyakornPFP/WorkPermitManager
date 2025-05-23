@@ -8873,6 +8873,14 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "PackagePath": "staticwebassets\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "PackagePath": "staticwebassets\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "PackagePath": "staticwebassets\\document\\บต.25.pdf"
     },

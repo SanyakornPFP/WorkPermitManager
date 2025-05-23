@@ -9,10 +9,6 @@
       "PackagePath": "staticwebassets\\Report\\Employers\\EM-001.rdlc"
     },
     {
-      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
-      "PackagePath": "staticwebassets\\Report\\PowerOfAttorney\\PA-001.rdlc"
-    },
-    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\assets\\SystemImages\\ProfileImage\\Default.png",
       "PackagePath": "staticwebassets\\assets\\SystemImages\\ProfileImage\\Default.png"
     },
@@ -8877,6 +8873,14 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "PackagePath": "staticwebassets\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "PackagePath": "staticwebassets\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+    },
+    {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "PackagePath": "staticwebassets\\document\\บต.25.pdf"
     },
@@ -8915,6 +8919,14 @@
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.55.pdf",
       "PackagePath": "staticwebassets\\document\\บต.55.pdf"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.docx",
+      "PackagePath": "staticwebassets\\document\\หนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.pdf",
+      "PackagePath": "staticwebassets\\document\\หนังสือมอบอำนาจ.pdf"
     },
     {
       "Id": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\favicon.ico",

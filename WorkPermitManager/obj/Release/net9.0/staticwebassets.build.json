@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FXnOFrkpk3bWaF0AbvtA2bgPd4c4CMaI8e0mfoFVSbo=",
+  "Hash": "s5F1Led/b0/vKUULr4xowNg5cXWfMPKRxJsVwwgNc6Y=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -81999,6 +81999,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ#[.{fingerprint}]?.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lipvj6fev6",
+      "Integrity": "EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4x5xqj50uj",
+      "Integrity": "yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
@@ -615942,6 +615984,170 @@
       ]
     },
     {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.4x5xqj50uj.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4x5xqj50uj"
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.lipvj6fev6.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lipvj6fev6"
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        }
+      ]
+    },
+    {
       "Route": "document/บต.25.gw0sllzfj6.pdf",
       "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "Selectors": [],
@@ -635620,7 +635826,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635673,7 +635879,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635710,7 +635916,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635757,7 +635963,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635818,7 +636024,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635863,7 +636069,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635918,7 +636124,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635979,7 +636185,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -636024,7 +636230,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -636079,7 +636285,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -636132,7 +636338,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -636169,7 +636375,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 31 Jan 2025 04:06:02 GMT"
+          "Value": "Fri, 23 May 2025 01:59:07 GMT"
         },
         {
           "Name": "Cache-Control",

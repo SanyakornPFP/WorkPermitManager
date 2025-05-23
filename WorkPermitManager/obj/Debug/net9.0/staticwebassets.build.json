@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i0ayiAWVNAqSzvOH3uaUGx/IibjPwmjnylwNqZ9D/Gs=",
+  "Hash": "JsZuZYoFpFLwMuM4Ngl5tYhEB/pKaCuYRUU+MsLdLts=",
   "Source": "WorkPermitManager",
   "BasePath": "_content/WorkPermitManager",
   "Mode": "Default",
@@ -82001,6 +82001,48 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ#[.{fingerprint}]?.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lipvj6fev6",
+      "Integrity": "EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4x5xqj50uj",
+      "Integrity": "yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+    },
+    {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "SourceId": "WorkPermitManager",
       "SourceType": "Discovered",
@@ -82209,6 +82251,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\document\\บต.55.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.docx",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/หนังสือมอบอำนาจ#[.{fingerprint}]?.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k6whm2qe74",
+      "Integrity": "LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\หนังสือมอบอำนาจ.docx"
+    },
+    {
+      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.pdf",
+      "SourceId": "WorkPermitManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
+      "BasePath": "_content/WorkPermitManager",
+      "RelativePath": "document/หนังสือมอบอำนาจ#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xqdverd2wr",
+      "Integrity": "pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\document\\หนังสือมอบอำนาจ.pdf"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\favicon.ico",
@@ -83595,27 +83679,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Report\\Employers\\EM-001.rdlc"
-    },
-    {
-      "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
-      "SourceId": "WorkPermitManager",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\",
-      "BasePath": "_content/WorkPermitManager",
-      "RelativePath": "Report/PowerOfAttorney/PA-001#[.{fingerprint}]?.rdlc",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "z11oiaxaj3",
-      "Integrity": "V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc"
     },
     {
       "Identity": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\uploads\\EmployersDocument\\asdasd\\D0020250306092237.pdf",
@@ -615921,6 +615984,170 @@
       ]
     },
     {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.4x5xqj50uj.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4x5xqj50uj"
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.lipvj6fev6.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lipvj6fev6"
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        }
+      ]
+    },
+    {
       "Route": "document/บต.25.gw0sllzfj6.pdf",
       "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\บต.25.pdf",
       "Selectors": [],
@@ -616737,6 +616964,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.k6whm2qe74.docx",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6whm2qe74"
+        },
+        {
+          "Name": "label",
+          "Value": "document/หนังสือมอบอำนาจ.docx"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60039"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.xqdverd2wr.pdf",
+      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\document\\หนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60039"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xqdverd2wr"
+        },
+        {
+          "Name": "label",
+          "Value": "document/หนังสือมอบอำนาจ.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
         }
       ]
     },
@@ -635187,7 +635578,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:15:46 GMT"
+          "Value": "Wed, 21 May 2025 07:48:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635224,7 +635615,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:15:46 GMT"
+          "Value": "Wed, 21 May 2025 07:48:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -635325,88 +635716,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-kmwQgRbmRlbZlmctBvQbQDWTbQyslmUDIrU8LSXRdvo="
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001.rdlc",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "374250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:34:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001.z11oiaxaj3.rdlc",
-      "AssetFile": "D:\\Project\\Project\\2024\\WorkPermitManager\\WorkPermitManager\\wwwroot\\Report\\PowerOfAttorney\\PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "374250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:34:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "z11oiaxaj3"
-        },
-        {
-          "Name": "label",
-          "Value": "Report/PowerOfAttorney/PA-001.rdlc"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="
         }
       ]
     },

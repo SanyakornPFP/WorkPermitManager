@@ -184,6 +184,9 @@
             <div class="card">
                 <div class="card-header pb-0 card-no-border">
                     <div class="flex justify-end space-x-2" style="float:right">
+                        <a target="_blank" class="btn btn-light btn-sm" href="@Url.Content("~/document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf")">
+                            <i class="fa fa-file-pdf-o text-danger"></i> คู่มือการใช้งาน
+                        </a>
                         <a class="btn btn-primary btn-sm" id="createOn">
                             <i class="fa fa-plus text-white"></i> ยื่นคำขอมอบอำนาจ
                         </a>
@@ -204,13 +207,15 @@
                                     <th>วันที่ยื่นขอ</th>
                                     <th>สถานะ</th>
                                     <th class="text-center">อายุเอกสาร</th>
-                                    <th class="text-center">เอกสาร</th>
+                                    @if (ViewBag.TypeForm == "อนุมัติเรียบร้อย")
+                                    {
+                                        <th class="text-center">เอกสาร</th>
+                                    }
                                     <th class="text-center">รายละเอียด</th>
                                     @if (ViewBag.TypeForm == "รอการอนุมัติ")
                                     {
                                         <th>ดำเนินการ</th>
                                     }
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -224,21 +229,24 @@
                                         <td>
                                             <span class="badge @(item.Status == "รอการอนุมัติ" ? "badge-warning" : item.Status == "ไม่อนุมัติ" ? "badge-danger" : item.Status == "อนุมัติเรียบร้อย" ? "badge-success" : "badge-light")" style="font-size: 0.8rem">@item.Status</span>
                                         </td>
-                                        <td class="text-center">@item.TotalDate</td>
-                                        <td class="text-center">
-                                            @if (item.TotalDate <= 30)
-                                            {
-                                                <a class="text-primary reportForm btn btn-light btn-sm" data-codeForm="@item.CodeForm">
-                                                    <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">
-                                                    <i class="fa fa-exclamation-circle me-1"></i> หมดอายุเอกสาร
-                                                </span>
-                                            }
-                                        </td>
+                                        <td class="text-center">@(item.TotalDate < 0 ? "0" : item.TotalDate) </td>
+                                        @if (ViewBag.TypeForm == "อนุมัติเรียบร้อย")
+                                        {
+                                            <td class="text-center">
+                                                @if (item.TotalDate <= 30)
+                                                {
+                                                    <a class="text-primary reportForm btn btn-light btn-sm" data-codeForm="@item.CodeForm">
+                                                        <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">
+                                                        <i class="fa fa-exclamation-circle me-1"></i> หมดอายุเอกสาร
+                                                    </span>
+                                                }
+                                            </td>
+                                        }
                                         <td class="text-center">
                                             <!-- ปุ่มที่เปิด Modal -->
                                             <button class="btn text-dark" data-toggle="modal" data-target="#detailModal" data-powerofattorneyid="@item.PowerOfAttorneyID">

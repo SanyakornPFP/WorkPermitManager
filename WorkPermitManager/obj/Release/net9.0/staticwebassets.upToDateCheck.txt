@@ -3898,6 +3898,8 @@ wwwroot\assets\SystemImages\Signature\2931000003432.jpg
 wwwroot\assets\SystemImages\Signature\dontImage.png
 wwwroot\assets\video\auth-bg.mp4
 wwwroot\css\site.css
+wwwroot\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx
+wwwroot\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf
 wwwroot\document\บต.25.pdf
 wwwroot\document\บต.30.pdf
 wwwroot\document\บต.33.pdf

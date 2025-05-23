@@ -341,7 +341,7 @@ namespace WorkPermitManager.Controllers
                     var oldPassword = model.Passwordhash;
                     model.Passwordhash = ComputeSha256Hash(Password);
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the User password change
                     _db.Users.Update(model);
                     await _db.SaveChangesAsync();
@@ -505,7 +505,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create Position
         [HttpPost]
-        public async Task<IActionResult> CreatePosition(string PositionName)
+        public async Task<IActionResult> CreatePosition(string PositionName, string PositionNameEg)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
@@ -521,11 +521,11 @@ namespace WorkPermitManager.Controllers
                 Position Createmodel = new Position
                 {
                     PositionName = PositionName,
+                    PositionNameEg = PositionNameEg,
                     CreatedDate = DateTime.Now,
-                    //UserManageID = int.Parse(User.GetLoggedInUserID())
+                    UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
 
-                // Processing the Position creation
                 _db.Positions.Add(Createmodel);
                 await _db.SaveChangesAsync();
 
@@ -535,7 +535,7 @@ namespace WorkPermitManager.Controllers
                     TableName = "Companies",
                     Action = "Create",
                     RecordID = Createmodel.PositionID, // Assuming PositionID is the primary key
-                    //UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                    UserManageID = int.Parse(User.GetLoggedInUserID()),
                     ActionTime = DateTime.Now,
                     IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                     OldValue = null, // No previous value since it's a new record
@@ -576,17 +576,15 @@ namespace WorkPermitManager.Controllers
                 {
                     model.IsDeleted = true;
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
-                    // Processing the Position deletion
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     _db.Positions.Update(model);
                     await _db.SaveChangesAsync();
-                    // Log the deletion of the Position
                     var logEntry = new LogSystemData
                     {
                         TableName = "Companies",
                         Action = "Delete",
                         RecordID = model.PositionID,
-                        //UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {model.PositionName}",
@@ -604,7 +602,7 @@ namespace WorkPermitManager.Controllers
 
         #region Update Position
         [HttpPost]
-        public async Task<IActionResult> UpdatePosition(int PositionID, string PositionName)
+        public async Task<IActionResult> UpdatePosition(int PositionID, string PositionName, string PositionNameEg)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
@@ -626,9 +624,9 @@ namespace WorkPermitManager.Controllers
                 {
                     var oldName = model.PositionName;
                     model.PositionName = PositionName;
+                    model.PositionNameEg = PositionNameEg;
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
-                    // Processing the Position update
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     _db.Positions.Update(model);
                     await _db.SaveChangesAsync();
                     // Log the update of the Position
@@ -637,7 +635,7 @@ namespace WorkPermitManager.Controllers
                         TableName = "Companies",
                         Action = "Update",
                         RecordID = model.PositionID,
-                        //UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {oldName}",
@@ -738,7 +736,7 @@ namespace WorkPermitManager.Controllers
                 {
                     DepartmentName = DepartmentName,
                     CreatedDate = DateTime.Now,
-                    //UserManageID = int.Parse(User.GetLoggedInUserID())
+                    UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
                 // Processing the Department creation
                 _db.Departments.Add(Createmodel);
@@ -749,7 +747,7 @@ namespace WorkPermitManager.Controllers
                     TableName = "Companies",
                     Action = "Create",
                     RecordID = Createmodel.DepartmentID, // Assuming DepartmentID is the primary key
-                    //UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
+                    UserManageID = int.Parse(User.GetLoggedInUserID()), // Retrieve the logged user's ID
                     ActionTime = DateTime.Now,
                     IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                     OldValue = null, // No previous value since it's a new record
@@ -788,7 +786,7 @@ namespace WorkPermitManager.Controllers
                 {
                     model.IsDeleted = true;
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the Department deletion
                     _db.Departments.Update(model);
                     await _db.SaveChangesAsync();
@@ -798,7 +796,7 @@ namespace WorkPermitManager.Controllers
                         TableName = "Companies",
                         Action = "Delete",
                         RecordID = model.DepartmentID,
-                        //UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {model.DepartmentName}",
@@ -839,7 +837,7 @@ namespace WorkPermitManager.Controllers
                     var oldName = model.DepartmentName;
                     model.DepartmentName = DepartmentName;
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the Department update
                     _db.Departments.Update(model);
                     await _db.SaveChangesAsync();
@@ -849,7 +847,7 @@ namespace WorkPermitManager.Controllers
                         TableName = "Companies",
                         Action = "Update",
                         RecordID = model.DepartmentID,
-                        //UserManageID = int.Parse(User.GetLoggedInUserID()),
+                        UserManageID = int.Parse(User.GetLoggedInUserID()),
                         ActionTime = DateTime.Now,
                         IPAddress = HttpContext.Connection.RemoteIpAddress.ToString(),
                         OldValue = $"Name: {oldName}",
@@ -1014,7 +1012,7 @@ namespace WorkPermitManager.Controllers
                     CompanyAddress = CompanyAddress,
                     CompanyAddressEg = CompanyAddressEg,
                     CreatedDate = DateTime.Now,
-                    //UserManageID = int.Parse(User.GetLoggedInUserID())
+                    UserManageID = int.Parse(User.GetLoggedInUserID())
                 };
                 // Processing the Company creation
                 _db.Companies.Add(Createmodel);
@@ -1120,7 +1118,7 @@ namespace WorkPermitManager.Controllers
                     model.CompanyAddress = CompanyAddress;
                     model.CompanyAddressEg = CompanyAddressEg;
                     model.UpdatedDate = DateTime.Now;
-                    //model.UserManageID = int.Parse(User.GetLoggedInUserID());
+                    model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     // Processing the Company update
                     _db.Companies.Update(model);
                     await _db.SaveChangesAsync();

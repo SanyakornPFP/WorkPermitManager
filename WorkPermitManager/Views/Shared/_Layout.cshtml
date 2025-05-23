@@ -258,7 +258,10 @@
                                         </a>
                                         <ul class="sidebar-submenu">
                                             <li><a asp-controller="PowerOfAttorney" asp-action="Form">รายการยื่นขอ</a></li>
-                                            <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
+                                            @if (User.GetRole_OwnerSystemIsActive() == "True" || User.GetRole_AdministratorIsActive() == "True")
+                                            {
+                                                <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
+                                            }
                                         </ul>
                                     </li>
 

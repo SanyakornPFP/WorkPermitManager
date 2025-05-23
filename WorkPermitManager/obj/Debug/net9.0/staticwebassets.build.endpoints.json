@@ -85,88 +85,6 @@
       ]
     },
     {
-      "Route": "Report/PowerOfAttorney/PA-001.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "374250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:34:58 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="
-        }
-      ]
-    },
-    {
-      "Route": "Report/PowerOfAttorney/PA-001.z11oiaxaj3.rdlc",
-      "AssetFile": "Report/PowerOfAttorney/PA-001.rdlc",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "374250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:34:58 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "z11oiaxaj3"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-V2WnCm2DRbVEr9/lkhoGlArlBcU8pbjS6cWVpvXDUAg="
-        },
-        {
-          "Name": "label",
-          "Value": "Report/PowerOfAttorney/PA-001.rdlc"
-        }
-      ]
-    },
-    {
       "Route": "WorkPermitManager.niunzl2gmw.styles.css",
       "AssetFile": "WorkPermitManager.styles.css.gz",
       "Selectors": [
@@ -532745,6 +532663,170 @@
       ]
     },
     {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.4x5xqj50uj.pdf",
+      "AssetFile": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4x5xqj50uj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "AssetFile": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.lipvj6fev6.docx",
+      "AssetFile": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "786545"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:31 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lipvj6fev6"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="
+        },
+        {
+          "Name": "label",
+          "Value": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx"
+        }
+      ]
+    },
+    {
+      "Route": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "AssetFile": "document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "566423"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 04:18:43 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="
+        }
+      ]
+    },
+    {
       "Route": "document/บต.25.gw0sllzfj6.pdf",
       "AssetFile": "document/บต.25.pdf",
       "Selectors": [],
@@ -533561,6 +533643,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-I83mIoh5xr0n+XcYfBv00vL2MDfTSWUp2tE6JTOmCPw="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.docx",
+      "AssetFile": "document/หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.k6whm2qe74.docx",
+      "AssetFile": "document/หนังสือมอบอำนาจ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:55:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6whm2qe74"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LPuL4RTLyFcSyWOh9lLi5mEWSys+ssjPI4uhRF5BSJA="
+        },
+        {
+          "Name": "label",
+          "Value": "document/หนังสือมอบอำนาจ.docx"
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.pdf",
+      "AssetFile": "document/หนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60039"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
+        }
+      ]
+    },
+    {
+      "Route": "document/หนังสือมอบอำนาจ.xqdverd2wr.pdf",
+      "AssetFile": "document/หนังสือมอบอำนาจ.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60039"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 09:56:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xqdverd2wr"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pz7noe5vwTLPAEGtmYPMozFuEO2zJtvtl83nKUy4cLA="
+        },
+        {
+          "Name": "label",
+          "Value": "document/หนังสือมอบอำนาจ.pdf"
         }
       ]
     },
@@ -552015,7 +552261,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:15:46 GMT"
+          "Value": "Wed, 21 May 2025 07:48:28 GMT"
         }
       ],
       "EndpointProperties": [
@@ -552052,7 +552298,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 17 May 2025 08:15:46 GMT"
+          "Value": "Wed, 21 May 2025 07:48:28 GMT"
         }
       ],
       "EndpointProperties": [

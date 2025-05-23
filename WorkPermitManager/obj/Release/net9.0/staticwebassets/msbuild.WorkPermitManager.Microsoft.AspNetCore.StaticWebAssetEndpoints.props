@@ -26592,6 +26592,30 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lugek5hnai"},{"Name":"integrity","Value":"sha256-zeR5PHeeHbxfGkL8WV86OzdoF6UnjuCmnagaocD\u002Bcbo="},{"Name":"label","Value":"_content/WorkPermitManager/css/site.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"637"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022zeR5PHeeHbxfGkL8WV86OzdoF6UnjuCmnagaocD\u002Bcbo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 11 Jan 2025 02:34:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.4x5xqj50uj.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4x5xqj50uj"},{"Name":"integrity","Value":"sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="},{"Name":"label","Value":"_content/WorkPermitManager/document/\u0E04\u0E39\u0E48\u0E21\u0E37\u0E2D\u0E01\u0E32\u0E23\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E23\u0E30\u0E1A\u0E1A\u0E2B\u0E19\u0E31\u0E07\u0E2A\u0E37\u0E2D\u0E21\u0E2D\u0E1A\u0E2D\u0E33\u0E19\u0E32\u0E08.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"566423"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 04:18:43 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"786545"},{"Name":"Content-Type","Value":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"},{"Name":"ETag","Value":"\u0022EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 04:18:31 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.lipvj6fev6.docx">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.docx'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lipvj6fev6"},{"Name":"integrity","Value":"sha256-EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ="},{"Name":"label","Value":"_content/WorkPermitManager/document/\u0E04\u0E39\u0E48\u0E21\u0E37\u0E2D\u0E01\u0E32\u0E23\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E23\u0E30\u0E1A\u0E1A\u0E2B\u0E19\u0E31\u0E07\u0E2A\u0E37\u0E2D\u0E21\u0E2D\u0E1A\u0E2D\u0E33\u0E19\u0E32\u0E08.docx"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"786545"},{"Name":"Content-Type","Value":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"},{"Name":"ETag","Value":"\u0022EzJCwp9Wl/bUv8FHRc1ZDHY2ia3EnejtfV1VYvo8UVQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 04:18:31 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WorkPermitManager/document/คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\คู่มือการใช้งานระบบหนังสือมอบอำนาจ.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"566423"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022yI3u8FlyBW7kiBPmqxwSMsJ7bnxmrstWIfX0zcUT7WM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 04:18:43 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/document/บต.25.gw0sllzfj6.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\document\บต.25.pdf'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -27544,13 +27568,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WorkPermitManager.niunzl2gmw.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 31 Jan 2025 04:06:02 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 01:59:07 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WorkPermitManager/WorkPermitManager.niunzl2gmw.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WorkPermitManager.niunzl2gmw.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"niunzl2gmw"},{"Name":"integrity","Value":"sha256-wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ="},{"Name":"label","Value":"_content/WorkPermitManager/WorkPermitManager.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 31 Jan 2025 04:06:02 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022wW7mwDVi50LO7dn2eJNPfGyWeZdchgAdDjwfZk9TLSQ=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 01:59:07 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

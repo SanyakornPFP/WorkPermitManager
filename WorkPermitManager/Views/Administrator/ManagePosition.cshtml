@@ -19,10 +19,14 @@
                         <div class="col-12">
                             <div class="card-wrapper border rounded-3 light-card checkbox-checked">
                                 <form id="myForm" method="post" class="row g-3" action="">
-                                    <div class="col-xxl-12 col-sm-12">
+                                    <div class="col-xxl-6 col-sm-6">
                                         <input name="PositionID" id="txtPositionID" type="hidden">
                                         <label class="col-form-label" for="txtPositionName">ชื่อตำแหน่ง</label>
                                         <input class="form-control" name="PositionName" id="txtPositionName" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-6 col-sm-6">
+                                        <label class="col-form-label" for="txtPositionNameEg">ชื่อตำแหน่งอังกฤษ</label>
+                                        <input class="form-control" name="PositionNameEg" id="txtPositionNameEg" type="text" placeholder="กรุณากรอกข้อมูล">
                                     </div>
                                     <div class="col-xxl-12 col-sm-12">
                                         <button class="btn btn-pill btn-primary active" id="createBtn" type="submit" title="btn btn-pill btn-success active">บันทึก</button>
@@ -55,6 +59,7 @@
                             <thead>
                                 <tr>
                                     <th>ชื่อตำแหน่ง</th>
+                                    <th>ชื่อตำแหน่งอังกฤษ</th>
                                     <th>ดำเนินการ</th>
                                 </tr>
                             </thead>
@@ -63,6 +68,7 @@
                                 {
                                     <tr>
                                         <td>@item.PositionName</td>
+                                        <td>@item.PositionNameEg</td>
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">
@@ -124,6 +130,7 @@
             e.preventDefault();
 
             var positionName = $('#txtPositionName').val();
+            var positionNameEg = $('#txtPositionNameEg').val();
 
             if (!positionName) {
                 Swal.fire({
@@ -156,7 +163,7 @@
                                 $.ajax({
                                     url: '@Url.Action("CreatePosition", "Administrator")',
                                     type: 'POST',
-                                    data: { PositionName: positionName,},
+                                    data: { PositionName: positionName, PositionNameEg: positionNameEg},
                                     success: function (response) {
                                         if (response.success == true) {
                                             Swal.fire(
@@ -201,6 +208,7 @@
                             $('#showInsert').show();
                             $('#txtPositionID').val(response.positionID);
                             $('#txtPositionName').val(response.positionName);
+                            $('#txtPositionNameEg').val(response.positionNameEg);
 
                             $('#createHeader').hide();
                             $('#updateHeader').show();
@@ -267,6 +275,7 @@
 
             var positionID = $('#txtPositionID').val();
             var positionName = $('#txtPositionName').val();
+            var positionNameEg = $('#txtPositionNameEg').val();
 
             Swal.fire({
                 title: 'คุณแน่ใจหรือไม่?',
@@ -283,7 +292,7 @@
                     $.ajax({
                         url: '@Url.Action("UpdatePosition", "Administrator")', // manually specify the URL
                         type: 'POST',
-                        data: { PositionID: positionID, PositionName: positionName },
+                        data: { PositionID: positionID, PositionName: positionName, PositionNameEg: positionNameEg },
                         success: function (response) {
                             if (response.success == true) {
                                 Swal.fire(

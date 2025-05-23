@@ -59,6 +59,9 @@
     <property name="PositionName" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="3be867fd-633d-41cc-ad5c-dfa0a018f279">
       <column name="PositionName" not-null="True" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="PositionNameEg" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="7f0daf0d-8018-40ad-b7e1-23a856e914a9">
+      <column name="PositionNameEg" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="ff661886-cda1-4f3c-8f5f-c82481667e8d">
       <column name="CreatedDate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>

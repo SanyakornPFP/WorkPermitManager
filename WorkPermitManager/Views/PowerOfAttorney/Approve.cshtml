@@ -117,7 +117,7 @@
                                         <td>
                                             <span class="badge @(item.Status == "รอการอนุมัติ" ? "badge-warning" : item.Status == "ไม่อนุมัติ" ? "badge-danger" : item.Status == "อนุมัติเรียบร้อย" ? "badge-success" : "badge-light")" style="font-size: 0.8rem">@item.Status</span>
                                         </td>
-                                        <td class="text-center">@item.TotalDate</td>
+                                        <td class="text-center">@(item.TotalDate < 0 ? "0" : item.TotalDate) </td>
                                         <td class="text-center">
                                             <a class="text-primary reportForm btn btn-light btn-sm" data-codeForm="@item.CodeForm">
                                                 <i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i> <span class="text-dark">PDF</span>

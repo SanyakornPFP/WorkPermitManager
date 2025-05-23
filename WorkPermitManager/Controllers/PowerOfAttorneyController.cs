@@ -453,11 +453,13 @@ namespace WorkPermitManager.Controllers
                     s.CodeForm,
                     WriteAt = s.User_AttorneyID.Company.CompanyName,
                     WriteAtEg = s.User_AttorneyID.Company.CompanyNameEg,
-                    CreationDateEg = s.CreationDate.ToString("d                 MMM                 yyyy", new System.Globalization.CultureInfo("en-US")),
+                    CreationDateEg = s.CreationDate.ToString("d                  MMM                 yyyy", new System.Globalization.CultureInfo("en-US")),
                     CreationDate = s.CreationDate.ToString("d                MMM", new System.Globalization.CultureInfo("th-TH")) + "                 " + (s.CreationDate.Year + 543),
                     GrantorLocation = s.User_GrantorID.Company.CompanyAddress,
                     GrantorLocationEg = s.User_GrantorID.Company.CompanyAddressEg,
                     GrantorName = s.User_GrantorID.FullName,
+                    GrantorPosition = s.User_GrantorID.Position.PositionName,
+                    GrantorPositionEg = s.User_GrantorID.Position.PositionNameEg,
                     GrantorNameEg = s.User_GrantorID.FullNameEg,
                     GrantorCardID = s.User_GrantorID.CardID,
                     AttorneyName = s.User_AttorneyID.FullName,
@@ -526,6 +528,42 @@ namespace WorkPermitManager.Controllers
                             .ShowText($"{ModelPA.CreationDate ?? ""}")
                             .MoveText(0, -16)
                             .ShowText($"{ModelPA.CreationDateEg ?? ""}")
+                            .MoveText(-270, -30)
+                            .ShowText($"{ModelPA.GrantorName ?? ""}")
+                            .MoveText(40, -16)
+                            .ShowText($"{ModelPA.GrantorNameEg ?? ""}")
+                            .MoveText(180, -16)
+                            .ShowText($"{ModelPA.GrantorCardID ?? ""}")
+                            .MoveText(20, -16)
+                            .ShowText($"{ModelPA.GrantorCardID ?? ""}")
+                            .MoveText(-165, -15)
+                            .ShowText($"{ModelPA.GrantorLocation ?? ""}")
+                            .MoveText(-60, -16)
+                            .ShowText($"{ModelPA.GrantorLocationEg ?? ""}")
+                            .MoveText(20, -16)
+                            .ShowText($"{ModelPA.AttorneyName ?? ""}")
+                            .MoveText(20, -16)
+                            .ShowText($"{ModelPA.AttorneyNameEg ?? ""}")
+                            .MoveText(170, -16)
+                            .ShowText($"{ModelPA.AttorneyCardID ?? ""}")
+                            .MoveText(10, -16)
+                            .ShowText($"{ModelPA.AttorneyCardID ?? ""}")
+                            .MoveText(-160, -16)
+                            .ShowText($"{ModelPA.AttorneyLocation ?? ""}")
+                            .MoveText(-60, -16)
+                            .ShowText($"{ModelPA.AttorneyLocationEg ?? ""}")
+                            .MoveText(10, -340)
+                            .ShowText($"{ModelPA.GrantorName ?? ""}")
+                            .MoveText(255, 0)
+                            .ShowText($"{ModelPA.AttorneyName ?? ""}")
+                            .MoveText(-255, -15)
+                            .ShowText($"{ModelPA.GrantorPosition ?? ""}")
+                            .MoveText(0, -15)
+                            .ShowText($"{ModelPA.GrantorPositionEg ?? ""}")
+                            .MoveText(0, -43)
+                            .ShowText($"{ModelPA.Witness1Name ?? ""}")
+                            .MoveText(255, 0)
+                            .ShowText($"{ModelPA.Witness2Name ?? ""}")
                             .EndText();
 
                         iText.Layout.Element.Image qrCodePdfImage = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(qrCodeImage))
