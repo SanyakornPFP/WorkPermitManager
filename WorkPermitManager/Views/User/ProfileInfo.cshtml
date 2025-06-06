@@ -95,7 +95,7 @@
                                         <img class="img-100 rounded-circle" src="~/assets/SystemImages/ProfileImage/@User.GetLoggedInImgProfile()" alt="">
                                     }
                                     <div class="flex-grow-1">
-                                        <h4 class="mb-1">@User.GetLoggedInName()</h4>
+                                        <h4 class="mb-1">@User.GetLoggedInName() ( @Model.FullNameEg )</h4>
                                         <p>@User.GetLoggedInPosition()</p>
                                     </div>
                                 </div>
@@ -109,6 +109,24 @@
                                             <td style="font-weight: bold"><i class="icofont icofont-id-card" style="padding-right:10px"></i>  ชื่อผู้ใช้งาน/รหัสพนักงาน</td>
                                             <td>
                                                 @User.GetLoggedInUsername()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-credit-card" style="padding-right:10px"></i>  เลขประจำตัวประชาชน</td>
+                                            <td>
+                                                @Model.CardID 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-location-pin" style="padding-right:10px"></i>  ที่อยู่</td>
+                                            <td>
+                                                @Model.Address ( @Model.AddressEg )
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold"><i class="icofont icofont-worker" style="padding-right:10px"></i>  สายงาน</td>
+                                            <td>
+                                                @Model.LineWork
                                             </td>
                                         </tr>
                                         <tr>

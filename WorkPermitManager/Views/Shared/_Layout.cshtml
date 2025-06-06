@@ -228,7 +228,7 @@
                                     </li>
 
                                 }
-                                @if (User.GetLoggedPermission_Services() == "True")
+                                @if (User.GetLoggedPermission_Services().Contains("True"))
                                 {
 
                                     <li class="sidebar-list">
@@ -243,7 +243,7 @@
                                     </li>
 
                                 }
-                                @if (User.GetLoggedPermission_PowerOfAttorney() == "True")
+                                @if (User.GetLoggedPermission_PowerOfAttorney().Contains("True"))
 
                                 {
 
@@ -258,7 +258,7 @@
                                         </a>
                                         <ul class="sidebar-submenu">
                                             <li><a asp-controller="PowerOfAttorney" asp-action="Form">รายการยื่นขอ</a></li>
-                                            @if (User.GetRole_OwnerSystemIsActive() == "True" || User.GetRole_AdministratorIsActive() == "True")
+                                            @if (User.GetRole_OwnerSystemIsActive().Contains("True") || User.GetRole_AdministratorIsActive().Contains("True"))
                                             {
                                                 <li><a asp-controller="PowerOfAttorney" asp-action="Approve">อนุมัติคำขอ</a></li>
                                             }
@@ -266,7 +266,7 @@
                                     </li>
 
                                 }
-                                @if (User.GetLoggedPermission_Administrator() == "True")
+                                @if (User.GetLoggedPermission_Administrator().Contains("True"))
                                 {
 
                                     <li class="sidebar-list" id="autoservice-menu">

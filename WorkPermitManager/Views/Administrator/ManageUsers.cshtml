@@ -82,9 +82,22 @@
                                         <label class="col-form-label" for="txtCardID">เลขประจำตัว</label>
                                         <input class="form-control" name="CardID" id="txtCardID" type="text" placeholder="กรุณากรอกข้อมูล">
                                     </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="txtLineWork">สายงาน</label>
+                                        <input class="form-control" name="LineWork" id="txtLineWork" type="text" placeholder="กรุณากรอกข้อมูล">
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="txtAddress">ที่อยู่</label>
+                                        <textarea class="form-control" name="Address" id="txtAddress" rows="3" placeholder="กรุณากรอกข้อมูล"></textarea>
+                                    </div>
+                                    <div class="col-xxl-12 col-sm-12">
+                                        <label class="col-form-label" for="txtAddressEg">ที่อยู่อังกฤษ</label>
+                                        <textarea class="form-control" name="AddressEg" id="txtAddressEg" rows="3" placeholder="กรุณากรอกข้อมูล"></textarea>
+                                    </div>
                                     <div class="col-xxl-4 col-sm-4">
                                         <label class="col-form-label" for="selectPositionID">ตำแหน่ง</label>
                                         <select class="form-control select2-In" name="PositionID" id="selectPositionID">
+                                            <option value="">เลือก</option>
                                             @foreach (var position in ViewBag.PositionList)
                                             {
                                                 <option value="@position.PositionID">@position.PositionName</option>
@@ -94,6 +107,7 @@
                                     <div class="col-xxl-4 col-sm-4">
                                         <label class="col-form-label" for="selectDepartmentID">แผนก</label>
                                         <select class="form-control select2-In" name="DepartmentID" id="selectDepartmentID">
+                                            <option value="">เลือก</option>
                                             @foreach (var department in ViewBag.DepartmentList)
                                             {
                                                 <option value="@department.DepartmentID">@department.DepartmentName</option>
@@ -103,6 +117,7 @@
                                     <div class="col-xxl-4 col-sm-4">
                                         <label class="col-form-label" for="selectCompanyID">บริษัท</label>
                                         <select class="form-control select2-In" name="CompanyID" id="selectCompanyID">
+                                            <option value="">เลือก</option>
                                             @foreach (var company in ViewBag.CompanyList)
                                             {
                                                 <option value="@company.CompanyID">@company.CompanyName</option>
@@ -205,7 +220,6 @@
         </div>
     </div>
 </div>
-<!-- Container-fluid Ends-->
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -245,8 +259,16 @@
                                         <td id="Company"></td>
                                     </tr>
                                     <tr>
+                                        <td><i class="icofont icofont-worker m-1"></i> สายงาน</td>
+                                        <td id="LineWork"></td>
+                                    </tr>
+                                    <tr>
                                         <td><i class="icofont icofont-email m-1"></i> อีเมลล์</td>
                                         <td id="Email"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="icofont icofont-location-pin m-1"></i> ที่อยู่</td>
+                                        <td id="Address"></td>
                                     </tr>
                                     <tr>
                                         <td><i class="icofont icofont-email m-1"></i> สถานะผู้ใช้งาน</td>
@@ -294,7 +316,9 @@
                             $('#Username').text(response.data.username);
                             $('#FullName').text(response.data.fullName + ' (' + response.data.fullNameEg + ')');
                             $('#Position').text(response.data.position);
+                            $('#LineWork').text(response.data.lineWork);
                             $('#Department').text(response.data.department);
+                            $('#Address').text(response.data.address + ' (' + response.data.addressEg + ')');
                             $('#Company').text(response.data.company);
                             $('#Email').text(response.data.email);
 
@@ -398,10 +422,13 @@
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
             var fullname = $('#txtFullName').val();
+            var address = $('#txtAddress').val();
+            var addressEg = $('#txtAddressEg').val();
+            var lineWork = $('#txtLineWork').val();
             var fullnameEg = $('#txtFullNameEg').val();
             var administrator = $('#selectAdministratorIsActive').val();
 
-            if (!userName || !fullname || !userEmail || !cardID || !positionID || !departmentID || !companyID || !administrator) {
+            if (!userName || !fullname || !cardID || !administrator) {
                 Swal.fire({
                     icon: 'error',
                     title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
@@ -438,6 +465,9 @@
                                         FullName: fullname,
                                         FullNameEg: fullnameEg,
                                         CardID: cardID,
+                                        Address: address,
+                                        AddressEg: addressEg,
+                                        LineWork: lineWork,
                                         PositionID: positionID,
                                         DepartmentID: departmentID,
                                         CompanyID: companyID,
@@ -491,6 +521,9 @@
                             $('#txtFullNameEg').val(response.fullNameEg);
                             $('#txtUserEmail').val(response.email);
                             $('#txtCardID').val(response.cardID);
+                            $('#txtAddress').val(response.address);
+                            $('#txtAddressEg').val(response.addressEg);
+                            $('#txtLineWork').val(response.lineWork);
                             $('#selectPositionID').val(response.positionID).trigger('change');
                             $('#selectDepartmentID').val(response.departmentID).trigger('change');
                             $('#selectCompanyID').val(response.companyID).trigger('change');
@@ -583,6 +616,9 @@
             var userName = $('#txtUserName').val();
             var userEmail = $('#txtUserEmail').val();
             var cardID = $('#txtCardID').val();
+            var address = $('#txtAddress').val();
+            var addressEg = $('#txtAddressEg').val();
+            var lineWork = $('#txtLineWork').val();
             var positionID = $('#selectPositionID').val();
             var departmentID = $('#selectDepartmentID').val();
             var companyID = $('#selectCompanyID').val();
@@ -609,6 +645,9 @@
                             UserName: userName,
                             UserEmail: userEmail,
                             CardID: cardID,
+                            Address: address,
+                            AddressEg: addressEg,
+                            LineWork: lineWork,
                             PositionID: positionID,
                             DepartmentID: departmentID,
                             CompanyID: companyID,

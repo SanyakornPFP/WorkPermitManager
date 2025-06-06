@@ -1381,7 +1381,6 @@ namespace WorkPermitManager.Controllers
             }
 
             string renderFormat = "PDF";
-            string mimetype = "application/pdf";
             using var report = new LocalReport();
             report.ReportPath = $"{this._hostingEnvironment.WebRootPath}\\Report\\Employers\\EM-001.rdlc";
             report.EnableExternalImages = true;

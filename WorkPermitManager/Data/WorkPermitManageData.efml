@@ -215,8 +215,14 @@
     <property name="CompanyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0e0e058d-fbbe-4a1c-85d7-8940767d3775">
       <column name="CompanyID" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="13" p1:ValidateRequired="false" p1:Guid="cb3fefcb-e650-4063-b4db-0b1de0b0008c">
-      <column name="CardID" not-null="False" length="13" sql-type="char" unique="True" p1:fixed-length="True" p1:unicode="False" />
+    <property name="CardID" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="cb3fefcb-e650-4063-b4db-0b1de0b0008c">
+      <column name="CardID" not-null="False" length="50" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="Address" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="910eaaa2-7997-408a-9809-c057c0b5c061">
+      <column name="Address" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="AddressEg" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a8feb8e9-d987-4ed7-8f15-729d9b9a3176">
+      <column name="AddressEg" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="ProfilePicture" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cdf922aa-d9fd-449e-bee6-092ae80678d7">
       <column name="ProfilePicture" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
@@ -226,6 +232,9 @@
     </property>
     <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="cf4a97c8-5c9c-4b16-913b-a6c863095384">
       <column name="Email" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="LineWork" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="90266ca8-9dc6-42e2-ad13-1f131a813365">
+      <column name="LineWork" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
     </property>
     <property name="ManageSendEmail" type="Boolean" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9c5453c4-3928-4fa8-a8a0-45bc54d87907">
       <column name="ManageSendEmail" default="0" not-null="True" sql-type="bit" p1:unicode="False" />

@@ -21,8 +21,9 @@ namespace WorkPermitManager.Controllers
 
         public IActionResult ProfileInfo()
         {
-            ViewData["ManageSendEmail"] = _db.Users.Where(u => u.UserID == int.Parse(User.GetLoggedInUserID())).Select(u => u.ManageSendEmail).FirstOrDefault();
-            return View();
+            var data = _db.Users.Where(u => u.UserID == int.Parse(User.GetLoggedInUserID())).FirstOrDefault();
+
+            return View(data);
         }
 
         [HttpPost]
@@ -164,10 +165,10 @@ namespace WorkPermitManager.Controllers
                  new Claim("CompanyID", dataUser.CompanyID.ToString()),
                 new Claim("ProfileImage", dataUser.ProfilePicture  == null ? "NULL" :dataUser.ProfilePicture),
                 new Claim("SignatureImage", dataUser.Signature  == null ? "NULL" :dataUser.Signature),
-                new Claim("ViewEmployers", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Employers")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
-                new Claim("ViewServices", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Services")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
-                new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
-                new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator")).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewEmployers", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Employers") && p.UserID == user.UserID).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewServices", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Services") && p.UserID == user.UserID).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewPowerOfAttorney", _db.UserPermissions.Where(p=>p.FunctionName.Contains("PowerOfAttorney") && p.UserID == user.UserID).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
+                new Claim("ViewAdministrator", _db.UserPermissions.Where(p=>p.FunctionName.Contains("Administrator") && p.UserID == user.UserID).Select(p => p.CanRead).FirstOrDefault() == true ? "True" : "False"),
                 new Claim("AdministratorIsActive", dataUser.AdministratorActive == true ? "True" : "False"),
                 new Claim("OwnerSystemIsActive", dataUser.OwnerSystem == true ? "True" : "False")
 

@@ -38,14 +38,14 @@ namespace WorkPermitManager.Controllers
 
         #region Create User
         [HttpPost]
-        public async Task<IActionResult> CreateUser(string UserName, string FullName, string FullNameEg, string UserEmail, string CardID, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
+        public async Task<IActionResult> CreateUser(string UserName, string FullName, string FullNameEg, string UserEmail, string CardID, string Address, string AddressEg, string LineWork, int PositionID, int DepartmentID, int? CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (UserName == null || UserEmail == null || PositionID == 0 || DepartmentID == 0 || CompanyID == 0)
+            if (UserName == null)
             {
                 return NotFound();
             }
@@ -58,6 +58,8 @@ namespace WorkPermitManager.Controllers
                     FullNameEg = FullNameEg,
                     Email = UserEmail,
                     CardID = CardID,
+                    Address = Address,
+                    AddressEg = AddressEg,
                     Passwordhash = ComputeSha256Hash(CardID),
                     PositionID = PositionID,
                     DepartmentID = DepartmentID,
@@ -185,14 +187,14 @@ namespace WorkPermitManager.Controllers
 
         #region Update User
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string FullName, string FullNameEg, string CardID, string UserEmail, int PositionID, int DepartmentID, int CompanyID, string AdministratorIsActive)
+        public async Task<IActionResult> UpdateUser(int UserID, string UserName, string FullName, string FullNameEg, string CardID, string Address, string AddressEg, string LineWork, string UserEmail, int? PositionID, int? DepartmentID, int? CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("UpdateAdministrator"))
             {
                 return Json(new { success = false, message = "คุณไม่ได้รับอนุญาติในส่วนนี้ โปรดติดต่อผู้ดูแล" });
             }
 
-            if (UserID == 0 || UserName == null || UserEmail == null || PositionID == 0 || DepartmentID == 0 || CompanyID == 0)
+            if (UserID == 0 || UserName == null)
             {
                 return NotFound();
             }
@@ -215,9 +217,12 @@ namespace WorkPermitManager.Controllers
                     model.FullName = FullName;
                     model.FullNameEg = FullNameEg;
                     model.CardID = CardID;
+                    model.Address = Address;
+                    model.AddressEg = AddressEg;
+                    model.LineWork = LineWork;
                     model.PositionID = PositionID;
                     model.DepartmentID = DepartmentID;
-                    model.CompanyID = CompanyID;
+                    model.CompanyID = CompanyID ?? null;
                     model.UpdatedDate = DateTime.Now;
                     model.UserManageID = int.Parse(User.GetLoggedInUserID());
                     model.AdministratorActive = AdministratorIsActive == "admin" ? true : false;
@@ -310,6 +315,7 @@ namespace WorkPermitManager.Controllers
                     // Save the log entry
                     _db.LogSystemDatas.Add(logEntry);
                     await _db.SaveChangesAsync();
+
                     return Json(new { success = true, message = "อัพเดทข้อมูลผู้ใช้งานเรียบร้อย" });
                 }
             }
@@ -447,6 +453,9 @@ namespace WorkPermitManager.Controllers
                         s.FullNameEg,
                         s.CardID,
                         s.Email,
+                        s.Address,
+                        s.AddressEg,
+                        s.LineWork,
                         s.Position.PositionName,
                         s.Department.DepartmentName,
                         s.Company.CompanyName,
@@ -468,9 +477,12 @@ namespace WorkPermitManager.Controllers
                         FullNameEg = model.FullNameEg,
                         CardID = model.CardID ?? "ไม่พบข้อมูล",
                         Email = model.Email ?? "ไม่พบข้อมูล",
-                        Position = model.PositionName, // Corrected to assign the Position object
-                        Department = model.DepartmentName,
-                        Company = model.CompanyName,
+                        Address = model.Address ?? "ไม่พบข้อมูล",
+                        AddressEg = model.AddressEg ?? "ไม่พบข้อมูล",
+                        LineWork = model.LineWork ?? "ไม่พบข้อมูล",
+                        Position = model.PositionName ?? "ไม่พบข้อมูล", // Corrected to assign the Position object
+                        Department = model.DepartmentName ?? "ไม่พบข้อมูล",
+                        Company = model.CompanyName ?? "ไม่พบข้อมูล",
                         LoginDate = model.LoginDate,
                         ProfilePicture = model.ProfilePicture ?? "Default.png",
                         AdministratorActive = model.AdministratorActive
