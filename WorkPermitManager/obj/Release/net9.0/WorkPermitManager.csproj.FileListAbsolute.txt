@@ -125,7 +125,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\S
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\System.ServiceModel.Primitives.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\System.ServiceModel.Security.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\System.ServiceModel.dll
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\af\Humanizer.resources.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\ar\Humanizer.resources.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\az\Humanizer.resources.dll
@@ -331,7 +330,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\r
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\bin\Release\net9.0\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.csproj.AssemblyReference.cache
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.GeneratedMSBuildEditorConfig.editorconfig
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.AssemblyInfoInputs.cache
@@ -2033,12 +2031,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\c
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.build.json
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.development.json
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.build.endpoints.json
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets\msbuild.WorkPermitManager.Microsoft.AspNetCore.StaticWebAssets.props
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets\msbuild.WorkPermitManager.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets\msbuild.build.WorkPermitManager.props
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets\msbuild.buildMultiTargeting.WorkPermitManager.props
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets\msbuild.buildTransitive.WorkPermitManager.props
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.pack.json
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.upToDateCheck.txt
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPerm.98069DD6.Up2Date
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.dll
@@ -2046,3 +2038,4 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\r
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.pdb
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\WorkPermitManager.genruntimeconfig.cache
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\ref\WorkPermitManager.dll
+D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\staticwebassets.build.json.cache

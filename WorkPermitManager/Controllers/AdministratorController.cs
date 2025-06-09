@@ -38,7 +38,7 @@ namespace WorkPermitManager.Controllers
 
         #region Create User
         [HttpPost]
-        public async Task<IActionResult> CreateUser(string UserName, string FullName, string FullNameEg, string UserEmail, string CardID, string Address, string AddressEg, string LineWork, int PositionID, int DepartmentID, int? CompanyID, string AdministratorIsActive)
+        public async Task<IActionResult> CreateUser(string UserName, string FullName, string FullNameEg, string UserEmail, string CardID, string Address, string AddressEg, string LineWork, int? PositionID, int? DepartmentID, int? CompanyID, string AdministratorIsActive)
         {
             if (!GetUserPermissions(int.Parse(User.GetLoggedInUserID())).Contains("CreateAdministrator"))
             {

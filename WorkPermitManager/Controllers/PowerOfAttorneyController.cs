@@ -41,6 +41,7 @@ namespace WorkPermitManager.Controllers
                 s.PowerOfAttorneyID,
                 s.CodeForm,
                 s.CompanyID,
+                s.AttorneyID,
                 GrantorName = s.User_GrantorID.FullName,
                 AttorneyName = s.User_AttorneyID.FullName,
                 CreationDate = s.CreationDate.ToString("dd-MM-yyyy"),
@@ -71,16 +72,16 @@ namespace WorkPermitManager.Controllers
                 })
                 .ToList();
 
-            if (User.GetRole_AdministratorIsActive() != "True" && User.GetRole_OwnerSystemIsActive() != "True")
+            if (!User.GetRole_AdministratorIsActive().Contains("True") && !User.GetRole_OwnerSystemIsActive().Contains("True"))
             {
                 PowerOfAttorneyModel = PowerOfAttorneyModel
-                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID())
+                    .Where(s => s.AttorneyID.ToString() == User.GetLoggedInUserID())
                     .ToList();
                 Companies = Companies
-                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID() || s.OwnerSystem == true)
+                    .Where(s => s.OwnerSystem == true)
                     .ToList();
                 Users = Users
-                    .Where(s => s.CompanyID.ToString() == User.GetLoggedInCompanyID() || s.OwnerSystem == true)
+                    .Where(s => s.OwnerSystem == true)
                     .ToList();
 
             }
@@ -349,30 +350,29 @@ namespace WorkPermitManager.Controllers
                 })
                 .ToList();
 
-            if (User.GetRole_AdministratorIsActive() == "True")
-            {
-                var CountStatus = model
-                    .ToList();
 
+            if (User.GetRole_AdministratorIsActive().Contains("True"))
+            {
                 return Json(new
                 {
-                    waitapproval = CountStatus.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.IsActive == false).Count()
+                    waitapproved = model.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
+                    approved = model.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = model.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = model.Where(s => s.IsActive == false).Count()
                 });
             }
             else
             {
-                var CountStatus = model
-                    .Where(s => s.AttorneyID == int.Parse(User.GetLoggedInUserID()))
+                model = model
+                    .Where(s => s.AttorneyID.ToString() == User.GetLoggedInUserID())
                     .ToList();
+
                 return Json(new
                 {
-                    waitapproved = CountStatus.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
-                    approved = CountStatus.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
-                    notapproved = CountStatus.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
-                    canceled = CountStatus.Where(s => s.IsActive == false).Count()
+                    waitapproved = model.Where(s => s.IsActive && s.Status == "รอการอนุมัติ").Count(),
+                    approved = model.Where(s => s.IsActive && s.Status == "อนุมัติเรียบร้อย").Count(),
+                    notapproved = model.Where(s => s.IsActive && s.Status == "ไม่อนุมัติ").Count(),
+                    canceled = model.Where(s => s.IsActive == false).Count()
                 });
             }
         }

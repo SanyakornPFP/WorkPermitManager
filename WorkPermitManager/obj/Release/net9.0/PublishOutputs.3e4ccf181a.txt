@@ -118,7 +118,6 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.ServiceModel.Primitives.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.ServiceModel.Security.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.ServiceModel.dll
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\af\Humanizer.resources.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\ar\Humanizer.resources.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\az\Humanizer.resources.dll
@@ -311,5 +310,4 @@ D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\P
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
-D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll
 D:\Project\Project\2024\WorkPermitManager\WorkPermitManager\obj\Release\net9.0\PubTmp\Out\WorkPermitManager.deps.json
